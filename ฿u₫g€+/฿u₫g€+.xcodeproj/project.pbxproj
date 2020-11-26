@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		A8109E55256F9520008F3709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8109E53256F9520008F3709 /* Main.storyboard */; };
 		A8109E57256F9522008F3709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8109E56256F9522008F3709 /* Assets.xcassets */; };
 		A8109E5A256F9522008F3709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8109E58256F9522008F3709 /* LaunchScreen.storyboard */; };
+		A8109E67256F99C4008F3709 /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */; };
 		A967BA14D43E1B579A26B5D1 /* Pods__u_g__.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0129E65E681E8FBCCB25C24E /* Pods__u_g__.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		A8109E56256F9522008F3709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8109E59256F9522008F3709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8109E5B256F9522008F3709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
 		C08662DACC39F6A0BA5A284F /* Pods-฿u₫g€+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.release.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +58,6 @@
 				53D23DC4B90D4B9BA2987820 /* Pods-฿u₫g€+.debug.xcconfig */,
 				C08662DACC39F6A0BA5A284F /* Pods-฿u₫g€+.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -84,6 +85,7 @@
 				A8109E4D256F9520008F3709 /* AppDelegate.swift */,
 				A8109E4F256F9520008F3709 /* SceneDelegate.swift */,
 				A8109E51256F9520008F3709 /* ViewController.swift */,
+				A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
@@ -206,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8109E67256F99C4008F3709 /* NSUIColor+Hex.swift in Sources */,
 				A8109E52256F9520008F3709 /* ViewController.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */,
