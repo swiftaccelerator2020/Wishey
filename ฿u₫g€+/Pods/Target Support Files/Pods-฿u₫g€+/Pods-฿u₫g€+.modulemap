@@ -1,0 +1,6 @@
+framework module Pods__u_g__ {
+  umbrella header "Pods-฿u₫g€+-umbrella.h"
+
+  export *
+  module * { export * }
+}
