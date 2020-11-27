@@ -27,7 +27,6 @@ class ViewController: UIViewController {
         setupPieChart()
     }
     
-    //MARK: DO NOT TOUCH FUNCTION
     func setupPieChart() {
         pieView.chartDescription?.enabled = false
         pieView.drawHoleEnabled = true
