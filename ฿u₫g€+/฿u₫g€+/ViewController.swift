@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         pieView.rotationAngle = 0
         pieView.rotationEnabled = true
         pieView.centerText = Date().monthAsString()
-        pieView.drawSlicesUnderHoleEnabled = true
+        pieView.drawSlicesUnderHoleEnabled = false
         pieView.drawCenterTextEnabled = true
         pieView.isUserInteractionEnabled = true
         /*
