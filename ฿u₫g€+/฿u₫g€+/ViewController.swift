@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  ฿u₫g€+
 //
-//  Created by Joe Wong on 26/11/20.
+//  Created by Swift Accelator 2020 Group 3 on 26/11/20.
 //
 
 import UIKit
