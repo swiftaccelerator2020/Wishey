@@ -180,7 +180,7 @@ class ViewController: UIViewController {
 //        barView.xAxis.drawAxisLineEnabled = false
 //        barView.leftAxis.drawAxisLineEnabled = false
 //        barView.rightAxis.enabled = false
-//        barView.left
+        barView.
     }
     func setupLineChart() {
         
