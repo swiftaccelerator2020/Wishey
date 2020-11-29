@@ -31,7 +31,10 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var barView: BarChartView!
+    @IBOutlet weak var wishlistView: UIView!
+    @IBOutlet weak var spendingsView: UIView!
     @IBOutlet weak var pieView: PieChartView!
+    @IBOutlet weak var savingsView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     
     struct DataEntry {
@@ -80,6 +83,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        spendingsView.layer.cornerRadius = 20
+        spendingsView.layer.masksToBounds = true
+        savingsView.layer.cornerRadius = 20
+        savingsView.layer.masksToBounds = true
+        wishlistView.layer.cornerRadius = 20
+        wishlistView.layer.masksToBounds = true
         updateChart()
     }
     
@@ -180,7 +189,6 @@ class ViewController: UIViewController {
 //        barView.xAxis.drawAxisLineEnabled = false
 //        barView.leftAxis.drawAxisLineEnabled = false
 //        barView.rightAxis.enabled = false
-        barView.
     }
     func setupLineChart() {
         
