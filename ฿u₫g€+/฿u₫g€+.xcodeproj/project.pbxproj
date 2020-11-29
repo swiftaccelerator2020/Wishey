@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		145642952573FE2D00C3E310 /* wishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145642942573FE2D00C3E310 /* wishlistTableViewController.swift */; };
 		A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E4D256F9520008F3709 /* AppDelegate.swift */; };
 		A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E4F256F9520008F3709 /* SceneDelegate.swift */; };
 		A8109E52256F9520008F3709 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E51256F9520008F3709 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		0129E65E681E8FBCCB25C24E /* Pods__u_g__.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__u_g__.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		145642942573FE2D00C3E310 /* wishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wishlistTableViewController.swift; sourceTree = "<group>"; };
 		53D23DC4B90D4B9BA2987820 /* Pods-฿u₫g€+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.debug.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.debug.xcconfig"; sourceTree = "<group>"; };
 		A8109E4A256F9520008F3709 /* ฿u₫g€+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "฿u₫g€+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8109E4D256F9520008F3709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				A8109E4F256F9520008F3709 /* SceneDelegate.swift */,
 				A8109E51256F9520008F3709 /* ViewController.swift */,
 				A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */,
+				145642942573FE2D00C3E310 /* wishlistTableViewController.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
@@ -210,6 +213,7 @@
 			files = (
 				A8109E67256F99C4008F3709 /* NSUIColor+Hex.swift in Sources */,
 				A8109E52256F9520008F3709 /* ViewController.swift in Sources */,
+				145642952573FE2D00C3E310 /* wishlistTableViewController.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */,
 			);
