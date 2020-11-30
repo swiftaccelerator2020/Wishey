@@ -10,9 +10,9 @@ import Charts
 
 extension Date {
     func monthAsString() -> String {
-            let df = DateFormatter()
-            df.setLocalizedDateFormatFromTemplate("MMMM")
-            return df.string(from: self)
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("MMMM")
+        return df.string(from: self)
     }
 }
 
@@ -194,4 +194,5 @@ class ViewController: UIViewController {
         
     }
 }
+
 

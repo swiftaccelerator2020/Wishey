@@ -7,7 +7,7 @@
 
 import UIKit
 
-class wishlistTableViewController: UITableViewController {
+class WishlistTableViewController: UITableViewController {
     
     var wishlists = [
         "gaming chair",
