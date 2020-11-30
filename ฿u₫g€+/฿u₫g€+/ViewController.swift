@@ -10,9 +10,9 @@ import Charts
 
 extension Date {
     func monthAsString() -> String {
-            let df = DateFormatter()
-            df.setLocalizedDateFormatFromTemplate("MMMM")
-            return df.string(from: self)
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("MMMM")
+        return df.string(from: self)
     }
 }
 
@@ -90,6 +90,25 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         updateChart()
+        setNeedsStatusBarAppearanceUpdate()
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+            UINavigationBar.appearance().isTranslucent = false
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -194,4 +213,5 @@ class ViewController: UIViewController {
         
     }
 }
+
 
