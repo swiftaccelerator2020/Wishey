@@ -12,6 +12,8 @@
 		1456429D2574E11100C3E310 /* expenses_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456429C2574E11100C3E310 /* expenses_structs.swift */; };
 		145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */; };
 		8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903DD61257408BB0046A4C4 /* ViewController.swift */; };
+		89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */; };
+		89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */; };
 		A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E4D256F9520008F3709 /* AppDelegate.swift */; };
 		A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E4F256F9520008F3709 /* SceneDelegate.swift */; };
 		A8109E55256F9520008F3709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8109E53256F9520008F3709 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 		1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseTableViewCell.swift; sourceTree = "<group>"; };
 		53D23DC4B90D4B9BA2987820 /* Pods-฿u₫g€+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.debug.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.debug.xcconfig"; sourceTree = "<group>"; };
 		8903DD61257408BB0046A4C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
+		89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewCell.swift; sourceTree = "<group>"; };
 		A8109E4A256F9520008F3709 /* ฿u₫g€+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "฿u₫g€+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8109E4D256F9520008F3709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8109E4F256F9520008F3709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,12 +103,13 @@
 				A8109E4D256F9520008F3709 /* AppDelegate.swift */,
 				A8109E4F256F9520008F3709 /* SceneDelegate.swift */,
 				A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */,
-				145642942573FE2D00C3E310 /* WishlistTableViewController.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
 				A8109E5B256F9522008F3709 /* Info.plist */,
 				8903DD61257408BB0046A4C4 /* ViewController.swift */,
+				89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */,
+				89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */,
 				145642992574DCF900C3E310 /* expensesTableViewController.swift */,
 				1456429C2574E11100C3E310 /* expenses_structs.swift */,
 				1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */,
@@ -232,6 +237,8 @@
 				A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */,
 				145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */,
 				8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */,
+				89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */,
+				89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */,
 				A8109E67256F99C4008F3709 /* NSUIColor+Hex.swift in Sources */,
 				145642952573FE2D00C3E310 /* WishlistTableViewController.swift in Sources */,
 				A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */,
