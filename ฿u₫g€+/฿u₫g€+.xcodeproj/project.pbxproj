@@ -18,6 +18,9 @@
 		A8109E57256F9522008F3709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8109E56256F9522008F3709 /* Assets.xcassets */; };
 		A8109E5A256F9522008F3709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8109E58256F9522008F3709 /* LaunchScreen.storyboard */; };
 		A8109E67256F99C4008F3709 /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */; };
+		A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */; };
+		A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */; };
+		A8DDDCD92574F107003CC2B8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCD82574F107003CC2B8 /* Data.swift */; };
 		A967BA14D43E1B579A26B5D1 /* Pods__u_g__.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0129E65E681E8FBCCB25C24E /* Pods__u_g__.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,9 @@
 		A8109E59256F9522008F3709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8109E5B256F9522008F3709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
+		A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectedExpensesTableViewController.swift; sourceTree = "<group>"; };
+		A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectedExpensesTableViewCell.swift; sourceTree = "<group>"; };
+		A8DDDCD82574F107003CC2B8 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C08662DACC39F6A0BA5A284F /* Pods-฿u₫g€+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.release.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +108,9 @@
 				145642992574DCF900C3E310 /* expensesTableViewController.swift */,
 				1456429C2574E11100C3E310 /* expenses_structs.swift */,
 				1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */,
+				A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */,
+				A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */,
+				A8DDDCD82574F107003CC2B8 /* Data.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
@@ -220,14 +229,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */,
 				145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */,
 				8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */,
 				A8109E67256F99C4008F3709 /* NSUIColor+Hex.swift in Sources */,
 				145642952573FE2D00C3E310 /* WishlistTableViewController.swift in Sources */,
+				A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */,
 				1456429D2574E11100C3E310 /* expenses_structs.swift in Sources */,
 				A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */,
+				A8DDDCD92574F107003CC2B8 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
