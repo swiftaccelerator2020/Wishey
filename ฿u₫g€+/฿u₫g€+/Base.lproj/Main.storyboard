@@ -23,10 +23,32 @@
             </objects>
             <point key="canvasLocation" x="1596.7289719626167" y="-599.35205183585322"/>
         </scene>
+        <!--Wishlist-->
+        <scene sceneID="DVX-sX-gap">
+            <objects>
+                <viewController id="G8Y-B7-VA1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jyt-dO-9Ng">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wzo-qf-pWD">
+                                <rect key="frame" x="0.0" y="-2" width="428" height="926"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oKt-eE-mNm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Wishlist" id="J0I-hZ-t56"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="agE-oe-rrZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2592" y="-599"/>
+        </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
@@ -145,6 +167,7 @@
                         <outlet property="wishlistView" destination="8aV-6y-nYR" id="9Qn-yg-e0o"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2506.5420560747662" y="93.30453563714903"/>
         </scene>
@@ -188,7 +211,19 @@
                         <viewLayoutGuide key="safeArea" id="1Pp-Dw-SSu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Wishlist" id="ZYc-Vh-Hc3"/>
+                    <navigationItem key="navigationItem" title="Wishlist" id="ZYc-Vh-Hc3">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add" id="dU4-ls-ClR">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="G8Y-B7-VA1" kind="show" id="ZVf-hc-pqI"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Edit" id="hQh-MW-nDU">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B6-Js-2EC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
