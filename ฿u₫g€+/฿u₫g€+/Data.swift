@@ -261,6 +261,7 @@ func setupIncome() {
     if let loadedIncome = projectedIncome.loadFromFile() {
         incomeArray = loadedIncome
         income = 0
+        print(incomeArray)
         for i in 0..<incomeArray.count-1 {
            income += incomeArray[i].incomeMoney
         }
