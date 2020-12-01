@@ -17,7 +17,6 @@ class WishlistTableViewController: UITableViewController {
     }
 
     var savings = 1000
-    var currentSavings = Int()
     var wishlist: [WishlistItem] = [
         WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3),
         WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11),
@@ -33,8 +32,23 @@ class WishlistTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        currentSavings = savings
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+            UINavigationBar.appearance().isTranslucent = false
+        }
     }
 
     // MARK: - Table view data source
@@ -57,10 +71,19 @@ class WishlistTableViewController: UITableViewController {
             cell.wishlistItemTitle.text = wishlist[indexPath.section].name
             cell.wishlistItemCategory.text = wishlist[indexPath.section].category
             cell.monthlyTarget.text = "$\(wishlist[indexPath.section].price/wishlist[indexPath.section].months)/month"
-            currentSavings -= wishlist[indexPath.section].price
-            print(currentSavings)
             var savingsDivPriceText = String()
-            savingsDivPriceText = "\(savings-currentSavings)/\(wishlist[indexPath.section].price)"
+            if savings > 0 {
+                if savings >= wishlist[indexPath.section].price {
+                    savingsDivPriceText = "\(wishlist[indexPath.section].price)/\(wishlist[indexPath.section].price)"
+                } else if savings < wishlist[indexPath.section].price {
+                    savingsDivPriceText = "\(savings)/\(wishlist[indexPath.section].price)"
+                }
+                savings -= wishlist[indexPath.section].price
+                print(savings)
+            } else {
+//                savings = 0
+                savingsDivPriceText = "\(savings)/\(wishlist[indexPath.section].price)"
+            }
 //            if savings == 0 {
 //                savingsDivPriceText = "0/\(wishlist[indexPath.section].price)"
 //            } else {
@@ -70,7 +93,9 @@ class WishlistTableViewController: UITableViewController {
 //            }
             cell.savingsOutOfPrice.text = savingsDivPriceText
         }
-
+        
+        cell.selectionStyle = .none
+        
         return cell
     }
     
@@ -96,7 +121,7 @@ class WishlistTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

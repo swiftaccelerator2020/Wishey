@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pieView: PieChartView!
     @IBOutlet weak var savingsView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     struct DataEntry {
         var value: Double
@@ -90,6 +91,15 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         updateChart()
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationItem.largeTitleDisplayMode = .always
+//        self.navigationController?.navigationBar.sizeToFit()
+//        scrollView.scrollsToTop = true
+//        scrollView.contentInset = UIEdgeInsets(top: view.safeAreaInsets.top, left: view.safeAreaInsets.left, bottom: view.safeAreaInsets.bottom, right: view.safeAreaInsets.right)
+//        scrollView.clipsToBounds = true
+//        view.update
+//        scrollView?.alwaysBounceVertical = true
 //        setNeedsStatusBarAppearanceUpdate()
 //        if #available(iOS 13.0, *) {
 //            let appearance = UINavigationBarAppearance()
@@ -124,9 +134,9 @@ class ViewController: UIViewController {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)

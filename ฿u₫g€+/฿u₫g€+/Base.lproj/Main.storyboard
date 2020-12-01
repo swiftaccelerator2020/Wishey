@@ -131,6 +131,7 @@
                         <outlet property="pageControl" destination="xaM-yM-7Cl" id="w13-xI-kZR"/>
                         <outlet property="pieView" destination="Z8h-SS-r9E" id="RJr-vN-aEx"/>
                         <outlet property="savingsView" destination="ZoP-fz-M4a" id="XaJ-Za-rZV"/>
+                        <outlet property="scrollView" destination="spF-Pd-IPT" id="H6b-4N-ExB"/>
                         <outlet property="spendingsView" destination="xvC-wK-oxt" id="lUM-zd-Gvk"/>
                         <outlet property="wishlistView" destination="8aV-6y-nYR" id="9Qn-yg-e0o"/>
                         <segue destination="TGN-zG-xuB" kind="show" id="Ct8-dX-jcO"/>
@@ -196,10 +197,10 @@
             </objects>
             <point key="canvasLocation" x="3557.9439252336447" y="93.952483801295898"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar View Controller-->
         <scene sceneID="9NQ-Ea-UE2">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="nbn-IM-8RI" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="nbn-IM-8RI" customClass="MainTabBarViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="SIT-8P-xdT"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lh6-KV-u9h">
@@ -208,9 +209,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="yVr-5g-DSf" kind="relationship" relationship="viewControllers" id="qp7-B2-h4d"/>
-                        <segue destination="tYp-3G-FLX" kind="relationship" relationship="viewControllers" id="wfP-Gc-61Q"/>
-                        <segue destination="3rV-1D-qhm" kind="relationship" relationship="viewControllers" id="fZl-5A-C6j"/>
+                        <segue destination="tYp-3G-FLX" kind="relationship" relationship="viewControllers" id="zVZ-nQ-AId"/>
+                        <segue destination="yVr-5g-DSf" kind="relationship" relationship="viewControllers" id="3kN-gM-fnp"/>
+                        <segue destination="3rV-1D-qhm" kind="relationship" relationship="viewControllers" id="kT7-3S-4pc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2lK-dO-E0G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -303,7 +304,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPH-WO-KMA">
-                                            <rect key="frame" x="195" y="11" width="173" height="21"/>
+                                            <rect key="frame" x="195" y="11" width="161" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" systemColor="tertiarySystemBackgroundColor"/>
@@ -317,15 +318,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-fy-Q26">
-                                            <rect key="frame" x="195" y="48" width="170" height="21"/>
+                                            <rect key="frame" x="195" y="48" width="161" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.51372549020000002" green="0.85882352939999995" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.51372549020000002" green="0.85882352939999995" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="monthlyTarget" destination="gwa-fy-Q26" id="odZ-xu-anl"/>
                                     <outlet property="savingsOutOfPrice" destination="iPH-WO-KMA" id="20s-r5-XRO"/>

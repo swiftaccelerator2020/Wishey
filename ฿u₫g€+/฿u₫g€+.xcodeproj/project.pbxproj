@@ -13,6 +13,7 @@
 		8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903DD61257408BB0046A4C4 /* ViewController.swift */; };
 		89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */; };
 		89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */; };
+		89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */; };
 		A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E4D256F9520008F3709 /* AppDelegate.swift */; };
 		A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8109E4F256F9520008F3709 /* SceneDelegate.swift */; };
 		A8109E55256F9520008F3709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8109E53256F9520008F3709 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		8903DD61257408BB0046A4C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
 		89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewCell.swift; sourceTree = "<group>"; };
+		89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		A8109E4A256F9520008F3709 /* ฿u₫g€+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "฿u₫g€+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8109E4D256F9520008F3709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8109E4F256F9520008F3709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */,
 				A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */,
 				A8DDDCD82574F107003CC2B8 /* Data.swift */,
+				89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */,
 				A8109E67256F99C4008F3709 /* NSUIColor+Hex.swift in Sources */,
 				A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */,
+				89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */,
 				1456429D2574E11100C3E310 /* expenses_structs.swift in Sources */,
