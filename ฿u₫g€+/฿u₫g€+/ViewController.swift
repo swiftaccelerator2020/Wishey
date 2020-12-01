@@ -13,6 +13,42 @@ extension Date {
         df.setLocalizedDateFormatFromTemplate("MMMM")
         return df.string(from: self)
     }
+    func dayAsString() -> String {
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("dd")
+        return df.string(from: self)
+    }
+    
+    func entireDateAsString() -> String {
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("dd.MM.yyyy")
+        return df.string(from: self)
+    }
+    var startOfDay: Date {
+            return Calendar.current.startOfDay(for: self)
+        }
+
+        var startOfMonth: Date {
+
+            let calendar = Calendar(identifier: .gregorian)
+            let components = calendar.dateComponents([.year, .month], from: self)
+
+            return  calendar.date(from: components)!
+        }
+
+        var endOfDay: Date {
+            var components = DateComponents()
+            components.day = 1
+            components.second = -1
+            return Calendar.current.date(byAdding: components, to: startOfDay)!
+        }
+
+        var endOfMonth: Date {
+            var components = DateComponents()
+            components.month = 1
+            components.second = -1
+            return Calendar(identifier: .gregorian).date(byAdding: components, to: startOfMonth)!
+        }
 }
 
 let name = "Granwyn Tan"
@@ -133,6 +169,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(projectedIncome.loadSampleData())
+        projectedIncome.saveToFile(income: projectedIncome.loadSampleData())
+        print(projectedIncome.loadFromFile()!)
+        print(Date().startOfDay.dayAsString())
+        if Date().startOfDay.dayAsString() == "01" {
+            if let loadedIncome = projectedIncome.loadFromFile() {
+                for i in 0...loadedIncome.count-1 {
+                    loadedIncome[i].incomeMoney = 0
+                }
+                projectedIncome.saveToFile(income: loadedIncome)
+            }
+//            wishlist = []
+//            expensesArray = []
+            WishlistItem.saveToFile(wishlist: wishlist)
+            expenseStruct.saveToFile(expense: expensesArray)
+        }
         wishlistView.isUserInteractionEnabled = true
         spendingsView.layer.cornerRadius = 20
         spendingsView.layer.masksToBounds = true
