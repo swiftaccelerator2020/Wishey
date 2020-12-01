@@ -142,6 +142,29 @@
             </objects>
             <point key="canvasLocation" x="2506.5420560747662" y="93.30453563714903"/>
         </scene>
+        <!--Projected Expenses-->
+        <scene sceneID="Fiv-14-W63">
+            <objects>
+                <viewController id="eAL-l2-veM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D5x-me-xXT">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wNx-p8-AlA">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z3F-v9-kQF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Projected Expenses" id="cfv-Qs-flk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cIu-Eb-EDR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2507" y="820"/>
+        </scene>
         <!--Expenses Table View Controller-->
         <scene sceneID="hD2-Ox-xLP">
             <objects>
@@ -365,65 +388,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DOo-df-E1Z" kind="relationship" relationship="rootViewController" id="zuh-FY-fol"/>
+                        <segue destination="eAL-l2-veM" kind="relationship" relationship="rootViewController" id="fhA-Nx-QRj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAD-IY-Yja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1607" y="820"/>
-        </scene>
-        <!--Projected Expenses-->
-        <scene sceneID="QDa-0d-Ywi">
-            <objects>
-                <tableViewController id="DOo-df-E1Z" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FGZ-Hf-Oa2">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectedExpensesIdentifier" rowHeight="60" id="xSb-Yh-gjU" customClass="ProjectedExpensesTableViewCell" customModule="_u_g__" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.333332061767578" width="388" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xSb-Yh-gjU" id="sP7-eB-SNr">
-                                    <rect key="frame" x="0.0" y="0.0" width="388" height="60"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccQ-Q8-Xdc">
-                                            <rect key="frame" x="20" y="12" width="71" height="36"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5un-dj-Anz">
-                                            <rect key="frame" x="297" y="12" width="71" height="36"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="iV1-fg-Jwi">
-                                            <rect key="frame" x="185" y="14" width="94" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </stepper>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="expenseMoney" destination="5un-dj-Anz" id="6LI-eh-TNI"/>
-                                    <outlet property="expenseName" destination="ccQ-Q8-Xdc" id="0wA-VP-XbQ"/>
-                                    <outlet property="expenseStepper" destination="iV1-fg-Jwi" id="ryX-Iw-AyP"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="DOo-df-E1Z" id="O9o-UT-smD"/>
-                            <outlet property="delegate" destination="DOo-df-E1Z" id="7e1-HM-iCy"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Projected Expenses" id="5lL-n1-UEw"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1P4-jG-5wW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2509.3457943925232" y="808.63930885529169"/>
         </scene>
     </scenes>
     <resources>
