@@ -65,7 +65,7 @@ class ProjectedExpensesTableViewController: UITableViewController {
         case 0:
             return "Income"
         case 1:
-            return "Expenses"
+            return "Projected Expenses"
         default:
             return ""
         }

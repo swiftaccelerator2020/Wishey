@@ -18,6 +18,24 @@ extension Date {
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var rotateClockWiseTop: UIButton!
+    @IBOutlet weak var rotateAntiClockWiseTop: UIButton!
+    @IBOutlet weak var rotateClockWiseBottom: UIButton!
+    @IBOutlet weak var rotateAntiClockWiseBottom: UIButton!
+    @IBOutlet weak var barView: BarChartView!
+    @IBOutlet weak var wishlistView: UIView!
+    @IBOutlet weak var spendingsView: UIView!
+    @IBOutlet weak var pieView: PieChartView!
+    @IBOutlet weak var savingsView: UIView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var spendingsLabel: UILabel!
+    @IBOutlet weak var restartButton: UIButton!
+    
+    struct DataEntry {
+        var value: Double
+        var name: String
+    }
+    
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
         var colors: [UIColor] = []
         for _ in 0..<numbersOfColor {
@@ -30,18 +48,6 @@ class ViewController: UIViewController {
         return colors
     }
     
-    @IBOutlet weak var barView: BarChartView!
-    @IBOutlet weak var wishlistView: UIView!
-    @IBOutlet weak var spendingsView: UIView!
-    @IBOutlet weak var pieView: PieChartView!
-    @IBOutlet weak var savingsView: UIView!
-    @IBOutlet weak var pageControl: UIPageControl!
-    
-    struct DataEntry {
-        var value: Double
-        var name: String
-    }
-    
     var data: [DataEntry] = []
     
     @IBAction func pageControlChangeValue(_ sender: Any) {
@@ -52,13 +58,44 @@ class ViewController: UIViewController {
         switch pageControl.currentPage {
         case 0:
             pieView.isHidden = false
+            rotateAntiClockWiseBottom.isHidden = false
+            rotateAntiClockWiseTop.isHidden = false
+            rotateClockWiseBottom.isHidden = false
+            rotateClockWiseTop.isHidden = false
             barView.isHidden = true
         case 1:
             pieView.isHidden = true
             barView.isHidden = false
+            rotateAntiClockWiseBottom.isHidden = true
+            rotateAntiClockWiseTop.isHidden = true
+            rotateClockWiseBottom.isHidden = true
+            rotateClockWiseTop.isHidden = true
         default:
             break
         }
+    }
+    
+    func resetCurrentChart() {
+        switch pageControl.currentPage {
+        case 0:
+            pieView.rotationAngle = 0
+            pieView.highlightValues(nil)
+        case 1:
+            barView.fitScreen()
+            barView.highlightValues(nil)
+            barView.resetZoom()
+            barView.resetViewPortOffsets()
+        default:
+            break
+        }
+    }
+    
+    @IBAction func rotateClockWise(_ sender: Any) {
+        pieView.rotationAngle += 10
+    }
+    
+    @IBAction func rotateAntiClockWise(_ sender: Any) {
+        pieView.rotationAngle -= 10
     }
     
 //    func checkPage(numberOfPages no: Int) -> [Int]{
@@ -131,6 +168,7 @@ class ViewController: UIViewController {
             UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
             UINavigationBar.appearance().isTranslucent = false
         }
+        spendingsLabel.text = Date().monthAsString()
     }
     
 //    override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -153,12 +191,13 @@ class ViewController: UIViewController {
     func setupPieChart() {
         // MARK: Customise Pie Chart
         // Description
+//        pieView.usePercentValuesEnabled = true
         pieView.chartDescription?.enabled = false // Disable chartDescription
         // Main CHart
         pieView.drawHoleEnabled = true // Add hole in center
         pieView.rotationAngle = 0 // Set rotation as no offset
         pieView.rotationEnabled = true // Enable rotation
-        pieView.centerText = Date().monthAsString() // Set centerText to current month
+        pieView.centerText = "Spendings" // Set centerText to current month
         pieView.drawSlicesUnderHoleEnabled = false // Turn off slices under hole, text is more to the outside
         pieView.drawCenterTextEnabled = true // Allow center text
         pieView.isUserInteractionEnabled = true // Enlarges on tap
@@ -175,6 +214,7 @@ class ViewController: UIViewController {
         for item in data {
             pieEntries.append(PieChartDataEntry(value: item.value, label: item.name))
         }
+        
 //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
 //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
 //        entries.append(PieChartDataEntry(value: 400.00, label: "Food"))
@@ -195,13 +235,19 @@ class ViewController: UIViewController {
 //        let c4 = NSUIColor(hex: 0x290025)
 //        let c5 = NSUIColor(hex: 0x11001C)
         pieDataSet.drawValuesEnabled = true
-        pieView.data = PieChartData(dataSet: pieDataSet)
+        
+        let pieChartData = PieChartData(dataSet: pieDataSet)
+//        let formatter = NumberFormatter()
+//        formatter.numberStyle = .percent
+//        formatter.maximumFractionDigits = 1
+//        formatter.multiplier = 1.0
+//        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
+        pieView.data = pieChartData
     }
     
     func setupBarChart() {
         var barEntries: [BarChartDataEntry] = []
         var xAxisValues: [String] = []
-        var yAxisValues: [String] = []
         for item in 0..<data.count {
             barEntries.append(BarChartDataEntry(x: Double(item), yValues: [data[item].value]))
             xAxisValues.append(data[item].name)
@@ -214,30 +260,38 @@ class ViewController: UIViewController {
                 + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
         let chartData = BarChartData(dataSet: chartDataSet)
 //        barView.drawBarShadowEnabled = true
-        barView.drawGridBackgroundEnabled = false
+//        barView.drawGridBackgroundEnabled = false
         barView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisValues)
         barView.xAxis.labelPosition = .bottom
         barView.xAxis.granularityEnabled = true
         barView.xAxis.granularity = 1
         barView.data = chartData
-        barView.data?.setDrawValues(false)
+//        barView.data?.setDrawValues(false)
         barView.pinchZoomEnabled = true
         barView.scaleYEnabled = true
         barView.scaleXEnabled = true
 //        barView.highlighter = nil
+        barView.drawValueAboveBarEnabled = true
         barView.doubleTapToZoomEnabled = true
-        barView.chartDescription?.text = Date().monthAsString()
+        barView.chartDescription?.text = "Spendings"
         barView.rightAxis.enabled = false
 //        barView.leftAxis.enabled = false
-        barView.drawBordersEnabled = false
+//        barView.drawBordersEnabled = false
         barView.xAxis.drawGridLinesEnabled = false
-//        barView.xAxis.drawAxisLineEnabled = false
+        barView.xAxis.drawAxisLineEnabled = false
+        barView.setVisibleYRangeMinimum(0, axis: .left)
 //        barView.leftAxis.drawAxisLineEnabled = false
 //        barView.rightAxis.enabled = false
-    }
-    func setupLineChart() {
         
     }
+    
+//    func setupLineChart() {
+//
+//    }
+    @IBAction func resetChart(_ sender: Any) {
+        resetCurrentChart()
+    }
+    
 }
 
 
