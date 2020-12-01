@@ -24,6 +24,12 @@ class WishlistTableViewController: UITableViewController {
         WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3)
     ]
     
+    override func viewDidAppear(_ animated: Bool) {
+        savings = 1000
+//        tableView.reloadRows(at: [IndexPath(row: <#T##Int#>, section: <#T##Int#>)], with: .none)
+//        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,18 +78,32 @@ class WishlistTableViewController: UITableViewController {
             cell.wishlistItemCategory.text = wishlist[indexPath.section].category
             cell.monthlyTarget.text = "$\(wishlist[indexPath.section].price/wishlist[indexPath.section].months)/month"
             var savingsDivPriceText = String()
-            if savings > 0 {
-                if savings >= wishlist[indexPath.section].price {
-                    savingsDivPriceText = "\(wishlist[indexPath.section].price)/\(wishlist[indexPath.section].price)"
-                } else if savings < wishlist[indexPath.section].price {
-                    savingsDivPriceText = "\(savings)/\(wishlist[indexPath.section].price)"
-                }
-                savings -= wishlist[indexPath.section].price
-                print(savings)
-            } else {
-//                savings = 0
-                savingsDivPriceText = "\(savings)/\(wishlist[indexPath.section].price)"
+            var currentSavings = savings
+            for i in 0..<indexPath.section {
+                currentSavings -= wishlist[i].price
+                print(i)
             }
+            
+            if currentSavings >= wishlist[indexPath.section].price {
+                savingsDivPriceText = "$\(wishlist[indexPath.section].price)/\(wishlist[indexPath.section].price)"
+            } else {
+                savingsDivPriceText = "$\(currentSavings)/\(wishlist[indexPath.section].price)"
+            }
+            print("$\(currentSavings)")
+            print()
+//            if savings > 0 {
+//                if savings >= wishlist[indexPath.section].price {
+//                    savingsDivPriceText = "$\(wishlist[indexPath.section].price)/\(wishlist[indexPath.section].price)"
+//                } else /*if savings < wishlist[indexPath.section].price*/ {
+//                    savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.section].price)"
+//                }
+//            savings -= wishlist[indexPath.section].price
+//            print(savings)
+////            } else {
+//            }
+////                savings = 0
+//                savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.section].price)"
+//            }
 //            if savings == 0 {
 //                savingsDivPriceText = "0/\(wishlist[indexPath.section].price)"
 //            } else {
@@ -99,9 +119,20 @@ class WishlistTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 30
+        }
+        return 0
     }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 80
+//    }
     
     
 

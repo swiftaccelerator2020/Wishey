@@ -36,7 +36,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var pieView: PieChartView!
     @IBOutlet weak var savingsView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var scrollView: UIScrollView!
     
     struct DataEntry {
         var value: Double
@@ -91,7 +90,7 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         updateChart()
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+//        scrollView.contentOffset = CGPoint(x: 0, y: 0)
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
 //        self.navigationController?.navigationBar.sizeToFit()

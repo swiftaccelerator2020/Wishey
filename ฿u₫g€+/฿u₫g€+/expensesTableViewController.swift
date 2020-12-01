@@ -9,9 +9,9 @@ import UIKit
 
 class expensesTableViewController: UITableViewController {
     
-    var expenses = [expenseStruct(name: "food", projectedSpending: 100, actualSpending: 65),
-                    expenseStruct(name: "entertainment", projectedSpending: 50, actualSpending: 30),
-                    expenseStruct(name: "tuition", projectedSpending: 300, actualSpending: 250)]
+    var expenses = [expenseStruct(name: "Food", projectedSpending: 100, actualSpending: 65),
+                    expenseStruct(name: "Entertainment", projectedSpending: 50, actualSpending: 30),
+                    expenseStruct(name: "Tuition", projectedSpending: 300, actualSpending: 250)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
