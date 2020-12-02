@@ -104,11 +104,6 @@
 			children = (
 				A8109E4D256F9520008F3709 /* AppDelegate.swift */,
 				A8109E4F256F9520008F3709 /* SceneDelegate.swift */,
-				A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */,
-				A8109E53256F9520008F3709 /* Main.storyboard */,
-				A8109E56256F9522008F3709 /* Assets.xcassets */,
-				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
-				A8109E5B256F9522008F3709 /* Info.plist */,
 				8903DD61257408BB0046A4C4 /* ViewController.swift */,
 				89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */,
 				89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */,
@@ -120,6 +115,11 @@
 				A8DDDCD82574F107003CC2B8 /* Data.swift */,
 				89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */,
 				89D3B8B2257636B200C0E747 /* AttributedString.swift */,
+				A8109E66256F99C4008F3709 /* NSUIColor+Hex.swift */,
+				A8109E53256F9520008F3709 /* Main.storyboard */,
+				A8109E56256F9522008F3709 /* Assets.xcassets */,
+				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
+				A8109E5B256F9522008F3709 /* Info.plist */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
