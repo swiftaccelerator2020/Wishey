@@ -66,7 +66,7 @@ class ViewController: UIViewController {
             rotateClockWiseTop.isHidden = false
             barView.isHidden = true
             zoomInButton.isHidden = true
-            zoomOutButton.isHidden = false
+            zoomOutButton.isHidden = true
         case 1:
             pieView.isHidden = true
             barView.isHidden = false
