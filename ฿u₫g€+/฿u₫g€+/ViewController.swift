@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var spendingsLabel: UILabel!
     @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var zoomInButton: UIButton!
+    @IBOutlet weak var zoomOutButton: UIButton!
     
     struct DataEntry {
         var value: Double
@@ -63,6 +65,8 @@ class ViewController: UIViewController {
             rotateClockWiseBottom.isHidden = false
             rotateClockWiseTop.isHidden = false
             barView.isHidden = true
+            zoomInButton.isHidden = true
+            zoomOutButton.isHidden = false
         case 1:
             pieView.isHidden = true
             barView.isHidden = false
@@ -70,6 +74,8 @@ class ViewController: UIViewController {
             rotateAntiClockWiseTop.isHidden = true
             rotateClockWiseBottom.isHidden = true
             rotateClockWiseTop.isHidden = true
+            zoomInButton.isHidden = false
+            zoomOutButton.isHidden = true
         default:
             break
         }
@@ -290,6 +296,12 @@ class ViewController: UIViewController {
 //    }
     @IBAction func resetChart(_ sender: Any) {
         resetCurrentChart()
+    }
+    @IBAction func zoomIn(_ sender: Any) {
+        barView.zoomIn()
+    }
+    @IBAction func zoomOut(_ sender: Any) {
+        barView.zoomOut()
     }
     
 }
