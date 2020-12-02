@@ -139,8 +139,21 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuK-kf-gPb">
-                                                <rect key="frame" x="8" y="43" width="20" height="35"/>
+                                                <rect key="frame" x="8" y="50" width="20" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="plus.magnifyingglass" catalog="system"/>
+                                                <connections>
+                                                    <action selector="zoomIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="goD-0N-MHJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16V-4t-iuT">
+                                                <rect key="frame" x="362" y="50" width="20" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="minus.magnifyingglass" catalog="system"/>
+                                                <connections>
+                                                    <action selector="zoomIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cxd-eV-raS"/>
+                                                    <action selector="zoomOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jm-jV-3m7"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -171,6 +184,8 @@
                         <outlet property="spendingsLabel" destination="WjU-e1-NPs" id="Ud9-YU-nN8"/>
                         <outlet property="spendingsView" destination="xvC-wK-oxt" id="lUM-zd-Gvk"/>
                         <outlet property="wishlistView" destination="8aV-6y-nYR" id="9Qn-yg-e0o"/>
+                        <outlet property="zoomInButton" destination="WuK-kf-gPb" id="Hcw-m2-Hyu"/>
+                        <outlet property="zoomOutButton" destination="16V-4t-iuT" id="ZpV-Zm-whM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -500,7 +515,9 @@
         <image name="arrow.turn.up.right" catalog="system" width="128" height="99"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="list.star" catalog="system" width="128" height="94"/>
+        <image name="minus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="restart" catalog="system" width="120" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
