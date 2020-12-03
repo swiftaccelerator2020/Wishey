@@ -18,6 +18,8 @@ extension Date {
 
 class ViewController: UIViewController {
     
+    @IBOutlet var TGP_addButton: UITapGestureRecognizer!
+    @IBOutlet var TGP_chart: UITapGestureRecognizer!
     @IBOutlet weak var rotateClockWiseTop: UIButton!
     @IBOutlet weak var rotateAntiClockWiseTop: UIButton!
     @IBOutlet weak var rotateClockWiseBottom: UIButton!
@@ -133,6 +135,8 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         updateChart()
+        TGP_chart.addTarget(self, action: #selector(segueToExpensesPage))
+        TGP_addButton.addTarget(self, action: #selector(segueToAddPage))
 //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
@@ -249,6 +253,14 @@ class ViewController: UIViewController {
 //        formatter.multiplier = 1.0
 //        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
         pieView.data = pieChartData
+    }
+    
+    @objc func segueToExpensesPage(){
+        performSegue(withIdentifier: "expenses segue", sender: nil)
+    }
+    
+    @objc func segueToAddPage(){
+        performSegue(withIdentifier: "Add segue", sender: nil)
     }
     
     func setupBarChart() {
