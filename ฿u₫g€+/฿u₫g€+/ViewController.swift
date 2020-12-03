@@ -75,7 +75,7 @@ class ViewController: UIViewController {
             rotateClockWiseBottom.isHidden = true
             rotateClockWiseTop.isHidden = true
             zoomInButton.isHidden = false
-            zoomOutButton.isHidden = true
+            zoomOutButton.isHidden = false
         default:
             break
         }
@@ -133,6 +133,7 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         updateChart()
+        spendingsView.isUserInteractionEnabled = true
 //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
@@ -302,6 +303,11 @@ class ViewController: UIViewController {
     }
     @IBAction func zoomOut(_ sender: Any) {
         barView.zoomOut()
+    }
+    @IBAction func tapChart(_ sender: Any) {
+        performSegue(withIdentifier: "showExpenses", sender: nil)
+    }
+    @IBAction func addExpensesCategoryHome(_ sender: Any) {
     }
     
 }
