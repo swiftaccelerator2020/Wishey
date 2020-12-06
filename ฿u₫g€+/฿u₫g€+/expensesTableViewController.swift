@@ -102,7 +102,7 @@ class expensesTableViewController: UITableViewController {
      }
      */
     @IBAction func addExpensesCategory(_ sender: Any) {
-        
+        performSegue(withIdentifier: "addCategory2", sender: nil)
     }
     
 }

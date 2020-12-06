@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var zoomInButton: UIButton!
     @IBOutlet weak var zoomOutButton: UIButton!
+    @IBOutlet var swipeLeftGesture: UISwipeGestureRecognizer!
+    @IBOutlet var swipeRightGesture: UISwipeGestureRecognizer!
     
     struct DataEntry {
         var value: Double
@@ -308,6 +310,21 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "showExpenses", sender: nil)
     }
     @IBAction func addExpensesCategoryHome(_ sender: Any) {
+        performSegue(withIdentifier: "addCategory", sender: nil)
+    }
+    
+    @IBAction func swipeRight(_ sender: Any) {
+        if pageControl.currentPage > 0 {
+            pageControl.currentPage -= 1
+            updateChart()
+        }
+    }
+    
+    @IBAction func swipeLeft(_ sender: Any) {
+        if pageControl.currentPage < pageControl.numberOfPages-1 {
+            pageControl.currentPage += 1
+            updateChart()
+        }
     }
     
 }
