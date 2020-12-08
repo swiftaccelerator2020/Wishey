@@ -7,6 +7,9 @@
 
 import UIKit
 
+var projectedTotalIncome = Int()
+var projectedTotalSavings = Int()
+
 class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var expenseMoney: UILabel!
