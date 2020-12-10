@@ -17,6 +17,10 @@ class WishlistTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        wishlistItemTitle.adjustsFontSizeToFitWidth = true
+        wishlistItemCategory.adjustsFontSizeToFitWidth = true
+        savingsOutOfPrice.adjustsFontSizeToFitWidth = true
+        monthlyTarget.adjustsFontSizeToFitWidth = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

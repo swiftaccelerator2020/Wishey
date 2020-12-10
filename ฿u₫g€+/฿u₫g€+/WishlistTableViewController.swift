@@ -7,24 +7,25 @@
 
 import UIKit
 
-class WishlistTableViewController: UITableViewController {
-    
-    struct WishlistItem {
-        var name: String
-        var category: String
-        var price: Int
-        var months: Int
-    }
+struct WishlistItem {
+    var name: String
+    var category: String
+    var price: Int
+    var months: Int
+    var url: String?
+}
 
-    var savings = 1000
-    var wishlist: [WishlistItem] = [
-        WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3),
-        WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11),
-        WishlistItem(name: "Running Shoes", category: "Sports", price: 100, months: 20),
-        WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3),
-        WishlistItem(name: "Couch", category: "Furniture", price: 245, months: 6),
-        WishlistItem(name: "Printer", category: "Office", price: 218, months: 3)
-    ]
+var savings = 1000
+var wishlist: [WishlistItem] = [
+    WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3),
+    WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11),
+    WishlistItem(name: "Running Shoes", category: "Sports", price: 100, months: 20),
+    WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3),
+    WishlistItem(name: "Couch", category: "Furniture", price: 245, months: 6),
+    WishlistItem(name: "Printer", category: "Office", price: 218, months: 3)
+]
+
+class WishlistTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         savings = 1000
@@ -66,6 +67,7 @@ class WishlistTableViewController: UITableViewController {
             UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
             UINavigationBar.appearance().isTranslucent = false
         }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
