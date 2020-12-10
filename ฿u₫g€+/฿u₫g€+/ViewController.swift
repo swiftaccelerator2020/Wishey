@@ -34,6 +34,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var zoomInButton: UIButton!
     @IBOutlet weak var zoomOutButton: UIButton!
+    @IBOutlet var swipeLeftGesture: UISwipeGestureRecognizer!
+    @IBOutlet var swipeRightGesture: UISwipeGestureRecognizer!
     
     struct DataEntry {
         var value: Double
@@ -77,7 +79,7 @@ class ViewController: UIViewController {
             rotateClockWiseBottom.isHidden = true
             rotateClockWiseTop.isHidden = true
             zoomInButton.isHidden = false
-            zoomOutButton.isHidden = true
+            zoomOutButton.isHidden = false
         default:
             break
         }
@@ -135,8 +137,12 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         updateChart()
+<<<<<<< HEAD
         TGP_chart.addTarget(self, action: #selector(segueToExpensesPage))
         TGP_addButton.addTarget(self, action: #selector(segueToAddPage))
+=======
+        spendingsView.isUserInteractionEnabled = true
+>>>>>>> 5678d5c2e3e95da502d1b312b4b9347b62261de3
 //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
@@ -314,6 +320,26 @@ class ViewController: UIViewController {
     }
     @IBAction func zoomOut(_ sender: Any) {
         barView.zoomOut()
+    }
+    @IBAction func tapChart(_ sender: Any) {
+        performSegue(withIdentifier: "showExpenses", sender: nil)
+    }
+    @IBAction func addExpensesCategoryHome(_ sender: Any) {
+        performSegue(withIdentifier: "addCategory", sender: nil)
+    }
+    
+    @IBAction func swipeRight(_ sender: Any) {
+        if pageControl.currentPage > 0 {
+            pageControl.currentPage -= 1
+            updateChart()
+        }
+    }
+    
+    @IBAction func swipeLeft(_ sender: Any) {
+        if pageControl.currentPage < pageControl.numberOfPages-1 {
+            pageControl.currentPage += 1
+            updateChart()
+        }
     }
     
 }
