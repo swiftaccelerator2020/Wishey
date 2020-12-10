@@ -6,20 +6,30 @@
 //
 import UIKit
 
- class ProjectedExpensesTableViewController: UITableViewController {
+var thisTableView = UITableView()
 
-     var projectedIncomeArray = [projectedIncome(incomeName: "Salary",incomeMoney: 3400), projectedIncome(incomeName: "Other",incomeMoney: 6), projectedIncome(incomeName: "Savings",incomeMoney: 3324)]
+var indexPathForProjectedExpenses = 0
 
-     var projectedExpensesArray = [projectedExpenses(expenseName: "Food",expenseMoney: 30),projectedExpenses(expenseName: "Transport",expenseMoney: 20),projectedExpenses(expenseName: "Healthcare",expenseMoney: 20),projectedExpenses(expenseName: "Entertainment",expenseMoney: 12)]
+var projectedIncomeArray = [projectedIncome(incomeName: "Salary",incomeMoney: 3400), projectedIncome(incomeName: "Other",incomeMoney: 6), projectedIncome(incomeName: "Savings",incomeMoney: 3324)]
+
+var projectedExpensesArray = [projectedExpenses(expenseName: "Food",expenseMoney: 30),projectedExpenses(expenseName: "Transport",expenseMoney: 20),projectedExpenses(expenseName: "Healthcare",expenseMoney: 20),projectedExpenses(expenseName: "Entertainment",expenseMoney: 12)]
+
+class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpdater {
 
      override func viewDidLoad() {
          super.viewDidLoad()
+        thisTableView = tableView
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+    }
+    
+    func updateTableView() {
+        tableView.reloadData() // you do have an outlet of tableView I assume
     }
     
     // MARK: - Table view data source
@@ -49,12 +59,16 @@ import UIKit
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectedExpensesIdentifier", for: indexPath) as! ProjectedExpensesTableViewCell
         // Configure the cell...
+        cell.selectionStyle = .none
+        cell.delegate = self
         if indexPath.section == 0 {
             cell.income = projectedIncomeArray[indexPath.row]
             cell.incomeSetUp()
+            indexPathForProjectedExpenses = indexPath.row
         } else if indexPath.section == 1 {
             cell.expense = projectedExpensesArray[indexPath.row]
             cell.expenseSetUp()
+            indexPathForProjectedExpenses = indexPath.row
         }
         return cell
     }
