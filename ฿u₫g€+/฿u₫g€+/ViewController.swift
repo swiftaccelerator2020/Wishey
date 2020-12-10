@@ -137,12 +137,7 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         updateChart()
-<<<<<<< HEAD
-        TGP_chart.addTarget(self, action: #selector(segueToExpensesPage))
-        TGP_addButton.addTarget(self, action: #selector(segueToAddPage))
-=======
         spendingsView.isUserInteractionEnabled = true
->>>>>>> 5678d5c2e3e95da502d1b312b4b9347b62261de3
 //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
