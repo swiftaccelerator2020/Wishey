@@ -57,7 +57,6 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBAction func stepperValueChanged(_ sender: Any) {
         expense.expenseMoney = Int(expenseStepper.value)
-        incomeSetUp()
         expenseSetUp()
     }
     
