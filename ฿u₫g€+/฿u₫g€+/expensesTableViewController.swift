@@ -43,6 +43,19 @@ class expensesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 30
+        }
+        return 0
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
     
     /*
      // Override to support conditional editing of the table view.
@@ -88,5 +101,8 @@ class expensesTableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    @IBAction func addExpensesCategory(_ sender: Any) {
+        performSegue(withIdentifier: "addCategory2", sender: nil)
+    }
     
 }
