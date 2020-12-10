@@ -6,11 +6,7 @@
 //
 import UIKit
 
-var thisTableView = UITableView()
-
-var indexPathForProjectedExpenses = 0
-
-var projectedIncomeArray = [projectedIncome(incomeName: "Salary",incomeMoney: 3400), projectedIncome(incomeName: "Other",incomeMoney: 6), projectedIncome(incomeName: "Savings",incomeMoney: 3324)]
+var projectedIncomeArray = [projectedIncome(incomeName: "Salary",incomeMoney: 3400), projectedIncome(incomeName: "Other",incomeMoney: 6), projectedIncome(incomeName: "Savings",incomeMoney: 0)]
 
 var projectedExpensesArray = [projectedExpenses(expenseName: "Food",expenseMoney: 30),projectedExpenses(expenseName: "Transport",expenseMoney: 20),projectedExpenses(expenseName: "Healthcare",expenseMoney: 20),projectedExpenses(expenseName: "Entertainment",expenseMoney: 12)]
 
@@ -18,7 +14,6 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 
      override func viewDidLoad() {
          super.viewDidLoad()
-        thisTableView = tableView
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,7 +23,15 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         
     }
     
+    func setExpenseMoney(to value: Int, of index: Int) {
+        projectedExpensesArray[index].expenseMoney = value
+        tableView.reloadData()
+    }
+    
     func updateTableView() {
+        print(projectedIncomeArray[2].incomeMoney)
+
+        projectedIncomeArray[2].incomeMoney = (projectedIncomeArray[0].incomeMoney + projectedIncomeArray[1].incomeMoney) - ( projectedExpensesArray[0].expenseMoney + projectedExpensesArray[1].expenseMoney + projectedExpensesArray[2].expenseMoney + projectedExpensesArray[3].expenseMoney )
         tableView.reloadData() // you do have an outlet of tableView I assume
     }
     
@@ -58,17 +61,18 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectedExpensesIdentifier", for: indexPath) as! ProjectedExpensesTableViewCell
+        cell.tableViewController = self
         // Configure the cell...
         cell.selectionStyle = .none
         cell.delegate = self
+        cell.index = indexPath.row
+
         if indexPath.section == 0 {
             cell.income = projectedIncomeArray[indexPath.row]
             cell.incomeSetUp()
-            indexPathForProjectedExpenses = indexPath.row
         } else if indexPath.section == 1 {
             cell.expense = projectedExpensesArray[indexPath.row]
             cell.expenseSetUp()
-            indexPathForProjectedExpenses = indexPath.row
         }
         return cell
     }

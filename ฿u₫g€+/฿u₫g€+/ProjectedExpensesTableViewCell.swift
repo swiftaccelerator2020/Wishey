@@ -12,6 +12,8 @@ protocol CustomCellUpdater: class { // the name of the protocol you can put any
 
 class ProjectedExpensesTableViewCell: UITableViewCell {
     
+    weak var tableViewController: ProjectedExpensesTableViewController?
+    
     weak var delegate: CustomCellUpdater?
     
     @IBOutlet weak var expenseMoney: UILabel!
@@ -22,6 +24,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     var income: projectedIncome?
     var expense: projectedExpenses?
+    var index: Int!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,14 +66,17 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBAction func stepperValueChanged(_ sender: Any) {
         expense?.expenseMoney = Int(expenseStepper.value)
-        projectedIncomeArray[2].incomeMoney = (projectedIncomeArray[0].incomeMoney + projectedIncomeArray[1].incomeMoney) - ( projectedExpensesArray[0].expenseMoney + projectedExpensesArray[1].expenseMoney + projectedExpensesArray[2].expenseMoney + projectedExpensesArray[3].expenseMoney )
-        print(projectedIncomeArray[2].incomeMoney)
+        tableViewController?.setExpenseMoney(to: Int(expenseStepper.value), of: index)
+//        projectedIncomeArray[2].incomeMoney = (projectedIncomeArray[0].incomeMoney + projectedIncomeArray[1].incomeMoney) - ( projectedExpensesArray[0].expenseMoney + projectedExpensesArray[1].expenseMoney + projectedExpensesArray[2].expenseMoney + projectedExpensesArray[3].expenseMoney )
+        //thisTableView.updateTableView()
+        
         if expense != nil {
             expenseSetUp()
         } else {
             incomeSetUp()
             
         }
+        tableViewController?.updateTableView()
         
     }
     
