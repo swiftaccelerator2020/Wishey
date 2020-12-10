@@ -7,6 +7,9 @@
 
 import UIKit
 
+var projectedTotalIncome = Int()
+var projectedTotalSavings = Int()
+
 class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var expenseMoney: UILabel!
@@ -17,7 +20,6 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     var income: projectedIncome!
     var expense: projectedExpenses!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,10 +33,12 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         expenseMoney.isHidden = true
         expenseStepper.isHidden = true
         incomeName.text = income.incomeName
+        print(income.incomeName)
         incomeMoney.text = "$" + String(income.incomeMoney)
     }
     
     func expenseSetUp() {
+        expenseStepper.value = Double(expense.expenseMoney)
         incomeName.isHidden = true
         incomeMoney.isHidden = true
         expenseName.isHidden = false
@@ -51,5 +55,10 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     }
     
     
+    @IBAction func stepperValueChanged(_ sender: Any) {
+        expense.expenseMoney = Int(expenseStepper.value)
+        incomeSetUp()
+        expenseSetUp()
+    }
     
 }
