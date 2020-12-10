@@ -18,8 +18,7 @@ extension Date {
 
 class ViewController: UIViewController {
     
-    @IBOutlet var TGP_addButton: UITapGestureRecognizer!
-    @IBOutlet var TGP_chart: UITapGestureRecognizer!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rotateClockWiseTop: UIButton!
     @IBOutlet weak var rotateAntiClockWiseTop: UIButton!
     @IBOutlet weak var rotateClockWiseBottom: UIButton!
@@ -136,6 +135,7 @@ class ViewController: UIViewController {
         savingsView.layer.masksToBounds = true
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
+        nameLabel.adjustsFontSizeToFitWidth = true
         updateChart()
         spendingsView.isUserInteractionEnabled = true
 //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
