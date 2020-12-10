@@ -21,7 +21,9 @@ class WishlistTableViewController: UITableViewController {
         WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3),
         WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11),
         WishlistItem(name: "Running Shoes", category: "Sports", price: 100, months: 20),
-        WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3)
+        WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3),
+        WishlistItem(name: "Couch", category: "Furniture", price: 245, months: 6),
+        WishlistItem(name: "Printer", category: "Office", price: 218, months: 3)
     ]
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,7 +39,16 @@ class WishlistTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+    }
+    @IBAction func editButtonTapped(_ sender: Any) {
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+        } else {
+            tableView.setEditing(true, animated: true)
+        }
+    }
+    @IBAction func addButtonTapped(_ sender: Any) {
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +87,8 @@ class WishlistTableViewController: UITableViewController {
         if let cell = cell as? WishlistTableViewCell {
             cell.wishlistItemTitle.text = wishlist[indexPath.section].name
             cell.wishlistItemCategory.text = wishlist[indexPath.section].category
-            cell.monthlyTarget.text = "$\(wishlist[indexPath.section].price/wishlist[indexPath.section].months)/month"
+            print()
+            cell.monthlyTarget.text = (Double(wishlist[indexPath.section].price)/Double(wishlist[indexPath.section].months)) != Double(wishlist[indexPath.section].price/wishlist[indexPath.section].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.section].price)/Double(wishlist[indexPath.section].months)))/month" : "$\(wishlist[indexPath.section].price/wishlist[indexPath.section].months)/month"
             var savingsDivPriceText = String()
             var currentSavings = savings
             for i in 0..<indexPath.section {
@@ -87,7 +99,12 @@ class WishlistTableViewController: UITableViewController {
             if currentSavings >= wishlist[indexPath.section].price {
                 savingsDivPriceText = "$\(wishlist[indexPath.section].price)/\(wishlist[indexPath.section].price)"
             } else {
-                savingsDivPriceText = "$\(currentSavings)/\(wishlist[indexPath.section].price)"
+                if currentSavings > 0 {
+                    savingsDivPriceText = "$\(currentSavings)/\(wishlist[indexPath.section].price)"
+                }
+                else {
+                    savingsDivPriceText = "$0/\(wishlist[indexPath.section].price)"
+                }
             }
             print("$\(currentSavings)")
             print()
@@ -144,24 +161,21 @@ class WishlistTableViewController: UITableViewController {
     }
     */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            wishlist.remove(at: indexPath.section)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    */
-
-    /*
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        
     }
-    */
 
     /*
     // Override to support conditional rearranging of the table view.
