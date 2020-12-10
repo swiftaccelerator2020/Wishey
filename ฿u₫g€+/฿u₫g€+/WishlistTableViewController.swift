@@ -72,12 +72,12 @@ class WishlistTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return wishlist.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return wishlist.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,46 +85,46 @@ class WishlistTableViewController: UITableViewController {
 
         // Configure the cell...
         if let cell = cell as? WishlistTableViewCell {
-            cell.wishlistItemTitle.text = wishlist[indexPath.section].name
-            cell.wishlistItemCategory.text = wishlist[indexPath.section].category
+            cell.wishlistItemTitle.text = wishlist[indexPath.row].name
+            cell.wishlistItemCategory.text = wishlist[indexPath.row].category
             print()
-            cell.monthlyTarget.text = (Double(wishlist[indexPath.section].price)/Double(wishlist[indexPath.section].months)) != Double(wishlist[indexPath.section].price/wishlist[indexPath.section].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.section].price)/Double(wishlist[indexPath.section].months)))/month" : "$\(wishlist[indexPath.section].price/wishlist[indexPath.section].months)/month"
+            cell.monthlyTarget.text = (Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/wishlist[indexPath.row].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)))/month" : "$\(wishlist[indexPath.row].price/wishlist[indexPath.row].months)/month"
             var savingsDivPriceText = String()
             var currentSavings = savings
-            for i in 0..<indexPath.section {
+            for i in 0..<indexPath.row {
                 currentSavings -= wishlist[i].price
                 print(i)
             }
             
-            if currentSavings >= wishlist[indexPath.section].price {
-                savingsDivPriceText = "$\(wishlist[indexPath.section].price)/\(wishlist[indexPath.section].price)"
+            if currentSavings >= wishlist[indexPath.row].price {
+                savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
             } else {
                 if currentSavings > 0 {
-                    savingsDivPriceText = "$\(currentSavings)/\(wishlist[indexPath.section].price)"
+                    savingsDivPriceText = "$\(currentSavings)/\(wishlist[indexPath.row].price)"
                 }
                 else {
-                    savingsDivPriceText = "$0/\(wishlist[indexPath.section].price)"
+                    savingsDivPriceText = "$0/\(wishlist[indexPath.row].price)"
                 }
             }
             print("$\(currentSavings)")
             print()
 //            if savings > 0 {
-//                if savings >= wishlist[indexPath.section].price {
-//                    savingsDivPriceText = "$\(wishlist[indexPath.section].price)/\(wishlist[indexPath.section].price)"
-//                } else /*if savings < wishlist[indexPath.section].price*/ {
-//                    savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.section].price)"
+//                if savings >= wishlist[indexPath.row].price {
+//                    savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
+//                } else /*if savings < wishlist[indexPath.row].price*/ {
+//                    savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
 //                }
-//            savings -= wishlist[indexPath.section].price
+//            savings -= wishlist[indexPath.row].price
 //            print(savings)
 ////            } else {
 //            }
 ////                savings = 0
-//                savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.section].price)"
+//                savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
 //            }
 //            if savings == 0 {
-//                savingsDivPriceText = "0/\(wishlist[indexPath.section].price)"
+//                savingsDivPriceText = "0/\(wishlist[indexPath.row].price)"
 //            } else {
-//            //else if savings < wishlist[indexPath.section].price {
+//            //else if savings < wishlist[indexPath.row].price {
 //
 //            //}
 //            }
@@ -165,8 +165,9 @@ class WishlistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            wishlist.remove(at: indexPath.section)
+            wishlist.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -174,7 +175,9 @@ class WishlistTableViewController: UITableViewController {
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        
+        let friend = wishlist.remove(at: fromIndexPath.row)
+        wishlist.insert(friend, at: to.row)
+        tableView.reloadData()
     }
 
     /*
