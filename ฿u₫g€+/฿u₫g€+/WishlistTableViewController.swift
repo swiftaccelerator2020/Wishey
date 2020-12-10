@@ -7,30 +7,12 @@
 
 import UIKit
 
-struct WishlistItem {
-    var name: String
-    var category: String
-    var price: Int
-    var months: Int
-    var url: String?
-}
-
-var savings = 1000
-var wishlist: [WishlistItem] = [
-    WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3),
-    WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11),
-    WishlistItem(name: "Running Shoes", category: "Sports", price: 100, months: 20),
-    WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3),
-    WishlistItem(name: "Couch", category: "Furniture", price: 245, months: 6),
-    WishlistItem(name: "Printer", category: "Office", price: 218, months: 3)
-]
-
 class WishlistTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
-        savings = 1000
+        updateGlobalSavings()
 //        tableView.reloadRows(at: [IndexPath(row: <#T##Int#>, section: <#T##Int#>)], with: .none)
-//        tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -53,6 +35,7 @@ class WishlistTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateGlobalSavings()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.backgroundColor = UIColor(hex: 0x83DB97)
@@ -69,7 +52,6 @@ class WishlistTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -147,6 +129,10 @@ class WishlistTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
+    }
+    
+    @IBAction func unwindToWishlist( _ seg: UIStoryboardSegue) {
+        tableView.reloadData()
     }
     
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

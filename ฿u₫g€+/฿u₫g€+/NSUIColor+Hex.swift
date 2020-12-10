@@ -2,7 +2,7 @@
 //  NSUIColor+Hex.swift
 //  ฿u₫g€+
 //
-//  Created by Swift Accelator 2020 Group 3 on 26/11/20.
+//  Created by Granwyn Tan on 11/12/20.
 //
 
 import Foundation

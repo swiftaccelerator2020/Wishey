@@ -79,12 +79,13 @@ class AddWishlistTableViewController: UITableViewController{
         if let name = nameField.text, let category = nameCategoryField.text, let cost = costField.text, let duration = durationField.text {
             if Int(cost) != nil && Int(duration) != nil {
                 if urlField.text != nil && !(urlField.text!.isEmpty) {
-                    
-                        wishlist.append(WishlistItem(name: name, category: category, price: Int(cost)!, months: Int(duration)!, url: urlField.text!))
+                    wishlist.append(WishlistItem(name: name, category: category, price: Int(cost)!, months: Int(duration)!, url: urlField.text!))
                 } else {
                     wishlist.append(WishlistItem(name: name, category: category, price: Int(cost)!, months: Int(duration)!))
                 }
-                dismiss(animated: true, completion: nil)
+//                dismiss(animated: true, completion: nil)
+                print(wishlist)
+                performSegue(withIdentifier: "unwindSegue", sender: nil)
             } else {
                 print("cost or duration is not a number/int")
             }

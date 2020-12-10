@@ -16,10 +16,10 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     weak var delegate: CustomCellUpdater?
     
-    @IBOutlet weak var expenseMoney: UILabel!
+    @IBOutlet weak var expenseMoney: UITextField!
     @IBOutlet weak var expenseStepper: UIStepper!
-    @IBOutlet weak var incomeMoney: UILabel!
     @IBOutlet weak var incomeName: UILabel!
+    @IBOutlet weak var incomeMoney: UITextField!
     @IBOutlet weak var expenseName: UILabel!
     
     var income: projectedIncome?
@@ -37,15 +37,15 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         expenseName.isHidden = true
         expenseMoney.isHidden = true
         expenseStepper.isHidden = true
-        incomeName.text = income?.incomeName ?? ""
+        incomeName.text = income?.incomeName
         if let incomeMoneyValue = income?.incomeMoney {
-            incomeMoney.text = "$\(incomeMoneyValue)"
+            incomeMoney.text = "\(incomeMoneyValue)"
         }
         
     }
     
     func expenseSetUp() {
-        expenseStepper.value = Double(expense?.expenseMoney ?? 0)
+        expenseStepper.value = Double((expense?.expenseMoney)!)
         incomeName.isHidden = true
         incomeMoney.isHidden = true
         expenseName.isHidden = false
@@ -53,7 +53,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         expenseStepper.isHidden = false
         expenseName.text = expense?.expenseName
         if let expenseMoneyValue = expense?.expenseMoney {
-            expenseMoney.text = "$\(expenseMoneyValue)"
+            expenseMoney.text = "\(expenseMoneyValue)"
         }
     }
     
@@ -74,10 +74,10 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
             expenseSetUp()
         } else {
             incomeSetUp()
-            
         }
-        tableViewController?.updateTableView()
         
+        tableViewController?.updateTableView()
+        updateGlobalSavings()
     }
     
 }

@@ -36,11 +36,6 @@ class ViewController: UIViewController {
     @IBOutlet var swipeLeftGesture: UISwipeGestureRecognizer!
     @IBOutlet var swipeRightGesture: UISwipeGestureRecognizer!
     
-    struct DataEntry {
-        var value: Double
-        var name: String
-    }
-    
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
         var colors: [UIColor] = []
         for _ in 0..<numbersOfColor {
@@ -52,8 +47,6 @@ class ViewController: UIViewController {
         }
         return colors
     }
-    
-    var data: [DataEntry] = []
     
     @IBAction func pageControlChangeValue(_ sender: Any) {
         updateChart()
@@ -128,7 +121,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         spendingsView.layer.cornerRadius = 20
         spendingsView.layer.masksToBounds = true
         savingsView.layer.cornerRadius = 20
@@ -136,8 +128,9 @@ class ViewController: UIViewController {
         wishlistView.layer.cornerRadius = 20
         wishlistView.layer.masksToBounds = true
         nameLabel.adjustsFontSizeToFitWidth = true
-        updateChart()
         spendingsView.isUserInteractionEnabled = true
+        // Do any additional setup after loading the view.
+        
 //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        self.navigationItem.largeTitleDisplayMode = .always
@@ -165,6 +158,9 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateChart()
+        setupBarChart()
+        setupPieChart()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.backgroundColor = UIColor(hex: 0x83DB97)
@@ -188,15 +184,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        data = []
-        data.append(DataEntry(value: 600.00, name: "Healthcare"))
-        data.append(DataEntry(value: 500.00, name: "Transport"))
-        data.append(DataEntry(value: 400.00, name: "Food"))
-        data.append(DataEntry(value: 300.00, name: "Gaming"))
-        data.append(DataEntry(value: 200.00, name: "Entertainment"))
-        data.append(DataEntry(value: 100.00, name: "Others"))
-        setupBarChart()
-        setupPieChart()
     }
     
     func setupPieChart() {

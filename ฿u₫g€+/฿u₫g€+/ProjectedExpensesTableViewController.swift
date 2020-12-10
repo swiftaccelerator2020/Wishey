@@ -6,10 +6,6 @@
 //
 import UIKit
 
-var projectedIncomeArray = [projectedIncome(incomeName: "Salary",incomeMoney: 3400), projectedIncome(incomeName: "Other",incomeMoney: 6), projectedIncome(incomeName: "Savings",incomeMoney: 0)]
-
-var projectedExpensesArray = [projectedExpenses(expenseName: "Food",expenseMoney: 30),projectedExpenses(expenseName: "Transport",expenseMoney: 20),projectedExpenses(expenseName: "Healthcare",expenseMoney: 20),projectedExpenses(expenseName: "Entertainment",expenseMoney: 12)]
-
 class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpdater {
 
      override func viewDidLoad() {
@@ -20,7 +16,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        updateSavings()
     }
     
     func setExpenseMoney(to value: Int, of index: Int) {
@@ -28,10 +24,18 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         tableView.reloadData()
     }
     
+    func updateSavings() {
+        setupIncome()
+        var spendings = Int()
+        for i in 0..<projectedExpensesArray.count {
+           spendings += projectedExpensesArray[i].expenseMoney
+        }
+        projectedIncomeArray[projectedIncomeArray.count-1].incomeMoney = income - spendings
+        updateGlobalSavings()
+    }
+    
     func updateTableView() {
-        print(projectedIncomeArray[2].incomeMoney)
-
-        projectedIncomeArray[2].incomeMoney = (projectedIncomeArray[0].incomeMoney + projectedIncomeArray[1].incomeMoney) - ( projectedExpensesArray[0].expenseMoney + projectedExpensesArray[1].expenseMoney + projectedExpensesArray[2].expenseMoney + projectedExpensesArray[3].expenseMoney )
+        updateSavings()
         tableView.reloadData() // you do have an outlet of tableView I assume
     }
     
