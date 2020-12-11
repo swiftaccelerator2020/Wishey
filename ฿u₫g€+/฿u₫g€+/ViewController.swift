@@ -216,7 +216,7 @@ class ViewController: UIViewController {
         var pieEntries: [PieChartDataEntry] = []
         // Iterate through data values
         for item in expenses {
-            pieEntries.append(PieChartDataEntry(value: item.actualSpending, label: item.name))
+            pieEntries.append(PieChartDataEntry(value: Double(item.actualSpending), label: item.name))
         }
         
 //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
