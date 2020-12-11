@@ -210,6 +210,7 @@ class ViewController: UIViewController {
         // Iterate through data values
         for i in expensesArray {
             pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
+        }
         
 //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
 //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
