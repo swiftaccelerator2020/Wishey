@@ -12,7 +12,7 @@ struct projectedIncome {
     var incomeName: String
     var incomeMoney: Int
 }
-struct projectedExpenses {
+struct projectedExpenses: Codable {
     var expenseName: String
     var expenseMoney: Int
 }
@@ -89,4 +89,27 @@ func setupIncome() {
     for i in 0..<projectedIncomeArray.count-1 {
         income += projectedIncomeArray[i].incomeMoney
     }
+}
+
+// Saving Function
+
+func getArchiveURL() -> URL {
+    let plistName = "expenses"
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    return documentsDirectory.appendingPathComponent(plistName).appendingPathExtension("plist")
+}
+
+func saveToFile(expenses: [projectedExpenses]) {
+    let archiveURL = getArchiveURL()
+    let propertyListEncoder = PropertyListEncoder()
+    let encodedFriends = try? propertyListEncoder.encode(expenses)
+    try? encodedFriends?.write(to: archiveURL, options: .noFileProtection)
+}
+
+func loadFromFile() -> [projectedExpenses]? {
+    let archiveURL = getArchiveURL()
+    let propertyListDecoder = PropertyListDecoder()
+    guard let retrievedFriendsData = try? Data(contentsOf: archiveURL) else { return nil }
+    guard let decodedFriends = try? propertyListDecoder.decode(Array<projectedExpenses>.self, from: retrievedFriendsData) else { return nil }
+    return decodedFriends
 }
