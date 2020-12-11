@@ -53,7 +53,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$___/___" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5c5-bO-yjs">
-                                                <rect key="frame" x="8" y="60" width="374" height="21"/>
+                                                <rect key="frame" x="9" y="60" width="374" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -182,6 +182,7 @@
                     <navigationItem key="navigationItem" title="Home" id="qPA-Ek-WU3"/>
                     <connections>
                         <outlet property="barView" destination="q6d-6l-8cq" id="8A1-iV-0Hx"/>
+                        <outlet property="buyAThingLabel" destination="ET2-Tm-I5a" id="7iA-4f-QsB"/>
                         <outlet property="nameLabel" destination="L2p-9l-K1t" id="WL0-ZE-gJH"/>
                         <outlet property="pageControl" destination="xaM-yM-7Cl" id="w13-xI-kZR"/>
                         <outlet property="pieView" destination="Z8h-SS-r9E" id="RJr-vN-aEx"/>
@@ -190,7 +191,9 @@
                         <outlet property="rotateAntiClockWiseTop" destination="0W3-m0-kmV" id="8Mx-pg-Rsy"/>
                         <outlet property="rotateClockWiseBottom" destination="A8X-Bb-pTg" id="4HR-w1-P6T"/>
                         <outlet property="rotateClockWiseTop" destination="eWX-N9-ivs" id="11t-q4-4cj"/>
+                        <outlet property="savingsLabel" destination="OeF-C2-DsH" id="eFO-w8-wxR"/>
                         <outlet property="savingsView" destination="ZoP-fz-M4a" id="XaJ-Za-rZV"/>
+                        <outlet property="somethingOutOfSomethingLabel" destination="5c5-bO-yjs" id="ZQO-iA-5YX"/>
                         <outlet property="spendingsLabel" destination="WjU-e1-NPs" id="Ud9-YU-nN8"/>
                         <outlet property="spendingsView" destination="xvC-wK-oxt" id="lUM-zd-Gvk"/>
                         <outlet property="swipeLeftGesture" destination="jhO-iR-s7I" id="czG-Dr-uiW"/>
@@ -667,9 +670,26 @@
                             <outlet property="delegate" destination="Ket-Ta-vwm" id="97B-Lg-9qG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Category" id="Ib8-Ex-CVo"/>
+                    <navigationItem key="navigationItem" title="New Category" id="Ib8-Ex-CVo">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Fs1-GN-AeU">
+                            <connections>
+                                <action selector="cancel:" destination="Ket-Ta-vwm" id="wyD-3Z-3Y6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4zU-A2-a0k">
+                            <connections>
+                                <action selector="save:" destination="Ket-Ta-vwm" id="9wU-hb-Dop"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="categoryAmount" destination="HM6-Xg-3QV" id="Mn0-Py-wjL"/>
+                        <outlet property="categoryName" destination="WEi-XD-ObS" id="cQE-nx-agA"/>
+                        <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwind" unwindAction="unwindToHome:" id="tpP-yu-ZrG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3h2-z1-qVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="LQP-6H-Eu6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4423" y="820"/>
         </scene>
@@ -1099,7 +1119,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>
