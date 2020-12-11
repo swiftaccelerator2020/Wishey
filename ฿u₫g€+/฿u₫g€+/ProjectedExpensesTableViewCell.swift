@@ -93,6 +93,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         }
         tableViewController?.updateTableView()
     }
+    
     @IBAction func changeExpense(_ sender: Any) {
         if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil{
 //            income?.incomeMoney = 0

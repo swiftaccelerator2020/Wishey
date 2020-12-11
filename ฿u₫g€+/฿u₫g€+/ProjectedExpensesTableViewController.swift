@@ -18,9 +18,11 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.hideKeyboardWhenTappedAround()
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     func setExpenseMoney(to value: Int, of index: Int) {
-//        projectedExpensesArray[index].expenseMoney = value
+        expensesArray[index].projectedExpenses = value
 //        saveToFile(expenses: projectedExpensesArray)
         tableView.reloadData()
     }
