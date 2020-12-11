@@ -76,21 +76,26 @@ class AddWishlistTableViewController: UITableViewController{
     }
     
     @IBAction func save(_ sender: Any) {
-        if let name = nameField.text, let category = nameCategoryField.text, let cost = costField.text, let duration = durationField.text {
-            if Int(cost) != nil && Int(duration) != nil {
+        if nameField.text != nil && nameCategoryField.text != nil && costField.text != nil && durationField.text != nil && !nameField.text!.isEmpty && !nameCategoryField.text!.isEmpty && !costField.text!.isEmpty && !durationField.text!.isEmpty {
+            if Int(costField.text!) != nil && Int(durationField.text!) != nil {
                 if urlField.text != nil && !(urlField.text!.isEmpty) {
-                    wishlist.append(WishlistItem(name: name, category: category, price: Int(cost)!, months: Int(duration)!, url: urlField.text!))
+                    wishlist.append(WishlistItem(name: nameField.text!, category: nameCategoryField.text!, price: Int(costField.text!)!, months: Int(durationField.text!)!, url: urlField.text!))
                 } else {
-                    wishlist.append(WishlistItem(name: name, category: category, price: Int(cost)!, months: Int(duration)!))
+                    wishlist.append(WishlistItem(name: nameField.text!, category: nameCategoryField.text!, price: Int(costField.text!)!, months: Int(durationField.text!)!))
                 }
 //                dismiss(animated: true, completion: nil)
                 print(wishlist)
                 performSegue(withIdentifier: "unwindSegue", sender: nil)
             } else {
-                print("cost or duration is not a number/int")
+//                print("cost or duration is not a number/int")
+                let alert = UIAlertController(title: "Warning", message: "Cost or duration is not a whole number", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         } else {
-            print("required text fields not filled")
+            let alert = UIAlertController(title: "Warning", message: "Not all required text fields are filled up", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

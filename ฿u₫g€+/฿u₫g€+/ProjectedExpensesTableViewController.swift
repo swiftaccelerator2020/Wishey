@@ -16,22 +16,11 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        updateSavings()
     }
     
     func setExpenseMoney(to value: Int, of index: Int) {
         projectedExpensesArray[index].expenseMoney = value
         tableView.reloadData()
-    }
-    
-    func updateSavings() {
-        setupIncome()
-        var spendings = Int()
-        for i in 0..<projectedExpensesArray.count {
-           spendings += projectedExpensesArray[i].expenseMoney
-        }
-        projectedIncomeArray[projectedIncomeArray.count-1].incomeMoney = income - spendings
-        updateGlobalSavings()
     }
     
     func updateTableView() {
