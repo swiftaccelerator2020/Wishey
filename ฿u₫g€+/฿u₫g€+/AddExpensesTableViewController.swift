@@ -9,6 +9,7 @@ import UIKit
 
 class AddExpensesTableViewController: UITableViewController {
     
+    @IBOutlet weak var projectedTextField: UITextField!
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var categoryAmount: UITextField!
     override func viewDidLoad() {
@@ -105,8 +106,9 @@ class AddExpensesTableViewController: UITableViewController {
         performSegue(withIdentifier: "unwind", sender: nil)
     }
     @IBAction func save(_ sender: Any) {
-        if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty {
-            projectedExpensesArray.append(projectedExpenses(expenseName: categoryName.text!, expenseMoney: Int(categoryAmount.text!)!))
+        if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty && projectedTextField.text != nil && !projectedTextField.text!.isEmpty {
+            expenses.append(expenseStruct(name: categoryName.text!, projectedSpending: Int(projectedTextField.text!)!, actualSpending: Int(categoryAmount.text!)!))
+            projectedExpensesArray.append(projectedExpenses(expenseName: categoryName.text!, expenseMoney: Int(projectedTextField.text!)!))
             
             performSegue(withIdentifier: "unwind", sender: nil)
         } else {

@@ -670,6 +670,41 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="Dfc-WO-6U1">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="rta-tS-RCg">
+                                        <rect key="frame" x="20" y="290" width="388" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rta-tS-RCg" id="cgK-HR-4dj">
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected Amount Spent on Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLP-eM-zTF">
+                                                    <rect key="frame" x="20" y="11" width="348" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$100" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-yF-XaL">
+                                                    <rect key="frame" x="20" y="45" width="348" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HQ1-yF-XaL" firstAttribute="top" secondItem="cLP-eM-zTF" secondAttribute="bottom" constant="10" id="1Z4-kh-lUA"/>
+                                                <constraint firstItem="cLP-eM-zTF" firstAttribute="top" secondItem="cgK-HR-4dj" secondAttribute="topMargin" id="AFk-ly-zc1"/>
+                                                <constraint firstItem="cLP-eM-zTF" firstAttribute="trailing" secondItem="cgK-HR-4dj" secondAttribute="trailingMargin" id="ItW-in-z7V"/>
+                                                <constraint firstItem="HQ1-yF-XaL" firstAttribute="top" secondItem="cLP-eM-zTF" secondAttribute="bottom" constant="10" id="JqX-RD-CCX"/>
+                                                <constraint firstItem="cLP-eM-zTF" firstAttribute="leading" secondItem="cgK-HR-4dj" secondAttribute="leadingMargin" id="TfD-mH-zaa"/>
+                                                <constraint firstItem="HQ1-yF-XaL" firstAttribute="bottom" secondItem="cgK-HR-4dj" secondAttribute="bottomMargin" id="UFT-dB-nOm"/>
+                                                <constraint firstItem="HQ1-yF-XaL" firstAttribute="leading" secondItem="cgK-HR-4dj" secondAttribute="leadingMargin" id="XOL-Di-lQf"/>
+                                                <constraint firstItem="HQ1-yF-XaL" firstAttribute="trailing" secondItem="cgK-HR-4dj" secondAttribute="trailingMargin" id="fbg-dz-yeG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Ket-Ta-vwm" id="R8r-hz-4jN"/>
@@ -691,6 +726,7 @@
                     <connections>
                         <outlet property="categoryAmount" destination="HM6-Xg-3QV" id="Mn0-Py-wjL"/>
                         <outlet property="categoryName" destination="WEi-XD-ObS" id="cQE-nx-agA"/>
+                        <outlet property="projectedTextField" destination="HQ1-yF-XaL" id="oz2-Pk-yzZ"/>
                         <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwind" unwindAction="unwindToHome:" id="tpP-yu-ZrG"/>
                     </connections>
                 </tableViewController>
