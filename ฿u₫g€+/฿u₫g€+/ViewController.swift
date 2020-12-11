@@ -4,7 +4,6 @@
 //
 //  Created by Swift Accelator 2020 Group 3 on 26/11/20.
 //
-
 import UIKit
 import Charts
 
@@ -18,9 +17,6 @@ extension Date {
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var buyAThingLabel: UILabel!
-    @IBOutlet weak var savingsLabel: UILabel!
-    @IBOutlet weak var somethingOutOfSomethingLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rotateClockWiseTop: UIButton!
     @IBOutlet weak var rotateAntiClockWiseTop: UIButton!
@@ -161,9 +157,6 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        savingsLabel.text = "You have saved $\(projectedIncomeArray[2].incomeMoney) so far"
-        buyAThingLabel.text = "You have enough to buy a \(wishlist[0].name)!"
-        somethingOutOfSomethingLabel.text = "$\(wishlist[0].price)/\(wishlist[0].price)"
         updateChart()
         setupBarChart()
         setupPieChart()
@@ -215,8 +208,8 @@ class ViewController: UIViewController {
         // Set up array
         var pieEntries: [PieChartDataEntry] = []
         // Iterate through data values
-        for item in expenses {
-            pieEntries.append(PieChartDataEntry(value: item.actualSpending, label: item.name))
+        for i in expensesArray {
+            pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
         }
         
 //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
@@ -249,20 +242,12 @@ class ViewController: UIViewController {
         pieView.data = pieChartData
     }
     
-    @objc func segueToExpensesPage(){
-        performSegue(withIdentifier: "expenses segue", sender: nil)
-    }
-    
-    @objc func segueToAddPage(){
-        performSegue(withIdentifier: "Add segue", sender: nil)
-    }
-    
     func setupBarChart() {
         var barEntries: [BarChartDataEntry] = []
         var xAxisValues: [String] = []
-        for item in 0..<expenses.count {
-            barEntries.append(BarChartDataEntry(x: Double(item), yValues: [Double(expenses[item].actualSpending)]))
-            xAxisValues.append(expenses[item].name)
+        for i in 0..<expensesArray.count {
+            barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
+            xAxisValues.append(expensesArray[i].categoryName)
         }
         let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
         chartDataSet.colors =
@@ -329,9 +314,10 @@ class ViewController: UIViewController {
             updateChart()
         }
     }
+    
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
-    }
+            setupPieChart()
+            setupBarChart()
+        }
     
 }
-
-

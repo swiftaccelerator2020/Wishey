@@ -20,12 +20,13 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     }
     
     func setExpenseMoney(to value: Int, of index: Int) {
-        projectedExpensesArray[index].expenseMoney = value
+//        projectedExpensesArray[index].expenseMoney = value
+//        saveToFile(expenses: projectedExpensesArray)
         tableView.reloadData()
     }
     
     func updateTableView() {
-        updateSavings()
+        updateProjectedSavings()
         tableView.reloadData() // you do have an outlet of tableView I assume
     }
     
@@ -40,9 +41,9 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0:
-            return projectedIncomeArray.count
+            return incomeArray.count
         case 1:
-            return projectedExpensesArray.count
+            return expensesArray.count
         default:
             return 0
         }
@@ -62,13 +63,13 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         cell.index = indexPath.row
 
         if indexPath.section == 0 {
-            cell.income = projectedIncomeArray[indexPath.row]
+            cell.income = incomeArray[indexPath.row]
             cell.incomeSetUp()
-            if indexPath.row == projectedIncomeArray.count-1 {
+            if indexPath.row == incomeArray.count-1 {
                 cell.incomeMoney.isEnabled = false
             }
         } else if indexPath.section == 1 {
-            cell.expense = projectedExpensesArray[indexPath.row]
+            cell.expense = expensesArray[indexPath.row]
             cell.expenseSetUp()
         }
         return cell

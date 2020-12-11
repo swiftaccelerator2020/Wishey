@@ -182,7 +182,6 @@
                     <navigationItem key="navigationItem" title="Home" id="qPA-Ek-WU3"/>
                     <connections>
                         <outlet property="barView" destination="q6d-6l-8cq" id="8A1-iV-0Hx"/>
-                        <outlet property="buyAThingLabel" destination="ET2-Tm-I5a" id="7iA-4f-QsB"/>
                         <outlet property="nameLabel" destination="L2p-9l-K1t" id="WL0-ZE-gJH"/>
                         <outlet property="pageControl" destination="xaM-yM-7Cl" id="w13-xI-kZR"/>
                         <outlet property="pieView" destination="Z8h-SS-r9E" id="RJr-vN-aEx"/>
@@ -191,9 +190,7 @@
                         <outlet property="rotateAntiClockWiseTop" destination="0W3-m0-kmV" id="8Mx-pg-Rsy"/>
                         <outlet property="rotateClockWiseBottom" destination="A8X-Bb-pTg" id="4HR-w1-P6T"/>
                         <outlet property="rotateClockWiseTop" destination="eWX-N9-ivs" id="11t-q4-4cj"/>
-                        <outlet property="savingsLabel" destination="OeF-C2-DsH" id="eFO-w8-wxR"/>
                         <outlet property="savingsView" destination="ZoP-fz-M4a" id="XaJ-Za-rZV"/>
-                        <outlet property="somethingOutOfSomethingLabel" destination="5c5-bO-yjs" id="ZQO-iA-5YX"/>
                         <outlet property="spendingsLabel" destination="WjU-e1-NPs" id="Ud9-YU-nN8"/>
                         <outlet property="spendingsView" destination="xvC-wK-oxt" id="lUM-zd-Gvk"/>
                         <outlet property="swipeLeftGesture" destination="jhO-iR-s7I" id="czG-Dr-uiW"/>
@@ -609,7 +606,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAV-WT-boN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Name *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAV-WT-boN">
                                                     <rect key="frame" x="20" y="11" width="348" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -619,6 +616,9 @@
                                                     <rect key="frame" x="20" y="45" width="348" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="a2d-Yn-MC2"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -635,32 +635,91 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="YPo-XS-AOu">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="y3H-du-ykh">
+                                        <rect key="frame" x="20" y="154" width="388" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y3H-du-ykh" id="nMt-bD-WKq">
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budget for Category *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwT-Zg-4aL">
+                                                    <rect key="frame" x="20" y="11" width="348" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-M2-ed1">
+                                                    <rect key="frame" x="38" y="55" width="330" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="9XT-Fe-Jn9"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hr-hb-vxX">
+                                                    <rect key="frame" x="20" y="55" width="13" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cwT-Zg-4aL" firstAttribute="trailing" secondItem="nMt-bD-WKq" secondAttribute="trailingMargin" id="G5w-Uc-rdD"/>
+                                                <constraint firstItem="6Hr-hb-vxX" firstAttribute="top" secondItem="cwT-Zg-4aL" secondAttribute="bottom" constant="10" id="I8g-Q8-OBd"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6Hr-hb-vxX" secondAttribute="bottom" id="K7k-EG-nfi"/>
+                                                <constraint firstItem="6Hr-hb-vxX" firstAttribute="leading" secondItem="nMt-bD-WKq" secondAttribute="leadingMargin" id="NsN-iL-NUT"/>
+                                                <constraint firstItem="5fh-M2-ed1" firstAttribute="leading" secondItem="6Hr-hb-vxX" secondAttribute="trailing" constant="5" id="QvW-mr-u2O"/>
+                                                <constraint firstItem="cwT-Zg-4aL" firstAttribute="top" secondItem="nMt-bD-WKq" secondAttribute="topMargin" id="T05-md-doN"/>
+                                                <constraint firstItem="cwT-Zg-4aL" firstAttribute="leading" secondItem="nMt-bD-WKq" secondAttribute="leadingMargin" id="iJW-C4-64c"/>
+                                                <constraint firstItem="5fh-M2-ed1" firstAttribute="bottom" secondItem="nMt-bD-WKq" secondAttribute="bottomMargin" id="lcA-ML-SmT"/>
+                                                <constraint firstItem="5fh-M2-ed1" firstAttribute="trailing" secondItem="nMt-bD-WKq" secondAttribute="trailingMargin" id="osD-pd-O6N"/>
+                                                <constraint firstItem="5fh-M2-ed1" firstAttribute="top" secondItem="cwT-Zg-4aL" secondAttribute="bottom" constant="10" id="qg2-7g-vTs"/>
+                                                <constraint firstItem="5fh-M2-ed1" firstAttribute="top" secondItem="cwT-Zg-4aL" secondAttribute="bottom" constant="10" id="whO-lF-8Kj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="WaQ-Lq-bCd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="tnN-q8-35v">
-                                        <rect key="frame" x="20" y="154" width="388" height="100"/>
+                                        <rect key="frame" x="20" y="290" width="388" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tnN-q8-35v" id="OoN-on-eOM">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Spent on Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIU-du-1MX">
-                                                    <rect key="frame" x="20" y="11" width="348" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Spent on Category *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIU-du-1MX">
+                                                    <rect key="frame" x="20" y="11" width="348" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$100" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HM6-Xg-3QV">
-                                                    <rect key="frame" x="20" y="45" width="348" height="44"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HM6-Xg-3QV">
+                                                    <rect key="frame" x="38" y="55" width="330" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="1Ff-p3-Ydd"/>
+                                                    </connections>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02R-o3-85X">
+                                                    <rect key="frame" x="20" y="55" width="13" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="HM6-Xg-3QV" firstAttribute="bottom" secondItem="OoN-on-eOM" secondAttribute="bottomMargin" id="71y-Cw-1dL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="02R-o3-85X" secondAttribute="bottom" id="8qF-Yp-cFg"/>
+                                                <constraint firstItem="02R-o3-85X" firstAttribute="top" secondItem="bIU-du-1MX" secondAttribute="bottom" constant="10" id="EfG-Kb-kfK"/>
+                                                <constraint firstItem="02R-o3-85X" firstAttribute="leading" secondItem="OoN-on-eOM" secondAttribute="leadingMargin" id="LBp-1H-bS7"/>
                                                 <constraint firstItem="bIU-du-1MX" firstAttribute="leading" secondItem="OoN-on-eOM" secondAttribute="leadingMargin" id="ReD-XS-vqO"/>
                                                 <constraint firstItem="HM6-Xg-3QV" firstAttribute="top" secondItem="bIU-du-1MX" secondAttribute="bottom" constant="10" id="X8X-f2-mNH"/>
-                                                <constraint firstItem="HM6-Xg-3QV" firstAttribute="leading" secondItem="OoN-on-eOM" secondAttribute="leadingMargin" id="bHh-70-e4P"/>
+                                                <constraint firstItem="HM6-Xg-3QV" firstAttribute="leading" secondItem="02R-o3-85X" secondAttribute="trailing" constant="5" id="bMk-2m-khk"/>
                                                 <constraint firstItem="HM6-Xg-3QV" firstAttribute="top" secondItem="bIU-du-1MX" secondAttribute="bottom" constant="10" id="d5i-jW-MfE"/>
                                                 <constraint firstItem="bIU-du-1MX" firstAttribute="trailing" secondItem="OoN-on-eOM" secondAttribute="trailingMargin" id="kSe-1q-29Z"/>
                                                 <constraint firstItem="HM6-Xg-3QV" firstAttribute="trailing" secondItem="OoN-on-eOM" secondAttribute="trailingMargin" id="s27-0W-zh3"/>
@@ -689,15 +748,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="budgetAmount" destination="5fh-M2-ed1" id="lSM-Vs-jC6"/>
                         <outlet property="categoryAmount" destination="HM6-Xg-3QV" id="Mn0-Py-wjL"/>
                         <outlet property="categoryName" destination="WEi-XD-ObS" id="cQE-nx-agA"/>
-                        <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwind" unwindAction="unwindToHome:" id="tpP-yu-ZrG"/>
+                        <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwindHome" unwindAction="unwindToHome:" id="ns0-Am-bem"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3h2-z1-qVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="LQP-6H-Eu6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4423" y="820"/>
+            <point key="canvasLocation" x="4422.8971962616824" y="819.65442764578836"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qmD-UK-W9b">
