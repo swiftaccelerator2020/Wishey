@@ -77,6 +77,16 @@ var data: [spendingStruct] = [
 // Global Variables
 var savings = projectedIncomeArray[projectedIncomeArray.count-1].incomeMoney
 
+func updateSavings() {
+    setupIncome()
+    var spendings = Int()
+    for i in 0..<projectedExpensesArray.count {
+       spendings += projectedExpensesArray[i].expenseMoney
+    }
+    projectedIncomeArray[projectedIncomeArray.count-1].incomeMoney = income - spendings
+    updateGlobalSavings()
+}
+
 func updateGlobalSavings() {
     savings = projectedIncomeArray[projectedIncomeArray.count-1].incomeMoney
 }
