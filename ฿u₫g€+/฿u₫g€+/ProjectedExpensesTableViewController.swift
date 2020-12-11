@@ -21,6 +21,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     
     func setExpenseMoney(to value: Int, of index: Int) {
         projectedExpensesArray[index].expenseMoney = value
+        saveToFile(expenses: projectedExpensesArray)
         tableView.reloadData()
     }
     

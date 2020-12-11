@@ -190,6 +190,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        saveToFile(expenses: projectedExpensesArray)
     }
     
     func setupPieChart() {
@@ -215,7 +216,8 @@ class ViewController: UIViewController {
         // Set up array
         var pieEntries: [PieChartDataEntry] = []
         // Iterate through data values
-        for item in projectedExpensesArray {
+        let loadedProjectedExpensesArray = loadFromFile()
+        for item in loadedProjectedExpensesArray! {
             pieEntries.append(PieChartDataEntry(value: item.expenseMoney, label: item.expenseName))
         }
         

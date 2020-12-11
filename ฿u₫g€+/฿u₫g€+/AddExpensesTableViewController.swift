@@ -107,6 +107,7 @@ class AddExpensesTableViewController: UITableViewController {
     @IBAction func save(_ sender: Any) {
         if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty {
             projectedExpensesArray.append(projectedExpenses(expenseName: categoryName.text!, expenseMoney: Int(categoryAmount.text!)!))
+            saveToFile(expenses: projectedExpensesArray)
             
             performSegue(withIdentifier: "unwind", sender: nil)
         } else {
