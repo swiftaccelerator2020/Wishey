@@ -16,6 +16,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.hideKeyboardWhenTappedAround()
     }
     
     func setExpenseMoney(to value: Int, of index: Int) {
@@ -63,6 +64,9 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         if indexPath.section == 0 {
             cell.income = projectedIncomeArray[indexPath.row]
             cell.incomeSetUp()
+            if indexPath.row == projectedIncomeArray.count-1 {
+                cell.incomeMoney.isEnabled = false
+            }
         } else if indexPath.section == 1 {
             cell.expense = projectedExpensesArray[indexPath.row]
             cell.expenseSetUp()
