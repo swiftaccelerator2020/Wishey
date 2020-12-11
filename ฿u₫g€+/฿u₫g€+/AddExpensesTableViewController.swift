@@ -13,9 +13,10 @@ class AddExpensesTableViewController: UITableViewController {
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var budgetAmount: UITextField!
     @IBOutlet weak var categoryAmount: UITextField!
+    @IBOutlet weak var projectedAmtSpent: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        projectedAmtSpent.adjustsFontSizeToFitWidth = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
