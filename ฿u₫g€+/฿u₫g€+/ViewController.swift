@@ -316,8 +316,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
-            setupPieChart()
-            setupBarChart()
-        }
-    
+        setupPieChart()
+        setupBarChart()
+    }  
 }
