@@ -16,13 +16,15 @@ class MainTabBarViewController: UITabBarController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateSavings()
+        updateProjectedSavings()
+        updateGlobalSavings()
         self.selectedIndex = 1
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateSavings()
+        updateProjectedSavings()
+        updateGlobalSavings()
         self.selectedIndex = 1
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
