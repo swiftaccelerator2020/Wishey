@@ -215,8 +215,8 @@ class ViewController: UIViewController {
         // Set up array
         var pieEntries: [PieChartDataEntry] = []
         // Iterate through data values
-        for item in data {
-            pieEntries.append(PieChartDataEntry(value: item.value, label: item.name))
+        for item in projectedExpensesArray {
+            pieEntries.append(PieChartDataEntry(value: item.expenseMoney, label: item.expenseName))
         }
         
 //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
@@ -260,9 +260,9 @@ class ViewController: UIViewController {
     func setupBarChart() {
         var barEntries: [BarChartDataEntry] = []
         var xAxisValues: [String] = []
-        for item in 0..<data.count {
-            barEntries.append(BarChartDataEntry(x: Double(item), yValues: [data[item].value]))
-            xAxisValues.append(data[item].name)
+        for item in 0..<projectedExpensesArray.count {
+            barEntries.append(BarChartDataEntry(x: Double(item), yValues: [Double(projectedExpensesArray[item].expenseMoney)]))
+            xAxisValues.append(projectedExpensesArray[item].expenseName)
         }
         let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
         chartDataSet.colors =

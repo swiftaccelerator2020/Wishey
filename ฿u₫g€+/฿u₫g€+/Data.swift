@@ -65,15 +65,6 @@ var wishlist: [WishlistItem] = [
     WishlistItem(name: "Printer", category: "Office", price: 218, months: 3)
 ]
 
-var data: [spendingStruct] = [
-    spendingStruct(value: 600.00, name: "Healthcare"),
-    spendingStruct(value: 500.00, name: "Transport"),
-    spendingStruct(value: 400.00, name: "Food"),
-    spendingStruct(value: 300.00, name: "Gaming"),
-    spendingStruct(value: 200.00, name: "Entertainment"),
-    spendingStruct(value: 100.00, name: "Others")
-]
-
 // Global Variables
 var savings = projectedIncomeArray[projectedIncomeArray.count-1].incomeMoney
 
