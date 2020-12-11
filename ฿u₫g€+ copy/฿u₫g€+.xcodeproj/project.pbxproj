@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< Updated upstream:฿u₫g€+/฿u₫g€+.xcodeproj/project.pbxproj
 		14141EF9EFF2291618A56812 /* Pods__u_g__.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888B8934295852F2347DAAE4 /* Pods__u_g__.framework */; };
+=======
+		141EAABB258386EB0089D6E7 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141EAABA258386EB0089D6E7 /* DetailsTableViewController.swift */; };
+>>>>>>> Stashed changes:฿u₫g€+ copy/฿u₫g€+.xcodeproj/project.pbxproj
 		1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145642992574DCF900C3E310 /* expensesTableViewController.swift */; };
 		145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */; };
 		8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903DD61257408BB0046A4C4 /* ViewController.swift */; };
@@ -30,6 +34,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+<<<<<<< Updated upstream:฿u₫g€+/฿u₫g€+.xcodeproj/project.pbxproj
+=======
+		0129E65E681E8FBCCB25C24E /* Pods__u_g__.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__u_g__.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		141EAABA258386EB0089D6E7 /* DetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
+>>>>>>> Stashed changes:฿u₫g€+ copy/฿u₫g€+.xcodeproj/project.pbxproj
 		145642992574DCF900C3E310 /* expensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expensesTableViewController.swift; sourceTree = "<group>"; };
 		1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseTableViewCell.swift; sourceTree = "<group>"; };
 		75E9E1411C71D9C6D933B6DD /* Pods-฿u₫g€+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.debug.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +120,7 @@
 				8903DD61257408BB0046A4C4 /* ViewController.swift */,
 				89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */,
 				89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */,
+				141EAABA258386EB0089D6E7 /* DetailsTableViewController.swift */,
 				145642992574DCF900C3E310 /* expensesTableViewController.swift */,
 				1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */,
 				A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */,
@@ -247,6 +257,7 @@
 				A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */,
 				145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */,
 				8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */,
+				141EAABB258386EB0089D6E7 /* DetailsTableViewController.swift in Sources */,
 				89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */,
 				89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */,
 				A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */,
