@@ -504,7 +504,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="1000000" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="iV1-fg-Jwi">
-                                            <rect key="frame" x="193.66666666666666" y="14" width="93.999999999999972" height="32"/>
+                                            <rect key="frame" x="186.33333333333334" y="14" width="94.000000000000028" height="32"/>
                                             <connections>
                                                 <action selector="stepperValueChanged:" destination="xSb-Yh-gjU" eventType="valueChanged" id="tdf-xk-oqz"/>
                                             </connections>
@@ -516,26 +516,32 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeS-9O-JWF">
-                                            <rect key="frame" x="20" y="16" width="158.66666666666666" height="28"/>
+                                            <rect key="frame" x="20" y="16" width="151.33333333333334" height="28"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uFa-LH-QLa">
-                                            <rect key="frame" x="315" y="16" width="53" height="28"/>
+                                            <rect key="frame" x="307.66666666666669" y="16" width="60.333333333333314" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            <connections>
+                                                <action selector="changeExpense:" destination="xSb-Yh-gjU" eventType="editingDidEnd" id="eSx-9k-e4T"/>
+                                            </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jW-lB-Z0T">
-                                            <rect key="frame" x="302.66666666666669" y="16" width="12.333333333333314" height="28"/>
+                                            <rect key="frame" x="295.33333333333331" y="16" width="12.333333333333314" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DFw-rl-GQX">
-                                            <rect key="frame" x="315" y="5" width="53" height="50"/>
+                                            <rect key="frame" x="307.66666666666669" y="5" width="60.333333333333314" height="50"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            <connections>
+                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingChanged" id="Vzp-wI-hia"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -559,7 +565,7 @@
                                         <constraint firstItem="iV1-fg-Jwi" firstAttribute="leading" secondItem="AeS-9O-JWF" secondAttribute="trailing" constant="15" id="q5o-By-1af"/>
                                         <constraint firstItem="nUl-aQ-HA8" firstAttribute="leading" secondItem="sP7-eB-SNr" secondAttribute="leadingMargin" id="ruV-lV-3UI"/>
                                         <constraint firstItem="uFa-LH-QLa" firstAttribute="top" secondItem="sP7-eB-SNr" secondAttribute="topMargin" constant="5" id="vPF-Uw-tLF"/>
-                                        <constraint firstItem="AeS-9O-JWF" firstAttribute="width" secondItem="uFa-LH-QLa" secondAttribute="width" multiplier="3" id="xmZ-ka-VnR"/>
+                                        <constraint firstItem="AeS-9O-JWF" firstAttribute="width" secondItem="uFa-LH-QLa" secondAttribute="width" multiplier="2.5" id="xmZ-ka-VnR"/>
                                         <constraint firstItem="DFw-rl-GQX" firstAttribute="top" secondItem="sP7-eB-SNr" secondAttribute="top" constant="5" id="xoe-xg-umH"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1099,7 +1105,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>
