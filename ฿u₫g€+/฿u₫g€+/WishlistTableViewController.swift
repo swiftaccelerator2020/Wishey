@@ -76,15 +76,15 @@ class WishlistTableViewController: UITableViewController {
             var savingsDivPriceText = String()
             var currentSavings = savings
             for i in 0..<indexPath.row {
-                currentSavings -= wishlist[i].price
+                currentSavings -= Double(wishlist[i].price)
                 print(i)
             }
             
-            if currentSavings >= wishlist[indexPath.row].price {
+            if currentSavings >= Double(wishlist[indexPath.row].price) {
                 savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
             } else {
                 if currentSavings > 0 {
-                    savingsDivPriceText = "$\(currentSavings)/\(wishlist[indexPath.row].price)"
+                    savingsDivPriceText = "$\(String(format: "%.2f", Double(currentSavings)))/\(wishlist[indexPath.row].price)"
                 }
                 else {
                     savingsDivPriceText = "$0/\(wishlist[indexPath.row].price)"

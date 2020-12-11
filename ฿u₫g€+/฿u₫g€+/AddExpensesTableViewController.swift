@@ -10,6 +10,7 @@ import UIKit
 class AddExpensesTableViewController: UITableViewController {
     
     @IBOutlet weak var categoryName: UITextField!
+    @IBOutlet weak var budgetAmount: UITextField!
     @IBOutlet weak var categoryAmount: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class AddExpensesTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -105,13 +106,18 @@ class AddExpensesTableViewController: UITableViewController {
         performSegue(withIdentifier: "unwind", sender: nil)
     }
     @IBAction func save(_ sender: Any) {
-        if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty {
-            projectedExpensesArray.append(projectedExpenses(expenseName: categoryName.text!, expenseMoney: Int(categoryAmount.text!)!))
-            saveToFile(expenses: projectedExpensesArray)
-            
-            performSegue(withIdentifier: "unwind", sender: nil)
+        if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty {
+            if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil {
+                expensesArray.append(expenseStruct(categoryName: categoryName.text!, projectedExpenses: Int(budgetAmount.text!)!, actualExpenses: Double(categoryAmount.text!)!))
+                performSegue(withIdentifier: "unwind", sender: nil)
+            } else {
+                let alert = UIAlertController(title: "Warning", message: "Budget is not a whole number or Amount Spent is not a number", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            }
         } else {
-            let alert = UIAlertController(title: "Category name and money is not filled or amount spent on Category is not an integer", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Warning", message: "Required text fields are not filled up", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
     }
