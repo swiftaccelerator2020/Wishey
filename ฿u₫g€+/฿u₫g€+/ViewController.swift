@@ -190,7 +190,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        saveToFile(expenses: projectedExpensesArray)
     }
     
     func setupPieChart() {
@@ -216,9 +215,8 @@ class ViewController: UIViewController {
         // Set up array
         var pieEntries: [PieChartDataEntry] = []
         // Iterate through data values
-        let loadedProjectedExpensesArray = loadFromFile()
-        for item in loadedProjectedExpensesArray! {
-            pieEntries.append(PieChartDataEntry(value: item.expenseMoney, label: item.expenseName))
+        for item in expenses {
+            pieEntries.append(PieChartDataEntry(value: item.actualSpending, label: item.name))
         }
         
 //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
@@ -262,9 +260,9 @@ class ViewController: UIViewController {
     func setupBarChart() {
         var barEntries: [BarChartDataEntry] = []
         var xAxisValues: [String] = []
-        for item in 0..<projectedExpensesArray.count {
-            barEntries.append(BarChartDataEntry(x: Double(item), yValues: [Double(projectedExpensesArray[item].expenseMoney)]))
-            xAxisValues.append(projectedExpensesArray[item].expenseName)
+        for item in 0..<expenses.count {
+            barEntries.append(BarChartDataEntry(x: Double(item), yValues: [Double(expenses[item].actualSpending)]))
+            xAxisValues.append(expenses[item].name)
         }
         let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
         chartDataSet.colors =
