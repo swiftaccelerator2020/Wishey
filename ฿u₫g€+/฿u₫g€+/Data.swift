@@ -95,7 +95,7 @@ var income = Int()
 
 func setupIncome() {
     income = 0
-    for i in 0..<projectedIncomeArray.count-2 {
+    for i in 0..<projectedIncomeArray.count-1 {
         income += projectedIncomeArray[i].incomeMoney
     }
 }
