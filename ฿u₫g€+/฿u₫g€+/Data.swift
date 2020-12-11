@@ -16,7 +16,6 @@ struct expenseStruct {
     var categoryName: String
     var projectedExpenses: Int
     var actualExpenses: Double
-}
 
 struct WishlistItem {
     var name: String
@@ -95,4 +94,3 @@ func setupIncome() {
         income += incomeArray[i].incomeMoney
     }
 }
-

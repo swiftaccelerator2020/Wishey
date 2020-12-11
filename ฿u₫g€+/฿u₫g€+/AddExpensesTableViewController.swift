@@ -9,6 +9,7 @@ import UIKit
 
 class AddExpensesTableViewController: UITableViewController {
     
+    @IBOutlet weak var projectedTextField: UITextField!
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var budgetAmount: UITextField!
     @IBOutlet weak var categoryAmount: UITextField!
