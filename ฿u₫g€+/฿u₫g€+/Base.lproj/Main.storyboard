@@ -467,7 +467,7 @@
         <scene sceneID="jLW-lB-2Kz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3rV-1D-qhm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Budget" image="Budget Icon" id="p40-Jz-RTj"/>
+                    <tabBarItem key="tabBarItem" title="Budget" id="p40-Jz-RTj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="pf7-Xx-4wj">
                         <rect key="frame" x="0.0" y="44" width="428" height="96"/>
@@ -1128,7 +1128,6 @@
         <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Budget Icon" width="1000" height="1000"/>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>
         <image name="arrow.turn.down.right" catalog="system" width="128" height="99"/>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
