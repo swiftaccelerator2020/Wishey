@@ -616,6 +616,9 @@
                                                     <rect key="frame" x="20" y="45" width="348" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="a2d-Yn-MC2"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -651,6 +654,9 @@
                                                     <rect key="frame" x="38" y="55" width="330" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="9XT-Fe-Jn9"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hr-hb-vxX">
                                                     <rect key="frame" x="20" y="55" width="13" height="34"/>
@@ -695,6 +701,9 @@
                                                     <rect key="frame" x="38" y="55" width="330" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="1Ff-p3-Ydd"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02R-o3-85X">
                                                     <rect key="frame" x="20" y="55" width="13" height="34"/>
@@ -742,7 +751,7 @@
                         <outlet property="budgetAmount" destination="5fh-M2-ed1" id="lSM-Vs-jC6"/>
                         <outlet property="categoryAmount" destination="HM6-Xg-3QV" id="Mn0-Py-wjL"/>
                         <outlet property="categoryName" destination="WEi-XD-ObS" id="cQE-nx-agA"/>
-                        <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwind" unwindAction="unwindToHome:" id="tpP-yu-ZrG"/>
+                        <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwindHome" unwindAction="unwindToHome:" id="ns0-Am-bem"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3h2-z1-qVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1176,7 +1185,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>

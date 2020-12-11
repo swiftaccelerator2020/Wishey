@@ -20,7 +20,7 @@ class expenseTableViewCell: UITableViewCell {
     
     func setUp() {
         expenseName.text = expense.categoryName
-        spendingLabel.text = "$\(expense.actualExpenses)/\(expense.projectedExpenses) spent"
+        spendingLabel.text = "$\(String(format: "%.2f", Double(expense.actualExpenses)))/\(expense.projectedExpenses) spent"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

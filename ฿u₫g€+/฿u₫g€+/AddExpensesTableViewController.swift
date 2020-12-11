@@ -33,6 +33,9 @@ class AddExpensesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
+    @IBAction func hideKeyboard(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
     
     //    // MARK: - Table view data source
     //
@@ -109,7 +112,8 @@ class AddExpensesTableViewController: UITableViewController {
         if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty {
             if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil {
                 expensesArray.append(expenseStruct(categoryName: categoryName.text!, projectedExpenses: Int(budgetAmount.text!)!, actualExpenses: Double(categoryAmount.text!)!))
-                performSegue(withIdentifier: "unwind", sender: nil)
+                view.endEditing(true)
+                performSegue(withIdentifier: "unwindHome", sender: nil)
             } else {
                 let alert = UIAlertController(title: "Warning", message: "Budget is not a whole number or Amount Spent is not a number", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
