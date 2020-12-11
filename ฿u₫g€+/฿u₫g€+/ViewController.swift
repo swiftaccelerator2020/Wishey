@@ -18,6 +18,9 @@ extension Date {
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var buyAThingLabel: UILabel!
+    @IBOutlet weak var savingsLabel: UILabel!
+    @IBOutlet weak var somethingOutOfSomethingLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rotateClockWiseTop: UIButton!
     @IBOutlet weak var rotateAntiClockWiseTop: UIButton!
@@ -158,6 +161,9 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        savingsLabel.text = "You have saved $\(projectedIncomeArray[2].incomeMoney) so far"
+        buyAThingLabel.text = "You have enough to buy a \(wishlist[0].name)!"
+        somethingOutOfSomethingLabel.text = "$\(wishlist[0].price)/\(wishlist[0].price)"
         updateChart()
         setupBarChart()
         setupPieChart()
@@ -322,6 +328,8 @@ class ViewController: UIViewController {
             pageControl.currentPage += 1
             updateChart()
         }
+    }
+    @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
     }
     
 }
