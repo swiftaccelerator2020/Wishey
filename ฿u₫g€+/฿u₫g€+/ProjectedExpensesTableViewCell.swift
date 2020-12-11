@@ -29,6 +29,10 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        expenseMoney.adjustsFontSizeToFitWidth = true
+        incomeMoney.adjustsFontSizeToFitWidth = true
+        incomeName.adjustsFontSizeToFitWidth = true
+        expenseName.adjustsFontSizeToFitWidth = true
     }
     
     func incomeSetUp() {
@@ -80,4 +84,22 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         updateGlobalSavings()
     }
     
+    @IBAction func changeIncome(_ sender: Any) {
+        if incomeMoney.text == nil || incomeMoney.text!.isEmpty || Int(incomeMoney.text!) == nil {
+//            income?.incomeMoney = 0
+            projectedIncomeArray[index].incomeMoney = 0
+        } else {
+            projectedIncomeArray[index].incomeMoney = Int(incomeMoney.text!)!
+        }
+        tableViewController?.updateTableView()
+    }
+    @IBAction func changeExpense(_ sender: Any) {
+        if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil{
+//            income?.incomeMoney = 0
+            projectedExpensesArray[index].expenseMoney = 0
+        } else {
+            projectedExpensesArray[index].expenseMoney = Int(expenseMoney.text!)!
+        }
+        tableViewController?.updateTableView()
+    }
 }
