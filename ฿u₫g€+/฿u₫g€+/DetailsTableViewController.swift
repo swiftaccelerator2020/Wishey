@@ -32,6 +32,14 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         URLTF.text = item.url
         saveChangesButton.isEnabled = false
         itemCatTF.inputView = pickerView1
+        itemNameTF.layer.cornerRadius = 5
+        itemNameTF.clipsToBounds = true
+        itemCatTF.layer.cornerRadius = 5
+        itemCatTF.clipsToBounds = true
+        priceTF.layer.cornerRadius = 5
+        priceTF.clipsToBounds = true
+        durationTF.layer.cornerRadius = 5
+        durationTF.clipsToBounds = true
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -96,10 +104,51 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         }
         if itemNameTF.text != nil && !itemNameTF.text!.isEmpty && itemCatTF.text != nil && !itemCatTF.text!.isEmpty && priceTF.text != nil && !priceTF.text!.isEmpty && durationTF.text != nil && !durationTF.text!.isEmpty && Int(durationTF.text!) != nil && Int(priceTF.text!) != nil {
             if (item.name != itemNameTF.text!) || (item.category != itemCatTF.text!) || (item.price != Int(priceTF.text!)) || (item.months != Int(durationTF.text!)) {
+                itemNameTF.layer.borderWidth = 0
+                itemCatTF.layer.borderWidth = 0
+                priceTF.layer.borderWidth = 0
+                durationTF.layer.borderWidth = 0
+                itemNameTF.layer.borderColor = .none
+                itemCatTF.layer.borderColor = .none
+                itemNameTF.layer.borderColor = .none
+                itemNameTF.layer.borderColor = .none
                 saveChangesButton.isEnabled = true
             }
         } else {
-            
+            if itemNameTF.text == nil || itemNameTF.text!.isEmpty {
+                itemNameTF.layer.borderWidth = 1
+                itemNameTF.layer.borderColor = UIColor.systemRed.cgColor
+            } else {
+                itemNameTF.layer.borderWidth = 0
+                itemNameTF.layer.borderColor = .none
+            }
+            if itemCatTF.text == nil || itemCatTF.text!.isEmpty {
+                itemCatTF.layer.borderWidth = 1
+                itemCatTF.layer.borderColor = UIColor.systemRed.cgColor
+            } else {
+                itemCatTF.layer.borderWidth = 0
+                itemCatTF.backgroundColor = .none
+            }
+            if priceTF.text == nil || priceTF.text!.isEmpty {
+                priceTF.layer.borderWidth = 1
+                priceTF.layer.borderColor = UIColor.systemRed.cgColor
+            } else if Int(priceTF.text!) == nil {
+                priceTF.layer.borderWidth = 1
+                priceTF.layer.borderColor = UIColor.systemYellow.cgColor
+            } else {
+                priceTF.layer.borderWidth = 0
+                priceTF.backgroundColor = .none
+            }
+            if durationTF.text == nil || durationTF.text!.isEmpty {
+                durationTF.layer.borderWidth = 1
+                durationTF.layer.borderColor = UIColor.red.cgColor
+            } else if Int(durationTF.text!) == nil {
+                durationTF.layer.borderWidth = 1
+                durationTF.layer.borderColor = UIColor.systemYellow.cgColor
+            } else {
+                durationTF.layer.borderWidth = 0
+                durationTF.backgroundColor = .none
+            }
         }
     }
     

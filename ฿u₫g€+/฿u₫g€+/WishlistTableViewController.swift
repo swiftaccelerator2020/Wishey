@@ -169,6 +169,26 @@ class WishlistTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            wishlist.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+        }
+        let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
+            wishlist.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .none)
+            savings -= Double(wishlist[indexPath.row].price)
+            print(savings)
+            tableView.reloadData()
+        }
+        spend.backgroundColor = UIColor.systemBlue
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete, spend])
+
+        return swipeActions
+    }
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let friend = wishlist.remove(at: fromIndexPath.row)

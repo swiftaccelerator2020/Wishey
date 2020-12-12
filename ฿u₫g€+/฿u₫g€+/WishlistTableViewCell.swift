@@ -13,6 +13,7 @@ class WishlistTableViewCell: UITableViewCell {
     @IBOutlet weak var wishlistItemCategory: UILabel!
     @IBOutlet weak var savingsOutOfPrice: UILabel!
     @IBOutlet weak var monthlyTarget: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +22,7 @@ class WishlistTableViewCell: UITableViewCell {
         wishlistItemCategory.adjustsFontSizeToFitWidth = true
         savingsOutOfPrice.adjustsFontSizeToFitWidth = true
         monthlyTarget.adjustsFontSizeToFitWidth = true
+        progressBar.transform = CGAffineTransform(scaleX: self.frame.width / progressBar.frame.width, y: self.frame.height / progressBar.frame.height)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
