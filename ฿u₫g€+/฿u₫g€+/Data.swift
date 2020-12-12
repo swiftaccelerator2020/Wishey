@@ -21,7 +21,7 @@ struct expenseStruct {
 struct WishlistItem {
     var name: String
     var category: String
-    var price: Double
+    var price: Int
     var months: Int
     var url: String?
 }

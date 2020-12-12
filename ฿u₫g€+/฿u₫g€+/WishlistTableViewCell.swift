@@ -4,7 +4,6 @@
 //
 //  Created by Granwyn Tan on 30/11/20.
 //
-
 import UIKit
 
 class WishlistTableViewCell: UITableViewCell {
@@ -59,3 +58,4 @@ class WishlistTableViewCell: UITableViewCell {
     }
 
 }
+

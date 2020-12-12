@@ -4,7 +4,6 @@
 //
 //  Created by Granwyn Tan on 30/11/20.
 //
-
 import UIKit
 
 class WishlistTableViewController: UITableViewController {
@@ -20,7 +19,6 @@ class WishlistTableViewController: UITableViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
@@ -53,7 +51,6 @@ class WishlistTableViewController: UITableViewController {
 //        tableView.reloadData()
     }
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -73,7 +70,7 @@ class WishlistTableViewController: UITableViewController {
             cell.wishlistItemTitle.text = wishlist[indexPath.row].name
             cell.wishlistItemCategory.text = wishlist[indexPath.row].category
             print()
-            cell.monthlyTarget.text = (Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != wishlist[indexPath.row].price/Int(wishlist[indexPath.row].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)))/month" : "$\(wishlist[indexPath.row].price/wishlist[indexPath.row].months)/month"
+            cell.monthlyTarget.text = (Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/wishlist[indexPath.row].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)))/month" : "$\(wishlist[indexPath.row].price/wishlist[indexPath.row].months)/month"
             var savingsDivPriceText = String()
             var currentSavings = savings
             for i in 0..<indexPath.row {
@@ -226,7 +223,6 @@ class WishlistTableViewController: UITableViewController {
     */
 
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
