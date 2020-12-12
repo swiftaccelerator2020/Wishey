@@ -47,9 +47,9 @@ var incomeArray = [
 //]
 
 var wishlist: [WishlistItem] = [
-    WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3),
-    WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11),
-    WishlistItem(name: "Running Shoes", category: "Sports", price: 100, months: 20),
+    WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3,url: "yes.com"),
+    WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11,url: "netflix.com"),
+    WishlistItem(name: "Running Shoes", category: "Sports", price: 100, months: 20,url: "youtube.com"),
     WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3),
     WishlistItem(name: "Couch", category: "Furniture", price: 245, months: 6),
     WishlistItem(name: "Printer", category: "Office", price: 218, months: 3)
@@ -63,6 +63,7 @@ var expensesArray: [expenseStruct] = [
     expenseStruct(categoryName: "Entertainment", projectedExpenses: 600, actualExpenses: 200.00),
     expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00)
 ]
+var categories = ["cars","motorcycles","bicycles","properties","electronics","mobile phones","women's fashion","man's fashion","health & beauty","food & drinks","luxury","furniture","home appliances","toys & games","entertainment","sports","stationary","music & media","lifestyle","pets","travel","others"]
 
 // Global Variables
 var projectedSavings = Int()

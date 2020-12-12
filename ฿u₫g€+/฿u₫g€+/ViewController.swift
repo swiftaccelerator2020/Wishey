@@ -104,25 +104,26 @@ class ViewController: UIViewController {
         pieView.rotationAngle -= 10
     }
     
-//    func checkPage(numberOfPages no: Int) -> [Int]{
-//        var hiddenPages: [Int] = []
-//        for i in 0...no {
-//            hiddenPages.append(i)
-//        }
-//        switch pageControl.currentPage {
-//        case 0:
-//            setupPieChart()
-//        case 1:
-//            setupBarChart()
-//        case 2:
-//            setupLineChart()
-//        default:
-//            break
-//        }
-//        hiddenPages.remove(at: pageControl.currentPage)
-//        return hiddenPages
-//    }
-    
+    //    func checkPage(numberOfPages no: Int) -> [Int]{
+    //        var hiddenPages: [Int] = []
+    //        for i in 0...no {
+    //            hiddenPages.append(i)
+    //        }
+    //        switch pageControl.currentPage {
+    //        case 0:
+    //            setupPieChart()
+    //        case 1:
+    //            setupBarChart()
+    //        case 2:
+    //            setupLineChart()
+    //        default:
+    //            break
+    //        }
+    //        hiddenPages.remove(at: pageControl.currentPage)
+    //        return hiddenPages
+    //    }
+    var window = UIWindow()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         spendingsView.layer.cornerRadius = 20
@@ -133,54 +134,59 @@ class ViewController: UIViewController {
         wishlistView.layer.masksToBounds = true
         nameLabel.adjustsFontSizeToFitWidth = true
         spendingsView.isUserInteractionEnabled = true
+        
+        // light mode FOREVERRRReeeeee
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = .light
+        }
         // Do any additional setup after loading the view.
-//        var savings = 0.0
-//        for i in 0...expensesArray.count-1 {
-//            savings += (Double(expensesArray[i].projectedExpenses) - expensesArray[i].actualExpenses)
-//        }
+        //        var savings = 0.0
+        //        for i in 0...expensesArray.count-1 {
+        //            savings += (Double(expensesArray[i].projectedExpenses) - expensesArray[i].actualExpenses)
+        //        }
         savedLabel.attributedText = NSMutableAttributedString().normal30("You have saved ").bold30("$\(String(format: "%.2f", savings))").normal30(" so far")
         let randomItem = wishlist.randomElement()!
         itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
         if randomItem.price < Int(savings) {
             buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
-//            buyALabel.text = "You can buy a \(randomItem.name)"
+            //            buyALabel.text = "You can buy a \(randomItem.name)"
             somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(Int(savings))").normal("/").bold("\(randomItem.price)")
-//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+            //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
         } else if randomItem.price == Int(savings) {
             buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
-//            buyALabel.text = "You can buy a \(randomItem.name)"
+            //            buyALabel.text = "You can buy a \(randomItem.name)"
             somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(savings))").normal("/").bold("\(randomItem.price)")
-//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+            //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
         } else {
             buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)-savings) more to buy this item:")
-//            buyALabel.text = "You can buy a \(randomItem.name)"
+            //            buyALabel.text = "You can buy a \(randomItem.name)"
             somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldRed("\(Int(savings))").normal("/").bold("\(randomItem.price)")
-//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+            //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
         }
-//        scrollView.contentOffset = CGPoint(x: 0, y: 0)
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//        self.navigationItem.largeTitleDisplayMode = .always
-//        self.navigationController?.navigationBar.sizeToFit()
-//        scrollView.scrollsToTop = true
-//        scrollView.contentInset = UIEdgeInsets(top: view.safeAreaInsets.top, left: view.safeAreaInsets.left, bottom: view.safeAreaInsets.bottom, right: view.safeAreaInsets.right)
-//        scrollView.clipsToBounds = true
-//        view.update
-//        scrollView?.alwaysBounceVertical = true
-//        setNeedsStatusBarAppearanceUpdate()
-//        if #available(iOS 13.0, *) {
-//            let appearance = UINavigationBarAppearance()
-//            appearance.backgroundColor = UIColor(hex: 0x83DB97)
-//            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-//            UINavigationBar.appearance().tintColor = .white
-//            UINavigationBar.appearance().standardAppearance = appearance
-//            UINavigationBar.appearance().compactAppearance = appearance
-//            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-//        } else {
-//            UINavigationBar.appearance().tintColor = .white
-//            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
-//            UINavigationBar.appearance().isTranslucent = false
-//        }
+        //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        //        self.navigationController?.navigationBar.prefersLargeTitles = true
+        //        self.navigationItem.largeTitleDisplayMode = .always
+        //        self.navigationController?.navigationBar.sizeToFit()
+        //        scrollView.scrollsToTop = true
+        //        scrollView.contentInset = UIEdgeInsets(top: view.safeAreaInsets.top, left: view.safeAreaInsets.left, bottom: view.safeAreaInsets.bottom, right: view.safeAreaInsets.right)
+        //        scrollView.clipsToBounds = true
+        //        view.update
+        //        scrollView?.alwaysBounceVertical = true
+        //        setNeedsStatusBarAppearanceUpdate()
+        //        if #available(iOS 13.0, *) {
+        //            let appearance = UINavigationBarAppearance()
+        //            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+        //            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        //            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        //            UINavigationBar.appearance().tintColor = .white
+        //            UINavigationBar.appearance().standardAppearance = appearance
+        //            UINavigationBar.appearance().compactAppearance = appearance
+        //            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        //        } else {
+        //            UINavigationBar.appearance().tintColor = .white
+        //            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+        //            UINavigationBar.appearance().isTranslucent = false
+        //        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -204,9 +210,9 @@ class ViewController: UIViewController {
         spendingsLabel.text = Date().monthAsString()
     }
     
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
+    //    override var preferredStatusBarStyle: UIStatusBarStyle {
+    //        return .lightContent
+    //    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -215,7 +221,7 @@ class ViewController: UIViewController {
     func setupPieChart() {
         // MARK: Customise Pie Chart
         // Description
-//        pieView.usePercentValuesEnabled = true
+        //        pieView.usePercentValuesEnabled = true
         pieView.chartDescription?.enabled = false // Disable chartDescription
         // Main CHart
         pieView.drawHoleEnabled = true // Add hole in center
@@ -239,33 +245,33 @@ class ViewController: UIViewController {
             pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
         }
         
-//        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
-//        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
-//        entries.append(PieChartDataEntry(value: 400.00, label: "Food"))
-//        entries.append(PieChartDataEntry(value: 300.00, label: "Gaming"))
-//        entries.append(PieChartDataEntry(value: 200.00, label: "Entertainment"))
-//        entries.append(PieChartDataEntry(value: 100.00, label: "Others"))
+        //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
+        //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
+        //        entries.append(PieChartDataEntry(value: 400.00, label: "Food"))
+        //        entries.append(PieChartDataEntry(value: 300.00, label: "Gaming"))
+        //        entries.append(PieChartDataEntry(value: 200.00, label: "Entertainment"))
+        //        entries.append(PieChartDataEntry(value: 100.00, label: "Others"))
         let pieDataSet = PieChartDataSet(entries: pieEntries, label: nil)
         pieDataSet.colors =
-           ChartColorTemplates.material()
-                + ChartColorTemplates.joyful()
-                + ChartColorTemplates.colorful()
-                + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
-//        pieDataSet.colors = [.systemRed, .systemOrange, .systemYellow, .systemGreen, .systemTeal, .systemBlue,  .systemIndigo, .systemPurple]
-//        pieDataSet.colors = colorsOfCharts(numbersOfColor: pieDataSet.count)
-//        let c1 = NSUIColor(hex: 0x3A015C)
-//        let c2 = NSUIColor(hex: 0x4F0147)
-//        let c3 = NSUIColor(hex: 0x35012C)
-//        let c4 = NSUIColor(hex: 0x290025)
-//        let c5 = NSUIColor(hex: 0x11001C)
+            ChartColorTemplates.material()
+            + ChartColorTemplates.joyful()
+            + ChartColorTemplates.colorful()
+            + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
+        //        pieDataSet.colors = [.systemRed, .systemOrange, .systemYellow, .systemGreen, .systemTeal, .systemBlue,  .systemIndigo, .systemPurple]
+        //        pieDataSet.colors = colorsOfCharts(numbersOfColor: pieDataSet.count)
+        //        let c1 = NSUIColor(hex: 0x3A015C)
+        //        let c2 = NSUIColor(hex: 0x4F0147)
+        //        let c3 = NSUIColor(hex: 0x35012C)
+        //        let c4 = NSUIColor(hex: 0x290025)
+        //        let c5 = NSUIColor(hex: 0x11001C)
         pieDataSet.drawValuesEnabled = true
         
         let pieChartData = PieChartData(dataSet: pieDataSet)
-//        let formatter = NumberFormatter()
-//        formatter.numberStyle = .percent
-//        formatter.maximumFractionDigits = 1
-//        formatter.multiplier = 1.0
-//        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
+        //        let formatter = NumberFormatter()
+        //        formatter.numberStyle = .percent
+        //        formatter.maximumFractionDigits = 1
+        //        formatter.multiplier = 1.0
+        //        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
         pieView.data = pieChartData
     }
     
@@ -278,40 +284,40 @@ class ViewController: UIViewController {
         }
         let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
         chartDataSet.colors =
-           ChartColorTemplates.material()
-                + ChartColorTemplates.joyful()
-                + ChartColorTemplates.colorful()
-                + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
+            ChartColorTemplates.material()
+            + ChartColorTemplates.joyful()
+            + ChartColorTemplates.colorful()
+            + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
         let chartData = BarChartData(dataSet: chartDataSet)
-//        barView.drawBarShadowEnabled = true
-//        barView.drawGridBackgroundEnabled = false
+        //        barView.drawBarShadowEnabled = true
+        //        barView.drawGridBackgroundEnabled = false
         barView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisValues)
         barView.xAxis.labelPosition = .bottom
         barView.xAxis.granularityEnabled = true
         barView.xAxis.granularity = 1
         barView.data = chartData
-//        barView.data?.setDrawValues(false)
+        //        barView.data?.setDrawValues(false)
         barView.pinchZoomEnabled = true
         barView.scaleYEnabled = true
         barView.scaleXEnabled = true
-//        barView.highlighter = nil
+        //        barView.highlighter = nil
         barView.drawValueAboveBarEnabled = true
         barView.doubleTapToZoomEnabled = true
         barView.chartDescription?.text = "Spendings"
         barView.rightAxis.enabled = false
-//        barView.leftAxis.enabled = false
-//        barView.drawBordersEnabled = false
+        //        barView.leftAxis.enabled = false
+        //        barView.drawBordersEnabled = false
         barView.xAxis.drawGridLinesEnabled = false
         barView.xAxis.drawAxisLineEnabled = false
         barView.setVisibleYRangeMinimum(0, axis: .left)
-//        barView.leftAxis.drawAxisLineEnabled = false
-//        barView.rightAxis.enabled = false
+        //        barView.leftAxis.drawAxisLineEnabled = false
+        //        barView.rightAxis.enabled = false
         
     }
     
-//    func setupLineChart() {
-//
-//    }
+    //    func setupLineChart() {
+    //
+    //    }
     @IBAction func resetChart(_ sender: Any) {
         resetCurrentChart()
     }
@@ -345,5 +351,6 @@ class ViewController: UIViewController {
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
         setupPieChart()
         setupBarChart()
-    }  
+    }
 }
+

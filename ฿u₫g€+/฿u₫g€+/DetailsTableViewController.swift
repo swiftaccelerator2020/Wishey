@@ -8,27 +8,30 @@
 import UIKit
 import SafariServices
 
-class DetailsTableViewController: UITableViewController {
+class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,UIPickerViewDelegate {
     
     @IBOutlet weak var itemNameTF: UITextField!
     @IBOutlet weak var itemCatTF: UITextField!
     @IBOutlet weak var priceTF: UITextField!
     @IBOutlet weak var durationTF: UITextField!
     @IBOutlet weak var URLTF: UITextField!
-    var item: WishlistItem!
-    var theIndexPath: IndexPath!
     @IBOutlet var cells: [UITableViewCell]!
     @IBOutlet weak var saveChangesButton: UIBarButtonItem!
-    
+    var item: WishlistItem!
+    var theIndexPath: IndexPath!
+    var pickerView1 = UIPickerView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        pickerView1.delegate = self
+        pickerView1.dataSource = self
         itemNameTF.text = item.name
         itemCatTF.text  = item.category
         priceTF.text = String(item.price)
         durationTF.text = String(item.months)
         URLTF.text = item.url
         saveChangesButton.isEnabled = false
+        itemCatTF.inputView = pickerView1
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,6 +43,38 @@ class DetailsTableViewController: UITableViewController {
         }
         self.hideKeyboardWhenTappedAround()
     }
+    func createToolbar() {
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(DetailsTableViewController.hideKeyboard))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        itemCatTF.inputAccessoryView = toolBar
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        itemCatTF.resignFirstResponder()
+        itemCatTF.text = categories[pickerView.selectedRow(inComponent: 0)]
+    }
+    
     @IBAction func dismissKeyboard(_ sender: UITextField) {
         sender.resignFirstResponder()
     }
