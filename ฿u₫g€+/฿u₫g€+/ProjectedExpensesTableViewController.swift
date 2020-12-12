@@ -8,8 +8,8 @@ import UIKit
 
 class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpdater {
     override func viewDidLoad() {
-         super.viewDidLoad()
-
+        super.viewDidLoad()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -22,7 +22,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     }
     func setExpenseMoney(to value: Int, of index: Int) {
         expensesArray[index].projectedExpenses = value
-//        saveToFile(expenses: projectedExpensesArray)
+        //        saveToFile(expenses: projectedExpensesArray)
         tableView.reloadData()
     }
     
@@ -50,6 +50,30 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let button = UIButton()
+        button.frame = CGRect(x: 100, y: 100, width: 120, height: 50)
+        if section == 0 {
+            button.frame.origin = CGPoint(x: 290, y: 0)
+        } else if section == 1 {
+            button.frame.origin = CGPoint(x: 290, y: -20)
+        }
+        button.setTitle("+", for: .normal)
+        button.titleLabel?.font =  UIFont(name: "Helvetica Neue", size: 40)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        view.addSubview(button)
+        return view
+    }
+    @objc func buttonAction(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        if btnsendtag.tag == 0 {
+            let alert = UIAlertController(title: "Button Pressed", message: "It works", preferredStyle: .alert)
+            present(alert, animated: true)
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
@@ -62,7 +86,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         cell.selectionStyle = .none
         cell.delegate = self
         cell.index = indexPath.row
-
+        
         if indexPath.section == 0 {
             cell.income = incomeArray[indexPath.row]
             cell.incomeSetUp()
