@@ -82,7 +82,6 @@ extension NSMutableAttributedString {
     func normal20 (_ value:String) -> NSMutableAttributedString {
         
         let attributes:[NSAttributedString.Key : Any] = [
-            .font : UIFont.systemFont(ofSize: 25),
             .foregroundColor : UIColor.label
         ]
 
