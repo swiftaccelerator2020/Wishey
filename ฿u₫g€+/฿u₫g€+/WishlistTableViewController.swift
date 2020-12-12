@@ -191,11 +191,12 @@ class WishlistTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if segue.identifier == "detailsSegue" {
-            let destViewController = segue.destination as! UINavigationController
-            let secondViewcontroller = destViewController.viewControllers.first as! DetailsTableViewController
+//            let destViewController = segue.destination as! UINavigationController
+//            let secondViewcontroller = destViewController.viewControllers.first as! DetailsTableViewController
+            let destVC = segue.destination as! DetailsTableViewController
             let indexPath = tableView.indexPathForSelectedRow
-            secondViewcontroller.item = wishlist[indexPath!.row]
-            secondViewcontroller.theIndexPath = indexPath
+            destVC.item = wishlist[indexPath!.row]
+            destVC.theIndexPath = indexPath
         }
     }
 

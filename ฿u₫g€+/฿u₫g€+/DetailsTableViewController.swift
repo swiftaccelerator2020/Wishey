@@ -17,7 +17,9 @@ class DetailsTableViewController: UITableViewController {
     @IBOutlet weak var URLTF: UITextField!
     var item: WishlistItem!
     var theIndexPath: IndexPath!
-
+    @IBOutlet var cells: [UITableViewCell]!
+    @IBOutlet weak var saveChangesButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,12 +28,17 @@ class DetailsTableViewController: UITableViewController {
         priceTF.text = String(item.price)
         durationTF.text = String(item.months)
         URLTF.text = item.url
+        saveChangesButton.isEnabled = false
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        for i in cells {
+            i.selectionStyle = .none
+        }
+        self.hideKeyboardWhenTappedAround()
     }
     @IBAction func dismissKeyboard(_ sender: UITextField) {
         sender.resignFirstResponder()
@@ -49,12 +56,21 @@ class DetailsTableViewController: UITableViewController {
     }
     
     @IBAction func editingend(_ sender: Any) {
-        if URLTF.text != nil && !URLTF.text!.isEmpty {
+        if URLTF.text != nil && !URLTF.text!.isEmpty && URLTF.text != item.url {
             item.url = URLTF.text
         }
+        if itemNameTF.text != nil && !itemNameTF.text!.isEmpty && itemCatTF.text != nil && !itemCatTF.text!.isEmpty && priceTF.text != nil && !priceTF.text!.isEmpty && durationTF.text != nil && !durationTF.text!.isEmpty && Int(durationTF.text!) != nil && Int(priceTF.text!) != nil {
+            if (item.name != itemNameTF.text!) || (item.category != itemCatTF.text!) || (item.price != Int(priceTF.text!)) || (item.months != Int(durationTF.text!)) {
+                saveChangesButton.isEnabled = true
+            }
+        } else {
+            
+        }
     }
+    
     @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func save(_ sender: Any) {

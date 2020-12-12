@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var zoomInButton: UIButton!
     @IBOutlet weak var zoomOutButton: UIButton!
     @IBOutlet var swipeLeftGesture: UISwipeGestureRecognizer!
+    @IBOutlet weak var itemName: UILabel!
     @IBOutlet var swipeRightGesture: UISwipeGestureRecognizer!
     
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
@@ -137,22 +138,23 @@ class ViewController: UIViewController {
 //        for i in 0...expensesArray.count-1 {
 //            savings += (Double(expensesArray[i].projectedExpenses) - expensesArray[i].actualExpenses)
 //        }
-        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", savings))").normal(" so far")
+        savedLabel.attributedText = NSMutableAttributedString().normal30("You have saved ").bold30("$\(String(format: "%.2f", savings))").normal30(" so far")
         let randomItem = wishlist.randomElement()!
+        itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
         if randomItem.price < Int(savings) {
-            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold20("\(randomItem.name)")
+            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
 //            buyALabel.text = "You can buy a \(randomItem.name)"
-            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldBlue("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
+            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(Int(savings))").normal("/").bold("\(randomItem.price)")
 //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
         } else if randomItem.price == Int(savings) {
-            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold("\(randomItem.name)")
+            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
 //            buyALabel.text = "You can buy a \(randomItem.name)"
-            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldGreen("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
+            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(savings))").normal("/").bold("\(randomItem.price)")
 //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
         } else {
-            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold("\(randomItem.name)")
+            buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)-savings) more to buy this item:")
 //            buyALabel.text = "You can buy a \(randomItem.name)"
-            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
+            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldRed("\(Int(savings))").normal("/").bold("\(randomItem.price)")
 //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
         }
 //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
@@ -208,24 +210,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", savings))").normal(" so far")
-        let randomItem = wishlist.randomElement()!
-        if randomItem.price < Int(savings) {
-            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold20("\(randomItem.name)")
-//            buyALabel.text = "You can buy a \(randomItem.name)"
-            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldBlue("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
-//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
-        } else if randomItem.price == Int(savings) {
-            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold("\(randomItem.name)")
-//            buyALabel.text = "You can buy a \(randomItem.name)"
-            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldGreen("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
-//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
-        } else {
-            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold("\(randomItem.name)")
-//            buyALabel.text = "You can buy a \(randomItem.name)"
-            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
-//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
-        }
     }
     
     func setupPieChart() {
