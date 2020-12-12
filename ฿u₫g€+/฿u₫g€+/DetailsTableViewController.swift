@@ -61,9 +61,9 @@ class DetailsTableViewController: UITableViewController {
         if itemNameTF.text != nil && itemCatTF.text != nil && priceTF.text != nil && durationTF.text != nil && !itemNameTF.text!.isEmpty && !itemCatTF.text!.isEmpty && !priceTF.text!.isEmpty && !durationTF.text!.isEmpty {
             if Double(priceTF.text!) != nil && Int(durationTF.text!) != nil {
                 if URLTF.text != nil && !(URLTF.text!.isEmpty) {
-                    wishlist.append(WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Int(priceTF.text!)!, months: Int(durationTF.text!)!, url: URLTF.text!))
+                    wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Int(priceTF.text!)!, months: Int(durationTF.text!)!, url: URLTF.text!)
                 } else {
-                    wishlist.append(WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Int(priceTF.text!)!, months: Int(durationTF.text!)!))
+                    wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Int(priceTF.text!)!, months: Int(durationTF.text!)!)
                 }
 //                dismiss(animated: true, completion: nil)
                 print(wishlist)

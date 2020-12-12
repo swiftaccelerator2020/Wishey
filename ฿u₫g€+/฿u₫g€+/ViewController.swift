@@ -208,6 +208,24 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", savings))").normal(" so far")
+        let randomItem = wishlist.randomElement()!
+        if randomItem.price < Int(savings) {
+            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold20("\(randomItem.name)")
+//            buyALabel.text = "You can buy a \(randomItem.name)"
+            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldBlue("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
+//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+        } else if randomItem.price == Int(savings) {
+            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold("\(randomItem.name)")
+//            buyALabel.text = "You can buy a \(randomItem.name)"
+            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldGreen("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
+//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+        } else {
+            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy an item:\n").bold("\(randomItem.name)")
+//            buyALabel.text = "You can buy a \(randomItem.name)"
+            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(Int(savings))").normal20("/").bold20("\(randomItem.price)")
+//            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+        }
     }
     
     func setupPieChart() {

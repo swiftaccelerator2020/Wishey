@@ -84,13 +84,17 @@ class WishlistTableViewController: UITableViewController {
                 savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
             } else {
                 if currentSavings > 0 {
-                    savingsDivPriceText = "$\(String(format: "%.2f", Double(currentSavings)))/\(wishlist[indexPath.row].price)"
+                    print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
+                    print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
+                    savingsDivPriceText = currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"
+                    print(savingsDivPriceText)
                 }
                 else {
                     savingsDivPriceText = "$0/\(wishlist[indexPath.row].price)"
                 }
             }
             print("$\(currentSavings)")
+            print(String(format: "%.2f", currentSavings))
             print()
 //            if savings > 0 {
 //                if savings >= wishlist[indexPath.row].price {
@@ -191,6 +195,7 @@ class WishlistTableViewController: UITableViewController {
             let secondViewcontroller = destViewController.viewControllers.first as! DetailsTableViewController
             let indexPath = tableView.indexPathForSelectedRow
             secondViewcontroller.item = wishlist[indexPath!.row]
+            secondViewcontroller.theIndexPath = indexPath
         }
     }
 
