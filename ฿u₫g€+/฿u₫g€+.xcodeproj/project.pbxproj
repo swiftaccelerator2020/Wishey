@@ -16,6 +16,11 @@
 		896C3B59257D2678004DBAFC /* AddCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B58257D2678004DBAFC /* AddCategoryTableViewController.swift */; };
 		896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */; };
 		8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8989958825828863000EBABB /* NSUIColor+Hex.swift */; };
+		8995FC9B2585376A00F131D4 /* RotatingCircularGradientProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC962585376900F131D4 /* RotatingCircularGradientProgressBar.swift */; };
+		8995FC9C2585376A00F131D4 /* GradientCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC972585376900F131D4 /* GradientCircularProgressBar.swift */; };
+		8995FC9D2585376A00F131D4 /* GradientHorizontalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC982585376900F131D4 /* GradientHorizontalProgressBar.swift */; };
+		8995FC9E2585376A00F131D4 /* PlainCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC992585376900F131D4 /* PlainCircularProgressBar.swift */; };
+		8995FC9F2585376A00F131D4 /* PlainHorizontalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */; };
 		89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */; };
 		89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */; };
 		89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */; };
@@ -42,6 +47,11 @@
 		896C3B58257D2678004DBAFC /* AddCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryTableViewController.swift; sourceTree = "<group>"; };
 		896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWishlistTableViewController.swift; sourceTree = "<group>"; };
 		8989958825828863000EBABB /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
+		8995FC962585376900F131D4 /* RotatingCircularGradientProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatingCircularGradientProgressBar.swift; sourceTree = "<group>"; };
+		8995FC972585376900F131D4 /* GradientCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientCircularProgressBar.swift; sourceTree = "<group>"; };
+		8995FC982585376900F131D4 /* GradientHorizontalProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientHorizontalProgressBar.swift; sourceTree = "<group>"; };
+		8995FC992585376900F131D4 /* PlainCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainCircularProgressBar.swift; sourceTree = "<group>"; };
+		8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainHorizontalProgressBar.swift; sourceTree = "<group>"; };
 		89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
 		89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewCell.swift; sourceTree = "<group>"; };
 		89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +139,11 @@
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
 				A8109E5B256F9522008F3709 /* Info.plist */,
+				8995FC972585376900F131D4 /* GradientCircularProgressBar.swift */,
+				8995FC982585376900F131D4 /* GradientHorizontalProgressBar.swift */,
+				8995FC992585376900F131D4 /* PlainCircularProgressBar.swift */,
+				8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */,
+				8995FC962585376900F131D4 /* RotatingCircularGradientProgressBar.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
@@ -247,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8995FC9F2585376A00F131D4 /* PlainHorizontalProgressBar.swift in Sources */,
 				A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */,
 				1423C1872583D6B200E602DE /* DetailsTableViewController.swift in Sources */,
 				145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */,
@@ -256,13 +272,17 @@
 				A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */,
 				89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */,
 				896C3B56257D266B004DBAFC /* AddExpensesTableViewController.swift in Sources */,
+				8995FC9C2585376A00F131D4 /* GradientCircularProgressBar.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */,
+				8995FC9D2585376A00F131D4 /* GradientHorizontalProgressBar.swift in Sources */,
 				A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */,
 				896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */,
 				8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */,
 				896C3B59257D2678004DBAFC /* AddCategoryTableViewController.swift in Sources */,
+				8995FC9B2585376A00F131D4 /* RotatingCircularGradientProgressBar.swift in Sources */,
 				89D3B8B3257636B200C0E747 /* AttributedString.swift in Sources */,
+				8995FC9E2585376A00F131D4 /* PlainCircularProgressBar.swift in Sources */,
 				A8DDDCD92574F107003CC2B8 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

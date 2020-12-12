@@ -45,7 +45,6 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         if let incomeMoneyValue = income?.incomeMoney {
             incomeMoney.text = "\(incomeMoneyValue)"
         }
-        
     }
     
     func expenseSetUp() {
@@ -91,16 +90,18 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         } else {
             incomeArray[index].incomeMoney = Int(incomeMoney.text!)!
         }
+        updateGlobalSavings()
         tableViewController?.updateTableView()
     }
     
     @IBAction func changeExpense(_ sender: Any) {
-        if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil {
+        if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil || Int(expenseMoney.text!)! < 0 {
             expense?.projectedExpenses = 0
             expensesArray[index].projectedExpenses = 0
         } else {
             expensesArray[index].projectedExpenses = Int(expenseMoney.text!)!
         }
+        updateProjectedSavings()
         tableViewController?.updateTableView()
     }
 }

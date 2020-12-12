@@ -61,13 +61,16 @@ var expensesArray: [expenseStruct] = [
     expenseStruct(categoryName: "Food", projectedExpenses: 800, actualExpenses: 400.00),
     expenseStruct(categoryName: "Gaming", projectedExpenses: 700, actualExpenses: 300.00),
     expenseStruct(categoryName: "Entertainment", projectedExpenses: 600, actualExpenses: 200.00),
-    expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00)
+    expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00),
 ]
+
 var categories = ["cars","motorcycles","bicycles","properties","electronics","mobile phones","women's fashion","man's fashion","health & beauty","food & drinks","luxury","furniture","home appliances","toys & games","entertainment","sports","stationary","music & media","lifestyle","pets","travel","others"]
 
 // Global Variables
 var projectedSavings = Int()
 var savings = Double()
+var alltimeSavings = Double()
+var wishlistSpendings = Double()
 
 func updateProjectedSavings() {
     setupIncome()
@@ -85,7 +88,7 @@ func updateGlobalSavings() {
     for i in 0..<expensesArray.count {
         spendings += expensesArray[i].actualExpenses
     }
-    savings = Double(income) - spendings
+    savings = Double(income) - spendings - wishlistSpendings
 }
 
 var income = Int()

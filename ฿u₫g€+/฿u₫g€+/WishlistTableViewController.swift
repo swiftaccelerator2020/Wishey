@@ -50,7 +50,7 @@ class WishlistTableViewController: UITableViewController {
             UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
             UINavigationBar.appearance().isTranslucent = false
         }
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     // MARK: - Table view data source
 
@@ -67,6 +67,7 @@ class WishlistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishlistCell", for: indexPath)
 
+//        cell.myIndexPath = indexPath
         // Configure the cell...
         if let cell = cell as? WishlistTableViewCell {
             cell.wishlistItemTitle.text = wishlist[indexPath.row].name
@@ -79,18 +80,37 @@ class WishlistTableViewController: UITableViewController {
                 currentSavings -= Double(wishlist[i].price)
                 print(i)
             }
-            
+//            cell.currentSavings = currentSavings
             if currentSavings >= Double(wishlist[indexPath.row].price) {
                 savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
+                UIView.animate(withDuration: 4){
+                    cell.progressAnimated.progress = CGFloat(1)
+                    cell.savingsOutOfPrice.textColor = .systemBackground
+                }
             } else {
                 if currentSavings > 0 {
                     print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
                     print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
                     savingsDivPriceText = currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"
                     print(savingsDivPriceText)
+//                    if currentSavings.truncatingRemainder(dividingBy: 1) != 0 {
+//                        UIView.animate(withDuration: 4){
+//                            cell.progressBar.setProgress(Float(Double(currentSavings)/Double(wishlist[indexPath.row].price)), animated: true)
+                        cell.progressAnimated.progress = CGFloat(currentSavings/Double(wishlist[indexPath.row].price))
+//                        }
+//                    } else {
+//                        UIView.animate(withDuration: 4){
+//                            cell.progressBar.setProgress(Float(Int(currentSavings)/wishlist[indexPath.row].price), animated: true)
+//                        cell.progressAnimated.progress = CGFloat(currentSavings/Double(wishlist[indexPath.row].price))
+//                        }
+//                    }
+                    cell.savingsOutOfPrice.textColor = .label
                 }
                 else {
                     savingsDivPriceText = "$0/\(wishlist[indexPath.row].price)"
+//                    cell.progressBar.setProgress(0, animated: false)
+                    cell.progressAnimated.progress = CGFloat(0)
+                    cell.savingsOutOfPrice.textColor = .label
                 }
             }
             print("$\(currentSavings)")
@@ -172,14 +192,15 @@ class WishlistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             wishlist.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.reloadData()
         }
         let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
+            wishlistSpendings += Double(wishlist[indexPath.row].price)
             wishlist.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .none)
-            savings -= Double(wishlist[indexPath.row].price)
             print(savings)
+            updateGlobalSavings()
             tableView.reloadData()
         }
         spend.backgroundColor = UIColor.systemBlue
