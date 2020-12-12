@@ -9,7 +9,6 @@ import UIKit
 
 class AddExpensesTableViewController: UITableViewController {
     
-    @IBOutlet weak var projectedTextField: UITextField!
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var budgetAmount: UITextField!
     @IBOutlet weak var categoryAmount: UITextField!
@@ -108,7 +107,6 @@ class AddExpensesTableViewController: UITableViewController {
     
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        performSegue(withIdentifier: "unwind", sender: nil)
     }
     @IBAction func save(_ sender: Any) {
         if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty {
@@ -122,7 +120,7 @@ class AddExpensesTableViewController: UITableViewController {
                 present(alert, animated: true, completion: nil)
             }
         } else {
-            let alert = UIAlertController(title: "Warning", message: "Required text fields are not filled up", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Warning", message: "Not all required text fields are filled up", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }

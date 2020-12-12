@@ -121,14 +121,14 @@
 				A8DDDCD82574F107003CC2B8 /* Data.swift */,
 				89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */,
 				89D3B8B2257636B200C0E747 /* AttributedString.swift */,
+				8989958825828863000EBABB /* NSUIColor+Hex.swift */,
+				896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */,
+				896C3B58257D2678004DBAFC /* AddCategoryTableViewController.swift */,
+				896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
 				A8109E5B256F9522008F3709 /* Info.plist */,
-				896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */,
-				896C3B58257D2678004DBAFC /* AddCategoryTableViewController.swift */,
-				896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */,
-				8989958825828863000EBABB /* NSUIColor+Hex.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";

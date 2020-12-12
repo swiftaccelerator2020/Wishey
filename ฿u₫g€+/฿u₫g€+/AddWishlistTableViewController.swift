@@ -77,7 +77,7 @@ class AddWishlistTableViewController: UITableViewController{
     
     @IBAction func save(_ sender: Any) {
         if nameField.text != nil && nameCategoryField.text != nil && costField.text != nil && durationField.text != nil && !nameField.text!.isEmpty && !nameCategoryField.text!.isEmpty && !costField.text!.isEmpty && !durationField.text!.isEmpty {
-            if Int(costField.text!) != nil && Int(durationField.text!) != nil {
+            if Double(costField.text!) != nil && Int(durationField.text!) != nil {
                 if urlField.text != nil && !(urlField.text!.isEmpty) {
                     wishlist.append(WishlistItem(name: nameField.text!, category: nameCategoryField.text!, price: Int(costField.text!)!, months: Int(durationField.text!)!, url: urlField.text!))
                 } else {

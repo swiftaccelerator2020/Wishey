@@ -45,15 +45,15 @@
                                         <rect key="frame" x="20" y="218" width="390" height="95"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have enough to buy a _____!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ET2-Tm-I5a">
-                                                <rect key="frame" x="8" y="14" width="374" height="27"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have enough to buy a _____!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ET2-Tm-I5a">
+                                                <rect key="frame" x="8" y="8" width="374" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$___/___" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5c5-bO-yjs">
-                                                <rect key="frame" x="9" y="60" width="374" height="21"/>
+                                                <rect key="frame" x="8" y="66" width="374" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -182,6 +182,7 @@
                     <navigationItem key="navigationItem" title="Home" id="qPA-Ek-WU3"/>
                     <connections>
                         <outlet property="barView" destination="q6d-6l-8cq" id="8A1-iV-0Hx"/>
+                        <outlet property="buyALabel" destination="ET2-Tm-I5a" id="S1M-UL-tYk"/>
                         <outlet property="nameLabel" destination="L2p-9l-K1t" id="WL0-ZE-gJH"/>
                         <outlet property="pageControl" destination="xaM-yM-7Cl" id="w13-xI-kZR"/>
                         <outlet property="pieView" destination="Z8h-SS-r9E" id="RJr-vN-aEx"/>
@@ -190,7 +191,9 @@
                         <outlet property="rotateAntiClockWiseTop" destination="0W3-m0-kmV" id="8Mx-pg-Rsy"/>
                         <outlet property="rotateClockWiseBottom" destination="A8X-Bb-pTg" id="4HR-w1-P6T"/>
                         <outlet property="rotateClockWiseTop" destination="eWX-N9-ivs" id="11t-q4-4cj"/>
+                        <outlet property="savedLabel" destination="OeF-C2-DsH" id="szJ-u1-Ppw"/>
                         <outlet property="savingsView" destination="ZoP-fz-M4a" id="XaJ-Za-rZV"/>
+                        <outlet property="somethingOutOfSomethingLabel" destination="5c5-bO-yjs" id="7a2-NV-o4B"/>
                         <outlet property="spendingsLabel" destination="WjU-e1-NPs" id="Ud9-YU-nN8"/>
                         <outlet property="spendingsView" destination="xvC-wK-oxt" id="lUM-zd-Gvk"/>
                         <outlet property="swipeLeftGesture" destination="jhO-iR-s7I" id="czG-Dr-uiW"/>
@@ -529,8 +532,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
-                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingDidEnd" id="G1b-0m-a8m"/>
-                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingChanged" id="Hwf-r5-YkE"/>
+                                                <action selector="changeExpense:" destination="xSb-Yh-gjU" eventType="editingDidEnd" id="VN9-Kl-ENv"/>
                                             </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jW-lB-Z0T">
@@ -544,8 +546,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
-                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingChanged" id="Vzp-wI-hia"/>
-                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingDidEnd" id="wi5-LB-fWe"/>
+                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingDidEnd" id="5Cv-3e-s6I"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -743,7 +744,7 @@
                     <navigationItem key="navigationItem" title="New Category" id="Ib8-Ex-CVo">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Fs1-GN-AeU">
                             <connections>
-                                <action selector="cancel:" destination="Ket-Ta-vwm" id="wyD-3Z-3Y6"/>
+                                <action selector="cancel:" destination="Ket-Ta-vwm" id="sGf-Bc-zQO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="4zU-A2-a0k">
@@ -756,7 +757,7 @@
                         <outlet property="budgetAmount" destination="5fh-M2-ed1" id="lSM-Vs-jC6"/>
                         <outlet property="categoryAmount" destination="HM6-Xg-3QV" id="Mn0-Py-wjL"/>
                         <outlet property="categoryName" destination="WEi-XD-ObS" id="cQE-nx-agA"/>
-                        <outlet property="projectedAmtSpent" destination="bIU-du-1MX" id="Bg5-ab-OTz"/>
+                        <outlet property="projectedAmtSpent" destination="bIU-du-1MX" id="0hf-mt-JfX"/>
                         <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwindHome" unwindAction="unwindToHome:" id="ns0-Am-bem"/>
                     </connections>
                 </tableViewController>
@@ -1122,12 +1123,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dining Chair" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i4J-iY-fr1">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i4J-iY-fr1">
                                                     <rect key="frame" x="20" y="45" width="348" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="y3G-18-XVk"/>
+                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="HLo-K4-Uk7"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1160,12 +1161,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Furniture" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kos-jt-Gvr">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kos-jt-Gvr">
                                                     <rect key="frame" x="20" y="45" width="348" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="1on-2T-VcC"/>
+                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="PVM-ry-2l9"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1198,12 +1199,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="50" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKv-Rc-B1B">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="How" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKv-Rc-B1B">
                                                     <rect key="frame" x="35.333333333333343" y="55" width="332.66666666666663" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="NVX-sl-nvm"/>
+                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="rRn-kJ-CuT"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycd-Mg-KEd">
@@ -1245,12 +1246,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="12" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tbM-yg-XxS">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Duration" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tbM-yg-XxS">
                                                     <rect key="frame" x="20" y="55" width="273.33333333333331" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="W38-Wv-pGm"/>
+                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="Qv1-N7-Hmj"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVF-Qj-bfQ">
@@ -1279,11 +1280,11 @@
                             </tableViewSection>
                             <tableViewSection id="YxD-6I-GO0">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="te0-vf-928">
-                                        <rect key="frame" x="20" y="562" width="388" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="130" id="te0-vf-928">
+                                        <rect key="frame" x="20" y="562" width="388" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="te0-vf-928" id="wuX-SI-S4c">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link to Item (URL)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXT-IH-9G8">
@@ -1292,24 +1293,36 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="https://website.com/itemName=dining+chair" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8H9-tn-9T3">
-                                                    <rect key="frame" x="20" y="45" width="348" height="44"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add URL to Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8H9-tn-9T3">
+                                                    <rect key="frame" x="20" y="45" width="348" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" textContentType="url"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="6If-2U-cdC"/>
+                                                        <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="bSD-Ux-Y4f"/>
+                                                        <action selector="editingend:" destination="GeT-WC-rD0" eventType="editingDidEnd" id="LbV-t0-nv5"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4u-kb-Xq9">
+                                                    <rect key="frame" x="20" y="89" width="348" height="30"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="Open Link"/>
+                                                    <connections>
+                                                        <action selector="openLink:" destination="GeT-WC-rD0" eventType="touchUpInside" id="nQz-BS-z7T"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="W4u-kb-Xq9" firstAttribute="leading" secondItem="wuX-SI-S4c" secondAttribute="leadingMargin" id="BdE-lA-gGq"/>
                                                 <constraint firstItem="DXT-IH-9G8" firstAttribute="leading" secondItem="wuX-SI-S4c" secondAttribute="leadingMargin" id="JyM-ZY-Auw"/>
                                                 <constraint firstItem="8H9-tn-9T3" firstAttribute="leading" secondItem="wuX-SI-S4c" secondAttribute="leadingMargin" id="PFR-cV-62f"/>
                                                 <constraint firstItem="8H9-tn-9T3" firstAttribute="trailing" secondItem="wuX-SI-S4c" secondAttribute="trailingMargin" id="Unf-yg-bWK"/>
+                                                <constraint firstItem="W4u-kb-Xq9" firstAttribute="top" secondItem="8H9-tn-9T3" secondAttribute="bottom" constant="10" id="YIS-WI-KWR"/>
                                                 <constraint firstItem="8H9-tn-9T3" firstAttribute="top" secondItem="DXT-IH-9G8" secondAttribute="bottom" constant="10" id="ZVy-iM-eR0"/>
-                                                <constraint firstItem="8H9-tn-9T3" firstAttribute="bottom" secondItem="wuX-SI-S4c" secondAttribute="bottomMargin" id="bjE-Lr-ZCI"/>
                                                 <constraint firstItem="DXT-IH-9G8" firstAttribute="trailing" secondItem="wuX-SI-S4c" secondAttribute="trailingMargin" id="c8G-sB-x8R"/>
                                                 <constraint firstItem="DXT-IH-9G8" firstAttribute="top" secondItem="wuX-SI-S4c" secondAttribute="topMargin" id="c9S-Sz-Vzg"/>
+                                                <constraint firstItem="W4u-kb-Xq9" firstAttribute="bottom" secondItem="wuX-SI-S4c" secondAttribute="bottomMargin" id="mKY-vD-qzQ"/>
                                                 <constraint firstItem="8H9-tn-9T3" firstAttribute="top" secondItem="DXT-IH-9G8" secondAttribute="bottom" constant="10" id="vPO-Hi-ZeG"/>
+                                                <constraint firstItem="W4u-kb-Xq9" firstAttribute="trailing" secondItem="wuX-SI-S4c" secondAttribute="trailingMargin" id="w83-BP-7G2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1324,12 +1337,12 @@
                     <navigationItem key="navigationItem" title="Details" id="WaP-h8-dkQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gZB-6C-6Dt">
                             <connections>
-                                <action selector="cancel:" destination="GeT-WC-rD0" id="v6d-Ka-o7W"/>
+                                <action selector="cancel:" destination="GeT-WC-rD0" id="d6h-8h-yvG"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="6k0-B9-dwn">
                             <connections>
-                                <action selector="save:" destination="GeT-WC-rD0" id="CXD-zd-W7h"/>
+                                <action selector="save:" destination="GeT-WC-rD0" id="w9J-Xt-AO6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1345,11 +1358,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ekp-7A-i40" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="WCu-Et-PhM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4423" y="-1323"/>
+            <point key="canvasLocation" x="4422.8971962616824" y="-1323.1101511879051"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>

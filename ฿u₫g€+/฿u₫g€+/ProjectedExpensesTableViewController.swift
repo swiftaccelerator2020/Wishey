@@ -7,8 +7,7 @@
 import UIKit
 
 class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpdater {
-
-     override func viewDidLoad() {
+    override func viewDidLoad() {
          super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations

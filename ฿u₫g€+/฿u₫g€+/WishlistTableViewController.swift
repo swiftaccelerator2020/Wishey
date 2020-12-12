@@ -135,6 +135,10 @@ class WishlistTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailsSegue", sender: nil)
+    }
+    
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 80
 //    }
@@ -176,14 +180,18 @@ class WishlistTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "detailsSegue" {
+            let destViewController = segue.destination as! UINavigationController
+            let secondViewcontroller = destViewController.viewControllers.first as! DetailsTableViewController
+            let indexPath = tableView.indexPathForSelectedRow
+            secondViewcontroller.item = wishlist[indexPath!.row]
+        }
     }
-    */
 
 }

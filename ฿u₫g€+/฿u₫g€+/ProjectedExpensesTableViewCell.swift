@@ -86,7 +86,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBAction func changeIncome(_ sender: Any) {
         if incomeMoney.text == nil || incomeMoney.text!.isEmpty || Int(incomeMoney.text!) == nil {
-//            income?.incomeMoney = 0
+            income?.incomeMoney = 0
             incomeArray[index].incomeMoney = 0
         } else {
             incomeArray[index].incomeMoney = Int(incomeMoney.text!)!
@@ -95,8 +95,8 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     }
     
     @IBAction func changeExpense(_ sender: Any) {
-        if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil{
-//            income?.incomeMoney = 0
+        if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil {
+            expense?.projectedExpenses = 0
             expensesArray[index].projectedExpenses = 0
         } else {
             expensesArray[index].projectedExpenses = Int(expenseMoney.text!)!
