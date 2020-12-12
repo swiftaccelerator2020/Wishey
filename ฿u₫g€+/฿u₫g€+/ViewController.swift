@@ -201,7 +201,7 @@ class ViewController: UIViewController {
         if wishlist.count > 0 {
             let randomItem = wishlist.randomElement()!
             itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-            if randomItem.price < Int(savings) {
+            if Double(randomItem.price) < Double(savings) {
                 buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
                 //            buyALabel.text = "You can buy a \(randomItem.name)"
                 somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(savings)))").normal("/").boldGreen("\(randomItem.price)")

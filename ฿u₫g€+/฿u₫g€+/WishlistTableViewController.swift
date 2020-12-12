@@ -73,7 +73,7 @@ class WishlistTableViewController: UITableViewController {
             cell.wishlistItemTitle.text = wishlist[indexPath.row].name
             cell.wishlistItemCategory.text = wishlist[indexPath.row].category
             print()
-            cell.monthlyTarget.text = (Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/wishlist[indexPath.row].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)))/month" : "$\(wishlist[indexPath.row].price/wishlist[indexPath.row].months)/month"
+            cell.monthlyTarget.text = (Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != wishlist[indexPath.row].price/Int(wishlist[indexPath.row].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)))/month" : "$\(wishlist[indexPath.row].price/wishlist[indexPath.row].months)/month"
             var savingsDivPriceText = String()
             var currentSavings = savings
             for i in 0..<indexPath.row {

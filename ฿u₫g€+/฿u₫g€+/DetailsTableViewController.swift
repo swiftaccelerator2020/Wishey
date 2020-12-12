@@ -103,7 +103,7 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
             item.url = URLTF.text
         }
         if itemNameTF.text != nil && !itemNameTF.text!.isEmpty && itemCatTF.text != nil && !itemCatTF.text!.isEmpty && priceTF.text != nil && !priceTF.text!.isEmpty && durationTF.text != nil && !durationTF.text!.isEmpty && Int(durationTF.text!) != nil && Int(priceTF.text!) != nil {
-            if (item.name != itemNameTF.text!) || (item.category != itemCatTF.text!) || (item.price != Int(priceTF.text!)) || (item.months != Int(durationTF.text!)) {
+            if (item.name != itemNameTF.text!) || (item.category != itemCatTF.text!) || (item.price != Double(priceTF.text!)) || (item.months != Int(durationTF.text!)) {
                 itemNameTF.layer.borderWidth = 0
                 itemCatTF.layer.borderWidth = 0
                 priceTF.layer.borderWidth = 0
@@ -161,9 +161,9 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         if itemNameTF.text != nil && itemCatTF.text != nil && priceTF.text != nil && durationTF.text != nil && !itemNameTF.text!.isEmpty && !itemCatTF.text!.isEmpty && !priceTF.text!.isEmpty && !durationTF.text!.isEmpty {
             if Double(priceTF.text!) != nil && Int(durationTF.text!) != nil {
                 if URLTF.text != nil && !(URLTF.text!.isEmpty) {
-                    wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Int(priceTF.text!)!, months: Int(durationTF.text!)!, url: URLTF.text!)
+                    wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Double(priceTF.text!)!, months: Int(durationTF.text!)!, url: URLTF.text!)
                 } else {
-                    wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Int(priceTF.text!)!, months: Int(durationTF.text!)!)
+                    wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Double(priceTF.text!)!, months: Int(durationTF.text!)!)
                 }
 //                dismiss(animated: true, completion: nil)
                 print(wishlist)

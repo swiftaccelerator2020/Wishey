@@ -50,28 +50,29 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         }
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        let button = UIButton()
-        button.frame = CGRect(x: 100, y: 100, width: 120, height: 50)
-        if section == 0 {
-            button.frame.origin = CGPoint(x: 290, y: 0)
-        } else if section == 1 {
-            button.frame.origin = CGPoint(x: 290, y: -20)
-        }
-        button.setTitle("+", for: .normal)
-        button.titleLabel?.font =  UIFont(name: "Helvetica Neue", size: 40)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        view.addSubview(button)
-        return view
-    }
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let view = UIView()
+//        let button = UIButton()
+//        button.frame = CGRect(x: 100, y: 100, width: 120, height: 50)
+//        if section == 0 {
+//            button.frame.origin = CGPoint(x: 290, y: 0)
+//        } else if section == 1 {
+//            button.frame.origin = CGPoint(x: 290, y: -20)
+//        }
+//        button.setTitle("+", for: .normal)
+//        button.titleLabel?.font =  UIFont(name: "Helvetica Neue", size: 40)
+//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+//        view.addSubview(button)
+//        return view
+//    }
     @objc func buttonAction(sender: UIButton!) {
-        let btnsendtag: UIButton = sender
-        if btnsendtag.tag == 0 {
-            let alert = UIAlertController(title: "Button Pressed", message: "It works", preferredStyle: .alert)
-            present(alert, animated: true)
-            dismiss(animated: true, completion: nil)
-        }
+//        let btnsendtag: UIButton = sender
+//        if btnsendtag.tag == 0 {
+//            let alert = UIAlertController(title: "Button Pressed", message: "It works", preferredStyle: .alert)
+//            present(alert, animated: true)
+//            dismiss(animated: true, completion: nil)
+//        }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

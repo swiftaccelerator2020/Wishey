@@ -21,7 +21,7 @@ struct expenseStruct {
 struct WishlistItem {
     var name: String
     var category: String
-    var price: Int
+    var price: Double
     var months: Int
     var url: String?
 }
@@ -64,7 +64,7 @@ var expensesArray: [expenseStruct] = [
     expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00),
 ]
 
-var categories = ["cars","motorcycles","bicycles","properties","electronics","mobile phones","women's fashion","man's fashion","health & beauty","food & drinks","luxury","furniture","home appliances","toys & games","entertainment","sports","stationary","music & media","lifestyle","pets","travel","others"]
+var categories = ["Automotives","Properties","Electronics","Mobile Devices & Gadgets","Computers & Peripherals","Men's Wear","Men's Shoes","Men's Bags","Women's Apparel","Women's Shoes","Women's Bags","Kids Fashion","Health & Wellness", "Beauty & Personal Care", "Jewellery & Accessories", "Food & Beverage","Luxury","Furniture","Home Appliances","Office","Toys & Games","Entertainment","Sports, Outdoors & Exercise","Stationery","Music","Media","Subscriptions","Lifestyle","Pets", "Travel & Luggage","Kids & Babies", "Dining & Services", "Cameras & Drones", "Miscellaneous/Others"]
 
 // Global Variables
 var projectedSavings = Int()
