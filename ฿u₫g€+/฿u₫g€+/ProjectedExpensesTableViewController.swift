@@ -91,7 +91,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         if indexPath.section == 0 {
             cell.income = incomeArray[indexPath.row]
             cell.incomeSetUp()
-            if indexPath.row == incomeArray.count-1 {
+            if indexPath.row != 0 {
                 cell.incomeMoney.isEnabled = false
             }
         } else if indexPath.section == 1 {
@@ -99,6 +99,14 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
             cell.expenseSetUp()
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
+                self.performSegue(withIdentifier: "seeOtherIncome", sender: nil)
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -148,14 +156,15 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      }
      */
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "seeOtherIncome" {
+            
+        }
      }
-     */
     
 }
