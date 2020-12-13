@@ -396,8 +396,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exh-Ea-Iwk" customClass="PlainHorizontalProgressBar" customModule="_u_g__" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exh-Ea-Iwk" customClass="PlainHorizontalProgressBar" customModule="_u_g__" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDf-ns-tNB">
@@ -432,10 +433,7 @@
                                     <constraints>
                                         <constraint firstItem="WDf-ns-tNB" firstAttribute="top" secondItem="4mu-o3-krt" secondAttribute="top" constant="10" id="2Pr-5b-rZb"/>
                                         <constraint firstItem="WDf-ns-tNB" firstAttribute="leading" secondItem="4mu-o3-krt" secondAttribute="leading" constant="20" id="4Jy-0S-Ulk"/>
-                                        <constraint firstItem="exh-Ea-Iwk" firstAttribute="leading" secondItem="4mu-o3-krt" secondAttribute="leading" id="5An-LB-eVx"/>
-                                        <constraint firstAttribute="bottom" secondItem="exh-Ea-Iwk" secondAttribute="bottom" id="DEq-zq-kOE"/>
                                         <constraint firstItem="9qT-6t-kGV" firstAttribute="top" secondItem="WDf-ns-tNB" secondAttribute="bottom" constant="10" id="FQh-Km-cmo"/>
-                                        <constraint firstAttribute="trailing" secondItem="exh-Ea-Iwk" secondAttribute="trailing" id="HZe-mt-REU"/>
                                         <constraint firstAttribute="trailing" secondItem="iPH-WO-KMA" secondAttribute="trailing" constant="15" id="Ib7-hQ-lS5"/>
                                         <constraint firstItem="9qT-6t-kGV" firstAttribute="leading" secondItem="4mu-o3-krt" secondAttribute="leading" constant="20" id="LeN-QL-5ES"/>
                                         <constraint firstItem="iPH-WO-KMA" firstAttribute="leading" secondItem="WDf-ns-tNB" secondAttribute="trailing" id="Sct-7w-yv4"/>
@@ -447,7 +445,6 @@
                                         <constraint firstAttribute="bottom" secondItem="9qT-6t-kGV" secondAttribute="bottom" constant="10" id="pZJ-e7-nbl"/>
                                         <constraint firstItem="9qT-6t-kGV" firstAttribute="width" secondItem="gwa-fy-Q26" secondAttribute="width" id="qfa-c0-jSh"/>
                                         <constraint firstItem="gwa-fy-Q26" firstAttribute="top" secondItem="iPH-WO-KMA" secondAttribute="bottom" constant="8" symbolic="YES" id="qpv-eb-QDm"/>
-                                        <constraint firstItem="exh-Ea-Iwk" firstAttribute="top" secondItem="4mu-o3-krt" secondAttribute="top" id="reZ-uM-h5e"/>
                                         <constraint firstItem="gwa-fy-Q26" firstAttribute="leading" secondItem="9qT-6t-kGV" secondAttribute="trailing" id="usw-f1-dXo"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -468,11 +465,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Wishlist" id="8ZC-c7-hzE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="5oL-VJ-JoK">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="ApX-jf-5l0" id="DSV-pJ-tye"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fec-lG-gPs">
                             <connections>
                                 <action selector="addButtonTapped:" destination="ApX-jf-5l0" id="L6R-ui-Y4i"/>

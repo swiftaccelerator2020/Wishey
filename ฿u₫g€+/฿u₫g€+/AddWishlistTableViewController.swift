@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddWishlistTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddWishlistTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var nameCategoryField: UITextField!
@@ -17,7 +17,24 @@ class AddWishlistTableViewController: UITableViewController, UIPickerViewDataSou
     @IBOutlet var cells: [UITableViewCell]!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var pickerView2 = UIPickerView()
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let oldText = textField.text, let r = Range(range, in: oldText) else {
+                return true
+            }
+
+            let newText = oldText.replacingCharacters(in: r, with: string)
+            let isNumeric = newText.isEmpty || (Double(newText) != nil)
+            let numberOfDots = newText.components(separatedBy: ".").count - 1
+
+            let numberOfDecimalDigits: Int
+        if let dotIndex = newText.firstIndex(of: ".") {
+                numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+            } else {
+                numberOfDecimalDigits = 0
+            }
+
+            return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +47,8 @@ class AddWishlistTableViewController: UITableViewController, UIPickerViewDataSou
 //        NotificationCenter.default.addObserver(self,  selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 //        NotificationCenter.default.addObserver(self,  selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 //        self.nameField.delegate = self
+        costField.delegate = self
+        costField.keyboardType = .decimalPad
         nameCategoryField.inputView = pickerView2
         nameCategoryField.tintColor = .none
         pickerView2.dataSource = self

@@ -16,7 +16,11 @@ class WishlistTableViewController: UITableViewController {
         canBuy = []
         tableView.reloadData()
     }
-    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        // Toggles the actual editing actions appearing on a table view
+        tableView.setEditing(editing, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,14 +28,33 @@ class WishlistTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+//        tableView.allowsMultipleSelection = true
+////        tableView.allowsSelectionDuringEditing = true
+//        tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.dataSource = self
+        tableView.delegate = self
     }
-    @IBAction func editButtonTapped(_ sender: Any) {
-        if tableView.isEditing {
-            tableView.setEditing(false, animated: true)
-        } else {
-            tableView.setEditing(true, animated: true)
-        }
-    }
+//    @IBAction func editButtonTapped(_ sender: Any) {
+//        if tableView.isEditing {
+//            tableView.setEditing(false, animated: true)
+//        } else {
+//            tableView.setEditing(true, animated: true)
+//        }
+//    }
+//    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
+//            wishlistSpendings += Double(wishlist[indexPath.row].price)
+//            wishlist.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .none)
+//            print(savings)
+//            self.canBuy = []
+//            updateGlobalSavings()
+//            tableView.reloadData()
+//        }
+////        spend.backgroundColor = UIColor.systemGreen
+//        let swipeActions = UISwipeActionsConfiguration(actions: [spend])
+//        return swipeActions
+//    }
     @IBAction func addButtonTapped(_ sender: Any) {
     }
     
@@ -167,8 +190,16 @@ class WishlistTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "detailsSegue", sender: nil)
+//        let cell: UITableViewCell = tableView.cellForRow(at: indexPath)!
+//        cell.accessoryType = cell.isSelected ? .checkmark : .none
     }
-    
+//    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 80
 //    }
@@ -203,7 +234,14 @@ class WishlistTableViewController: UITableViewController {
             self.canBuy = []
             tableView.reloadData()
         }
-        var swipeActions = UISwipeActionsConfiguration(actions: [delete])
+        let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
+            self.performSegue(withIdentifier: "detailsSegue", sender: nil)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//            self.canBuy = []
+//            tableView.reloadData()
+        }
+        edit.backgroundColor = .systemBlue
+        var swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
         if canBuy[indexPath.row] == true{
             let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
                 wishlistSpendings += Double(wishlist[indexPath.row].price)
@@ -214,8 +252,8 @@ class WishlistTableViewController: UITableViewController {
                 updateGlobalSavings()
                 tableView.reloadData()
             }
-            spend.backgroundColor = UIColor.systemBlue
-            swipeActions = UISwipeActionsConfiguration(actions: [delete, spend])
+            spend.backgroundColor = UIColor.systemYellow
+            swipeActions = UISwipeActionsConfiguration(actions: [delete, edit, spend])
         }
 
         return swipeActions
