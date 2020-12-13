@@ -27,21 +27,21 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let oldText = textField.text, let r = Range(range, in: oldText) else {
-                return true
-            }
-
-            let newText = oldText.replacingCharacters(in: r, with: string)
-            let isNumeric = newText.isEmpty || (Double(newText) != nil)
-            let numberOfDots = newText.components(separatedBy: ".").count - 1
-
-            let numberOfDecimalDigits: Int
+            return true
+        }
+        
+        let newText = oldText.replacingCharacters(in: r, with: string)
+        let isNumeric = newText.isEmpty || (Double(newText) != nil)
+        let numberOfDots = newText.components(separatedBy: ".").count - 1
+        
+        let numberOfDecimalDigits: Int
         if let dotIndex = newText.firstIndex(of: ".") {
-                numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
-            } else {
-                numberOfDecimalDigits = 0
-            }
-
-            return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
+            numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+        } else {
+            numberOfDecimalDigits = 0
+        }
+        
+        return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -124,6 +124,46 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     //        // Pass the selected object to the new view controller.
     //    }
     //    */
+    
+    @IBAction func catEdited(_ sender: Any) {
+        if categoryName.text != nil && categoryName.text != nil{
+            categoryName.layer.borderWidth = 0
+        } else {
+            if categoryName.text == nil || categoryName.text!.isEmpty {
+                categoryName.layer.borderWidth = 1
+                categoryName.layer.borderColor = UIColor.systemRed.cgColor
+            } else {
+                categoryName.layer.borderWidth = 0
+                categoryName.layer.borderColor = .none
+            }
+        }
+    }
+    @IBAction func budgetEdited(_ sender: Any) {
+        if budgetAmount.text != nil && budgetAmount.text != nil{
+            budgetAmount.layer.borderWidth = 0
+        } else {
+            if Double(budgetAmount.text!)! <= 0.0 {
+                budgetAmount.layer.borderWidth = 1
+                budgetAmount.layer.borderColor = UIColor.systemOrange.cgColor
+            } else {
+                budgetAmount.layer.borderWidth = 0
+                budgetAmount.backgroundColor = .none
+            }
+        }
+    }
+    @IBAction func catAmountEdited(_ sender: Any) {
+        if categoryAmount.text != nil && categoryAmount.text != nil{
+            categoryAmount.layer.borderWidth = 0
+        } else {
+            if Double(categoryAmount.text!)! <= 0.0 {
+                categoryAmount.layer.borderWidth = 1
+                categoryAmount.layer.borderColor = UIColor.systemOrange.cgColor
+            } else {
+                categoryAmount.layer.borderWidth = 0
+                categoryAmount.backgroundColor = .none
+            }
+        }
+    }
     
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)

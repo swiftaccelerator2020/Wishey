@@ -670,6 +670,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="catEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="Qx2-bB-Sbk"/>
+                                                        <action selector="endEditingCat:" destination="LQP-6H-Eu6" eventType="editingDidEnd" id="f8S-sV-0hQ"/>
                                                         <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="a2d-Yn-MC2"/>
                                                     </connections>
                                                 </textField>
@@ -708,6 +710,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
+                                                        <action selector="budgetEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="NH1-w8-xCq"/>
                                                         <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="9XT-Fe-Jn9"/>
                                                     </connections>
                                                 </textField>
@@ -755,6 +758,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
+                                                        <action selector="catAmountEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="6fH-rP-bnK"/>
                                                         <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="1Ff-p3-Ydd"/>
                                                     </connections>
                                                 </textField>

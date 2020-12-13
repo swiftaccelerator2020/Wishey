@@ -118,12 +118,12 @@
 				8989958825828863000EBABB /* NSUIColor+Hex.swift */,
 				896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */,
 				896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */,
+				8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */,
+				89DC08072586621F00B93E36 /* OtherIncomeTableViewController.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
 				A8109E5B256F9522008F3709 /* Info.plist */,
-				8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */,
-				89DC08072586621F00B93E36 /* OtherIncomeTableViewController.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
