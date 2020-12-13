@@ -21,6 +21,7 @@ class WishlistTableViewController: UITableViewController {
         // Toggles the actual editing actions appearing on a table view
         tableView.setEditing(editing, animated: true)
     }
+    var indexPath = IndexPath()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -235,6 +236,7 @@ class WishlistTableViewController: UITableViewController {
             tableView.reloadData()
         }
         let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
+            self.indexPath = indexPath
             self.performSegue(withIdentifier: "detailsSegue", sender: nil)
 //            tableView.deleteRows(at: [indexPath], with: .automatic)
 //            self.canBuy = []
@@ -284,8 +286,10 @@ class WishlistTableViewController: UITableViewController {
 //            let destViewController = segue.destination as! UINavigationController
 //            let secondViewcontroller = destViewController.viewControllers.first as! DetailsTableViewController
             let destVC = segue.destination as! DetailsTableViewController
-            let indexPath = tableView.indexPathForSelectedRow
-            destVC.item = wishlist[indexPath!.row]
+            if tableView.indexPathForSelectedRow != nil {
+                indexPath = tableView.indexPathForSelectedRow!
+            }
+            destVC.item = wishlist[indexPath.row]
             destVC.theIndexPath = indexPath
         }
     }
