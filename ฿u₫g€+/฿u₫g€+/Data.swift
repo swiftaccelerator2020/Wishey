@@ -21,7 +21,7 @@ struct expenseStruct {
 struct WishlistItem {
     var name: String
     var category: String
-    var price: Int
+    var price: Double
     var months: Int
     var url: String?
 }
@@ -47,12 +47,12 @@ var incomeArray = [
 //]
 
 var wishlist: [WishlistItem] = [
-    WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3,url: "yes.com"),
-    WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440, months: 11,url: "netflix.com"),
-    WishlistItem(name: "Running Shoes", category: "Sports", price: 100, months: 20,url: "youtube.com"),
-    WishlistItem(name: "New Television", category: "Electronics", price: 1500, months: 3),
-    WishlistItem(name: "Couch", category: "Furniture", price: 245, months: 6),
-    WishlistItem(name: "Printer", category: "Office", price: 218, months: 3)
+    WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3,url: "sstinc.org"),
+    WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440.00, months: 11,url: "wikipedia.org"),
+    WishlistItem(name: "Running Shoes", category: "Sports", price: 100.00, months: 20, url: "youtube.com"),
+    WishlistItem(name: "New Television", category: "Electronics", price: 1500.00, months: 3),
+    WishlistItem(name: "Couch", category: "Furniture", price: 245.00, months: 6),
+    WishlistItem(name: "Printer", category: "Office", price: 218.00, months: 3)
 ]
 
 var expensesArray: [expenseStruct] = [

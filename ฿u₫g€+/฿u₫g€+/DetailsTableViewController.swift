@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class DetailsTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var itemNameTF: UITextField!
     @IBOutlet weak var itemCatTF: UITextField!
@@ -27,11 +27,10 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         pickerView1.dataSource = self
         itemNameTF.text = item.name
         itemCatTF.text  = item.category
-        priceTF.text = String(item.price)
+        priceTF.text = String(format: "%.2f", item.price)
         durationTF.text = String(item.months)
         URLTF.text = item.url
         saveChangesButton.isEnabled = false
-        itemCatTF.inputView = pickerView1
         itemNameTF.layer.cornerRadius = 5
         itemNameTF.clipsToBounds = true
         itemCatTF.layer.cornerRadius = 5
@@ -40,6 +39,8 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         priceTF.clipsToBounds = true
         durationTF.layer.cornerRadius = 5
         durationTF.clipsToBounds = true
+        itemCatTF.tintColor = UIColor.clear
+        itemCatTF.inputView = pickerView1
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -56,7 +57,7 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(DetailsTableViewController.hideKeyboard))
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(AddWishlistTableViewController.hideKeyboard))
         
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -66,6 +67,10 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
     
     @objc func hideKeyboard() {
         view.endEditing(true)
+    }
+    @IBAction func editingbegin(_ sender: Any) {
+        createToolbar()
+        pickerView1.selectRow(categories.firstIndex(of: item.category)!, inComponent: 0, animated: true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -79,7 +84,7 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         return categories[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        itemCatTF.resignFirstResponder()
+//        itemCatTF.resignFirstResponder()
         itemCatTF.text = categories[pickerView.selectedRow(inComponent: 0)]
     }
     
@@ -102,17 +107,34 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
         if URLTF.text != nil && !URLTF.text!.isEmpty && URLTF.text != item.url {
             item.url = URLTF.text
         }
-        if itemNameTF.text != nil && !itemNameTF.text!.isEmpty && itemCatTF.text != nil && !itemCatTF.text!.isEmpty && priceTF.text != nil && !priceTF.text!.isEmpty && durationTF.text != nil && !durationTF.text!.isEmpty && Int(durationTF.text!) != nil && Int(priceTF.text!) != nil {
+        if itemNameTF.text != nil && !itemNameTF.text!.isEmpty && itemCatTF.text != nil && !itemCatTF.text!.isEmpty && priceTF.text != nil && !priceTF.text!.isEmpty && durationTF.text != nil && !durationTF.text!.isEmpty && Int(durationTF.text!) != nil && Double(priceTF.text!) != nil {
             if (item.name != itemNameTF.text!) || (item.category != itemCatTF.text!) || (item.price != Double(priceTF.text!)) || (item.months != Int(durationTF.text!)) {
-                itemNameTF.layer.borderWidth = 0
-                itemCatTF.layer.borderWidth = 0
-                priceTF.layer.borderWidth = 0
-                durationTF.layer.borderWidth = 0
-                itemNameTF.layer.borderColor = .none
-                itemCatTF.layer.borderColor = .none
-                itemNameTF.layer.borderColor = .none
-                itemNameTF.layer.borderColor = .none
-                saveChangesButton.isEnabled = true
+                if Double(priceTF.text!)! > 0.0  && Int(durationTF.text!)! > 0 {
+                    itemNameTF.layer.borderWidth = 0
+                    itemCatTF.layer.borderWidth = 0
+                    priceTF.layer.borderWidth = 0
+                    durationTF.layer.borderWidth = 0
+                    itemNameTF.layer.borderColor = .none
+                    itemCatTF.layer.borderColor = .none
+                    itemNameTF.layer.borderColor = .none
+                    itemNameTF.layer.borderColor = .none
+                    saveChangesButton.isEnabled = true
+                } else {
+                    if Double(priceTF.text!)! <= 0.0 {
+                        priceTF.layer.borderWidth = 1
+                        priceTF.layer.borderColor = UIColor.systemOrange.cgColor
+                    } else {
+                        priceTF.layer.borderWidth = 0
+                        priceTF.backgroundColor = .none
+                    }
+                    if Int(durationTF.text!)! <= 0 {
+                        durationTF.layer.borderWidth = 1
+                        durationTF.layer.borderColor = UIColor.systemOrange.cgColor
+                    } else {
+                        durationTF.layer.borderWidth = 0
+                        durationTF.backgroundColor = .none
+                    }
+                }
             }
         } else {
             if itemNameTF.text == nil || itemNameTF.text!.isEmpty {
@@ -132,7 +154,7 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
             if priceTF.text == nil || priceTF.text!.isEmpty {
                 priceTF.layer.borderWidth = 1
                 priceTF.layer.borderColor = UIColor.systemRed.cgColor
-            } else if Int(priceTF.text!) == nil {
+            } else if Double(priceTF.text!) == nil {
                 priceTF.layer.borderWidth = 1
                 priceTF.layer.borderColor = UIColor.systemYellow.cgColor
             } else {
@@ -228,7 +250,7 @@ class DetailsTableViewController: UITableViewController,UIPickerViewDataSource,U
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

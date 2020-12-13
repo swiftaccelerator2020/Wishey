@@ -770,7 +770,7 @@
                                 <action selector="cancel:" destination="Ket-Ta-vwm" id="sGf-Bc-zQO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4zU-A2-a0k">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="4zU-A2-a0k">
                             <connections>
                                 <action selector="save:" destination="Ket-Ta-vwm" id="9wU-hb-Dop"/>
                             </connections>
@@ -846,6 +846,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
                                                         <action selector="dismissKeyboard:" destination="crA-ku-2sr" eventType="editingDidEndOnExit" id="Axu-ZX-dsY"/>
+                                                        <action selector="editingend:" destination="crA-ku-2sr" eventType="editingDidEnd" id="WvO-1o-E12"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -884,6 +885,8 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
                                                         <action selector="dismissKeyboard:" destination="crA-ku-2sr" eventType="editingDidEndOnExit" id="yYR-Ey-bNe"/>
+                                                        <action selector="editingBegin:" destination="crA-ku-2sr" eventType="editingDidBegin" id="biQ-hw-0JB"/>
+                                                        <action selector="editingend:" destination="crA-ku-2sr" eventType="editingDidEnd" id="Vqt-65-U5h"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -916,12 +919,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="50" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sCR-r5-zc4">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="50.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sCR-r5-zc4">
                                                     <rect key="frame" x="35.333333333333343" y="55" width="332.66666666666663" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
                                                         <action selector="dismissKeyboard:" destination="crA-ku-2sr" eventType="editingDidEndOnExit" id="wkk-u4-Hgt"/>
+                                                        <action selector="editingend:" destination="crA-ku-2sr" eventType="editingDidEnd" id="gol-Hr-FcY"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u42-i5-wEb">
@@ -969,6 +973,7 @@
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
                                                         <action selector="dismissKeyboard:" destination="crA-ku-2sr" eventType="editingDidEndOnExit" id="aOU-x1-XSB"/>
+                                                        <action selector="editingend:" destination="crA-ku-2sr" eventType="editingDidEnd" id="X3g-2D-aim"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSW-IH-gvN">
@@ -1045,7 +1050,7 @@
                                 <action selector="cancel:" destination="crA-ku-2sr" id="Y9x-tJ-CCl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hSe-Xt-MAj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="hSe-Xt-MAj">
                             <connections>
                                 <action selector="save:" destination="crA-ku-2sr" id="7rK-tH-OsC"/>
                             </connections>
@@ -1053,6 +1058,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="costField" destination="sCR-r5-zc4" id="tIc-Op-8Mk"/>
+                        <outlet property="doneButton" destination="hSe-Xt-MAj" id="Dxt-Iz-a2m"/>
                         <outlet property="durationField" destination="s9Z-da-de0" id="emd-fj-2Oy"/>
                         <outlet property="nameCategoryField" destination="qBr-q1-a0P" id="Zs0-sH-6Wx"/>
                         <outlet property="nameField" destination="l74-CB-v3K" id="hth-hG-cwH"/>
@@ -1166,6 +1172,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
                                                         <action selector="dismissKeyboard:" destination="GeT-WC-rD0" eventType="editingDidEndOnExit" id="PVM-ry-2l9"/>
+                                                        <action selector="editingbegin:" destination="GeT-WC-rD0" eventType="editingDidBegin" id="MeX-mC-KeG"/>
                                                         <action selector="editingend:" destination="GeT-WC-rD0" eventType="editingDidEnd" id="Ni2-BA-93Z"/>
                                                     </connections>
                                                 </textField>
@@ -1370,7 +1377,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dv6-b5-aOz"/>
+        <segue reference="cbn-AK-Eyx"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>

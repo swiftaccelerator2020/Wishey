@@ -8,9 +8,12 @@ import UIKit
 
 class WishlistTableViewController: UITableViewController {
     
+    var canBuy: [Bool] = []
+    
     override func viewDidAppear(_ animated: Bool) {
         updateGlobalSavings()
 //        tableView.reloadRows(at: [IndexPath(row: <#T##Int#>, section: <#T##Int#>)], with: .none)
+        canBuy = []
         tableView.reloadData()
     }
     
@@ -48,7 +51,8 @@ class WishlistTableViewController: UITableViewController {
             UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
             UINavigationBar.appearance().isTranslucent = false
         }
-//        tableView.reloadData()
+        canBuy = []
+        tableView.reloadData()
     }
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,7 +74,8 @@ class WishlistTableViewController: UITableViewController {
             cell.wishlistItemTitle.text = wishlist[indexPath.row].name
             cell.wishlistItemCategory.text = wishlist[indexPath.row].category
             print()
-            cell.monthlyTarget.text = (Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/wishlist[indexPath.row].months) ? "$\(String(format: "%.2f", Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)))/month" : "$\(wishlist[indexPath.row].price/wishlist[indexPath.row].months)/month"
+            cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "$\(String(format: "%.2f", (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))/month" /* : "$\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
+            
             var savingsDivPriceText = String()
             var currentSavings = savings
             for i in 0..<indexPath.row {
@@ -79,21 +84,22 @@ class WishlistTableViewController: UITableViewController {
             }
 //            cell.currentSavings = currentSavings
             if currentSavings >= Double(wishlist[indexPath.row].price) {
-                savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
+                savingsDivPriceText = "$\(String(format: "%.2f", wishlist[indexPath.row].price))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
                 UIView.animate(withDuration: 4){
                     cell.progressAnimated.progress = CGFloat(1)
                     cell.savingsOutOfPrice.textColor = .systemBackground
                 }
+                canBuy.append(true)
             } else {
                 if currentSavings > 0 {
                     print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
                     print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
-                    savingsDivPriceText = currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"
+                    savingsDivPriceText = /*currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"*/ "$\(String(format: "%.2f", currentSavings))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
                     print(savingsDivPriceText)
 //                    if currentSavings.truncatingRemainder(dividingBy: 1) != 0 {
 //                        UIView.animate(withDuration: 4){
 //                            cell.progressBar.setProgress(Float(Double(currentSavings)/Double(wishlist[indexPath.row].price)), animated: true)
-                        cell.progressAnimated.progress = CGFloat(currentSavings/Double(wishlist[indexPath.row].price))
+                        cell.progressAnimated.progress = CGFloat(currentSavings/wishlist[indexPath.row].price)
 //                        }
 //                    } else {
 //                        UIView.animate(withDuration: 4){
@@ -102,12 +108,14 @@ class WishlistTableViewController: UITableViewController {
 //                        }
 //                    }
                     cell.savingsOutOfPrice.textColor = .label
+                    canBuy.append(false)
                 }
                 else {
-                    savingsDivPriceText = "$0/\(wishlist[indexPath.row].price)"
+                    savingsDivPriceText = "$0.00/\(String(format: "%.2f", wishlist[indexPath.row].price))"
 //                    cell.progressBar.setProgress(0, animated: false)
                     cell.progressAnimated.progress = CGFloat(0)
                     cell.savingsOutOfPrice.textColor = .label
+                    canBuy.append(false)
                 }
             }
             print("$\(currentSavings)")
@@ -153,6 +161,7 @@ class WishlistTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToWishlist( _ seg: UIStoryboardSegue) {
+        canBuy = []
         tableView.reloadData()
     }
     
@@ -180,6 +189,7 @@ class WishlistTableViewController: UITableViewController {
             // Delete the row from the data source
             wishlist.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            canBuy = []
             tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -190,19 +200,23 @@ class WishlistTableViewController: UITableViewController {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             wishlist.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.canBuy = []
             tableView.reloadData()
         }
-        let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
-            wishlistSpendings += Double(wishlist[indexPath.row].price)
-            wishlist.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .none)
-            print(savings)
-            updateGlobalSavings()
-            tableView.reloadData()
+        var swipeActions = UISwipeActionsConfiguration(actions: [delete])
+        if canBuy[indexPath.row] == true{
+            let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
+                wishlistSpendings += Double(wishlist[indexPath.row].price)
+                wishlist.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .none)
+                print(savings)
+                self.canBuy = []
+                updateGlobalSavings()
+                tableView.reloadData()
+            }
+            spend.backgroundColor = UIColor.systemBlue
+            swipeActions = UISwipeActionsConfiguration(actions: [delete, spend])
         }
-        spend.backgroundColor = UIColor.systemBlue
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [delete, spend])
 
         return swipeActions
     }
@@ -211,6 +225,7 @@ class WishlistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let friend = wishlist.remove(at: fromIndexPath.row)
         wishlist.insert(friend, at: to.row)
+        self.canBuy = []
         tableView.reloadData()
     }
 

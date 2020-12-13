@@ -7,19 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14141EF9EFF2291618A56812 /* Pods__u_g__.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888B8934295852F2347DAAE4 /* Pods__u_g__.framework */; };
 		1423C1872583D6B200E602DE /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423C1862583D6B200E602DE /* DetailsTableViewController.swift */; };
 		1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145642992574DCF900C3E310 /* expensesTableViewController.swift */; };
 		145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */; };
 		8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903DD61257408BB0046A4C4 /* ViewController.swift */; };
 		896C3B56257D266B004DBAFC /* AddExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */; };
-		896C3B59257D2678004DBAFC /* AddCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B58257D2678004DBAFC /* AddCategoryTableViewController.swift */; };
 		896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */; };
 		8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8989958825828863000EBABB /* NSUIColor+Hex.swift */; };
-		8995FC9B2585376A00F131D4 /* RotatingCircularGradientProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC962585376900F131D4 /* RotatingCircularGradientProgressBar.swift */; };
-		8995FC9C2585376A00F131D4 /* GradientCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC972585376900F131D4 /* GradientCircularProgressBar.swift */; };
-		8995FC9D2585376A00F131D4 /* GradientHorizontalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC982585376900F131D4 /* GradientHorizontalProgressBar.swift */; };
-		8995FC9E2585376A00F131D4 /* PlainCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC992585376900F131D4 /* PlainCircularProgressBar.swift */; };
 		8995FC9F2585376A00F131D4 /* PlainHorizontalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */; };
 		89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */; };
 		89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */; };
@@ -33,24 +27,18 @@
 		A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */; };
 		A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */; };
 		A8DDDCD92574F107003CC2B8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCD82574F107003CC2B8 /* Data.swift */; };
+		FC53EB09A1A3BD1092BA586B /* Pods__u_g__.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B3E60FE7C1A9D308B807E7A /* Pods__u_g__.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1423C1862583D6B200E602DE /* DetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
 		145642992574DCF900C3E310 /* expensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expensesTableViewController.swift; sourceTree = "<group>"; };
 		1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseTableViewCell.swift; sourceTree = "<group>"; };
-		75E9E1411C71D9C6D933B6DD /* Pods-฿u₫g€+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.debug.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.debug.xcconfig"; sourceTree = "<group>"; };
-		7FD9C5F1033E7E93D19C9B30 /* Pods-฿u₫g€+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.release.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.release.xcconfig"; sourceTree = "<group>"; };
-		888B8934295852F2347DAAE4 /* Pods__u_g__.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__u_g__.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B3E60FE7C1A9D308B807E7A /* Pods__u_g__.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__u_g__.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8903DD61257408BB0046A4C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesTableViewController.swift; sourceTree = "<group>"; };
-		896C3B58257D2678004DBAFC /* AddCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryTableViewController.swift; sourceTree = "<group>"; };
 		896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWishlistTableViewController.swift; sourceTree = "<group>"; };
 		8989958825828863000EBABB /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
-		8995FC962585376900F131D4 /* RotatingCircularGradientProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatingCircularGradientProgressBar.swift; sourceTree = "<group>"; };
-		8995FC972585376900F131D4 /* GradientCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientCircularProgressBar.swift; sourceTree = "<group>"; };
-		8995FC982585376900F131D4 /* GradientHorizontalProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientHorizontalProgressBar.swift; sourceTree = "<group>"; };
-		8995FC992585376900F131D4 /* PlainCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainCircularProgressBar.swift; sourceTree = "<group>"; };
 		8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainHorizontalProgressBar.swift; sourceTree = "<group>"; };
 		89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
 		89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewCell.swift; sourceTree = "<group>"; };
@@ -66,6 +54,8 @@
 		A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectedExpensesTableViewController.swift; sourceTree = "<group>"; };
 		A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectedExpensesTableViewCell.swift; sourceTree = "<group>"; };
 		A8DDDCD82574F107003CC2B8 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		D4627576E255DD8F4B3EB0A2 /* Pods-฿u₫g€+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.release.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.release.xcconfig"; sourceTree = "<group>"; };
+		FEB9776F3AFE268AE2A47DDD /* Pods-฿u₫g€+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.debug.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14141EF9EFF2291618A56812 /* Pods__u_g__.framework in Frameworks */,
+				FC53EB09A1A3BD1092BA586B /* Pods__u_g__.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,18 +73,10 @@
 		4C35C6100382DAC18E8C2DDB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				75E9E1411C71D9C6D933B6DD /* Pods-฿u₫g€+.debug.xcconfig */,
-				7FD9C5F1033E7E93D19C9B30 /* Pods-฿u₫g€+.release.xcconfig */,
+				FEB9776F3AFE268AE2A47DDD /* Pods-฿u₫g€+.debug.xcconfig */,
+				D4627576E255DD8F4B3EB0A2 /* Pods-฿u₫g€+.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		8929EE3EB4779B0CDF8C5ECC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				888B8934295852F2347DAAE4 /* Pods__u_g__.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A8109E41256F9520008F3709 = {
@@ -103,7 +85,7 @@
 				A8109E4C256F9520008F3709 /* ฿u₫g€+ */,
 				A8109E4B256F9520008F3709 /* Products */,
 				4C35C6100382DAC18E8C2DDB /* Pods */,
-				8929EE3EB4779B0CDF8C5ECC /* Frameworks */,
+				FB87B57B676E43CDF331CE9D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,19 +115,22 @@
 				89D3B8B2257636B200C0E747 /* AttributedString.swift */,
 				8989958825828863000EBABB /* NSUIColor+Hex.swift */,
 				896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */,
-				896C3B58257D2678004DBAFC /* AddCategoryTableViewController.swift */,
 				896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
 				A8109E5B256F9522008F3709 /* Info.plist */,
-				8995FC972585376900F131D4 /* GradientCircularProgressBar.swift */,
-				8995FC982585376900F131D4 /* GradientHorizontalProgressBar.swift */,
-				8995FC992585376900F131D4 /* PlainCircularProgressBar.swift */,
 				8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */,
-				8995FC962585376900F131D4 /* RotatingCircularGradientProgressBar.swift */,
 			);
 			path = "฿u₫g€+";
+			sourceTree = "<group>";
+		};
+		FB87B57B676E43CDF331CE9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B3E60FE7C1A9D308B807E7A /* Pods__u_g__.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,11 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8109E5E256F9522008F3709 /* Build configuration list for PBXNativeTarget "฿u₫g€+" */;
 			buildPhases = (
-				40846E150E896F4070510B71 /* [CP] Check Pods Manifest.lock */,
+				ECE2FC7F1802A93D14998F21 /* [CP] Check Pods Manifest.lock */,
 				A8109E46256F9520008F3709 /* Sources */,
 				A8109E47256F9520008F3709 /* Frameworks */,
 				A8109E48256F9520008F3709 /* Resources */,
-				57611D5CA6B5557B84590BAA /* [CP] Embed Pods Frameworks */,
+				202A104CC4D082B3BC70B77C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,7 +201,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		40846E150E896F4070510B71 /* [CP] Check Pods Manifest.lock */ = {
+		202A104CC4D082B3BC70B77C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECE2FC7F1802A93D14998F21 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -238,23 +240,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		57611D5CA6B5557B84590BAA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -272,17 +257,12 @@
 				A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */,
 				89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */,
 				896C3B56257D266B004DBAFC /* AddExpensesTableViewController.swift in Sources */,
-				8995FC9C2585376A00F131D4 /* GradientCircularProgressBar.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */,
-				8995FC9D2585376A00F131D4 /* GradientHorizontalProgressBar.swift in Sources */,
 				A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */,
 				896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */,
 				8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */,
-				896C3B59257D2678004DBAFC /* AddCategoryTableViewController.swift in Sources */,
-				8995FC9B2585376A00F131D4 /* RotatingCircularGradientProgressBar.swift in Sources */,
 				89D3B8B3257636B200C0E747 /* AttributedString.swift in Sources */,
-				8995FC9E2585376A00F131D4 /* PlainCircularProgressBar.swift in Sources */,
 				A8DDDCD92574F107003CC2B8 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,7 +407,7 @@
 		};
 		A8109E5F256F9522008F3709 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75E9E1411C71D9C6D933B6DD /* Pods-฿u₫g€+.debug.xcconfig */;
+			baseConfigurationReference = FEB9776F3AFE268AE2A47DDD /* Pods-฿u₫g€+.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -447,7 +427,7 @@
 		};
 		A8109E60256F9522008F3709 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FD9C5F1033E7E93D19C9B30 /* Pods-฿u₫g€+.release.xcconfig */;
+			baseConfigurationReference = D4627576E255DD8F4B3EB0A2 /* Pods-฿u₫g€+.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -65,7 +65,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 //        view.addSubview(button)
 //        return view
 //    }
-    @objc func buttonAction(sender: UIButton!) {
+//    @objc func buttonAction(sender: UIButton!) {
 //        let btnsendtag: UIButton = sender
 //        if btnsendtag.tag == 0 {
 //            let alert = UIAlertController(title: "Button Pressed", message: "It works", preferredStyle: .alert)
@@ -73,7 +73,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 //            dismiss(animated: true, completion: nil)
 //        }
         
-    }
+//    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
