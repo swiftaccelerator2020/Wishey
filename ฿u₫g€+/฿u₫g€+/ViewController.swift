@@ -246,7 +246,7 @@ class ViewController: UIViewController {
         pieView.drawHoleEnabled = true // Add hole in center
         pieView.rotationAngle = 0 // Set rotation as no offset
         pieView.rotationEnabled = true // Enable rotation
-        pieView.centerText = "Spendings" // Set centerText to current month
+        pieView.centerText = "Expenses/Spendings" // Set centerText to current month
         pieView.drawSlicesUnderHoleEnabled = false // Turn off slices under hole, text is more to the outside
         pieView.drawCenterTextEnabled = true // Allow center text
         pieView.isUserInteractionEnabled = true // Enlarges on tap
@@ -322,7 +322,7 @@ class ViewController: UIViewController {
         //        barView.highlighter = nil
         barView.drawValueAboveBarEnabled = true
         barView.doubleTapToZoomEnabled = true
-        barView.chartDescription?.text = "Spendings"
+        barView.chartDescription?.text = "Expenses/Spendings"
         barView.rightAxis.enabled = false
         //        barView.leftAxis.enabled = false
         //        barView.drawBordersEnabled = false
