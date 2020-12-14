@@ -389,11 +389,11 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishlistCell" rowHeight="100" id="q1Q-CV-mOR" customClass="WishlistTableViewCell" customModule="_u_g__" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="wishlistCell" rowHeight="100" id="q1Q-CV-mOR" customClass="WishlistTableViewCell" customModule="_u_g__" customModuleProvider="target">
                                 <rect key="frame" x="20" y="99.333332061767578" width="388" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q1Q-CV-mOR" id="4mu-o3-krt">
-                                    <rect key="frame" x="0.0" y="0.0" width="388" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="356.66666666666669" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exh-Ea-Iwk" customClass="PlainHorizontalProgressBar" customModule="_u_g__" customModuleProvider="target">
@@ -402,25 +402,25 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDf-ns-tNB">
-                                            <rect key="frame" x="20" y="10" width="192.66666666666666" height="46"/>
+                                            <rect key="frame" x="20" y="10" width="175.33333333333334" height="46"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPH-WO-KMA">
-                                            <rect key="frame" x="212.66666666666663" y="10" width="160.33333333333337" height="48"/>
+                                            <rect key="frame" x="195.33333333333331" y="10" width="146.33333333333331" height="48"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" systemColor="systemBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-fy-Q26">
-                                            <rect key="frame" x="196.66666666666663" y="66" width="176.33333333333337" height="24"/>
+                                            <rect key="frame" x="181" y="66" width="160.66666666666663" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qT-6t-kGV">
-                                            <rect key="frame" x="20" y="66" width="176.66666666666666" height="24"/>
+                                            <rect key="frame" x="20" y="66" width="161" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -560,7 +560,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
-                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingDidEnd" id="5Cv-3e-s6I"/>
+                                                <action selector="changeIncome:" destination="xSb-Yh-gjU" eventType="editingDidEnd" id="99Q-NA-Fml"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -605,27 +605,26 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Monthly Budget" id="5lL-n1-UEw"/>
                     <connections>
-                        <segue destination="r7r-TH-YsZ" kind="show" id="1aI-BG-z1Q"/>
+                        <segue destination="r7r-TH-YsZ" kind="show" identifier="seeOtherIncome" id="1aI-BG-z1Q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1P4-jG-5wW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2506.5420560747662" y="819.65442764578836"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Other-->
         <scene sceneID="zcP-vs-8j1">
             <objects>
                 <tableViewController id="r7r-TH-YsZ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EcC-9Z-EgR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="EcC-9Z-EgR">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="LGO-Xk-o3X">
-                                <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                                <rect key="frame" x="20" y="55.333332061767578" width="388" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LGO-Xk-o3X" id="Z2e-dU-kGs">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="388" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -635,7 +634,7 @@
                             <outlet property="delegate" destination="r7r-TH-YsZ" id="mMc-om-J8v"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lnI-5b-kTj"/>
+                    <navigationItem key="navigationItem" title="Other" id="lnI-5b-kTj"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVL-C6-K00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -710,7 +709,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
-                                                        <action selector="budgetEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="NH1-w8-xCq"/>
+                                                        <action selector="catEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="3GF-VM-Oya"/>
                                                         <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="9XT-Fe-Jn9"/>
                                                     </connections>
                                                 </textField>
@@ -758,7 +757,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
-                                                        <action selector="catAmountEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="6fH-rP-bnK"/>
+                                                        <action selector="catEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="rht-df-ZOA"/>
                                                         <action selector="hideKeyboard:" destination="Ket-Ta-vwm" eventType="editingDidEndOnExit" id="1Ff-p3-Ydd"/>
                                                     </connections>
                                                 </textField>
@@ -809,6 +808,9 @@
                         <outlet property="categoryAmount" destination="HM6-Xg-3QV" id="Mn0-Py-wjL"/>
                         <outlet property="categoryName" destination="WEi-XD-ObS" id="cQE-nx-agA"/>
                         <outlet property="projectedAmtSpent" destination="bIU-du-1MX" id="0hf-mt-JfX"/>
+                        <outletCollection property="cells" destination="hQf-FW-hui" collectionClass="NSMutableArray" id="8i2-B3-rTP"/>
+                        <outletCollection property="cells" destination="y3H-du-ykh" collectionClass="NSMutableArray" id="MC7-2e-QT8"/>
+                        <outletCollection property="cells" destination="tnN-q8-35v" collectionClass="NSMutableArray" id="jmd-tA-9Dx"/>
                         <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwindHome" unwindAction="unwindToHome:" id="ns0-Am-bem"/>
                     </connections>
                 </tableViewController>

@@ -22,28 +22,35 @@ class DetailsTableViewController: UITableViewController, UIPickerViewDataSource,
     var pickerView1 = UIPickerView()
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let oldText = textField.text, let r = Range(range, in: oldText) else {
+        if textField == priceTF {
+            guard let oldText = textField.text, let r = Range(range, in: oldText) else {
                 return true
             }
-
+            
             let newText = oldText.replacingCharacters(in: r, with: string)
             let isNumeric = newText.isEmpty || (Double(newText) != nil)
             let numberOfDots = newText.components(separatedBy: ".").count - 1
-
+            
             let numberOfDecimalDigits: Int
-        if let dotIndex = newText.firstIndex(of: ".") {
+            if let dotIndex = newText.firstIndex(of: ".") {
                 numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
             } else {
                 numberOfDecimalDigits = 0
             }
-
+            
             return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
+        }
+        let invalidCharacters =
+          CharacterSet(charactersIn: "0123456789").inverted
+        return (string.rangeOfCharacter(from: invalidCharacters) == nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         priceTF.delegate = self
         priceTF.keyboardType = .decimalPad
+        durationTF.delegate = self
+        durationTF.keyboardType = .numberPad
         pickerView1.delegate = self
         pickerView1.dataSource = self
         itemNameTF.text = item.name
