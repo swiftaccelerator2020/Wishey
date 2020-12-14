@@ -232,7 +232,7 @@
             </objects>
             <point key="canvasLocation" x="2506.5420560747662" y="93.30453563714903"/>
         </scene>
-        <!--Expenses/Spendings-->
+        <!--Month - Expenses/Spendings-->
         <scene sceneID="hD2-Ox-xLP">
             <objects>
                 <tableViewController id="TGN-zG-xuB" customClass="expensesTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
@@ -249,13 +249,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhH-fN-98g">
-                                            <rect key="frame" x="20.000000000000004" y="11" width="51.333333333333343" height="28"/>
+                                            <rect key="frame" x="20" y="11" width="167.33333333333334" height="28"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69H-IU-BfH">
-                                            <rect key="frame" x="300.66666666666669" y="11" width="48" height="28"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69H-IU-BfH">
+                                            <rect key="frame" x="192.33333333333331" y="11" width="156.33333333333331" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -264,10 +264,12 @@
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="69H-IU-BfH" secondAttribute="trailing" id="1ds-LN-dMT"/>
                                         <constraint firstItem="FhH-fN-98g" firstAttribute="top" secondItem="LlM-TG-J2t" secondAttribute="topMargin" id="C1J-LG-zes"/>
+                                        <constraint firstItem="69H-IU-BfH" firstAttribute="leading" secondItem="FhH-fN-98g" secondAttribute="trailing" constant="5" id="HF7-uR-qsU"/>
                                         <constraint firstItem="FhH-fN-98g" firstAttribute="leading" secondItem="LlM-TG-J2t" secondAttribute="leadingMargin" id="QMH-oh-9VM"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="69H-IU-BfH" secondAttribute="bottom" id="ZgJ-xw-q93"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="FhH-fN-98g" secondAttribute="bottom" id="axw-6M-oLe"/>
                                         <constraint firstItem="69H-IU-BfH" firstAttribute="top" secondItem="LlM-TG-J2t" secondAttribute="topMargin" id="fiW-Qu-bUd"/>
+                                        <constraint firstItem="69H-IU-BfH" firstAttribute="width" secondItem="FhH-fN-98g" secondAttribute="width" multiplier="0.935065" id="q2J-8F-WFl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -281,7 +283,7 @@
                             <outlet property="delegate" destination="TGN-zG-xuB" id="jfi-ld-0en"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Expenses/Spendings" id="1vV-At-qee">
+                    <navigationItem key="navigationItem" title="Month - Expenses/Spendings" id="1vV-At-qee">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="vJ8-mH-WVd">
                             <connections>
                                 <action selector="addExpensesCategory:" destination="TGN-zG-xuB" id="iwh-Zm-A98"/>
@@ -1407,7 +1409,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>
