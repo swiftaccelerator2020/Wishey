@@ -126,7 +126,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     //    */
     
     @IBAction func catEdited(_ sender: Any) {
-        if categoryName.text != nil && categoryName.text != nil{
+        if categoryName.text != nil && categoryName.text!.isEmpty{
             categoryName.layer.borderWidth = 0
         } else {
             if categoryName.text == nil || categoryName.text!.isEmpty {
@@ -139,7 +139,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     @IBAction func budgetEdited(_ sender: Any) {
-        if budgetAmount.text != nil && budgetAmount.text != nil{
+        if budgetAmount.text != nil && budgetAmount.text!.isEmpty{
             budgetAmount.layer.borderWidth = 0
         } else {
             if Double(budgetAmount.text!)! <= 0.0 {
@@ -152,7 +152,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     @IBAction func catAmountEdited(_ sender: Any) {
-        if categoryAmount.text != nil && categoryAmount.text != nil{
+        if categoryAmount.text != nil && categoryAmount.text!.isEmpty{
             categoryAmount.layer.borderWidth = 0
         } else {
             if Double(categoryAmount.text!)! <= 0.0 {
