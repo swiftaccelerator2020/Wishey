@@ -76,7 +76,7 @@ class WishlistTableViewController: UITableViewController {
             UINavigationBar.appearance().isTranslucent = false
         }
         canBuy = []
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,8 +95,15 @@ class WishlistTableViewController: UITableViewController {
 //        cell.myIndexPath = indexPath
         // Configure the cell...
         if let cell = cell as? WishlistTableViewCell {
+//            cell.accessoryView?.backgroundColor = .systemGreen
+//            cell.editingAccessoryView?.backgroundColor = .systemGreen
+//            cell.backgroundColor = .systemGreen
+//            cell.contentView.backgroundColor = .systemRed
+//            cell.backgroundView?.backgroundColor = .systemGray
             cell.wishlistItemTitle.text = wishlist[indexPath.row].name
             cell.wishlistItemCategory.text = wishlist[indexPath.row].category
+//            cell.showsReorderControl = false
+//            cell.showingDeleteConfirmation = false
             print()
             cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "$\(String(format: "%.2f", (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))/month" /* : "$\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
             
@@ -106,6 +113,7 @@ class WishlistTableViewController: UITableViewController {
                 currentSavings -= Double(wishlist[i].price)
                 print(i)
             }
+            cell.contentView.trailingAnchor
 //            cell.currentSavings = currentSavings
             if currentSavings >= Double(wishlist[indexPath.row].price) {
                 savingsDivPriceText = "$\(String(format: "%.2f", wishlist[indexPath.row].price))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
@@ -113,12 +121,16 @@ class WishlistTableViewController: UITableViewController {
                     cell.progressAnimated.progress = CGFloat(1)
                     cell.savingsOutOfPrice.textColor = .systemBackground
                 }
+                cell.backgroundColor = UIColor(hex: 0x83DB97)
+                cell.accessoryView?.backgroundColor = UIColor(hex: 0x83DB97)
                 canBuy.append(true)
             } else {
                 if currentSavings > 0 {
                     print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
                     print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
                     savingsDivPriceText = /*currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"*/ "$\(String(format: "%.2f", currentSavings))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
+                    cell.backgroundColor = UIColor(hex: 0x83DB97)
+                    cell.accessoryView?.backgroundColor = .systemBackground
                     print(savingsDivPriceText)
 //                    if currentSavings.truncatingRemainder(dividingBy: 1) != 0 {
 //                        UIView.animate(withDuration: 4){
@@ -139,6 +151,7 @@ class WishlistTableViewController: UITableViewController {
 //                    cell.progressBar.setProgress(0, animated: false)
                     cell.progressAnimated.progress = CGFloat(0)
                     cell.savingsOutOfPrice.textColor = .label
+                    cell.backgroundColor = .systemBackground
                     canBuy.append(false)
                 }
             }
@@ -167,6 +180,11 @@ class WishlistTableViewController: UITableViewController {
 //            }
             cell.savingsOutOfPrice.text = savingsDivPriceText
         }
+        
+//        let subviews = cell.backgroundView?.subviews
+//        for i in 0..<subviews!.count {
+//            subviews![i].removeFromSuperview()
+//        }
         
         cell.selectionStyle = .none
         
@@ -217,6 +235,8 @@ class WishlistTableViewController: UITableViewController {
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.editingAccessoryView?.backgroundColor = .systemGreen
         if editingStyle == .delete {
             // Delete the row from the data source
             wishlist.remove(at: indexPath.row)

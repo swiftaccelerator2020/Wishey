@@ -86,13 +86,16 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         // Configure the cell...
         cell.selectionStyle = .none
         cell.delegate = self
-        cell.index = indexPath.row
+        cell.theIndexPath = indexPath
         
         if indexPath.section == 0 {
             cell.income = incomeArray[indexPath.row]
             cell.incomeSetUp()
             if indexPath.row != 0 {
                 cell.incomeMoney.isEnabled = false
+            }
+            if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
+                cell.isUserInteractionEnabled = true
             }
         } else if indexPath.section == 1 {
             cell.expense = expensesArray[indexPath.row]
@@ -102,6 +105,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
         if indexPath.section == 0 {
             if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
                 self.performSegue(withIdentifier: "seeOtherIncome", sender: nil)
