@@ -19,7 +19,7 @@ class WishlistTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        progressAnimated.color = UIColor(hex: 0x83DB97)
+        progressAnimated.color = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
         // Initialization code
         wishlistItemTitle.adjustsFontSizeToFitWidth = true
         wishlistItemCategory.adjustsFontSizeToFitWidth = true
