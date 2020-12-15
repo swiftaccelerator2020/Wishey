@@ -95,7 +95,15 @@ class WishlistTableViewController: UITableViewController {
 //        cell.myIndexPath = indexPath
         // Configure the cell...
         if let cell = cell as? WishlistTableViewCell {
-            cell.progressAnimated.layer.cornerRadius = 0
+            cell.progressAnimated.sizeToFit()
+            cell.autoresizesSubviews = true
+            cell.layoutSubviews()
+            cell.contentView.layoutIfNeeded()
+            cell.layoutIfNeeded()
+            cell.setNeedsLayout()
+            cell.contentView.layoutSubviews()
+            cell.contentView.setNeedsLayout()
+//            cell.progressAnimated.layer.cornerRadius = 0
 //            cell.accessoryView?.backgroundColor = .systemGreen
 //            cell.editingAccessoryView?.backgroundColor = .systemGreen
 //            cell.backgroundColor = .systemGreen
@@ -238,7 +246,12 @@ class WishlistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as? WishlistTableViewCell
         cell?.editingAccessoryView?.backgroundColor = .systemGreen
-        cell?.progressAnimated.layer.cornerRadius = 10
+//        cell?.progressAnimated.layer.cornerRadius = 10
+//        cell?.progressAnimated.sizeToFit()
+//        cell?.autoresizesSubviews = true
+//        cell?.layoutSubviews()
+//        cell?.contentView.layoutIfNeeded()
+        tableView.reloadData()
         if editingStyle == .delete {
             // Delete the row from the data source
             wishlist.remove(at: indexPath.row)

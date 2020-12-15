@@ -1,18 +1,21 @@
 //
-//  expenseDetailTableViewController.swift
+//  ExpenseDetailTableViewController.swift
 //  ฿u₫g€+
 //
-//  Created by Adam Tan on 15/12/20.
+//  Created by Granwyn Tan on 15/12/20.
 //
 
 import UIKit
 
-class expenseDetailTableViewController: UITableViewController {
-
-    @IBOutlet weak var expenseNameTF: UITextField!
-    @IBOutlet weak var amountSpentTF: UITableViewCell!
-    @IBOutlet weak var projectedExpensesTF: UITextField!
+class ExpenseDetailTableViewController: UITableViewController {
     
+    @IBOutlet weak var categoryName: UITextField!
+    @IBOutlet weak var budgetAmount: UITextField!
+    @IBOutlet weak var categoryAmount: UITextField!
+    @IBOutlet weak var projectedAmtSpent: UILabel!
+    @IBOutlet var cells: [UITableViewCell]!
+    @IBOutlet weak var done: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +36,10 @@ class expenseDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
     }
 
     /*
