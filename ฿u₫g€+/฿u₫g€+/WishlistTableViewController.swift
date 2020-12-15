@@ -152,7 +152,7 @@ class WishlistTableViewController: UITableViewController {
 //                    cell.progressBar.setProgress(0, animated: false)
                     cell.progressAnimated.progress = CGFloat(0)
 //                    cell.savingsOutOfPrice.textColor = .label
-                    cell.backgroundColor = .systemBackground
+//                    cell.backgroundColor = .systemBackground
                     canBuy.append(false)
                 }
             }
@@ -276,7 +276,7 @@ class WishlistTableViewController: UITableViewController {
                 updateGlobalSavings()
                 tableView.reloadData()
             }
-            spend.backgroundColor = UIColor.systemYellow
+            spend.backgroundColor = UIColor.systemOrange
             swipeActions = UISwipeActionsConfiguration(actions: [delete, edit, spend])
         }
 

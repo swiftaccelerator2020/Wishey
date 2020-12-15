@@ -381,7 +381,7 @@
             <objects>
                 <tableViewController id="ApX-jf-5l0" customClass="WishlistTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3nO-Ap-ZI0">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926.00000000000011"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="qet-Q5-qJH">
                             <rect key="frame" x="0.0" y="0.0" width="428" height="44"/>
@@ -452,7 +452,6 @@
                                         <constraint firstItem="gwa-fy-Q26" firstAttribute="leading" secondItem="9qT-6t-kGV" secondAttribute="trailing" id="usw-f1-dXo"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="monthlyTarget" destination="gwa-fy-Q26" id="odZ-xu-anl"/>
                                     <outlet property="progressAnimated" destination="exh-Ea-Iwk" id="Poy-CE-yV4"/>
@@ -526,7 +525,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="388" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="1000000" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="iV1-fg-Jwi">
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="1000000" translatesAutoresizingMaskIntoConstraints="NO" id="iV1-fg-Jwi">
                                             <rect key="frame" x="186.33333333333334" y="14" width="94.000000000000028" height="32"/>
                                             <connections>
                                                 <action selector="stepperValueChanged:" destination="xSb-Yh-gjU" eventType="valueChanged" id="tdf-xk-oqz"/>
@@ -669,7 +668,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Entertainment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WEi-XD-ObS">
                                                     <rect key="frame" x="20" y="45" width="348" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
                                                         <action selector="catEdited:" destination="Ket-Ta-vwm" eventType="editingDidEnd" id="Qx2-bB-Sbk"/>
                                                         <action selector="endEditingCat:" destination="LQP-6H-Eu6" eventType="editingDidEnd" id="f8S-sV-0hQ"/>
@@ -809,6 +808,7 @@
                         <outlet property="budgetAmount" destination="5fh-M2-ed1" id="lSM-Vs-jC6"/>
                         <outlet property="categoryAmount" destination="HM6-Xg-3QV" id="Mn0-Py-wjL"/>
                         <outlet property="categoryName" destination="WEi-XD-ObS" id="cQE-nx-agA"/>
+                        <outlet property="done" destination="4zU-A2-a0k" id="zbt-8t-2Q0"/>
                         <outlet property="projectedAmtSpent" destination="bIU-du-1MX" id="0hf-mt-JfX"/>
                         <outletCollection property="cells" destination="hQf-FW-hui" collectionClass="NSMutableArray" id="8i2-B3-rTP"/>
                         <outletCollection property="cells" destination="y3H-du-ykh" collectionClass="NSMutableArray" id="MC7-2e-QT8"/>
@@ -1407,7 +1407,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>
