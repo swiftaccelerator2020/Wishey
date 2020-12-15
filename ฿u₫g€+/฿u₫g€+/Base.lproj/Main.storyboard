@@ -1437,8 +1437,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="va9-sM-fD3" eventType="editingDidEndOnExit" id="PDy-Ff-T81"/>
-                                                        <action selector="editingend:" destination="va9-sM-fD3" eventType="editingDidEnd" id="3Be-Vk-Bgm"/>
+                                                        <action selector="dismissKeyboard:" destination="va9-sM-fD3" eventType="editingDidEnd" id="NlK-YT-LVf"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1476,8 +1475,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="va9-sM-fD3" eventType="editingDidEndOnExit" id="Dl1-r2-uAg"/>
-                                                        <action selector="editingend:" destination="va9-sM-fD3" eventType="editingDidEnd" id="tX6-GA-DrI"/>
+                                                        <action selector="dismissKeyboard:" destination="va9-sM-fD3" eventType="editingDidEnd" id="aN6-FW-sR2"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljO-3P-Gxh">
@@ -1524,8 +1522,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
-                                                        <action selector="dismissKeyboard:" destination="va9-sM-fD3" eventType="editingDidEndOnExit" id="UqU-Re-Hsq"/>
-                                                        <action selector="editingend:" destination="va9-sM-fD3" eventType="editingDidEnd" id="FN2-Sn-l78"/>
+                                                        <action selector="dismissKeyboard:" destination="va9-sM-fD3" eventType="editingDidEnd" id="2xw-vT-iTo"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2A-Cb-JDh">
@@ -1561,24 +1558,19 @@
                     <navigationItem key="navigationItem" title="Expense" id="vFc-cQ-N2U">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QdY-9R-dgx">
                             <connections>
-                                <action selector="cancel:" destination="va9-sM-fD3" id="loA-mx-PeD"/>
+                                <action selector="cancel:" destination="va9-sM-fD3" id="ZcQ-FI-Bab"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="ggH-FL-ZJ9">
                             <connections>
-                                <action selector="save:" destination="va9-sM-fD3" id="aRl-6R-Oui"/>
+                                <action selector="save:" destination="va9-sM-fD3" id="5gv-bM-pRH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="amountSpentTF" destination="49t-ra-5W1" id="1mc-YV-4r0"/>
+                        <outlet property="amountSpentTF" destination="V1y-Xi-TUV" id="xES-G3-oGo"/>
                         <outlet property="expenseNameTF" destination="rw8-c1-ITy" id="huK-OH-Huf"/>
-                        <outlet property="itemNameTF" destination="rw8-c1-ITy" id="UAR-Xq-rnW"/>
-                        <outlet property="priceTF" destination="V1y-Xi-TUV" id="LPv-Gt-2L7"/>
                         <outlet property="projectedExpensesTF" destination="93A-0j-58V" id="Z04-xM-2vq"/>
-                        <outlet property="saveChangesButton" destination="ggH-FL-ZJ9" id="pwR-He-jsr"/>
-                        <outletCollection property="cells" destination="R8K-J9-fup" collectionClass="NSMutableArray" id="2mo-vQ-59Y"/>
-                        <outletCollection property="cells" destination="49t-ra-5W1" collectionClass="NSMutableArray" id="iwU-rZ-E5J"/>
                         <segue destination="RcV-uH-0aa" kind="unwind" identifier="unwindSegue" unwindAction="unwindToWishlist:" id="w6J-85-Qef"/>
                     </connections>
                 </tableViewController>
