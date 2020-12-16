@@ -16,7 +16,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     @IBOutlet var cells: [UITableViewCell]!
     @IBOutlet weak var done: UIBarButtonItem!
     @IBOutlet weak var stepper: UIStepper!
-    var sourceViewController: UIViewController!
+//    var sourceViewController: UIViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
         amtSpent.adjustsFontSizeToFitWidth = true
@@ -257,7 +257,11 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
                 expensesArray.append(expenseStruct(categoryName: categoryName.text!, projectedExpenses: Int(budgetAmount.text!)!, actualExpenses: Double(categoryAmount.text!)!))
                 expenseStruct.saveToFile(expense: expensesArray)
                 view.endEditing(true)
+//                if sourceViewController == ViewController {
                 performSegue(withIdentifier: "unwindHome", sender: nil)
+//                } else if sourceViewController == exp {
+//                    performSegue(withIdentifier: "addUnwindExpense", sender: nil)
+//                }
             } else {
                 let alert = UIAlertController(title: "Warning", message: "Budget is not a whole number or Amount Spent is not a number", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

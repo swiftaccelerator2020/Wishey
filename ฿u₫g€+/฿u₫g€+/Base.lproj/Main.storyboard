@@ -618,6 +618,7 @@
                     <navigationItem key="navigationItem" title="Monthly Budget" id="5lL-n1-UEw"/>
                     <connections>
                         <segue destination="r7r-TH-YsZ" kind="show" identifier="seeOtherIncome" id="1aI-BG-z1Q"/>
+                        <segue destination="DGK-QJ-wSe" kind="show" identifier="seeProjExpDetails" id="S4S-36-b6Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1P4-jG-5wW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -832,6 +833,7 @@
                         <outletCollection property="cells" destination="y3H-du-ykh" collectionClass="NSMutableArray" id="Aay-Xb-Zbe"/>
                         <outletCollection property="cells" destination="tnN-q8-35v" collectionClass="NSMutableArray" id="sw1-d1-2Bp"/>
                         <segue destination="LQP-6H-Eu6" kind="unwind" identifier="unwindHome" unwindAction="unwindToHome:" id="kz4-WF-JCz"/>
+                        <segue destination="LQP-6H-Eu6" kind="unwind" identifier="addUnwindExpense" unwindAction="unwindToExpense:" id="ob0-cs-U3f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3h2-z1-qVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1612,6 +1614,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="S4S-36-b6Y"/>
         <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>

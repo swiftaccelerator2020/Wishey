@@ -9,6 +9,8 @@ import UIKit
 
 class expensesTableViewController: UITableViewController {
     
+    var indexPath: IndexPath!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -16,7 +18,7 @@ class expensesTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
     
     // MARK: - Table view data source
@@ -119,24 +121,41 @@ class expensesTableViewController: UITableViewController {
      }
      */
     
-    /*
+    
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }    
+         if editingStyle == .delete {
+         // Delete the row from the data source
+            expensesArray.remove(at: indexPath.row)
+            expenseStruct.saveToFile(expense: expensesArray)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+         } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+         }
      }
-     */
     
-    /*
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
+        let expense = expensesArray.remove(at: fromIndexPath.row)
+        expensesArray.insert(expense, at: to.row)
+        expenseStruct.saveToFile(expense: expensesArray)
+        tableView.reloadData()
      }
-     */
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            expensesArray.remove(at: indexPath.row)
+            expenseStruct.saveToFile(expense: expensesArray)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+        }
+        let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
+            self.indexPath = indexPath
+            self.performSegue(withIdentifier: "expensesSegue", sender: nil)
+        }
+        edit.backgroundColor = .systemBlue
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
+        return swipeActions
+    }
     
     /*
      // Override to support conditional rearranging of the table view.
@@ -154,11 +173,13 @@ class expensesTableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
         if segue.identifier == "expensesSegue" {
             let destVC = segue.destination as? ExpenseDetailTableViewController
-            let indexPath = tableView.indexPathForSelectedRow
+            if indexPath == nil {
+                indexPath = tableView.indexPathForSelectedRow
+            }
             destVC?.theIndexPath = indexPath
         } else if segue.identifier == "addCategory2" {
             let destVC = segue.destination as? AddExpensesTableViewController
-            destVC?.sourceViewController = self
+//            destVC?.sourceViewController = expensesTableViewController
         }
      }
     
