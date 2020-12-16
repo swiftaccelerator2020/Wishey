@@ -19,7 +19,7 @@ class WishlistTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        progressAnimated.color = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+        progressAnimated.color = UIColor(hex: 0x83DB97)
         // Initialization code
         wishlistItemTitle.adjustsFontSizeToFitWidth = true
         wishlistItemCategory.adjustsFontSizeToFitWidth = true
@@ -27,10 +27,6 @@ class WishlistTableViewCell: UITableViewCell {
         monthlyTarget.adjustsFontSizeToFitWidth = true
         progressBar.transform = CGAffineTransform(scaleX: self.frame.width / progressBar.frame.width, y: self.frame.height / progressBar.frame.height)
         progressBar.isHidden = true
-        progressBar.sizeToFit()
-//        self.autoresizesSubviews = true
-//        self.contentMode = .scaleAspectFill
-//        self.contentView.layoutIfNeeded()
 //        if currentSavings >= Double(wishlist[myIndexPath.row].price) {
 //            UIView.animate(withDuration: 4){
 //                self.progressBar.setProgress(1, animated: true)
@@ -57,11 +53,7 @@ class WishlistTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        progressBar.sizeToFit()
-//        self.autoresizesSubviews = true
-//        self.contentMode = .scaleAspectFill
-//        self.layoutSubviews()
-//        self.contentView.layoutIfNeeded()
+
         // Configure the view for the selected state
 //        accessoryType = selected ? UITableViewCell.AccessoryType.checkmark : UITableViewCell.AccessoryType.none
     }

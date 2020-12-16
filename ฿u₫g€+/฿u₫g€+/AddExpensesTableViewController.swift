@@ -14,7 +14,6 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     @IBOutlet weak var categoryAmount: UITextField!
     @IBOutlet weak var projectedAmtSpent: UILabel!
     @IBOutlet var cells: [UITableViewCell]!
-    @IBOutlet weak var done: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         projectedAmtSpent.adjustsFontSizeToFitWidth = true
@@ -37,7 +36,6 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
         categoryName.clipsToBounds = true
         budgetAmount.layer.cornerRadius = 5
         budgetAmount.clipsToBounds = true
-        done.isEnabled = false
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -147,7 +145,6 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     
     @IBAction func catEdited(_ sender: Any) {
         if categoryName.text != nil && !categoryName.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty {
-            done.isEnabled = true
             categoryName.layer.borderWidth = 0
             budgetAmount.layer.borderWidth = 0
             categoryAmount.layer.borderWidth = 0

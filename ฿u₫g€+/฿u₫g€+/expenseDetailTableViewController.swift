@@ -1,13 +1,12 @@
 //
-//  ExpenseDetailTableViewController.swift
+//  expenseDetailTableViewController.swift
 //  ฿u₫g€+
 //
-//  Created by Granwyn Tan on 15/12/20.
+//  Created by Adam Tan on 15/12/20.
 //
 
 import UIKit
 
-<<<<<<< HEAD:฿u₫g€+/฿u₫g€+/expenseDetailTableViewController.swift
 class expenseDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var expenseNameTF: UITextField!
@@ -15,16 +14,6 @@ class expenseDetailTableViewController: UITableViewController {
     @IBOutlet weak var projectedExpensesTF: UITextField!
     var expense: expenseStruct!
     var theIndexPath: IndexPath!
-=======
-class ExpenseDetailTableViewController: UITableViewController {
-    
-    @IBOutlet weak var categoryName: UITextField!
-    @IBOutlet weak var budgetAmount: UITextField!
-    @IBOutlet weak var categoryAmount: UITextField!
-    @IBOutlet weak var projectedAmtSpent: UILabel!
-    @IBOutlet var cells: [UITableViewCell]!
-    @IBOutlet weak var done: UIBarButtonItem!
->>>>>>> 6ec7a994aaa07a65157dba0c7a54b590041ed4e9:฿u₫g€+/฿u₫g€+/ExpenseDetailTableViewController.swift
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,14 +75,6 @@ class ExpenseDetailTableViewController: UITableViewController {
         return 0
     }
     
-<<<<<<< HEAD:฿u₫g€+/฿u₫g€+/expenseDetailTableViewController.swift
-=======
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-    }
-
-    /*
->>>>>>> 6ec7a994aaa07a65157dba0c7a54b590041ed4e9:฿u₫g€+/฿u₫g€+/ExpenseDetailTableViewController.swift
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 

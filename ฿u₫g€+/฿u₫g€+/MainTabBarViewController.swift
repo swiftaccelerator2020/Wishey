@@ -28,7 +28,7 @@ class MainTabBarViewController: UITabBarController {
         self.selectedIndex = 1
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+            appearance.backgroundColor = UIColor(hex: 0x83DB97)
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance().tintColor = .white
@@ -37,7 +37,7 @@ class MainTabBarViewController: UITabBarController {
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
             UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().barTintColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
             UINavigationBar.appearance().isTranslucent = false
         }
     }
