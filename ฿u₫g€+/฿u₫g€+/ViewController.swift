@@ -180,7 +180,8 @@ class ViewController: UIViewController {
         setupPieChart()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+//            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+            appearance.backgroundColor = UIColor.systemGreen
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance().tintColor = .white
@@ -189,7 +190,8 @@ class ViewController: UIViewController {
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
             UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+//            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+            UINavigationBar.appearance().barTintColor = UIColor.systemGreen
             UINavigationBar.appearance().isTranslucent = false
         }
         spendingsLabel.text = Date().monthAsString()
