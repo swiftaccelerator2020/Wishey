@@ -123,9 +123,13 @@ class ViewController: UIViewController {
     //        return hiddenPages
     //    }
 //    var window = UIWindow()
-
+    @IBAction func tapWishlistView(_ sender: Any) {
+        tabBarController?.selectedIndex = 2
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        wishlistView.isUserInteractionEnabled = true
         spendingsView.layer.cornerRadius = 20
         spendingsView.layer.masksToBounds = true
         savingsView.layer.cornerRadius = 20
@@ -180,7 +184,8 @@ class ViewController: UIViewController {
         setupPieChart()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+//            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+            appearance.backgroundColor = UIColor.systemGreen
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance().tintColor = .white
@@ -189,7 +194,8 @@ class ViewController: UIViewController {
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
             UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+//            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+            UINavigationBar.appearance().barTintColor = UIColor.systemGreen
             UINavigationBar.appearance().isTranslucent = false
         }
         spendingsLabel.text = Date().monthAsString()
@@ -213,12 +219,12 @@ class ViewController: UIViewController {
     //            //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
             } else {
                 if savings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)-savings) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
                     //            buyALabel.text = "You can buy a \(randomItem.name)"
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                     //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
                 } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                 }
             }
@@ -368,8 +374,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
+        updateChart()
         setupPieChart()
         setupBarChart()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCategory" {
+            let destVC = segue.destination as? AddExpensesTableViewController
+            destVC?.sourceViewController = self
+        }
     }
 }
 

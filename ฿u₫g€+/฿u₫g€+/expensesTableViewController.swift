@@ -63,6 +63,13 @@ class expensesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         title = "\(Date().monthAsString()) - Expenses/Spendings"
         setupLargeTitleAutoAdjustFont()
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        title = "\(Date().monthAsString()) - Expenses/Spendings"
+        setupLargeTitleAutoAdjustFont()
+        tableView.reloadData()
     }
     
     private lazy var setupLargeTitleLabelOnce: Void = {[unowned self] in
@@ -100,6 +107,10 @@ class expensesTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func unwindToExpense( _ seg: UIStoryboardSegue) {
+        tableView.reloadData()
+    }
+    
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -135,15 +146,22 @@ class expensesTableViewController: UITableViewController {
      }
      */
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "expensesSegue" {
+            let destVC = segue.destination as? ExpenseDetailTableViewController
+            let indexPath = tableView.indexPathForSelectedRow
+            destVC?.theIndexPath = indexPath
+        } else if segue.identifier == "addCategory2" {
+            let destVC = segue.destination as? AddExpensesTableViewController
+            destVC?.sourceViewController = self
+        }
      }
-     */
+    
     @IBAction func addExpensesCategory(_ sender: Any) {
         performSegue(withIdentifier: "addCategory2", sender: nil)
     }

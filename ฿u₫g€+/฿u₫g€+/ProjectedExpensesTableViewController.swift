@@ -27,6 +27,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     }
     
     func updateTableView() {
+        expenseStruct.saveToFile(expense: expensesArray)
+        projectedIncome.saveToFile(income: incomeArray)
         updateProjectedSavings()
         tableView.reloadData() // you do have an outlet of tableView I assume
     }
@@ -90,6 +92,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         
         if indexPath.section == 0 {
             cell.income = incomeArray[indexPath.row]
+            print(incomeArray)
             cell.incomeSetUp()
             if indexPath.row != 0 {
                 cell.incomeMoney.isEnabled = false

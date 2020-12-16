@@ -10,12 +10,12 @@
 		1423C1872583D6B200E602DE /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423C1862583D6B200E602DE /* DetailsTableViewController.swift */; };
 		1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145642992574DCF900C3E310 /* expensesTableViewController.swift */; };
 		145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */; };
-		145A5DAA2587D7EA00489E79 /* expenseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A5DA92587D7EA00489E79 /* expenseDetailTableViewController.swift */; };
 		8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903DD61257408BB0046A4C4 /* ViewController.swift */; };
 		896C3B56257D266B004DBAFC /* AddExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */; };
 		896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */; };
 		8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8989958825828863000EBABB /* NSUIColor+Hex.swift */; };
 		8995FC9F2585376A00F131D4 /* PlainHorizontalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */; };
+		899DEFCE2589E84600879FDE /* ExpenseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899DEFCD2589E84600879FDE /* ExpenseDetailTableViewController.swift */; };
 		89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */; };
 		89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */; };
 		89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */; };
@@ -36,13 +36,13 @@
 		1423C1862583D6B200E602DE /* DetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
 		145642992574DCF900C3E310 /* expensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expensesTableViewController.swift; sourceTree = "<group>"; };
 		1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseTableViewCell.swift; sourceTree = "<group>"; };
-		145A5DA92587D7EA00489E79 /* expenseDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseDetailTableViewController.swift; sourceTree = "<group>"; };
 		3B3E60FE7C1A9D308B807E7A /* Pods__u_g__.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__u_g__.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8903DD61257408BB0046A4C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesTableViewController.swift; sourceTree = "<group>"; };
 		896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWishlistTableViewController.swift; sourceTree = "<group>"; };
 		8989958825828863000EBABB /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
 		8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainHorizontalProgressBar.swift; sourceTree = "<group>"; };
+		899DEFCD2589E84600879FDE /* ExpenseDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailTableViewController.swift; sourceTree = "<group>"; };
 		89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
 		89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewCell.swift; sourceTree = "<group>"; };
 		89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -110,23 +110,23 @@
 				89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */,
 				89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */,
 				1423C1862583D6B200E602DE /* DetailsTableViewController.swift */,
-				145A5DA92587D7EA00489E79 /* expenseDetailTableViewController.swift */,
 				145642992574DCF900C3E310 /* expensesTableViewController.swift */,
 				1456429F2574E87E00C3E310 /* expenseTableViewCell.swift */,
 				A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */,
 				A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */,
+				A8DDDCD82574F107003CC2B8 /* Data.swift */,
 				89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */,
 				89D3B8B2257636B200C0E747 /* AttributedString.swift */,
 				8989958825828863000EBABB /* NSUIColor+Hex.swift */,
 				896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */,
+				A8109E5B256F9522008F3709 /* Info.plist */,
 				896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */,
 				8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */,
 				89DC08072586621F00B93E36 /* OtherIncomeTableViewController.swift */,
-				A8DDDCD82574F107003CC2B8 /* Data.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
-				A8109E5B256F9522008F3709 /* Info.plist */,
+				899DEFCD2589E84600879FDE /* ExpenseDetailTableViewController.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
@@ -253,7 +253,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				145A5DAA2587D7EA00489E79 /* expenseDetailTableViewController.swift in Sources */,
 				8995FC9F2585376A00F131D4 /* PlainHorizontalProgressBar.swift in Sources */,
 				A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */,
 				1423C1872583D6B200E602DE /* DetailsTableViewController.swift in Sources */,
@@ -267,6 +266,7 @@
 				896C3B56257D266B004DBAFC /* AddExpensesTableViewController.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */,
+				899DEFCE2589E84600879FDE /* ExpenseDetailTableViewController.swift in Sources */,
 				A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */,
 				896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */,
 				8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */,

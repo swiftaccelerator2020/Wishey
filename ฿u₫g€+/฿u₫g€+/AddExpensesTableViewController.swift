@@ -12,11 +12,14 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var budgetAmount: UITextField!
     @IBOutlet weak var categoryAmount: UITextField!
-    @IBOutlet weak var projectedAmtSpent: UILabel!
+    @IBOutlet weak var amtSpent: UILabel!
     @IBOutlet var cells: [UITableViewCell]!
+    @IBOutlet weak var done: UIBarButtonItem!
+    @IBOutlet weak var stepper: UIStepper!
+    var sourceViewController: UIViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        projectedAmtSpent.adjustsFontSizeToFitWidth = true
+        amtSpent.adjustsFontSizeToFitWidth = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -36,6 +39,15 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
         categoryName.clipsToBounds = true
         budgetAmount.layer.cornerRadius = 5
         budgetAmount.clipsToBounds = true
+        done.isEnabled = false
+//        if Int(budgetAmount.text!) != nil && !budgetAmount.text!.isEmpty && budgetAmount.text != nil {
+//            stepper.value = Double(budgetAmount.text!)!
+//        } else {
+//            stepper.value = 0
+//            budgetAmount.text = String(Int(stepper.value))
+//        }
+        print(stepper.value)
+        budgetAmount.text = String(Int(stepper.value))
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -142,9 +154,15 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     //        // Pass the selected object to the new view controller.
     //    }
     //    */
+    @IBAction func steppervaluechange(_ sender: Any) {
+        budgetAmount.text = String(Int(stepper.value))
+        print(stepper.value)
+        checkAndHighlightErrors()
+    }
     
-    @IBAction func catEdited(_ sender: Any) {
+    func checkAndHighlightErrors() {
         if categoryName.text != nil && !categoryName.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty {
+            done.isEnabled = true
             categoryName.layer.borderWidth = 0
             budgetAmount.layer.borderWidth = 0
             categoryAmount.layer.borderWidth = 0
@@ -187,6 +205,16 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
             }
         }
     }
+    
+    @IBAction func catEdited(_ sender: Any) {
+        if Int(budgetAmount.text!) != nil && !budgetAmount.text!.isEmpty && budgetAmount.text != nil {
+            stepper.value = Double(budgetAmount.text!)!
+        } else {
+            stepper.value = 0
+            budgetAmount.text = String(Int(stepper.value))
+        }
+        checkAndHighlightErrors()
+    }
 //    @IBAction func budgetEdited(_ sender: Any) {
 //        if budgetAmount.text != nil && !budgetAmount.text!.isEmpty {
 //            budgetAmount.layer.borderWidth = 0
@@ -227,6 +255,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
         if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty {
             if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil {
                 expensesArray.append(expenseStruct(categoryName: categoryName.text!, projectedExpenses: Int(budgetAmount.text!)!, actualExpenses: Double(categoryAmount.text!)!))
+                expenseStruct.saveToFile(expense: expensesArray)
                 view.endEditing(true)
                 performSegue(withIdentifier: "unwindHome", sender: nil)
             } else {
