@@ -27,6 +27,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     }
     
     func updateTableView() {
+        expenseStruct.saveToFile(expense: expensesArray)
+        projectedIncome.saveToFile(income: incomeArray)
         updateProjectedSavings()
         tableView.reloadData() // you do have an outlet of tableView I assume
     }

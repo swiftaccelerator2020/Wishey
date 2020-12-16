@@ -219,12 +219,12 @@ class ViewController: UIViewController {
     //            //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
             } else {
                 if savings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)-savings) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
                     //            buyALabel.text = "You can buy a \(randomItem.name)"
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                     //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
                 } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                 }
             }
