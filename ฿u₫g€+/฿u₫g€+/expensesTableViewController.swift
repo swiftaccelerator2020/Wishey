@@ -9,9 +9,11 @@ import UIKit
 
 class expensesTableViewController: UITableViewController {
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -38,7 +40,7 @@ class expensesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! expenseTableViewCell
-        cell.expense = expensesArray[indexPath.row]
+        cell.expense = expensesArray[indexPath.row] as expenseStruct
         cell.setUp()
         cell.selectionStyle = .none
         cell.expenseName.adjustsFontSizeToFitWidth = true

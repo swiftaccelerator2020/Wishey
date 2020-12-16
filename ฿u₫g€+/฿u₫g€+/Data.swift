@@ -73,29 +73,40 @@ var alltimeSavings = Double()
 var wishlistSpendings = Double()
 
 func updateProjectedSavings() {
-    setupIncome()
-    var projSpendings = Int()
-    for i in 0..<expensesArray.count {
-       projSpendings += expensesArray[i].projectedExpenses
+    UserDefaults.standard.set(incomeArray, forKey: "income")
+    UserDefaults.standard.set(expensesArray, forKey: "expense")
+    if let incomeArrayLoaded = UserDefaults.standard.array(forKey: "income") , let expenseArrayLoaded = UserDefaults.standard.array(forKey: "expense") {
+        setupIncome()
+        var projSpendings = Int()
+        for i in 0..<expenseArrayLoaded.count {
+            projSpendings += (expenseArrayLoaded[i] as! expenseStruct).projectedExpenses
+        }
+        (incomeArrayLoaded[incomeArrayLoaded.count-1] as! projectedIncome).incomeMoney = income - projSpendings
+        projectedSavings = (incomeArrayLoaded[incomeArrayLoaded.count-1] as! projectedIncome).incomeMoney
     }
-    incomeArray[incomeArray.count-1].incomeMoney = income - projSpendings
-    projectedSavings = incomeArray[incomeArray.count-1].incomeMoney
 }
 
 func updateGlobalSavings() {
-    setupIncome()
-    var spendings = Double()
-    for i in 0..<expensesArray.count {
-        spendings += expensesArray[i].actualExpenses
+    UserDefaults.standard.set(expensesArray, forKey: "expense")
+    UserDefaults.standard.set(wishlist, forKey: "wishlist")
+    if let expensesArrayLoaded = UserDefaults.standard.array(forKey: "expense") {
+        setupIncome()
+        var spendings = Double()
+        for i in 0..<expensesArrayLoaded.count {
+            spendings += (expensesArrayLoaded[i] as! expenseStruct).actualExpenses
+        }
+        savings = Double(income) - spendings - wishlistSpendings
     }
-    savings = Double(income) - spendings - wishlistSpendings
 }
 
 var income = Int()
 
 func setupIncome() {
-    income = 0
-    for i in 0..<incomeArray.count-1 {
-        income += incomeArray[i].incomeMoney
+    UserDefaults.standard.set(incomeArray, forKey: "income")
+    if let incomeArrayLoaded = UserDefaults.standard.array(forKey: "income") {
+        income = 0
+        for i in 0..<incomeArrayLoaded.count-1 {
+            income += (incomeArrayLoaded[i] as! projectedIncome).incomeMoney
+        }
     }
 }
