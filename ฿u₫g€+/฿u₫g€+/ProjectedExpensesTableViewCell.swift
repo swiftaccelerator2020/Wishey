@@ -83,6 +83,8 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         } else {
             incomeSetUp()
         }
+        expenseStruct.saveToFile(expense: expensesArray)
+        projectedIncome.saveToFile(income: incomeArray)
         
         tableViewController?.updateTableView()
         updateProjectedSavings()
@@ -95,6 +97,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         } else {
             incomeArray[theIndexPath.row].incomeMoney = Int(incomeMoney.text!)!
         }
+        projectedIncome.saveToFile(income: incomeArray)
         updateGlobalSavings()
         tableViewController?.updateTableView()
     }
@@ -106,6 +109,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         } else {
             expensesArray[theIndexPath.row].projectedExpenses = Int(expenseMoney.text!)!
         }
+        expenseStruct.saveToFile(expense: expensesArray)
         updateProjectedSavings()
         tableViewController?.updateTableView()
     }

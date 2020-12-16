@@ -123,9 +123,13 @@ class ViewController: UIViewController {
     //        return hiddenPages
     //    }
 //    var window = UIWindow()
-
+    @IBAction func tapWishlistView(_ sender: Any) {
+        tabBarController?.selectedIndex = 2
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        wishlistView.isUserInteractionEnabled = true
         spendingsView.layer.cornerRadius = 20
         spendingsView.layer.masksToBounds = true
         savingsView.layer.cornerRadius = 20
@@ -180,7 +184,8 @@ class ViewController: UIViewController {
         setupPieChart()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+//            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+            appearance.backgroundColor = UIColor.systemGreen
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance().tintColor = .white
@@ -189,7 +194,8 @@ class ViewController: UIViewController {
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
             UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+//            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+            UINavigationBar.appearance().barTintColor = UIColor.systemGreen
             UINavigationBar.appearance().isTranslucent = false
         }
         spendingsLabel.text = Date().monthAsString()
@@ -368,8 +374,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
+        updateChart()
         setupPieChart()
         setupBarChart()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCategory" {
+            let destVC = segue.destination as? AddExpensesTableViewController
+            destVC?.sourceViewController = self
+        }
     }
 }
 

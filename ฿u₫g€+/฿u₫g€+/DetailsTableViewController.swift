@@ -213,8 +213,9 @@ class DetailsTableViewController: UITableViewController, UIPickerViewDataSource,
                 if URLTF.text != nil && !(URLTF.text!.isEmpty) {
                     wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Double(priceTF.text!)!, months: Int(durationTF.text!)!, url: URLTF.text!)
                 } else {
-                    wishlist[theIndexPath.row]  = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Double(priceTF.text!)!, months: Int(durationTF.text!)!)
+                    wishlist[theIndexPath.row] = WishlistItem(name: itemNameTF.text!, category: itemCatTF.text!, price: Double(priceTF.text!)!, months: Int(durationTF.text!)!)
                 }
+                WishlistItem.saveToFile(wishlist: wishlist)
 //                dismiss(animated: true, completion: nil)
                 print(wishlist)
                 performSegue(withIdentifier: "unwindSegue", sender: nil)

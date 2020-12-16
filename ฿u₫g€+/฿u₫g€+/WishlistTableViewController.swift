@@ -63,7 +63,7 @@ class WishlistTableViewController: UITableViewController {
         updateGlobalSavings()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+            appearance.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance().tintColor = .white
@@ -72,7 +72,7 @@ class WishlistTableViewController: UITableViewController {
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
             UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+            UINavigationBar.appearance().barTintColor = /*UIColor.systemGreen*/ UIColor.systemGreen
             UINavigationBar.appearance().isTranslucent = false
         }
         canBuy = []
@@ -95,6 +95,15 @@ class WishlistTableViewController: UITableViewController {
 //        cell.myIndexPath = indexPath
         // Configure the cell...
         if let cell = cell as? WishlistTableViewCell {
+            cell.progressAnimated.sizeToFit()
+            cell.autoresizesSubviews = true
+            cell.layoutSubviews()
+            cell.contentView.layoutIfNeeded()
+            cell.layoutIfNeeded()
+            cell.setNeedsLayout()
+            cell.contentView.layoutSubviews()
+            cell.contentView.setNeedsLayout()
+//            cell.progressAnimated.layer.cornerRadius = 0
 //            cell.accessoryView?.backgroundColor = .systemGreen
 //            cell.editingAccessoryView?.backgroundColor = .systemGreen
 //            cell.backgroundColor = .systemGreen
@@ -113,24 +122,24 @@ class WishlistTableViewController: UITableViewController {
                 currentSavings -= Double(wishlist[i].price)
                 print(i)
             }
-            cell.contentView.trailingAnchor
+//            cell.contentView.trailingAnchor
 //            cell.currentSavings = currentSavings
             if currentSavings >= Double(wishlist[indexPath.row].price) {
                 savingsDivPriceText = "$\(String(format: "%.2f", wishlist[indexPath.row].price))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
                 UIView.animate(withDuration: 4){
                     cell.progressAnimated.progress = CGFloat(1)
-                    cell.savingsOutOfPrice.textColor = .systemBackground
+//                    cell.savingsOutOfPrice.textColor = .systemBackground
                 }
-                cell.backgroundColor = UIColor(hex: 0x83DB97)
-                cell.accessoryView?.backgroundColor = UIColor(hex: 0x83DB97)
+//                cell.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+                cell.accessoryView?.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
                 canBuy.append(true)
             } else {
                 if currentSavings > 0 {
                     print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
                     print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
                     savingsDivPriceText = /*currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"*/ "$\(String(format: "%.2f", currentSavings))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
-                    cell.backgroundColor = UIColor(hex: 0x83DB97)
-                    cell.accessoryView?.backgroundColor = .systemBackground
+//                    cell.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+//                    cell.accessoryView?.backgroundColor = .systemBackground
                     print(savingsDivPriceText)
 //                    if currentSavings.truncatingRemainder(dividingBy: 1) != 0 {
 //                        UIView.animate(withDuration: 4){
@@ -143,15 +152,15 @@ class WishlistTableViewController: UITableViewController {
 //                        cell.progressAnimated.progress = CGFloat(currentSavings/Double(wishlist[indexPath.row].price))
 //                        }
 //                    }
-                    cell.savingsOutOfPrice.textColor = .label
+//                    cell.savingsOutOfPrice.textColor = .label
                     canBuy.append(false)
                 }
                 else {
                     savingsDivPriceText = "$0.00/\(String(format: "%.2f", wishlist[indexPath.row].price))"
 //                    cell.progressBar.setProgress(0, animated: false)
                     cell.progressAnimated.progress = CGFloat(0)
-                    cell.savingsOutOfPrice.textColor = .label
-                    cell.backgroundColor = .systemBackground
+//                    cell.savingsOutOfPrice.textColor = .label
+//                    cell.backgroundColor = .systemBackground
                     canBuy.append(false)
                 }
             }
@@ -220,8 +229,8 @@ class WishlistTableViewController: UITableViewController {
 //    }
 //
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 80
-//    }
+//        return 130
+//     }
     
     
 
@@ -235,11 +244,18 @@ class WishlistTableViewController: UITableViewController {
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        let cell = tableView.cellForRow(at: indexPath) as? WishlistTableViewCell
         cell?.editingAccessoryView?.backgroundColor = .systemGreen
+//        cell?.progressAnimated.layer.cornerRadius = 10
+//        cell?.progressAnimated.sizeToFit()
+//        cell?.autoresizesSubviews = true
+//        cell?.layoutSubviews()
+//        cell?.contentView.layoutIfNeeded()
+        tableView.reloadData()
         if editingStyle == .delete {
             // Delete the row from the data source
             wishlist.remove(at: indexPath.row)
+            WishlistItem.saveToFile(wishlist: wishlist)
             tableView.deleteRows(at: [indexPath], with: .fade)
             canBuy = []
             tableView.reloadData()
@@ -251,6 +267,7 @@ class WishlistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             wishlist.remove(at: indexPath.row)
+            WishlistItem.saveToFile(wishlist: wishlist)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             self.canBuy = []
             tableView.reloadData()
@@ -264,17 +281,18 @@ class WishlistTableViewController: UITableViewController {
         }
         edit.backgroundColor = .systemBlue
         var swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
-        if canBuy[indexPath.row] == true{
+        if canBuy[indexPath.row] == true {
             let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
                 wishlistSpendings += Double(wishlist[indexPath.row].price)
                 wishlist.remove(at: indexPath.row)
+                WishlistItem.saveToFile(wishlist: wishlist)
                 tableView.deleteRows(at: [indexPath], with: .none)
                 print(savings)
                 self.canBuy = []
                 updateGlobalSavings()
                 tableView.reloadData()
             }
-            spend.backgroundColor = UIColor.systemYellow
+            spend.backgroundColor = UIColor.systemOrange
             swipeActions = UISwipeActionsConfiguration(actions: [delete, edit, spend])
         }
 
@@ -286,6 +304,7 @@ class WishlistTableViewController: UITableViewController {
         let friend = wishlist.remove(at: fromIndexPath.row)
         wishlist.insert(friend, at: to.row)
         self.canBuy = []
+        WishlistItem.saveToFile(wishlist: wishlist)
         tableView.reloadData()
     }
 

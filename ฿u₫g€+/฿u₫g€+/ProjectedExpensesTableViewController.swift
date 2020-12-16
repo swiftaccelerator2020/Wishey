@@ -90,6 +90,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         
         if indexPath.section == 0 {
             cell.income = incomeArray[indexPath.row]
+            print(incomeArray)
             cell.incomeSetUp()
             if indexPath.row != 0 {
                 cell.incomeMoney.isEnabled = false

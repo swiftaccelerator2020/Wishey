@@ -238,6 +238,7 @@ class AddWishlistTableViewController: UITableViewController, UIPickerViewDataSou
                 } else {
                     wishlist.append(WishlistItem(name: nameField.text!, category: nameCategoryField.text!, price: Double(costField.text!)!, months: Int(durationField.text!)!))
                 }
+                WishlistItem.saveToFile(wishlist: wishlist)
 //                dismiss(animated: true, completion: nil)
                 print(wishlist)
                 performSegue(withIdentifier: "unwindSegue", sender: nil)
