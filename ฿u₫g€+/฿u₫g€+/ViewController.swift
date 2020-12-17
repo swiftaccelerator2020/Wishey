@@ -15,7 +15,7 @@ extension Date {
     }
 }
 
-let name = "Sebastian Choo"
+let name = "Granwyn Tan"
 
 class ViewController: UIViewController {
     @IBOutlet weak var somethingOutOfSomethingLabel: UILabel!
@@ -60,22 +60,26 @@ class ViewController: UIViewController {
         switch pageControl.currentPage {
         case 0:
             pieView.isHidden = false
-            rotateAntiClockWiseBottom.isHidden = false
-            rotateAntiClockWiseTop.isHidden = false
-            rotateClockWiseBottom.isHidden = false
-            rotateClockWiseTop.isHidden = false
             barView.isHidden = true
-            zoomInButton.isHidden = true
-            zoomOutButton.isHidden = true
+            if expensesArray.count != 0 {
+                rotateAntiClockWiseBottom.isHidden = false
+                rotateAntiClockWiseTop.isHidden = false
+                rotateClockWiseBottom.isHidden = false
+                rotateClockWiseTop.isHidden = false
+                zoomInButton.isHidden = true
+                zoomOutButton.isHidden = true
+            }
         case 1:
             pieView.isHidden = true
             barView.isHidden = false
-            rotateAntiClockWiseBottom.isHidden = true
-            rotateAntiClockWiseTop.isHidden = true
-            rotateClockWiseBottom.isHidden = true
-            rotateClockWiseTop.isHidden = true
-            zoomInButton.isHidden = false
-            zoomOutButton.isHidden = false
+            if expensesArray.count != 0 {
+                rotateAntiClockWiseBottom.isHidden = true
+                rotateAntiClockWiseTop.isHidden = true
+                rotateClockWiseBottom.isHidden = true
+                rotateClockWiseTop.isHidden = true
+                zoomInButton.isHidden = false
+                zoomOutButton.isHidden = false
+            }
         default:
             break
         }
@@ -175,10 +179,13 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        nameLabel.text = "Hello, \(name)"
         savedLabel.adjustsFontSizeToFitWidth = true
         buyALabel.adjustsFontSizeToFitWidth = true
         nameLabel.adjustsFontSizeToFitWidth = true
         somethingOutOfSomethingLabel.adjustsFontSizeToFitWidth = true
+        updateProjectedSavings()
+        updateGlobalSavings()
         updateChart()
         setupBarChart()
         setupPieChart()
@@ -300,12 +307,19 @@ class ViewController: UIViewController {
             //        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
             pieView.data = pieChartData
         } else {
+            pieView.clear()
             pieView.noDataText = "No Data Available for Pie Chart"
+            rotateClockWiseTop.isHidden = true
+            rotateClockWiseBottom.isHidden = true
+            rotateAntiClockWiseTop.isHidden = true
+            rotateAntiClockWiseBottom.isHidden = true
         }
     }
     
     func setupBarChart() {
         if expensesArray.count != 0 {
+//            zoomInButton.isHidden = false
+//            zoomOutButton.isHidden = false
             var barEntries: [BarChartDataEntry] = []
             var xAxisValues: [String] = []
             for i in 0..<expensesArray.count {
@@ -343,7 +357,10 @@ class ViewController: UIViewController {
             //        barView.leftAxis.drawAxisLineEnabled = false
             //        barView.rightAxis.enabled = false
         } else {
+            barView.clear()
             barView.noDataText = "No Data Available for Bar Chart"
+            zoomInButton.isHidden = true
+            zoomOutButton.isHidden = true
         }
     }
     

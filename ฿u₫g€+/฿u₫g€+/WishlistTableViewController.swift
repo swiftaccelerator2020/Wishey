@@ -258,6 +258,8 @@ class WishlistTableViewController: UITableViewController {
             WishlistItem.saveToFile(wishlist: wishlist)
             tableView.deleteRows(at: [indexPath], with: .fade)
             canBuy = []
+            updateProjectedSavings()
+            updateGlobalSavings()
             tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -270,6 +272,8 @@ class WishlistTableViewController: UITableViewController {
             WishlistItem.saveToFile(wishlist: wishlist)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             self.canBuy = []
+            updateProjectedSavings()
+            updateGlobalSavings()
             tableView.reloadData()
         }
         let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
@@ -289,6 +293,7 @@ class WishlistTableViewController: UITableViewController {
                 tableView.deleteRows(at: [indexPath], with: .none)
                 print(savings)
                 self.canBuy = []
+                updateProjectedSavings()
                 updateGlobalSavings()
                 tableView.reloadData()
             }
@@ -305,6 +310,8 @@ class WishlistTableViewController: UITableViewController {
         wishlist.insert(friend, at: to.row)
         self.canBuy = []
         WishlistItem.saveToFile(wishlist: wishlist)
+        updateProjectedSavings()
+        updateGlobalSavings()
         tableView.reloadData()
     }
 
