@@ -1430,7 +1430,7 @@
             <objects>
                 <tableViewController id="DGK-QJ-wSe" customClass="ExpenseDetailTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ldf-FT-KgT">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="hGU-EL-e11">
@@ -1633,8 +1633,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S4S-36-b6Y"/>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="MIn-qi-R00"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>
