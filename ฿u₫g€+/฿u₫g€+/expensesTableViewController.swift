@@ -22,7 +22,11 @@ class expensesTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        // Toggles the actual editing actions appearing on a table view
+        tableView.setEditing(editing, animated: true)
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "expensesSegue", sender: nil)
     }

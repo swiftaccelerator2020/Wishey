@@ -213,7 +213,7 @@
                         <outlet property="wishlistView" destination="8aV-6y-nYR" id="9Qn-yg-e0o"/>
                         <outlet property="zoomInButton" destination="WuK-kf-gPb" id="Hcw-m2-Hyu"/>
                         <outlet property="zoomOutButton" destination="16V-4t-iuT" id="ZpV-Zm-whM"/>
-                        <segue destination="TGN-zG-xuB" kind="show" identifier="showExpenses" id="NkD-OM-gtg"/>
+                        <segue destination="uMG-VY-85i" kind="presentation" identifier="showExpenses" id="NkD-OM-gtg"/>
                         <segue destination="nPf-CO-zKt" kind="presentation" identifier="addCategory" id="dv6-b5-aOz"/>
                     </connections>
                 </viewController>
@@ -246,7 +246,7 @@
             <objects>
                 <tableViewController id="TGN-zG-xuB" customClass="expensesTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="EMT-Dn-UxD">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="g6V-rR-Sy3" customClass="expenseTableViewCell" customModule="_u_g__" customModuleProvider="target">
@@ -305,7 +305,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okg-AP-81O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3524" y="93"/>
+            <point key="canvasLocation" x="4422.8971962616824" y="92.656587473002162"/>
         </scene>
         <!--Main Tab Bar View Controller-->
         <scene sceneID="9NQ-Ea-UE2">
@@ -1610,11 +1610,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VC8-vH-ts8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="y2w-XD-g0d" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4423" y="94"/>
+            <point key="canvasLocation" x="5322.8971962616815" y="93.952483801295898"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y58-dA-krf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uMG-VY-85i" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="oED-Fq-4ZZ">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="108"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.51372549020000002" green="0.85882352939999995" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TGN-zG-xuB" kind="relationship" relationship="rootViewController" id="lcx-QA-tDY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qhs-kG-Ew5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3522.897196261682" y="92.656587473002162"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MIn-qi-R00"/>
+        <segue reference="S4S-36-b6Y"/>
         <segue reference="cbn-AK-Eyx"/>
     </inferredMetricsTieBreakers>
     <resources>
