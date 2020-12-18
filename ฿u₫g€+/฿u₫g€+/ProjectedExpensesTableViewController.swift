@@ -2,11 +2,12 @@
 //  ProjectedExpensesTableViewController.swift
 //  ฿u₫g€+
 //
-//  Created by Joe Wong on 30/11/20.
+//  Created by Granwyn Tan on 30/11/20.
 //
 import UIKit
 
 class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpdater {
+    var indexPath: IndexPath!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -14,11 +15,16 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.hidesBackButton = false
         self.hideKeyboardWhenTappedAround()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
+//    override func viewDidAppear(_ animated: Bool) {
+//        tableView.reloadData()
+//    }
+    override func viewWillAppear(_ animated: Bool) {
+        updateProjectedSavings()
     }
     func setExpenseMoney(to value: Int, of index: Int) {
         expensesArray[index].projectedExpenses = value
@@ -27,6 +33,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     }
     
     func updateTableView() {
+        expenseStruct.saveToFile(expense: expensesArray)
+        projectedIncome.saveToFile(income: incomeArray)
         updateProjectedSavings()
         tableView.reloadData() // you do have an outlet of tableView I assume
     }
@@ -90,6 +98,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         
         if indexPath.section == 0 {
             cell.income = incomeArray[indexPath.row]
+            print(incomeArray)
             cell.incomeSetUp()
             if indexPath.row != 0 {
                 cell.incomeMoney.isEnabled = false
@@ -110,6 +119,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
             if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
                 self.performSegue(withIdentifier: "seeOtherIncome", sender: nil)
             }
+        } else if indexPath.section == 1 {
+            performSegue(withIdentifier: "seeProjExpDetails", sender: nil)
         }
     }
     
@@ -125,40 +136,67 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     }
     
     
-    /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
-     return true
+        if indexPath.section == 1 {
+            return true
+        }
+        return false
      }
-     */
     
-    /*
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        if indexPath.section == 1 {
+            if editingStyle == .delete {
+               // Delete the row from the data source
+               expensesArray.remove(at: indexPath.row)
+               expenseStruct.saveToFile(expense: expensesArray)
+               tableView.deleteRows(at: [indexPath], with: .fade)
+            } else if editingStyle == .insert {
+               // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            }
+//        }
      }
-     }
-     */
     
-    /*
+    
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
+        if fromIndexPath.section == 1 {
+            let expense = expensesArray.remove(at: fromIndexPath.row)
+            expensesArray.insert(expense, at: to.row)
+            expenseStruct.saveToFile(expense: expensesArray)
+            tableView.reloadData()
+        }
      }
-     */
+     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section == 1 {
+            let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+                expensesArray.remove(at: indexPath.row)
+                expenseStruct.saveToFile(expense: expensesArray)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadData()
+            }
+            let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
+                self.indexPath = indexPath
+                self.performSegue(withIdentifier: "seeProjExpDetails", sender: nil)
+            }
+            edit.backgroundColor = .systemBlue
+            let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
+            return swipeActions
+        }
+        return nil
+    }
     
-    /*
      // Override to support conditional rearranging of the table view.
      override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the item to be re-orderable.
-     return true
+        if indexPath.section == 1 {
+            return true
+        }
+        return false
      }
-     */
     
      // MARK: - Navigation
      
@@ -168,6 +206,12 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      // Pass the selected object to the new view controller.
         if segue.identifier == "seeOtherIncome" {
             
+        } else if segue.identifier == "seeProjExpDetails" {
+            let destVC = segue.destination as? ExpenseDetailTableViewController
+            if indexPath == nil {
+                indexPath = tableView.indexPathForSelectedRow
+            }
+            destVC?.theIndexPath = indexPath
         }
      }
     

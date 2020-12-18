@@ -15,7 +15,7 @@ extension Date {
     }
 }
 
-let name = "Sebastian Choo"
+let name = "Granwyn Tan"
 
 class ViewController: UIViewController {
     @IBOutlet weak var somethingOutOfSomethingLabel: UILabel!
@@ -60,22 +60,26 @@ class ViewController: UIViewController {
         switch pageControl.currentPage {
         case 0:
             pieView.isHidden = false
-            rotateAntiClockWiseBottom.isHidden = false
-            rotateAntiClockWiseTop.isHidden = false
-            rotateClockWiseBottom.isHidden = false
-            rotateClockWiseTop.isHidden = false
             barView.isHidden = true
-            zoomInButton.isHidden = true
-            zoomOutButton.isHidden = true
+            if expensesArray.count != 0 {
+                rotateAntiClockWiseBottom.isHidden = false
+                rotateAntiClockWiseTop.isHidden = false
+                rotateClockWiseBottom.isHidden = false
+                rotateClockWiseTop.isHidden = false
+                zoomInButton.isHidden = true
+                zoomOutButton.isHidden = true
+            }
         case 1:
             pieView.isHidden = true
             barView.isHidden = false
-            rotateAntiClockWiseBottom.isHidden = true
-            rotateAntiClockWiseTop.isHidden = true
-            rotateClockWiseBottom.isHidden = true
-            rotateClockWiseTop.isHidden = true
-            zoomInButton.isHidden = false
-            zoomOutButton.isHidden = false
+            if expensesArray.count != 0 {
+                rotateAntiClockWiseBottom.isHidden = true
+                rotateAntiClockWiseTop.isHidden = true
+                rotateClockWiseBottom.isHidden = true
+                rotateClockWiseTop.isHidden = true
+                zoomInButton.isHidden = false
+                zoomOutButton.isHidden = false
+            }
         default:
             break
         }
@@ -123,9 +127,13 @@ class ViewController: UIViewController {
     //        return hiddenPages
     //    }
 //    var window = UIWindow()
-
+    @IBAction func tapWishlistView(_ sender: Any) {
+        tabBarController?.selectedIndex = 2
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        wishlistView.isUserInteractionEnabled = true
         spendingsView.layer.cornerRadius = 20
         spendingsView.layer.masksToBounds = true
         savingsView.layer.cornerRadius = 20
@@ -171,16 +179,20 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        nameLabel.text = "Hello, \(name)"
         savedLabel.adjustsFontSizeToFitWidth = true
         buyALabel.adjustsFontSizeToFitWidth = true
         nameLabel.adjustsFontSizeToFitWidth = true
         somethingOutOfSomethingLabel.adjustsFontSizeToFitWidth = true
+        updateProjectedSavings()
+        updateGlobalSavings()
         updateChart()
         setupBarChart()
         setupPieChart()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+//            appearance.backgroundColor = UIColor(hex: 0x83DB97)
+            appearance.backgroundColor = UIColor.systemGreen
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance().tintColor = .white
@@ -189,7 +201,8 @@ class ViewController: UIViewController {
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
             UINavigationBar.appearance().tintColor = .white
-            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+//            UINavigationBar.appearance().barTintColor = UIColor(hex: 0x83DB97)
+            UINavigationBar.appearance().barTintColor = UIColor.systemGreen
             UINavigationBar.appearance().isTranslucent = false
         }
         spendingsLabel.text = Date().monthAsString()
@@ -213,12 +226,12 @@ class ViewController: UIViewController {
     //            //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
             } else {
                 if savings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)-savings) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
                     //            buyALabel.text = "You can buy a \(randomItem.name)"
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                     //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
                 } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \(Double(randomItem.price)) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                 }
             }
@@ -238,100 +251,117 @@ class ViewController: UIViewController {
     }
     
     func setupPieChart() {
-        // MARK: Customise Pie Chart
-        // Description
-        //        pieView.usePercentValuesEnabled = true
-        pieView.chartDescription?.enabled = false // Disable chartDescription
-        // Main CHart
-        pieView.drawHoleEnabled = true // Add hole in center
-        pieView.rotationAngle = 0 // Set rotation as no offset
-        pieView.rotationEnabled = true // Enable rotation
-        pieView.centerText = "Expenses/Spendings" // Set centerText to current month
-        pieView.drawSlicesUnderHoleEnabled = false // Turn off slices under hole, text is more to the outside
-        pieView.drawCenterTextEnabled = true // Allow center text
-        pieView.isUserInteractionEnabled = true // Enlarges on tap
-        // pieView.legend.enabled = false
-        // Legend
-        pieView.legend.horizontalAlignment = .center // set alignment of text to center
-        pieView.legend.textColor = .label // cent text color to default label color
-        pieView.legend.wordWrapEnabled = true // allow word wrapping
-        pieView.backgroundColor = .systemBackground // set background color to default background color
-        // MARK: Set Data for Pie Chart
-        // Set up array
-        var pieEntries: [PieChartDataEntry] = []
-        // Iterate through data values
-        for i in expensesArray {
-            pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
+        if expensesArray.count != 0 {
+            // MARK: Customise Pie Chart
+            // Description
+            // pieView.usePercentValuesEnabled = true
+            pieView.chartDescription?.enabled = false // Disable chartDescription
+            // Main CHart
+            pieView.drawHoleEnabled = true // Add hole in center
+            pieView.rotationAngle = 0 // Set rotation as no offset
+            pieView.rotationEnabled = true // Enable rotation
+            pieView.centerText = "Expenses/Spendings" // Set centerText to current month
+            pieView.drawSlicesUnderHoleEnabled = false // Turn off slices under hole, text is more to the outside
+            pieView.drawCenterTextEnabled = true // Allow center text
+            pieView.isUserInteractionEnabled = true // Enlarges on tap
+            // pieView.legend.enabled = false
+            // Legend
+            pieView.legend.horizontalAlignment = .center // set alignment of text to center
+            pieView.legend.textColor = .label // cent text color to default label color
+            pieView.legend.wordWrapEnabled = true // allow word wrapping
+            pieView.backgroundColor = .systemBackground // set background color to default background color
+            // MARK: Set Data for Pie Chart
+            // Set up array
+            var pieEntries: [PieChartDataEntry] = []
+            // Iterate through data values
+       
+            for i in expensesArray {
+                pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
+            }
+            //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
+            //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
+            //        entries.append(PieChartDataEntry(value: 400.00, label: "Food"))
+            //        entries.append(PieChartDataEntry(value: 300.00, label: "Gaming"))
+            //        entries.append(PieChartDataEntry(value: 200.00, label: "Entertainment"))
+            //        entries.append(PieChartDataEntry(value: 100.00, label: "Others"))
+            let pieDataSet = PieChartDataSet(entries: pieEntries, label: nil)
+            pieDataSet.colors =
+                ChartColorTemplates.material()
+                + ChartColorTemplates.joyful()
+                + ChartColorTemplates.colorful()
+                + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
+            //        pieDataSet.colors = [.systemRed, .systemOrange, .systemYellow, .systemGreen, .systemTeal, .systemBlue,  .systemIndigo, .systemPurple]
+            //        pieDataSet.colors = colorsOfCharts(numbersOfColor: pieDataSet.count)
+            //        let c1 = NSUIColor(hex: 0x3A015C)
+            //        let c2 = NSUIColor(hex: 0x4F0147)
+            //        let c3 = NSUIColor(hex: 0x35012C)
+            //        let c4 = NSUIColor(hex: 0x290025)
+            //        let c5 = NSUIColor(hex: 0x11001C)
+            pieDataSet.drawValuesEnabled = true
+            
+            let pieChartData = PieChartData(dataSet: pieDataSet)
+            //        let formatter = NumberFormatter()
+            //        formatter.numberStyle = .percent
+            //        formatter.maximumFractionDigits = 1
+            //        formatter.multiplier = 1.0
+            //        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
+            pieView.data = pieChartData
+        } else {
+            pieView.clear()
+            pieView.noDataText = "No Data Available for Pie Chart"
+            rotateClockWiseTop.isHidden = true
+            rotateClockWiseBottom.isHidden = true
+            rotateAntiClockWiseTop.isHidden = true
+            rotateAntiClockWiseBottom.isHidden = true
         }
-        
-        //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
-        //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
-        //        entries.append(PieChartDataEntry(value: 400.00, label: "Food"))
-        //        entries.append(PieChartDataEntry(value: 300.00, label: "Gaming"))
-        //        entries.append(PieChartDataEntry(value: 200.00, label: "Entertainment"))
-        //        entries.append(PieChartDataEntry(value: 100.00, label: "Others"))
-        let pieDataSet = PieChartDataSet(entries: pieEntries, label: nil)
-        pieDataSet.colors =
-            ChartColorTemplates.material()
-            + ChartColorTemplates.joyful()
-            + ChartColorTemplates.colorful()
-            + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
-        //        pieDataSet.colors = [.systemRed, .systemOrange, .systemYellow, .systemGreen, .systemTeal, .systemBlue,  .systemIndigo, .systemPurple]
-        //        pieDataSet.colors = colorsOfCharts(numbersOfColor: pieDataSet.count)
-        //        let c1 = NSUIColor(hex: 0x3A015C)
-        //        let c2 = NSUIColor(hex: 0x4F0147)
-        //        let c3 = NSUIColor(hex: 0x35012C)
-        //        let c4 = NSUIColor(hex: 0x290025)
-        //        let c5 = NSUIColor(hex: 0x11001C)
-        pieDataSet.drawValuesEnabled = true
-        
-        let pieChartData = PieChartData(dataSet: pieDataSet)
-        //        let formatter = NumberFormatter()
-        //        formatter.numberStyle = .percent
-        //        formatter.maximumFractionDigits = 1
-        //        formatter.multiplier = 1.0
-        //        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
-        pieView.data = pieChartData
     }
     
     func setupBarChart() {
-        var barEntries: [BarChartDataEntry] = []
-        var xAxisValues: [String] = []
-        for i in 0..<expensesArray.count {
-            barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
-            xAxisValues.append(expensesArray[i].categoryName)
+        if expensesArray.count != 0 {
+//            zoomInButton.isHidden = false
+//            zoomOutButton.isHidden = false
+            var barEntries: [BarChartDataEntry] = []
+            var xAxisValues: [String] = []
+            for i in 0..<expensesArray.count {
+                barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
+                xAxisValues.append(expensesArray[i].categoryName)
+            }
+            let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
+            chartDataSet.colors =
+                ChartColorTemplates.material()
+                + ChartColorTemplates.joyful()
+                + ChartColorTemplates.colorful()
+                + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
+            let chartData = BarChartData(dataSet: chartDataSet)
+            //        barView.drawBarShadowEnabled = true
+            //        barView.drawGridBackgroundEnabled = false
+            barView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisValues)
+            barView.xAxis.labelPosition = .bottom
+            barView.xAxis.granularityEnabled = true
+            barView.xAxis.granularity = 1
+            barView.data = chartData
+            //        barView.data?.setDrawValues(false)
+            barView.pinchZoomEnabled = true
+            barView.scaleYEnabled = true
+            barView.scaleXEnabled = true
+            //        barView.highlighter = nil
+            barView.drawValueAboveBarEnabled = true
+            barView.doubleTapToZoomEnabled = true
+            barView.chartDescription?.text = "Expenses/Spendings"
+            barView.rightAxis.enabled = false
+            //        barView.leftAxis.enabled = false
+            //        barView.drawBordersEnabled = false
+            barView.xAxis.drawGridLinesEnabled = false
+            barView.xAxis.drawAxisLineEnabled = false
+            barView.setVisibleYRangeMinimum(0, axis: .left)
+            //        barView.leftAxis.drawAxisLineEnabled = false
+            //        barView.rightAxis.enabled = false
+        } else {
+            barView.clear()
+            barView.noDataText = "No Data Available for Bar Chart"
+            zoomInButton.isHidden = true
+            zoomOutButton.isHidden = true
         }
-        let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
-        chartDataSet.colors =
-            ChartColorTemplates.material()
-            + ChartColorTemplates.joyful()
-            + ChartColorTemplates.colorful()
-            + ChartColorTemplates.pastel() // Add more colors using pre defined libraries
-        let chartData = BarChartData(dataSet: chartDataSet)
-        //        barView.drawBarShadowEnabled = true
-        //        barView.drawGridBackgroundEnabled = false
-        barView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisValues)
-        barView.xAxis.labelPosition = .bottom
-        barView.xAxis.granularityEnabled = true
-        barView.xAxis.granularity = 1
-        barView.data = chartData
-        //        barView.data?.setDrawValues(false)
-        barView.pinchZoomEnabled = true
-        barView.scaleYEnabled = true
-        barView.scaleXEnabled = true
-        //        barView.highlighter = nil
-        barView.drawValueAboveBarEnabled = true
-        barView.doubleTapToZoomEnabled = true
-        barView.chartDescription?.text = "Expenses/Spendings"
-        barView.rightAxis.enabled = false
-        //        barView.leftAxis.enabled = false
-        //        barView.drawBordersEnabled = false
-        barView.xAxis.drawGridLinesEnabled = false
-        barView.xAxis.drawAxisLineEnabled = false
-        barView.setVisibleYRangeMinimum(0, axis: .left)
-        //        barView.leftAxis.drawAxisLineEnabled = false
-        //        barView.rightAxis.enabled = false
-        
     }
     
     //    func setupLineChart() {
@@ -368,8 +398,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
+        updateChart()
         setupPieChart()
         setupBarChart()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCategory" {
+            let destVC = segue.destination as? AddExpensesTableViewController
+//            destVC?.sourceViewController = self
+        }
     }
 }
 

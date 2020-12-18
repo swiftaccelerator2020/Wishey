@@ -83,6 +83,8 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         } else {
             incomeSetUp()
         }
+        expenseStruct.saveToFile(expense: expensesArray)
+        projectedIncome.saveToFile(income: incomeArray)
         
         tableViewController?.updateTableView()
         updateProjectedSavings()
@@ -90,22 +92,34 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBAction func changeIncome(_ sender: Any) {
         if incomeMoney.text == nil || incomeMoney.text!.isEmpty || Int(incomeMoney.text!) == nil {
-            income?.incomeMoney = 0
-            incomeArray[theIndexPath.row].incomeMoney = 0
+            income?.incomeMoney = 5000
+            incomeArray[theIndexPath.row].incomeMoney = 5000
         } else {
-            incomeArray[theIndexPath.row].incomeMoney = Int(incomeMoney.text!)!
+            if Int(incomeMoney.text!)! <= 0 {
+                income?.incomeMoney = 5000
+                incomeArray[theIndexPath.row].incomeMoney = 5000
+            } else {
+                incomeArray[theIndexPath.row].incomeMoney = Int(incomeMoney.text!)!
+            }
         }
+        projectedIncome.saveToFile(income: incomeArray)
         updateGlobalSavings()
         tableViewController?.updateTableView()
     }
     
     @IBAction func changeExpense(_ sender: Any) {
-        if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil || Int(expenseMoney.text!)! < 0 {
-            expense?.projectedExpenses = 0
-            expensesArray[theIndexPath.row].projectedExpenses = 0
+        if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil {
+            expense?.projectedExpenses = 100
+            expensesArray[theIndexPath.row].projectedExpenses = 100
         } else {
-            expensesArray[theIndexPath.row].projectedExpenses = Int(expenseMoney.text!)!
+            if Int(expenseMoney.text!)! <= 0 {
+                expense?.projectedExpenses = 100
+                expensesArray[theIndexPath.row].projectedExpenses = 100
+            } else {
+                expensesArray[theIndexPath.row].projectedExpenses = Int(expenseMoney.text!)!
+            }
         }
+        expenseStruct.saveToFile(expense: expensesArray)
         updateProjectedSavings()
         tableViewController?.updateTableView()
     }
