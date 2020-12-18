@@ -15,6 +15,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        
+        updateForCurrentMonth()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.hidesBackButton = false
@@ -24,6 +26,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 //        tableView.reloadData()
 //    }
     override func viewWillAppear(_ animated: Bool) {
+        
+        updateForCurrentMonth()
         updateProjectedSavings()
     }
     func setExpenseMoney(to value: Int, of index: Int) {

@@ -13,6 +13,7 @@ extension Date {
         df.setLocalizedDateFormatFromTemplate("MMMM")
         return df.string(from: self)
     }
+    
     func dayAsString() -> String {
         let df = DateFormatter()
         df.setLocalizedDateFormatFromTemplate("dd")
@@ -24,31 +25,38 @@ extension Date {
         df.setLocalizedDateFormatFromTemplate("dd.MM.yyyy")
         return df.string(from: self)
     }
+    
     var startOfDay: Date {
-            return Calendar.current.startOfDay(for: self)
-        }
+        return Calendar.current.startOfDay(for: self)
+    }
 
-        var startOfMonth: Date {
+    var startOfMonth: Date {
 
-            let calendar = Calendar(identifier: .gregorian)
-            let components = calendar.dateComponents([.year, .month], from: self)
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents([.year, .month], from: self)
 
-            return  calendar.date(from: components)!
-        }
+        return calendar.date(from: components)!
+    }
 
-        var endOfDay: Date {
-            var components = DateComponents()
-            components.day = 1
-            components.second = -1
-            return Calendar.current.date(byAdding: components, to: startOfDay)!
-        }
+    var endOfDay: Date {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.current.date(byAdding: components, to: startOfDay)!
+    }
 
-        var endOfMonth: Date {
-            var components = DateComponents()
-            components.month = 1
-            components.second = -1
-            return Calendar(identifier: .gregorian).date(byAdding: components, to: startOfMonth)!
-        }
+    var endOfMonth: Date {
+        var components = DateComponents()
+        components.month = 1
+        components.second = -1
+        return Calendar(identifier: .gregorian).date(byAdding: components, to: startOfMonth)!
+    }
+    
+    var month: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        return dateFormatter.string(from: self)
+    }
 }
 
 let name = "Granwyn Tan"
@@ -172,19 +180,6 @@ class ViewController: UIViewController {
         print(projectedIncome.loadSampleData())
         projectedIncome.saveToFile(income: projectedIncome.loadSampleData())
         print(projectedIncome.loadFromFile()!)
-        print(Date().startOfDay.dayAsString())
-        if Date().startOfDay.dayAsString() == "01" {
-            if let loadedIncome = projectedIncome.loadFromFile() {
-                for i in 0...loadedIncome.count-1 {
-                    loadedIncome[i].incomeMoney = 0
-                }
-                projectedIncome.saveToFile(income: loadedIncome)
-            }
-//            wishlist = []
-//            expensesArray = []
-            WishlistItem.saveToFile(wishlist: wishlist)
-            expenseStruct.saveToFile(expense: expensesArray)
-        }
         wishlistView.isUserInteractionEnabled = true
         spendingsView.layer.cornerRadius = 20
         spendingsView.layer.masksToBounds = true
@@ -231,16 +226,17 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        nameLabel.text = "Hello, \(name)"
+        updateForCurrentMonth()
+        nameLabel.attributedText = NSMutableAttributedString().normal30("Hello, ").bold30("\(name)")
         savedLabel.adjustsFontSizeToFitWidth = true
         buyALabel.adjustsFontSizeToFitWidth = true
         nameLabel.adjustsFontSizeToFitWidth = true
         somethingOutOfSomethingLabel.adjustsFontSizeToFitWidth = true
         updateProjectedSavings()
         updateGlobalSavings()
-        updateChart()
         setupBarChart()
         setupPieChart()
+        updateChart()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
 //            appearance.backgroundColor = UIColor(hex: 0x83DB97)
@@ -299,7 +295,7 @@ class ViewController: UIViewController {
     //    }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        
     }
     
     func setupPieChart() {

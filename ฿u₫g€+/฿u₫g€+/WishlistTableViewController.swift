@@ -11,6 +11,7 @@ class WishlistTableViewController: UITableViewController {
     var canBuy: [Bool] = []
     
     override func viewDidAppear(_ animated: Bool) {
+        updateForCurrentMonth()
         updateGlobalSavings()
 //        tableView.reloadRows(at: [IndexPath(row: <#T##Int#>, section: <#T##Int#>)], with: .none)
         canBuy = []
@@ -34,6 +35,7 @@ class WishlistTableViewController: UITableViewController {
 //        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self
+        updateForCurrentMonth()
     }
 //    @IBAction func editButtonTapped(_ sender: Any) {
 //        if tableView.isEditing {
@@ -60,6 +62,7 @@ class WishlistTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateForCurrentMonth()
         updateGlobalSavings()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()

@@ -24,7 +24,9 @@ class MainTabBarViewController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         updateProjectedSavings()
+        print(UserDefaults.standard.string(forKey: "lastRecordedMonth") ?? "none")
         updateGlobalSavings()
+        updateForCurrentMonth()
         self.selectedIndex = 1
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -40,6 +42,21 @@ class MainTabBarViewController: UITabBarController {
             UINavigationBar.appearance().barTintColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
             UINavigationBar.appearance().isTranslucent = false
         }
+//        print(Date().startOfDay.dayAsString())
+//        if Date().startOfDay.dayAsString() == "18" {
+//            if let loadedIncome = projectedIncome.loadFromFile() {
+//                for i in 0...loadedIncome.count-1 {
+//                    loadedIncome[i].incomeMoney = 0
+//                }
+//                projectedIncome.saveToFile(income: loadedIncome)
+//            }
+//            wishlist = []
+//            for i in expensesArray {
+//                i.actualExpenses = 0
+//            }
+//            WishlistItem.saveToFile(wishlist: wishlist)
+//            expenseStruct.saveToFile(expense: expensesArray)
+//        }
     }
     
 
@@ -53,4 +70,21 @@ class MainTabBarViewController: UITabBarController {
     }
     */
 
+}
+
+func updateForCurrentMonth() {
+    if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
+        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+            if expenseStruct.loadFromFile() != nil {
+                for i in expensesArray {
+                    i.actualExpenses = 0
+                }
+                expenseStruct.saveToFile(expense: expensesArray)
+                alltimeSavings += savings
+                savings = 0
+            }
+        }
+    } else {
+        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+    }
 }
