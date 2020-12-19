@@ -8,6 +8,19 @@ import UIKit
 
 class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpdater {
     var indexPath: IndexPath!
+    var timer: Timer?
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.timer != nil
+        {
+           self.timer!.invalidate()
+           self.timer = nil
+        }
+        indexPath = nil
+    }
+    @objc func updateSpendings() {
+        updateForCurrentMonth()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -15,8 +28,6 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        
-        updateForCurrentMonth()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.hidesBackButton = false
@@ -26,7 +37,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 //        tableView.reloadData()
 //    }
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
         updateForCurrentMonth()
         updateProjectedSavings()
     }

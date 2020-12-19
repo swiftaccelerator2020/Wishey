@@ -266,6 +266,7 @@ class ExpenseDetailTableViewController: UITableViewController, UITextFieldDelega
             if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil {
                 expensesArray[theIndexPath.row] = expenseStruct(categoryName: categoryName.text!, projectedExpenses: Int(budgetAmount.text!)!, actualExpenses: Double(categoryAmount.text!)!)
                 expenseStruct.saveToFile(expense: expensesArray)
+                updateGlobalSavings()
                 view.endEditing(true)
                 performSegue(withIdentifier: "unwindExpense", sender: nil)
             } else {

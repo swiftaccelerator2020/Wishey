@@ -9,6 +9,7 @@ import UIKit
 class WishlistTableViewController: UITableViewController {
     
     var canBuy: [Bool] = []
+    var timer: Timer?
     
     override func viewDidAppear(_ animated: Bool) {
         updateForCurrentMonth()
@@ -22,6 +23,18 @@ class WishlistTableViewController: UITableViewController {
         // Toggles the actual editing actions appearing on a table view
         tableView.setEditing(editing, animated: true)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.timer != nil
+        {
+           self.timer!.invalidate()
+           self.timer = nil
+        }
+    }
+    @objc func updateSpendings() {
+        updateForCurrentMonth()
+    }
+    
     var indexPath = IndexPath()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +48,6 @@ class WishlistTableViewController: UITableViewController {
 //        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self
-        updateForCurrentMonth()
     }
 //    @IBAction func editButtonTapped(_ sender: Any) {
 //        if tableView.isEditing {
@@ -62,7 +74,7 @@ class WishlistTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateForCurrentMonth()
+        self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
         updateGlobalSavings()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -120,7 +132,7 @@ class WishlistTableViewController: UITableViewController {
             cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "$\(String(format: "%.2f", (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))/month" /* : "$\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
             
             var savingsDivPriceText = String()
-            var currentSavings = savings
+            var currentSavings = totalsavings+savings
             for i in 0..<indexPath.row {
                 currentSavings -= Double(wishlist[i].price)
                 print(i)
@@ -290,11 +302,18 @@ class WishlistTableViewController: UITableViewController {
         var swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
         if canBuy[indexPath.row] == true {
             let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
-                wishlistSpendings += Double(wishlist[indexPath.row].price)
                 wishlist.remove(at: indexPath.row)
                 WishlistItem.saveToFile(wishlist: wishlist)
                 tableView.deleteRows(at: [indexPath], with: .none)
+                let price = wishlist[indexPath.row].price
+                if wishlist[indexPath.row].price <= totalsavings {
+                    totalsavings -= price
+                } else {
+                    savings -= (price - totalsavings)
+                    totalsavings -= totalsavings
+                }
                 print(savings)
+                print(totalsavings)
                 self.canBuy = []
                 updateProjectedSavings()
                 updateGlobalSavings()

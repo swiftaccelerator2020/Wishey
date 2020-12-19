@@ -83,6 +83,7 @@ class ViewController: UIViewController {
     @IBOutlet var swipeLeftGesture: UISwipeGestureRecognizer!
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet var swipeRightGesture: UISwipeGestureRecognizer!
+    var timer: Timer?
     
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
         var colors: [UIColor] = []
@@ -195,9 +196,9 @@ class ViewController: UIViewController {
 //            window.overrideUserInterfaceStyle = .light
 //        }
         // Do any additional setup after loading the view.
-        //        var savings = 0.0
+        //        var totalsavings+savings = 0.0
         //        for i in 0...expensesArray.count-1 {
-        //            savings += (Double(expensesArray[i].projectedExpenses) - expensesArray[i].actualExpenses)
+        //            totalsavings+savings += (Double(expensesArray[i].projectedExpenses) - expensesArray[i].actualExpenses)
         //        }
         //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
         //        self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -225,8 +226,19 @@ class ViewController: UIViewController {
         //        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.timer != nil
+        {
+           self.timer!.invalidate()
+           self.timer = nil
+        }
+    }
+    @objc func updateSpendings() {
         updateForCurrentMonth()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
         nameLabel.attributedText = NSMutableAttributedString().normal30("Hello, ").bold30("\(name)")
         savedLabel.adjustsFontSizeToFitWidth = true
         buyALabel.adjustsFontSizeToFitWidth = true
@@ -254,32 +266,32 @@ class ViewController: UIViewController {
             UINavigationBar.appearance().isTranslucent = false
         }
         spendingsLabel.text = Date().monthAsString()
-        if savings > 0 {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", savings))").normal(" so far")
+        if totalsavings+savings+savings > 0 {
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
         } else {
             savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far")
         }
         if wishlist.count > 0 {
             let randomItem = wishlist.randomElement()!
             itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-            if Double(randomItem.price) < Double(savings) {
+            if Double(randomItem.price) < Double(totalsavings+savings+savings) {
                 buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
                 //            buyALabel.text = "You can buy a \(randomItem.name)"
-                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
-    //        } else if randomItem.price == Int(savings) {
+                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+    //        } else if randomItem.price == Int(totalsavings+savings) {
     //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
     //            //            buyALabel.text = "You can buy a \(randomItem.name)"
-    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(savings))").normal("/").bold("\(randomItem.price)")
-    //            //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings+savings))").normal("/").bold("\(randomItem.price)")
+    //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
             } else {
-                if savings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
+                if totalsavings+savings > 0 {
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
                     //            buyALabel.text = "You can buy a \(randomItem.name)"
-                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                    //            somethingOutOfSomethingLabel.text = "$\(Int(savings))/$\(randomItem.price)"
+                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                    //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
                 } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-savings)) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                 }
             }
@@ -295,7 +307,6 @@ class ViewController: UIViewController {
     //    }
     
     override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     func setupPieChart() {
@@ -303,6 +314,8 @@ class ViewController: UIViewController {
             // MARK: Customise Pie Chart
             // Description
             // pieView.usePercentValuesEnabled = true
+            
+            pieView.noDataText = "No Data Available for Pie Chart/No Spendings"
             pieView.chartDescription?.enabled = false // Disable chartDescription
             // Main CHart
             pieView.drawHoleEnabled = true // Add hole in center
@@ -322,9 +335,10 @@ class ViewController: UIViewController {
             // Set up array
             var pieEntries: [PieChartDataEntry] = []
             // Iterate through data values
-       
             for i in expensesArray {
-                pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
+                if i.actualExpenses > 0 {
+                    pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
+                }
             }
             //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
             //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
@@ -356,7 +370,6 @@ class ViewController: UIViewController {
             pieView.data = pieChartData
         } else {
             pieView.clear()
-            pieView.noDataText = "No Data Available for Pie Chart"
             rotateClockWiseTop.isHidden = true
             rotateClockWiseBottom.isHidden = true
             rotateAntiClockWiseTop.isHidden = true
@@ -368,11 +381,14 @@ class ViewController: UIViewController {
         if expensesArray.count != 0 {
 //            zoomInButton.isHidden = false
 //            zoomOutButton.isHidden = false
+            barView.noDataText = "No Data Available for Bar Chart/No Spendings"
             var barEntries: [BarChartDataEntry] = []
             var xAxisValues: [String] = []
             for i in 0..<expensesArray.count {
-                barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
-                xAxisValues.append(expensesArray[i].categoryName)
+                if expensesArray[i].actualExpenses > 0 {
+                    barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
+                    xAxisValues.append(expensesArray[i].categoryName)
+                }
             }
             let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
             chartDataSet.colors =
@@ -406,7 +422,6 @@ class ViewController: UIViewController {
             //        barView.rightAxis.enabled = false
         } else {
             barView.clear()
-            barView.noDataText = "No Data Available for Bar Chart"
             zoomInButton.isHidden = true
             zoomOutButton.isHidden = true
         }

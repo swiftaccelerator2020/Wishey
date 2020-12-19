@@ -71,20 +71,3 @@ class MainTabBarViewController: UITabBarController {
     */
 
 }
-
-func updateForCurrentMonth() {
-    if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
-        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
-            if expenseStruct.loadFromFile() != nil {
-                for i in expensesArray {
-                    i.actualExpenses = 0
-                }
-                expenseStruct.saveToFile(expense: expensesArray)
-                alltimeSavings += savings
-                savings = 0
-            }
-        }
-    } else {
-        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-    }
-}

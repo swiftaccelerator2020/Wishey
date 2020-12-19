@@ -182,7 +182,7 @@ var categories = ["Automotives","Properties","Electronics","Mobile Devices & Gad
 // Global Variables
 var projectedSavings = Int()
 var savings = Double()
-var alltimeSavings = Double()
+var totalsavings = Double()
 var wishlistSpendings = Double()
 
 func updateProjectedSavings() {
@@ -198,8 +198,12 @@ func updateProjectedSavings() {
 //    if UserDefaults.standard.array(forKey: "income") != nil && UserDefaults.standard.array(forKey: "expense") != nil {
 //        if let incomeArrayLoaded = UserDefaults.standard.array(forKey: "income")! as? [projectedIncome], let expenseArrayLoaded = UserDefaults.standard.array(forKey: "expense")! as? [expenseStruct] {
     if let loadedExpenses = expenseStruct.loadFromFile(), let loadedIncome = projectedIncome.loadFromFile() {
+        print("this ran")
         incomeArray = loadedIncome
         expensesArray = loadedExpenses
+        for i in loadedIncome {
+            print(i.incomeMoney)
+        }
 //        }
     } else {
 //        UserDefaults.standard.set(incomeArray, forKey: "income")
@@ -246,7 +250,7 @@ func updateGlobalSavings() {
     for i in 0..<expensesArray.count {
         spendings += expensesArray[i].actualExpenses
     }
-    savings = Double(income) - spendings - wishlistSpendings
+    savings = Double(income) - spendings
 }
 
 var income = Int()
@@ -261,14 +265,51 @@ func setupIncome() {
     if let loadedIncome = projectedIncome.loadFromFile() {
         incomeArray = loadedIncome
         income = 0
-        print(incomeArray)
+        for i in loadedIncome {
+            print(i.incomeMoney)
+        }
         for i in 0..<incomeArray.count-1 {
            income += incomeArray[i].incomeMoney
         }
 //        }
+    } 
+}
+
+func updateForCurrentMonth() {
+    let date = Date()
+    let calendar = Calendar.current
+
+    //        let hour = calendar.component(.hour, from: date)
+    let minutes = calendar.component(.minute, from: date)
+    print(minutes)
+    //        let seconds = calendar.component(.second, from: date)
+    if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
+        
+//        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+//            if expenseStruct.loadFromFile() != nil {
+//                for i in expensesArray {
+//                    i.actualExpenses = 0
+//                }
+//                expenseStruct.saveToFile(expense: expensesArray)
+//                alltimeSavings += savings
+//                savings = 0
+//            }
+////            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+//        }
+        if String(minutes) != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+            UserDefaults.standard.setValue(String(minutes), forKey: "lastRecordedMonth")
+            if expenseStruct.loadFromFile() != nil {
+                for i in expensesArray {
+                    i.actualExpenses = 0
+                }
+                expenseStruct.saveToFile(expense: expensesArray)
+                totalsavings += savings
+                savings = 0
+                updateGlobalSavings()
+            }
+        }
     } else {
-//        UserDefaults.standard.set(incomeArray, forKey: "income")
-        incomeArray = projectedIncome.loadSampleData()
-        projectedIncome.saveToFile(income: incomeArray)
+//        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+        UserDefaults.standard.setValue(String(minutes), forKey: "lastRecordedMonth")
     }
 }

@@ -21,6 +21,11 @@ class expenseTableViewCell: UITableViewCell {
     func setUp() {
         expenseName.text = expense.categoryName
         spendingLabel.text = "$\(String(format: "%.2f", Double(expense.actualExpenses)))/\(expense.projectedExpenses) spent"
+        if expense.actualExpenses > Double(expense.projectedExpenses) {
+            spendingLabel.textColor = .red
+        } else {
+            spendingLabel.textColor = .label
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

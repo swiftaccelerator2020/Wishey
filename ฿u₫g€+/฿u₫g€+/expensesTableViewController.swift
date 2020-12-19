@@ -10,6 +10,21 @@ import UIKit
 class expensesTableViewController: UITableViewController {
     
     var indexPath: IndexPath!
+    var timer: Timer?
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.timer != nil
+        {
+           self.timer!.invalidate()
+           self.timer = nil
+        }
+        indexPath = nil
+    }
+    
+    @objc func updateSpendings() {
+        updateForCurrentMonth()
+//        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,52 +39,73 @@ class expensesTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "expensesSegue", sender: nil)
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: "expensesSegue", sender: nil)
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return expensesArray.count
+        if section == 0 {
+            return expensesArray.count
+        }
+        return 1
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! expenseTableViewCell
-        cell.expense = expensesArray[indexPath.row]
-        cell.setUp()
+        if indexPath.section == 0 {
+            cell.expense = expensesArray[indexPath.row]
+            cell.setUp()
+            cell.accessoryType = .disclosureIndicator
+        } else {
+            cell.spendingLabel.text = "$\(String(format: "%.2f", savings)) saved"
+            cell.expenseName.text = "Savings"
+            cell.accessoryType = .none
+        }
         cell.selectionStyle = .none
         cell.expenseName.adjustsFontSizeToFitWidth = true
         cell.spendingLabel.adjustsFontSizeToFitWidth = true
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 {
+//            return 30
+//        }
+//        return 0
+//    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return 30
+            return "Expenses/Spendings"
+        } else {
+            return "Savings"
         }
-        return 0
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
-        title = "\(Date().monthAsString()) - Expenses/Spendings"
+        self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
+        title = "\(Date().monthAsString())"
         setupLargeTitleAutoAdjustFont()
         tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        title = "\(Date().monthAsString()) - Expenses/Spendings"
+        title = "\(Date().monthAsString())"
         setupLargeTitleAutoAdjustFont()
         tableView.reloadData()
     }
@@ -113,13 +149,14 @@ class expensesTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
+        if indexPath.section == 0 {
+            // Return false if you do not want the specified item to be editable.
+            return true
+        }
+        return false
      }
-     */
     
     
      // Override to support editing the table view.
@@ -141,29 +178,35 @@ class expensesTableViewController: UITableViewController {
         expenseStruct.saveToFile(expense: expensesArray)
         tableView.reloadData()
      }
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-            expensesArray.remove(at: indexPath.row)
-            expenseStruct.saveToFile(expense: expensesArray)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadData()
+        if indexPath.section == 0 {
+            let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+                expensesArray.remove(at: indexPath.row)
+                expenseStruct.saveToFile(expense: expensesArray)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadData()
+            }
+            let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
+                self.indexPath = indexPath
+                self.performSegue(withIdentifier: "expensesSegue", sender: nil)
+            }
+            edit.backgroundColor = .systemBlue
+            let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
+            return swipeActions
         }
-        let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
-            self.indexPath = indexPath
-            self.performSegue(withIdentifier: "expensesSegue", sender: nil)
-        }
-        edit.backgroundColor = .systemBlue
-        let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
-        return swipeActions
+        return nil
     }
     
-    /*
      // Override to support conditional rearranging of the table view.
      override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the item to be re-orderable.
-     return true
+        if indexPath.section == 0 {
+            return true
+        }
+        return false
      }
-     */
+    
     
      // MARK: - Navigation
      

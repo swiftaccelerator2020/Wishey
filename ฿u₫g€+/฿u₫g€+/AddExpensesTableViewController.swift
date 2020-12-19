@@ -256,6 +256,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
             if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil {
                 expensesArray.append(expenseStruct(categoryName: categoryName.text!, projectedExpenses: Int(budgetAmount.text!)!, actualExpenses: Double(categoryAmount.text!)!))
                 expenseStruct.saveToFile(expense: expensesArray)
+                updateGlobalSavings()
                 view.endEditing(true)
 //                if sourceViewController == ViewController {
                 performSegue(withIdentifier: "unwindHome", sender: nil)

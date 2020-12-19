@@ -36,6 +36,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     }
     
     func incomeSetUp() {
+        print(incomeArray[theIndexPath.row].incomeMoney)
         incomeName.isHidden = false
         incomeMoney.isHidden = false
         expenseName.isHidden = true
@@ -43,6 +44,11 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         expenseStepper.isHidden = true
         incomeName.text = income?.incomeName
         if let incomeMoneyValue = income?.incomeMoney {
+            if incomeMoneyValue <= 0 {
+                incomeMoney.textColor = .red
+            } else {
+                incomeMoney.textColor = .label
+            }
             incomeMoney.text = "\(incomeMoneyValue)"
         }
     }
@@ -99,11 +105,18 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
                 income?.incomeMoney = 5000
                 incomeArray[theIndexPath.row].incomeMoney = 5000
             } else {
+                income?.incomeMoney = Int(incomeMoney.text!)!
                 incomeArray[theIndexPath.row].incomeMoney = Int(incomeMoney.text!)!
+                print(incomeArray[theIndexPath.row].incomeMoney)
             }
         }
         projectedIncome.saveToFile(income: incomeArray)
-        updateGlobalSavings()
+        if let projectedincomeincomearray = projectedIncome.loadFromFile() {
+            for i in projectedincomeincomearray {
+                print(i.incomeMoney)
+            }
+        }
+        updateProjectedSavings()
         tableViewController?.updateTableView()
     }
     
