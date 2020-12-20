@@ -201,12 +201,10 @@ func updateProjectedSavings() {
 //    if UserDefaults.standard.array(forKey: "income") != nil && UserDefaults.standard.array(forKey: "expense") != nil {
 //        if let incomeArrayLoaded = UserDefaults.standard.array(forKey: "income")! as? [projectedIncome], let expenseArrayLoaded = UserDefaults.standard.array(forKey: "expense")! as? [expenseStruct] {
     if let loadedExpenses = expenseStruct.loadFromFile(), let loadedIncome = projectedIncome.loadFromFile() {
-        print("this ran")
         incomeArray = loadedIncome
         expensesArray = loadedExpenses
-        for i in loadedIncome {
-            print(i.incomeMoney)
-        }
+        projectedIncome.saveToFile(income: incomeArray)
+        expenseStruct.saveToFile(expense: expensesArray)
 //        }
     } else {
 //        UserDefaults.standard.set(incomeArray, forKey: "income")
@@ -222,6 +220,7 @@ func updateProjectedSavings() {
          projSpendings += expensesArray[i].projectedExpenses
     }
     incomeArray[incomeArray.count-1].incomeMoney = income - projSpendings
+    projectedIncome.saveToFile(income: incomeArray)
     projectedSavings = incomeArray[incomeArray.count-1].incomeMoney
 }
 
@@ -269,14 +268,15 @@ func setupIncome() {
     if let loadedIncome = projectedIncome.loadFromFile() {
         incomeArray = loadedIncome
         income = 0
-        for i in loadedIncome {
-            print(i.incomeMoney)
-        }
         for i in 0..<incomeArray.count-1 {
            income += incomeArray[i].incomeMoney
         }
 //        }
-    } 
+    } else {
+//        UserDefaults.standard.set(incomeArray, forKey: "income")
+        incomeArray = projectedIncome.loadSampleData()
+        projectedIncome.saveToFile(income: incomeArray)
+    }
 }
 
 func updateForCurrentMonth() {
