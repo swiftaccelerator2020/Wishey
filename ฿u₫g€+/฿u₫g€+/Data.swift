@@ -240,6 +240,7 @@ func updateGlobalSavings() {
     } else {
 //        UserDefaults.standard.set(expensesArray, forKey: "expense")
 //        UserDefaults.standard.set(wishlist, forKey: "wishlist")
+        print("stupid thing ran")
         expensesArray = expenseStruct.loadSampleData()
         wishlist = WishlistItem.loadSampleData()
         expenseStruct.saveToFile(expense: expensesArray)
@@ -279,9 +280,9 @@ func updateForCurrentMonth() {
     let date = Date()
     let calendar = Calendar.current
 
-    //        let hour = calendar.component(.hour, from: date)
-    let minutes = calendar.component(.minute, from: date)
-    print(minutes)
+            let hour = calendar.component(.hour, from: date)
+//    let minutes = calendar.component(.minute, from: date)
+    print(hour)
     //        let seconds = calendar.component(.second, from: date)
     if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
         
@@ -296,8 +297,8 @@ func updateForCurrentMonth() {
 //            }
 ////            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
 //        }
-        if String(minutes) != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
-            UserDefaults.standard.setValue(String(minutes), forKey: "lastRecordedMonth")
+        if String(hour) != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+            UserDefaults.standard.setValue(String(hour), forKey: "lastRecordedMonth")
             if expenseStruct.loadFromFile() != nil {
                 for i in expensesArray {
                     i.actualExpenses = 0
@@ -310,6 +311,6 @@ func updateForCurrentMonth() {
         }
     } else {
 //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-        UserDefaults.standard.setValue(String(minutes), forKey: "lastRecordedMonth")
+        UserDefaults.standard.setValue(String(hour), forKey: "lastRecordedMonth")
     }
 }

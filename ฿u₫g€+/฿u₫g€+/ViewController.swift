@@ -235,6 +235,41 @@ class ViewController: UIViewController {
     }
     @objc func updateSpendings() {
         updateForCurrentMonth()
+        spendingsLabel.text = Date().monthAsString()
+        if totalsavings+savings > 0 {
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
+        } else {
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far")
+        }
+        if wishlist.count > 0 {
+            let randomItem = wishlist.randomElement()!
+            itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
+            if Double(randomItem.price) < Double(totalsavings+savings) {
+                buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
+                //            buyALabel.text = "You can buy a \(randomItem.name)"
+                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+    //        } else if randomItem.price == Int(totalsavings+savings) {
+    //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
+    //            //            buyALabel.text = "You can buy a \(randomItem.name)"
+    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings+savings))").normal("/").bold("\(randomItem.price)")
+    //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+            } else {
+                if totalsavings+savings > 0 {
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
+                    //            buyALabel.text = "You can buy a \(randomItem.name)"
+                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                    //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+                } else {
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
+                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                }
+            }
+        } else {
+            buyALabel.text = ""
+            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
+            itemName.attributedText = NSMutableAttributedString().normal("Wishlist is Empty")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -266,7 +301,7 @@ class ViewController: UIViewController {
             UINavigationBar.appearance().isTranslucent = false
         }
         spendingsLabel.text = Date().monthAsString()
-        if totalsavings+savings+savings > 0 {
+        if totalsavings+savings > 0 {
             savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
         } else {
             savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far")
@@ -274,7 +309,7 @@ class ViewController: UIViewController {
         if wishlist.count > 0 {
             let randomItem = wishlist.randomElement()!
             itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-            if Double(randomItem.price) < Double(totalsavings+savings+savings) {
+            if Double(randomItem.price) < Double(totalsavings+savings) {
                 buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
                 //            buyALabel.text = "You can buy a \(randomItem.name)"
                 somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
@@ -336,9 +371,7 @@ class ViewController: UIViewController {
             var pieEntries: [PieChartDataEntry] = []
             // Iterate through data values
             for i in expensesArray {
-                if i.actualExpenses > 0 {
-                    pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
-                }
+                pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
             }
             //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
             //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
@@ -385,10 +418,8 @@ class ViewController: UIViewController {
             var barEntries: [BarChartDataEntry] = []
             var xAxisValues: [String] = []
             for i in 0..<expensesArray.count {
-                if expensesArray[i].actualExpenses > 0 {
-                    barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
-                    xAxisValues.append(expensesArray[i].categoryName)
-                }
+                barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
+                xAxisValues.append(expensesArray[i].categoryName)
             }
             let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
             chartDataSet.colors =

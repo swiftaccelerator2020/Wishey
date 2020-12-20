@@ -98,6 +98,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBAction func changeIncome(_ sender: Any) {
         if incomeMoney.text == nil || incomeMoney.text!.isEmpty || Int(incomeMoney.text!) == nil {
+            print("also yuck")
             income?.incomeMoney = 5000
             incomeArray[theIndexPath.row].incomeMoney = 5000
         } else {
@@ -111,12 +112,12 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
             }
         }
         projectedIncome.saveToFile(income: incomeArray)
-        if let projectedincomeincomearray = projectedIncome.loadFromFile() {
-            for i in projectedincomeincomearray {
-                print(i.incomeMoney)
-            }
-        }
         updateProjectedSavings()
+//        if let projectedincomeincomearray = projectedIncome.loadFromFile() {
+//            for i in projectedincomeincomearray {
+//                print(i.incomeMoney)
+//            }
+//        }
         tableViewController?.updateTableView()
     }
     
