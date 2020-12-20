@@ -16,17 +16,17 @@ class MainTabBarViewController: UITabBarController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        updateProjectedSavings()
-//        updateGlobalSavings()
+        updateProjectedSavings()
+        updateGlobalSavings()
         self.selectedIndex = 1
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        updateProjectedSavings()
+        updateProjectedSavings()
         print(UserDefaults.standard.string(forKey: "lastRecordedMonth") ?? "none")
-//        updateGlobalSavings()
-//        updateForCurrentMonth()
+        updateGlobalSavings()
+        updateForCurrentMonth()
         self.selectedIndex = 1
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
