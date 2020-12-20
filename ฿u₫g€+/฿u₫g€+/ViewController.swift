@@ -186,8 +186,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        saveusername(username: "testusername")
-        
+
         print(projectedIncome.loadSampleData())
         projectedIncome.saveToFile(income: projectedIncome.loadSampleData())
         print(projectedIncome.loadFromFile()!)

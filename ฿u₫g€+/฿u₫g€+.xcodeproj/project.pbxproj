@@ -29,6 +29,7 @@
 		A8DDDCD02574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */; };
 		A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */; };
 		A8DDDCD92574F107003CC2B8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDDCD82574F107003CC2B8 /* Data.swift */; };
+		BC538F08258F45C4004778EA /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC538F07258F45C4004778EA /* WelcomeViewController.swift */; };
 		FC53EB09A1A3BD1092BA586B /* Pods__u_g__.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B3E60FE7C1A9D308B807E7A /* Pods__u_g__.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		A8DDDCCF2574DF85003CC2B8 /* ProjectedExpensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectedExpensesTableViewController.swift; sourceTree = "<group>"; };
 		A8DDDCD22574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectedExpensesTableViewCell.swift; sourceTree = "<group>"; };
 		A8DDDCD82574F107003CC2B8 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		BC538F07258F45C4004778EA /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D4627576E255DD8F4B3EB0A2 /* Pods-฿u₫g€+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.release.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.release.xcconfig"; sourceTree = "<group>"; };
 		FEB9776F3AFE268AE2A47DDD /* Pods-฿u₫g€+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-฿u₫g€+.debug.xcconfig"; path = "Target Support Files/Pods-฿u₫g€+/Pods-฿u₫g€+.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 				8995FC9A2585376A00F131D4 /* PlainHorizontalProgressBar.swift */,
 				89DC08072586621F00B93E36 /* OtherIncomeTableViewController.swift */,
 				A8109E53256F9520008F3709 /* Main.storyboard */,
+				BC538F07258F45C4004778EA /* WelcomeViewController.swift */,
 				A8109E56256F9522008F3709 /* Assets.xcassets */,
 				A8109E58256F9522008F3709 /* LaunchScreen.storyboard */,
 				899DEFCD2589E84600879FDE /* ExpenseDetailTableViewController.swift */,
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8995FC9F2585376A00F131D4 /* PlainHorizontalProgressBar.swift in Sources */,
+				BC538F08258F45C4004778EA /* WelcomeViewController.swift in Sources */,
 				A8DDDCD32574E785003CC2B8 /* ProjectedExpensesTableViewCell.swift in Sources */,
 				1423C1872583D6B200E602DE /* DetailsTableViewController.swift in Sources */,
 				145642A02574E87E00C3E310 /* expenseTableViewCell.swift in Sources */,
