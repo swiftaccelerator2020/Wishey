@@ -16,8 +16,6 @@ class MainTabBarViewController: UITabBarController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateProjectedSavings()
-        updateGlobalSavings()
         self.selectedIndex = 1
         navigationController?.navigationBar.prefersLargeTitles = true
     }

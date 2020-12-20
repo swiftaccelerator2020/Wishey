@@ -261,6 +261,7 @@ class ExpenseDetailTableViewController: UITableViewController, UITextFieldDelega
 //        dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func save(_ sender: Any) {
         if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty {
             if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil {

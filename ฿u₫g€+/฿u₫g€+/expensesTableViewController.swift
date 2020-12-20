@@ -192,7 +192,12 @@ class expensesTableViewController: UITableViewController {
                 self.performSegue(withIdentifier: "expensesSegue", sender: nil)
             }
             edit.backgroundColor = .systemBlue
-            let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
+            let add = UIContextualAction(style: .destructive, title: "Add") {  (contextualAction, view, boolValue) in
+                self.indexPath = indexPath
+                self.performSegue(withIdentifier: "addValue", sender: nil)
+            }
+            add.backgroundColor = .systemPurple
+            let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit, add])
             return swipeActions
         }
         return nil
@@ -220,9 +225,9 @@ class expensesTableViewController: UITableViewController {
                 indexPath = tableView.indexPathForSelectedRow
             }
             destVC?.theIndexPath = indexPath
-        } else if segue.identifier == "addCategory2" {
-            let destVC = segue.destination as? AddExpensesTableViewController
-//            destVC?.sourceViewController = expensesTableViewController
+        } else if segue.identifier == "addValue" {
+            let destVC = segue.destination as? AddValueTableViewController
+            destVC?.theIndexPath = indexPath
         }
      }
     

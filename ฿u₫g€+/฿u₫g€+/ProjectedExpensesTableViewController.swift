@@ -72,6 +72,9 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
             return 0
         }
     }
+    @IBAction func addButtonPress(_ sender: Any) {
+        performSegue(withIdentifier: "addCategory3", sender: nil)
+    }
     
     //    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        let view = UIView()

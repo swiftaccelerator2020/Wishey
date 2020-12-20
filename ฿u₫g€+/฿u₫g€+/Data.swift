@@ -203,8 +203,6 @@ func updateProjectedSavings() {
     if let loadedExpenses = expenseStruct.loadFromFile(), let loadedIncome = projectedIncome.loadFromFile() {
         incomeArray = loadedIncome
         expensesArray = loadedExpenses
-        projectedIncome.saveToFile(income: incomeArray)
-        expenseStruct.saveToFile(expense: expensesArray)
 //        }
     } else {
 //        UserDefaults.standard.set(incomeArray, forKey: "income")
@@ -214,10 +212,13 @@ func updateProjectedSavings() {
         projectedIncome.saveToFile(income: incomeArray)
         expenseStruct.saveToFile(expense: expensesArray)
     }
-    setupIncome()
+    income = 0
+    for i in 0..<incomeArray.count-1 {
+        income += incomeArray[i].incomeMoney
+    }
     var projSpendings = Int()
     for i in 0..<expensesArray.count {
-         projSpendings += expensesArray[i].projectedExpenses
+        projSpendings += expensesArray[i].projectedExpenses
     }
     incomeArray[incomeArray.count-1].incomeMoney = income - projSpendings
     projectedIncome.saveToFile(income: incomeArray)
@@ -242,13 +243,12 @@ func updateGlobalSavings() {
     } else {
 //        UserDefaults.standard.set(expensesArray, forKey: "expense")
 //        UserDefaults.standard.set(wishlist, forKey: "wishlist")
-        print("stupid thing ran")
+//        print("stupid thing ran")
         expensesArray = expenseStruct.loadSampleData()
         wishlist = WishlistItem.loadSampleData()
         expenseStruct.saveToFile(expense: expensesArray)
         WishlistItem.saveToFile(wishlist: wishlist)
     }
-    setupIncome()
     var spendings = Double()
     for i in 0..<expensesArray.count {
         spendings += expensesArray[i].actualExpenses
@@ -258,34 +258,35 @@ func updateGlobalSavings() {
 
 var income = Int()
 
-func setupIncome() {
-//    income = 0
-//    for i in 0..<incomeArray.count-1 {
-//        income += incomeArray[i].incomeMoney
-//    }
-//    if UserDefaults.standard.array(forKey: "income") != nil {
-//        if let incomeArrayLoaded = UserDefaults.standard.array(forKey: "income")! as? [projectedIncome] {
-    if let loadedIncome = projectedIncome.loadFromFile() {
-        incomeArray = loadedIncome
-        income = 0
-        for i in 0..<incomeArray.count-1 {
-           income += incomeArray[i].incomeMoney
-        }
+//func setupIncome() {
+////    income = 0
+////    for i in 0..<incomeArray.count-1 {
+////        income += incomeArray[i].incomeMoney
+////    }
+////    if UserDefaults.standard.array(forKey: "income") != nil {
+////        if let incomeArrayLoaded = UserDefaults.standard.array(forKey: "income")! as? [projectedIncome] {
+//    if let loadedIncome = projectedIncome.loadFromFile() {
+//        incomeArray = loadedIncome
+//        income = 0
+//        for i in 0..<incomeArray.count-1 {
+//           income += incomeArray[i].incomeMoney
 //        }
-    } else {
-//        UserDefaults.standard.set(incomeArray, forKey: "income")
-        incomeArray = projectedIncome.loadSampleData()
-        projectedIncome.saveToFile(income: incomeArray)
-    }
-}
+////        }
+//    } else {
+////        UserDefaults.standard.set(incomeArray, forKey: "income")
+//        incomeArray = projectedIncome.loadSampleData()
+//        projectedIncome.saveToFile(income: incomeArray)
+//    }
+//}
 
 func updateForCurrentMonth() {
-    let date = Date()
-    let calendar = Calendar.current
-
-            let hour = calendar.component(.hour, from: date)
+//    let date = Date()
+//    let calendar = Calendar.current
+//
+//    let hour = calendar.component(.hour, from: date)
 //    let minutes = calendar.component(.minute, from: date)
-    print(hour)
+//    print(hour)
+//    print(minutes)
     //        let seconds = calendar.component(.second, from: date)
     if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
         
@@ -300,8 +301,8 @@ func updateForCurrentMonth() {
 //            }
 ////            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
 //        }
-        if String(hour) != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
-            UserDefaults.standard.setValue(String(hour), forKey: "lastRecordedMonth")
+        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
             if expenseStruct.loadFromFile() != nil {
                 for i in expensesArray {
                     i.actualExpenses = 0
@@ -314,6 +315,6 @@ func updateForCurrentMonth() {
         }
     } else {
 //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-        UserDefaults.standard.setValue(String(hour), forKey: "lastRecordedMonth")
+        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
     }
 }

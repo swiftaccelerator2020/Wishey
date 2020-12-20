@@ -13,16 +13,14 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        doneButton.layer.cornerRadius = 20
+        doneButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
         
         UserDefaults.standard.removeObject(forKey:"username")
-        
         print(UserDefaults.standard.object(forKey: "username"))
-        if  UserDefaults.standard.object(forKey: "username") != nil{
+        if UserDefaults.standard.object(forKey: "username") != nil {
             print("no")
-            
-         performSegue(withIdentifier: "navigateHome", sender: nil)
+            performSegue(withIdentifier: "navigateHome", sender: nil)
         }
     }
     
