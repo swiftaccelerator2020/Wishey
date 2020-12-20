@@ -59,7 +59,7 @@ extension Date {
     }
 }
 
-let name = "Granwyn Tan"
+
 
 class ViewController: UIViewController {
     @IBOutlet weak var somethingOutOfSomethingLabel: UILabel!
@@ -145,6 +145,12 @@ class ViewController: UIViewController {
         }
     }
     
+    func saveusername(username: String){
+        UserDefaults.standard.setValue(username, forKey: "username")
+    }
+    
+    
+    
     @IBAction func rotateClockWise(_ sender: Any) {
         pieView.rotationAngle += 10
     }
@@ -176,8 +182,12 @@ class ViewController: UIViewController {
         tabBarController?.selectedIndex = 2
     }
     
+   
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        saveusername(username: "testusername")
+        
         print(projectedIncome.loadSampleData())
         projectedIncome.saveToFile(income: projectedIncome.loadSampleData())
         print(projectedIncome.loadFromFile()!)
@@ -225,7 +235,7 @@ class ViewController: UIViewController {
         //            UINavigationBar.appearance().isTranslucent = false
         //        }
     }
-    
+    let name = (UserDefaults.standard.string(forKey: "username"))!
     override func viewWillDisappear(_ animated: Bool) {
         if self.timer != nil
         {

@@ -7,6 +7,9 @@
 import Foundation
 
 // Structs
+
+
+
 class projectedIncome: Codable {
     var incomeName: String
     var incomeMoney: Int
