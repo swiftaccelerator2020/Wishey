@@ -41,7 +41,7 @@ class projectedIncome: Codable {
     static func loadSampleData() -> [projectedIncome] {
         let incomeArray: [projectedIncome] = [
             projectedIncome(incomeName: "Salary", incomeMoney: 5000),
-            projectedIncome(incomeName: "Other", incomeMoney: 6*7*20),
+//            projectedIncome(incomeName: "Other", incomeMoney: 6*7*20),
             projectedIncome(incomeName: "Savings", incomeMoney: 0)
         ]
         return incomeArray
@@ -80,12 +80,18 @@ class expenseStruct: Codable {
     
     static func loadSampleData() -> [expenseStruct] {
         let expensesArray: [expenseStruct] = [
-            expenseStruct(categoryName: "Healthcare", projectedExpenses: 1000, actualExpenses: 600.00),
-            expenseStruct(categoryName: "Transport", projectedExpenses: 900, actualExpenses: 500.00),
-            expenseStruct(categoryName: "Food", projectedExpenses: 800, actualExpenses: 400.00),
-            expenseStruct(categoryName: "Gaming", projectedExpenses: 700, actualExpenses: 300.00),
-            expenseStruct(categoryName: "Entertainment", projectedExpenses: 600, actualExpenses: 200.00),
-            expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00),
+//            expenseStruct(categoryName: "Healthcare", projectedExpenses: 1000, actualExpenses: 600.00),
+//            expenseStruct(categoryName: "Transport", projectedExpenses: 900, actualExpenses: 500.00),
+//            expenseStruct(categoryName: "Food", projectedExpenses: 800, actualExpenses: 400.00),
+//            expenseStruct(categoryName: "Gaming", projectedExpenses: 700, actualExpenses: 300.00),
+//            expenseStruct(categoryName: "Entertainment", projectedExpenses: 600, actualExpenses: 200.00),
+//            expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00),
+            expenseStruct(categoryName: "Healthcare", projectedExpenses: 100, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Transport", projectedExpenses: 100, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Food", projectedExpenses: 100, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Gaming", projectedExpenses: 100, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Entertainment", projectedExpenses: 100, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Others", projectedExpenses: 100, actualExpenses: 0.00),
         ]
         return expensesArray
     }
@@ -128,12 +134,12 @@ struct WishlistItem: Codable {
     
     static func loadSampleData() -> [WishlistItem] {
         let wishlist: [WishlistItem] = [
-            WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3,url: "https://sstinc.org"),
-            WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440.00, months: 11,url: "https://wikipedia.org"),
-            WishlistItem(name: "Running Shoes", category: "Sports", price: 100.00, months: 20, url: "https://youtube.com"),
-            WishlistItem(name: "New Television", category: "Electronics", price: 1500.00, months: 3),
-            WishlistItem(name: "Couch", category: "Furniture", price: 245.00, months: 6),
-            WishlistItem(name: "Printer", category: "Office", price: 218.00, months: 3)
+//            WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3,url: "https://sstinc.org"),
+//            WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440.00, months: 11,url: "https://wikipedia.org"),
+//            WishlistItem(name: "Running Shoes", category: "Sports", price: 100.00, months: 20, url: "https://youtube.com"),
+//            WishlistItem(name: "New Television", category: "Electronics", price: 1500.00, months: 3),
+//            WishlistItem(name: "Couch", category: "Furniture", price: 245.00, months: 6),
+//            WishlistItem(name: "Printer", category: "Office", price: 218.00, months: 3)
         ]
         return wishlist
     }

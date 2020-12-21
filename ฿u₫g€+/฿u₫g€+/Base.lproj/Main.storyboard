@@ -1779,11 +1779,11 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uow-25-bR3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="380" height="82"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rlm-f2-gou">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rlm-f2-gou">
                                                                         <rect key="frame" x="0.0" y="0.0" width="19.666666666666668" height="82"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toe-6J-Dss">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="19.666666666666668" height="22"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="22"/>
                                                                                 <state key="normal" image="restart" catalog="system"/>
                                                                                 <connections>
                                                                                     <action selector="resetChart:" destination="G3o-XK-bQe" eventType="touchUpInside" id="r5Z-4q-2Ai"/>
@@ -1811,11 +1811,11 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ong-9I-uNq">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ong-9I-uNq">
                                                                         <rect key="frame" x="360.33333333333331" y="0.0" width="19.666666666666686" height="82"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWZ-8O-k0d">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="19.666666666666668" height="22"/>
+                                                                                <rect key="frame" x="1.6666666666666856" y="0.0" width="18" height="22"/>
                                                                                 <state key="normal" image="plus" catalog="system"/>
                                                                                 <connections>
                                                                                     <action selector="addExpensesCategoryHome:" destination="G3o-XK-bQe" eventType="touchUpInside" id="Nko-7l-OMl"/>
@@ -1844,6 +1844,7 @@
                                                                     <constraint firstItem="ong-9I-uNq" firstAttribute="top" secondItem="Uow-25-bR3" secondAttribute="top" id="9r5-vd-Nyi"/>
                                                                     <constraint firstItem="ong-9I-uNq" firstAttribute="width" secondItem="Rlm-f2-gou" secondAttribute="width" id="NfG-5Y-DJv"/>
                                                                     <constraint firstAttribute="bottom" secondItem="ong-9I-uNq" secondAttribute="bottom" id="PsP-TC-oM0"/>
+                                                                    <constraint firstAttribute="height" constant="82" id="d9A-2J-FaS"/>
                                                                     <constraint firstItem="Rlm-f2-gou" firstAttribute="top" secondItem="Uow-25-bR3" secondAttribute="top" id="gR4-jh-XeZ"/>
                                                                     <constraint firstAttribute="bottom" secondItem="Rlm-f2-gou" secondAttribute="bottom" id="gob-MA-5UQ"/>
                                                                 </constraints>
