@@ -444,9 +444,11 @@ Tap to show Expenses/Spendings and Savings
             barView.noDataText = "No Data Available for Bar Chart"
             var barEntries: [BarChartDataEntry] = []
             var xAxisValues: [String] = []
+            var nonzerodata = 0
             for i in 0..<expensesArray.count {
                 if expensesArray[i].actualExpenses > 0.0 {
-                    barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
+                    nonzerodata += 1
+                    barEntries.append(BarChartDataEntry(x: Double(nonzerodata-1), yValues: [expensesArray[i].actualExpenses]))
                     xAxisValues.append(expensesArray[i].categoryName)
                 }
             }
