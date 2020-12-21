@@ -69,11 +69,9 @@
                         <segue destination="nPf-CO-zKt" kind="presentation" identifier="addCategory2" id="cbn-AK-Eyx"/>
                         <segue destination="DGK-QJ-wSe" kind="show" identifier="expensesSegue" id="MIn-qi-R00"/>
                         <segue destination="Bdt-au-xOD" kind="show" identifier="addValue" id="y0t-5x-m3X"/>
-                        <segue destination="dfd-cT-BWp" kind="unwind" identifier="unwindExpenseBackHome" unwindAction="unwindToHome:" id="W3e-9p-tRR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okg-AP-81O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="dfd-cT-BWp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4422.8971962616824" y="92.656587473002162"/>
         </scene>
@@ -593,7 +591,7 @@
             <objects>
                 <tableViewController id="Ket-Ta-vwm" customClass="AddExpensesTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="r0c-0g-4kg">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="o6z-tz-Kmx">
@@ -783,7 +781,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cuP-fq-Eky"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="sIb-Qd-7Nb">
-                        <rect key="frame" x="0.0" y="44" width="428" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.51372549020000002" green="0.85882352939999995" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" red="0.51372549020000002" green="0.85882352939999995" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -2140,7 +2138,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="S4S-36-b6Y"/>
-        <segue reference="dTf-bR-wmV"/>
+        <segue reference="GS8-zj-BNE"/>
         <segue reference="Xoo-gf-MEm"/>
     </inferredMetricsTieBreakers>
     <resources>
