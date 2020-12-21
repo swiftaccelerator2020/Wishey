@@ -13,6 +13,7 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+//        self.viewWillAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -21,8 +22,10 @@ class MainTabBarViewController: UITabBarController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        UserDefaults.standard.setValue("TabBarController", forKey: "LaunchViewController")
+        UserDefaults.standard.setValue(true, forKey: "loggedIn")
         updateProjectedSavings()
-        print(UserDefaults.standard.string(forKey: "lastRecordedMonth") ?? "none")
+//        print(UserDefaults.standard.string(forKey: "lastRecordedMonth") ?? "none")
         updateGlobalSavings()
         updateForCurrentMonth()
         self.selectedIndex = 1

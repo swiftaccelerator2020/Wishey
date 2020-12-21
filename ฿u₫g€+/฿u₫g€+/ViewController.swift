@@ -7,58 +7,6 @@
 import UIKit
 import Charts
 
-extension Date {
-    func monthAsString() -> String {
-        let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("MMMM")
-        return df.string(from: self)
-    }
-    
-    func dayAsString() -> String {
-        let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("dd")
-        return df.string(from: self)
-    }
-    
-    func entireDateAsString() -> String {
-        let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("dd.MM.yyyy")
-        return df.string(from: self)
-    }
-    
-    var startOfDay: Date {
-        return Calendar.current.startOfDay(for: self)
-    }
-
-    var startOfMonth: Date {
-
-        let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents([.year, .month], from: self)
-
-        return calendar.date(from: components)!
-    }
-
-    var endOfDay: Date {
-        var components = DateComponents()
-        components.day = 1
-        components.second = -1
-        return Calendar.current.date(byAdding: components, to: startOfDay)!
-    }
-
-    var endOfMonth: Date {
-        var components = DateComponents()
-        components.month = 1
-        components.second = -1
-        return Calendar(identifier: .gregorian).date(byAdding: components, to: startOfMonth)!
-    }
-    
-    var month: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM"
-        return dateFormatter.string(from: self)
-    }
-}
-
 class ViewController: UIViewController {
     @IBOutlet weak var somethingOutOfSomethingLabel: UILabel!
     @IBOutlet weak var buyALabel: UILabel!
@@ -285,7 +233,6 @@ class ViewController: UIViewController {
         updateGlobalSavings()
         setupBarChart()
         setupPieChart()
-        updateChart()
         if expensesArray.count == 0 {
             restartButton.isHidden = true
             pageControl.isHidden = true
@@ -303,6 +250,7 @@ class ViewController: UIViewController {
             noSpendingLabel.isHidden = true
             swipeLeftGesture.isEnabled = true
             swipeRightGesture.isEnabled = true
+            updateChart()
         }
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -353,7 +301,7 @@ class ViewController: UIViewController {
         } else {
             buyALabel.text = ""
             somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
-            itemName.attributedText = NSMutableAttributedString().normal("Wishlist is empty")
+            itemName.attributedText = NSMutableAttributedString().normal("Wishlist is Empty")
         }
     }
     
@@ -380,7 +328,7 @@ class ViewController: UIViewController {
                 restartButton.isHidden = true
                 pageControl.isHidden = true
                 pieView.isHidden = true
-                pieView.noDataText = "No Spendings"
+//                pieView.noDataText = "No Spendings"
                 pieView.clear()
                 rotateClockWiseTop.isHidden = true
                 rotateClockWiseBottom.isHidden = true
@@ -388,15 +336,17 @@ class ViewController: UIViewController {
                 rotateAntiClockWiseBottom.isHidden = true
                 noSpendingLabel.isHidden = false
                 noSpendingLabel.text = """
-No spendings currently made for this month
+No spendings currently made this month
+
 Tap to show spendings and savings
 """
                 swipeLeftGesture.isEnabled = false
                 swipeRightGesture.isEnabled = false
             } else {
+                updateChart()
                 restartButton.isHidden = false
                 pageControl.isHidden = false
-                pieView.isHidden = false
+//                pieView.isHidden = false
                 noSpendingLabel.isHidden = true
                 swipeLeftGesture.isEnabled = true
                 swipeRightGesture.isEnabled = true
@@ -477,19 +427,21 @@ Tap to show spendings and savings
                 barView.isHidden = true
                 noSpendingLabel.isHidden = false
                 noSpendingLabel.text = """
-No spendings currently made for this month
+No spendings currently made this month
+
 Tap to show spendings and savings
 """
-                barView.noDataText = "No Spendings"
+//                barView.noDataText = "No Spendings"
                 barView.clear()
                 zoomInButton.isHidden = true
                 zoomOutButton.isHidden = true
                 swipeLeftGesture.isEnabled = false
                 swipeRightGesture.isEnabled = false
             } else {
+                updateChart()
                 restartButton.isHidden = false
                 pageControl.isHidden = false
-                barView.isHidden = false
+//                barView.isHidden = false
                 noSpendingLabel.isHidden = true
                 swipeLeftGesture.isEnabled = true
                 swipeRightGesture.isEnabled = true

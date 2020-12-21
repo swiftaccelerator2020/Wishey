@@ -59,6 +59,7 @@ class AddValueTableViewController: UITableViewController, UITextFieldDelegate {
         
         return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
     }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 30
@@ -69,18 +70,26 @@ class AddValueTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
+    
     @IBAction func hideKeyboard(_ sender: UITextField) {
         sender.resignFirstResponder()
     }
+    
     @IBAction func textFieldEnd(_ sender: Any) {
         if !categoryName.text!.isEmpty && categoryName.text != nil && !amtToAdd.text!.isEmpty && amtToAdd.text != nil {
-            if Double(amtToAdd.text!) != nil {
-                categoryName.layer.borderWidth = 0
-                amtToAdd.layer.borderWidth = 0
-                categoryName.layer.borderColor = .none
-                amtToAdd.layer.borderColor = .none
+            if Double(amtToAdd.text!) != nil && Double(amtToAdd.text!)! > 0.0 {
                 done.isEnabled = true
-            }
+            } else if Double(amtToAdd.text!) == nil {
+                amtToAdd.layer.borderWidth = 1
+                amtToAdd.layer.borderColor = UIColor.systemYellow.cgColor
+            } else if Double(amtToAdd.text!)! <= 0.0 {
+                amtToAdd.layer.borderWidth = 1
+                amtToAdd.layer.borderColor = UIColor.systemOrange.cgColor
+            } 
+            categoryName.layer.borderWidth = 0
+            amtToAdd.layer.borderWidth = 0
+            categoryName.layer.borderColor = .none
+            amtToAdd.layer.borderColor = .none
         } else {
             if categoryName.text == nil || categoryName.text!.isEmpty {
                 categoryName.layer.borderWidth = 1
@@ -92,21 +101,17 @@ class AddValueTableViewController: UITableViewController, UITextFieldDelegate {
             if amtToAdd.text == nil || amtToAdd.text!.isEmpty {
                 amtToAdd.layer.borderWidth = 1
                 amtToAdd.layer.borderColor = UIColor.systemRed.cgColor
-            } else if Double(amtToAdd.text!) == nil {
-                amtToAdd.layer.borderWidth = 1
-                amtToAdd.layer.borderColor = UIColor.systemYellow.cgColor
-            } else if Double(amtToAdd.text!)! <= 0.0 {
-                amtToAdd.layer.borderWidth = 1
-                amtToAdd.layer.borderColor = UIColor.systemOrange.cgColor
             } else {
                 amtToAdd.layer.borderWidth = 0
                 amtToAdd.backgroundColor = .none
             }
         }
     }
+    
     @IBAction func cancel(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func doneAction(_ sender: Any) {
         expensesArray[theIndexPath.row].actualExpenses += Double(amtToAdd.text!)!
         expenseStruct.saveToFile(expense: expensesArray)

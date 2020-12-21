@@ -17,6 +17,56 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+//        if let stuff = UserDefaults.standard.string(forKey: "LaunchViewController") {
+//            // Create a reference to the Storyboard file
+//            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            // Create a reference to the ViewController you want to open
+//            let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: stuff)
+////
+////            let navigationController = UINavigationController.init(rootViewController: vc)
+//
+//            // Present the ViewController
+//            DispatchQueue.global(qos: .default).async {
+//
+//                // Background Thread
+//
+//                DispatchQueue.main.async {
+////                    vc.view.frame = (self.window!.frame)
+//                    self.window!.addSubview(vc.view)
+//                    self.window!.bringSubviewToFront(vc.view)
+////                    navigationController.navigationBar.prefersLargeTitles = true
+//                    self.window?.rootViewController = vc
+//                    self.window?.makeKeyAndVisible()
+//                    // Run UI Updates
+////                     self.presentViewController(vc, animated: true, completion: nil)
+//                }
+//            }
+//        } else {
+//            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            // Create a reference to the ViewController you want to open
+//            let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+////
+////            let navigationController = UINavigationController.init(rootViewController: vc)
+//
+//            // Present the ViewController
+//            DispatchQueue.global(qos: .background).async {
+//
+//                // Background Thread
+//
+//                DispatchQueue.main.async {
+//                    vc.view.frame = (self.window!.frame)
+//                    self.window!.addSubview(vc.view)
+//                    self.window!.bringSubviewToFront(vc.view)
+////                    navigationController.navigationBar.prefersLargeTitles = true
+//                    self.window?.rootViewController = vc
+//                    self.window?.makeKeyAndVisible()
+//                    // Run UI Updates
+//                    // self.presentViewController(vc, animated: true, completion: nil)
+//                }
+//            }
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
