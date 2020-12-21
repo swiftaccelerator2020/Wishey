@@ -1,2 +1,2 @@
-# Grp-3-Budgeting-App
+# Wishey
 Budgeting App by Group 3
