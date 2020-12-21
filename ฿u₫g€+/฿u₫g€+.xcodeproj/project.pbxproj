@@ -55,7 +55,7 @@
 		89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		89D3B8B2257636B200C0E747 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		89DC08072586621F00B93E36 /* OtherIncomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherIncomeTableViewController.swift; sourceTree = "<group>"; };
-		A8109E4A256F9520008F3709 /* ฿u₫g€+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "฿u₫g€+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8109E4A256F9520008F3709 /* Wishey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8109E4D256F9520008F3709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8109E4F256F9520008F3709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A8109E54256F9520008F3709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		A8109E4B256F9520008F3709 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A8109E4A256F9520008F3709 /* ฿u₫g€+.app */,
+				A8109E4A256F9520008F3709 /* Wishey.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,7 +170,7 @@
 			);
 			name = "฿u₫g€+";
 			productName = "฿u₫g€+";
-			productReference = A8109E4A256F9520008F3709 /* ฿u₫g€+.app */;
+			productReference = A8109E4A256F9520008F3709 /* Wishey.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -436,16 +436,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RC7MNVUZ8;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = XL5JK4F896;
 				INFOPLIST_FILE = "฿u₫g€+/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SAP-Group-3.Budget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = sg.tk.2020.wishey;
+				PRODUCT_NAME = Wishey;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -456,16 +457,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RC7MNVUZ8;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = XL5JK4F896;
 				INFOPLIST_FILE = "฿u₫g€+/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SAP-Group-3.Budget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = sg.tk.2020.wishey;
+				PRODUCT_NAME = Wishey;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
