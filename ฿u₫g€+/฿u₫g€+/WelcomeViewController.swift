@@ -64,6 +64,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func hideKeyboard(_ sender: Any) {
         self.resignFirstResponder()
+        view.frame.origin.y = 0
     }
     
     @IBAction func whenDoneClicked(_ sender: Any) {
