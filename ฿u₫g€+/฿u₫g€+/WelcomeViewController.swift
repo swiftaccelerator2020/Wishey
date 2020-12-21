@@ -17,7 +17,6 @@ class WelcomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         UserDefaults.standard.removeObject(forKey:"username")
-        print(UserDefaults.standard.object(forKey: "username"))
         if UserDefaults.standard.object(forKey: "username") != nil {
             print("no")
             performSegue(withIdentifier: "navigateHome", sender: nil)

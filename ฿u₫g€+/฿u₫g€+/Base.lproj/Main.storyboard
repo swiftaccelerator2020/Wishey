@@ -138,6 +138,13 @@
                                                     <action selector="zoomOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jm-jV-3m7"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbB-yN-QQr">
+                                                <rect key="frame" x="31" y="81" width="329" height="390"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <gestureRecognizers/>
@@ -196,6 +203,7 @@
                         <outlet property="buyALabel" destination="ET2-Tm-I5a" id="S1M-UL-tYk"/>
                         <outlet property="itemName" destination="8HI-Ly-3zO" id="gAc-cj-ou3"/>
                         <outlet property="nameLabel" destination="L2p-9l-K1t" id="WL0-ZE-gJH"/>
+                        <outlet property="noSpendingLabel" destination="TbB-yN-QQr" id="uCP-Fs-hG6"/>
                         <outlet property="pageControl" destination="xaM-yM-7Cl" id="w13-xI-kZR"/>
                         <outlet property="pieView" destination="Z8h-SS-r9E" id="RJr-vN-aEx"/>
                         <outlet property="restartButton" destination="728-Lc-v9J" id="vvh-eA-jdP"/>
@@ -1827,7 +1835,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="MIn-qi-R00"/>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="dv6-b5-aOz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.down.left" catalog="system" width="128" height="99"/>

@@ -59,8 +59,6 @@ extension Date {
     }
 }
 
-
-
 class ViewController: UIViewController {
     @IBOutlet weak var somethingOutOfSomethingLabel: UILabel!
     @IBOutlet weak var buyALabel: UILabel!
@@ -84,6 +82,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet var swipeRightGesture: UISwipeGestureRecognizer!
     var timer: Timer?
+    @IBOutlet weak var noSpendingLabel: UILabel!
     
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
         var colors: [UIColor] = []
@@ -144,13 +143,6 @@ class ViewController: UIViewController {
             break
         }
     }
-    
-    func saveusername(username: String){
-        UserDefaults.standard.setValue(username, forKey: "username")
-    }
-    
-    
-    
     @IBAction func rotateClockWise(_ sender: Any) {
         pieView.rotationAngle += 10
     }
@@ -232,7 +224,6 @@ class ViewController: UIViewController {
         //            UINavigationBar.appearance().isTranslucent = false
         //        }
     }
-    let name = (UserDefaults.standard.string(forKey: "username"))!
     override func viewWillDisappear(_ animated: Bool) {
         if self.timer != nil
         {
@@ -281,7 +272,11 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
-        nameLabel.attributedText = NSMutableAttributedString().normal30("Hello, ").bold30("\(name)")
+        if let name = UserDefaults.standard.string(forKey: "username") {
+            nameLabel.attributedText = NSMutableAttributedString().normal30("Hello, ").bold30("\(name)")
+        } else {
+            nameLabel.attributedText = NSMutableAttributedString().normal30("Hello")
+        }
         savedLabel.adjustsFontSizeToFitWidth = true
         buyALabel.adjustsFontSizeToFitWidth = true
         nameLabel.adjustsFontSizeToFitWidth = true
@@ -293,6 +288,21 @@ class ViewController: UIViewController {
         updateChart()
         if expensesArray.count == 0 {
             restartButton.isHidden = true
+            pageControl.isHidden = true
+            pieView.isHidden = true
+            barView.isHidden = true
+            noSpendingLabel.isHidden = false
+            noSpendingLabel.text = """
+😔 Uh oh! We couldnt find any information about your spendings.   Click on the "+" button to add new values!
+"""
+            swipeLeftGesture.isEnabled = false
+            swipeRightGesture.isEnabled = false
+        } else {
+            restartButton.isHidden = false
+            pageControl.isHidden = false
+            noSpendingLabel.isHidden = true
+            swipeLeftGesture.isEnabled = true
+            swipeRightGesture.isEnabled = true
         }
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -343,7 +353,7 @@ class ViewController: UIViewController {
         } else {
             buyALabel.text = ""
             somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
-            itemName.attributedText = NSMutableAttributedString().normal("Wishlist is Empty")
+            itemName.attributedText = NSMutableAttributedString().normal("Wishlist is empty")
         }
     }
     
@@ -352,9 +362,9 @@ class ViewController: UIViewController {
     //    }
     
     func setupPieChart() {
+        pieView.noDataText = "No Data Available for Pie Chart"
         if expensesArray.count != 0 {
             
-            pieView.noDataText = "No Data Available for Pie Chart"
             // MARK: Set Data for Pie Chart
             // Set up array
             var pieEntries: [PieChartDataEntry] = []
@@ -367,13 +377,29 @@ class ViewController: UIViewController {
                 }
             }
             if allvalzero == true {
+                restartButton.isHidden = true
+                pageControl.isHidden = true
+                pieView.isHidden = true
                 pieView.noDataText = "No Spendings"
                 pieView.clear()
                 rotateClockWiseTop.isHidden = true
                 rotateClockWiseBottom.isHidden = true
                 rotateAntiClockWiseTop.isHidden = true
                 rotateAntiClockWiseBottom.isHidden = true
+                noSpendingLabel.isHidden = false
+                noSpendingLabel.text = """
+No spendings currently made for this month
+Tap to show spendings and savings
+"""
+                swipeLeftGesture.isEnabled = false
+                swipeRightGesture.isEnabled = false
             } else {
+                restartButton.isHidden = false
+                pageControl.isHidden = false
+                pieView.isHidden = false
+                noSpendingLabel.isHidden = true
+                swipeLeftGesture.isEnabled = true
+                swipeRightGesture.isEnabled = true
                 // MARK: Customise Pie Chart
                 // Description
                 // pieView.usePercentValuesEnabled = true
@@ -434,7 +460,7 @@ class ViewController: UIViewController {
         if expensesArray.count != 0 {
 //            zoomInButton.isHidden = false
 //            zoomOutButton.isHidden = false
-            barView.noDataText = "No Data Available for Bar Chart/No Spendings"
+            barView.noDataText = "No Data Available for Bar Chart"
             var barEntries: [BarChartDataEntry] = []
             var xAxisValues: [String] = []
             var allvalzero = true
@@ -446,10 +472,27 @@ class ViewController: UIViewController {
                 }
             }
             if allvalzero == true {
+                restartButton.isHidden = true
+                pageControl.isHidden = true
+                barView.isHidden = true
+                noSpendingLabel.isHidden = false
+                noSpendingLabel.text = """
+No spendings currently made for this month
+Tap to show spendings and savings
+"""
+                barView.noDataText = "No Spendings"
                 barView.clear()
                 zoomInButton.isHidden = true
                 zoomOutButton.isHidden = true
+                swipeLeftGesture.isEnabled = false
+                swipeRightGesture.isEnabled = false
             } else {
+                restartButton.isHidden = false
+                pageControl.isHidden = false
+                barView.isHidden = false
+                noSpendingLabel.isHidden = true
+                swipeLeftGesture.isEnabled = true
+                swipeRightGesture.isEnabled = true
                 let chartDataSet = BarChartDataSet(entries: barEntries, label: nil)
                 chartDataSet.colors =
                     ChartColorTemplates.material()

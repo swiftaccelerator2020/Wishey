@@ -269,13 +269,20 @@ class WishlistTableViewController: UITableViewController {
         tableView.reloadData()
         if editingStyle == .delete {
             // Delete the row from the data source
-            wishlist.remove(at: indexPath.row)
-            WishlistItem.saveToFile(wishlist: wishlist)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            canBuy = []
-            updateProjectedSavings()
-            updateGlobalSavings()
-            tableView.reloadData()
+            let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
+                wishlist.remove(at: indexPath.row)
+                WishlistItem.saveToFile(wishlist: wishlist)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                self.canBuy = []
+                updateProjectedSavings()
+                updateGlobalSavings()
+                tableView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: {_ in
+                    tableView.reloadData()
+                }))
+            self.present(alert, animated: true, completion: nil)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -283,13 +290,23 @@ class WishlistTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-            wishlist.remove(at: indexPath.row)
-            WishlistItem.saveToFile(wishlist: wishlist)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.canBuy = []
-            updateProjectedSavings()
-            updateGlobalSavings()
-            tableView.reloadData()
+            let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
+                // Add
+                wishlist.remove(at: indexPath.row)
+                WishlistItem.saveToFile(wishlist: wishlist)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                self.canBuy = []
+                updateProjectedSavings()
+                updateGlobalSavings()
+                tableView.reloadData()
+                // End
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: {_ in
+                    tableView.reloadData()
+                }))
+            self.present(alert, animated: true, completion: nil)
+            
         }
         let edit = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
             self.indexPath = indexPath
@@ -302,22 +319,29 @@ class WishlistTableViewController: UITableViewController {
         var swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
         if canBuy[indexPath.row] == true {
             let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
-                wishlist.remove(at: indexPath.row)
-                WishlistItem.saveToFile(wishlist: wishlist)
-                tableView.deleteRows(at: [indexPath], with: .none)
-                let price = wishlist[indexPath.row].price
-                if wishlist[indexPath.row].price <= totalsavings {
-                    totalsavings -= price
-                } else {
-                    savings -= (price - totalsavings)
-                    totalsavings -= totalsavings
-                }
-                print(savings)
-                print(totalsavings)
-                self.canBuy = []
-                updateProjectedSavings()
-                updateGlobalSavings()
-                tableView.reloadData()
+                let alert = UIAlertController(title: "Are you sure you want to spend your savings on \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
+                    let price = wishlist[indexPath.row].price
+                    wishlist.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .none)
+                    WishlistItem.saveToFile(wishlist: wishlist)
+                    if price <= totalsavings {
+                        totalsavings -= price
+                    } else {
+                        savings -= (price - totalsavings)
+                        totalsavings -= totalsavings
+                    }
+                    print(savings)
+                    print(totalsavings)
+                    self.canBuy = []
+                    updateProjectedSavings()
+                    updateGlobalSavings()
+                    tableView.reloadData()
+                }))
+                alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: {_ in
+                    tableView.reloadData()
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
             spend.backgroundColor = UIColor.systemOrange
             swipeActions = UISwipeActionsConfiguration(actions: [delete, edit, spend])
