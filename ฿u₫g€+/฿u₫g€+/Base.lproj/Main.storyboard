@@ -69,9 +69,11 @@
                         <segue destination="nPf-CO-zKt" kind="presentation" identifier="addCategory2" id="cbn-AK-Eyx"/>
                         <segue destination="DGK-QJ-wSe" kind="show" identifier="expensesSegue" id="MIn-qi-R00"/>
                         <segue destination="Bdt-au-xOD" kind="show" identifier="addValue" id="y0t-5x-m3X"/>
+                        <segue destination="dfd-cT-BWp" kind="unwind" identifier="unwindExpenseBackHome" unwindAction="unwindToHome:" id="W3e-9p-tRR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okg-AP-81O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="dfd-cT-BWp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4422.8971962616824" y="92.656587473002162"/>
         </scene>
@@ -107,32 +109,39 @@
                                 <rect key="frame" x="20" y="428.66666666666669" width="388" height="78.666666666666686"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bux-ar-AZS">
-                                        <rect key="frame" x="0.0" y="0.0" width="388" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="388" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" textContentType="name"/>
                                         <connections>
                                             <action selector="hideKeyboard:" destination="IHK-mL-Fc2" eventType="editingDidEndOnExit" id="Stw-cX-D9V"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Income (Monthly)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-r0-T6Q">
-                                        <rect key="frame" x="0.0" y="44.333333333333314" width="388" height="34.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6qM-bo-fIR">
+                                        <rect key="frame" x="0.0" y="44.666666666666629" width="388" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V54-GR-gdw">
+                                                <rect key="frame" x="0.0" y="0.0" width="10.333333333333334" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Income (Monthly)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-r0-T6Q">
+                                                <rect key="frame" x="15.333333333333343" y="0.0" width="372.66666666666663" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="70Q-r0-T6Q" firstAttribute="top" secondItem="bux-ar-AZS" secondAttribute="bottom" constant="10" id="McJ-vZ-oCS"/>
-                                    <constraint firstItem="bux-ar-AZS" firstAttribute="height" secondItem="70Q-r0-T6Q" secondAttribute="height" id="ksb-7h-sJZ"/>
-                                    <constraint firstItem="70Q-r0-T6Q" firstAttribute="width" secondItem="bux-ar-AZS" secondAttribute="width" id="xRf-uj-PmD"/>
+                                    <constraint firstItem="bux-ar-AZS" firstAttribute="width" secondItem="6qM-bo-fIR" secondAttribute="width" id="8uA-ys-QHI"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5lk-2n-BRK">
                                 <rect key="frame" x="20" y="824.66666666666663" width="388" height="47.333333333333371"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Skip">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleColor" systemColor="systemRedColor"/>
                                     <color key="titleShadowColor" systemColor="systemGrayColor"/>
                                 </state>
                                 <connections>
@@ -141,11 +150,9 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M68-Cp-Fbf">
                                 <rect key="frame" x="20" y="767.66666666666663" width="388" height="47"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Let's Go!">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleColor" systemColor="systemGreenColor"/>
                                     <color key="titleShadowColor" systemColor="systemGrayColor"/>
                                 </state>
                                 <connections>
@@ -1358,7 +1365,7 @@
             <objects>
                 <tableViewController id="DGK-QJ-wSe" customClass="ExpenseDetailTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ldf-FT-KgT">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="hGU-EL-e11">
@@ -1532,7 +1539,7 @@
                         <outletCollection property="cells" destination="bxd-8S-qkt" collectionClass="NSMutableArray" id="7JF-LX-p5V"/>
                         <outletCollection property="cells" destination="KFE-PI-bmI" collectionClass="NSMutableArray" id="xRS-Gi-edA"/>
                         <outletCollection property="cells" destination="WzZ-dC-AX6" collectionClass="NSMutableArray" id="g5m-Ij-tjf"/>
-                        <segue destination="y2w-XD-g0d" kind="unwind" identifier="unwindExpense" unwindAction="unwindToExpense:" id="als-Xz-pQz"/>
+                        <segue destination="y2w-XD-g0d" kind="unwind" identifier="unwindExpense" unwindAction="unwindToHome:" id="als-Xz-pQz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VC8-vH-ts8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1680,7 +1687,7 @@
                         <outlet property="done" destination="QWn-MJ-PAh" id="LMy-Wz-igr"/>
                         <outletCollection property="cells" destination="7Eq-rR-vgR" collectionClass="NSMutableArray" id="bTb-gn-cAX"/>
                         <outletCollection property="cells" destination="UFC-Xo-KeA" collectionClass="NSMutableArray" id="U4L-B1-wsC"/>
-                        <segue destination="26V-JD-DrJ" kind="unwind" identifier="unwindAddExpense" unwindAction="unwindToExpense:" id="Ygi-ab-e7a"/>
+                        <segue destination="26V-JD-DrJ" kind="unwind" identifier="unwindAddExpense" unwindAction="unwindToHome:" id="Ygi-ab-e7a"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDW-Gj-gcV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1724,12 +1731,16 @@
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="xBP-WK-kRF" firstAttribute="leading" secondItem="kKo-wN-HWl" secondAttribute="leading" constant="8" id="A3X-2T-4sA"/>
                                                     <constraint firstItem="xBP-WK-kRF" firstAttribute="top" secondItem="kKo-wN-HWl" secondAttribute="top" constant="8" id="T6d-1l-SbK"/>
                                                     <constraint firstAttribute="bottom" secondItem="xBP-WK-kRF" secondAttribute="bottom" constant="8" id="e0V-nk-n7r"/>
                                                     <constraint firstAttribute="trailing" secondItem="xBP-WK-kRF" secondAttribute="trailing" constant="8" id="r1E-by-Y2i"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="kiE-F4-URO" appends="YES" id="OLe-Ey-Fn7"/>
+                                                </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xof-Cb-Dny">
                                                 <rect key="frame" x="0.0" y="125" width="396" height="100"/>
@@ -2004,7 +2015,7 @@
                         <outlet property="zoomOutButton" destination="wjk-kJ-WxK" id="AD2-z0-O4r"/>
                         <segue destination="nPf-CO-zKt" kind="presentation" identifier="addCategory" id="GS8-zj-BNE"/>
                         <segue destination="uMG-VY-85i" kind="presentation" identifier="showExpenses" id="mhW-7a-xeA"/>
-                        <segue destination="h8R-RB-54d" kind="presentation" identifier="showNameView" id="S6u-pJ-LsV"/>
+                        <segue destination="o12-Mo-8eg" kind="show" identifier="showNameView" id="KHu-Rx-7dZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qls-qN-i3B" sceneMemberID="firstResponder"/>
@@ -2028,6 +2039,11 @@
                         <action selector="tapWishlistView:" destination="G3o-XK-bQe" id="F4x-pO-4Jx"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="kiE-F4-URO">
+                    <connections>
+                        <action selector="changeName:" destination="G3o-XK-bQe" id="gb2-Gj-nCG"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2506.5420560747662" y="92.656587473002162"/>
         </scene>
@@ -2036,60 +2052,53 @@
             <objects>
                 <viewController title="Welcome" id="o12-Mo-8eg" customClass="NameViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pCi-0n-fHY">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Pb2-eP-bNS">
-                                <rect key="frame" x="20" y="456" width="388" height="34"/>
+                                <rect key="frame" x="20" y="474.66666666666669" width="388" height="34"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npd-23-9LP">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" textContentType="name"/>
                                         <connections>
-                                            <action selector="hideKeyboard:" destination="o12-Mo-8eg" eventType="editingDidEndOnExit" id="wwk-Fq-89z"/>
+                                            <action selector="hideKeyboard:" destination="o12-Mo-8eg" eventType="editingDidEndOnExit" id="dVS-fG-2EV"/>
                                         </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UwM-iW-9d1">
-                                <rect key="frame" x="20" y="782" width="388" height="36"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <rect key="frame" x="20" y="787" width="388" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Cancel">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
                                     <color key="titleShadowColor" systemColor="systemGrayColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancel:" destination="o12-Mo-8eg" eventType="touchUpInside" id="3kT-dM-V5l"/>
-                                    <action selector="skipButtonTapped:" destination="o12-Mo-8eg" eventType="touchUpInside" id="tyh-rm-1gm"/>
+                                    <action selector="cancelAction:" destination="o12-Mo-8eg" eventType="touchUpInside" id="3kT-dM-V5l"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2V-RP-uar">
-                                <rect key="frame" x="20" y="736" width="388" height="36"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <rect key="frame" x="20" y="741" width="388" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Delete">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleColor" systemColor="systemRedColor"/>
                                     <color key="titleShadowColor" systemColor="systemGrayColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="whenDoneClicked:" destination="o12-Mo-8eg" eventType="touchUpInside" id="juC-wk-EPZ"/>
+                                    <action selector="deleteAction:" destination="o12-Mo-8eg" eventType="touchUpInside" id="Sf7-J5-TB0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13S-Xo-Gir">
-                                <rect key="frame" x="20" y="690" width="388" height="36"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <rect key="frame" x="20" y="695" width="388" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Save">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleColor" systemColor="systemGreenColor"/>
                                     <color key="titleShadowColor" systemColor="systemGrayColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="whenDoneClicked:" destination="o12-Mo-8eg" eventType="touchUpInside" id="j1a-iv-GVY"/>
+                                    <action selector="saveAction:" destination="o12-Mo-8eg" eventType="touchUpInside" id="92S-Eu-LAZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2116,41 +2125,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="pqL-MJ-K5d"/>
                     <connections>
-                        <outlet property="cancel" destination="UwM-iW-9d1" id="m2A-ru-sUn"/>
+                        <outlet property="cancel" destination="UwM-iW-9d1" id="XJi-pL-FSe"/>
                         <outlet property="delete" destination="l2V-RP-uar" id="c2g-jR-tWz"/>
-                        <outlet property="doneButton" destination="l2V-RP-uar" id="9Ss-cP-vu7"/>
+                        <outlet property="nameTF" destination="npd-23-9LP" id="TAe-tO-d38"/>
                         <outlet property="save" destination="13S-Xo-Gir" id="ISM-x9-iqt"/>
-                        <outlet property="skipButton" destination="UwM-iW-9d1" id="mgU-oQ-ap5"/>
-                        <outlet property="stackView" destination="Pb2-eP-bNS" id="tgX-Ix-It9"/>
-                        <outlet property="usernameTextField" destination="npd-23-9LP" id="13O-nw-IRb"/>
+                        <segue destination="gi7-ZC-TDO" kind="unwind" identifier="nameHome" unwindAction="unwindToHome:" id="YXV-4t-gzC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBT-rP-Wun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="gi7-ZC-TDO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="694" y="-599"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Xr0-Ta-YTD">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h8R-RB-54d" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Ssj-9f-XBh">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="108"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="o12-Mo-8eg" kind="relationship" relationship="rootViewController" id="G7j-V5-1l3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DkH-1Z-f2M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-248" y="-599"/>
+            <point key="canvasLocation" x="1607" y="-599"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S4S-36-b6Y"/>
-        <segue reference="GS8-zj-BNE"/>
+        <segue reference="MIn-qi-R00"/>
+        <segue reference="cbn-AK-Eyx"/>
         <segue reference="Xoo-gf-MEm"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -2172,6 +2162,9 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -2186,9 +2179,6 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

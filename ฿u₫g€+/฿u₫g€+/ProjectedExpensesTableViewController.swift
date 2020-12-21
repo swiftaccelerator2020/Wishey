@@ -194,10 +194,12 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         if fromIndexPath.section == 1 {
             if to.section == 1 {
-                let expense = expensesArray.remove(at: fromIndexPath.row)
-                expensesArray.insert(expense, at: to.row)
-                expenseStruct.saveToFile(expense: expensesArray)
-                tableView.reloadData()
+                if to.row != fromIndexPath.row {
+                    let expense = expensesArray.remove(at: fromIndexPath.row)
+                    expensesArray.insert(expense, at: to.row)
+                    expenseStruct.saveToFile(expense: expensesArray)
+                    tableView.reloadData()
+                }
             } else {
                 tableView.reloadData()
             }

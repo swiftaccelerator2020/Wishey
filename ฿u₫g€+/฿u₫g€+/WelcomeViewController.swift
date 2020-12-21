@@ -27,13 +27,13 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
 //        UserDefaults.standard.setValue("WelcomeViewController", forKey: "LaunchViewController")
         text.adjustsFontSizeToFitWidth = true
         UserDefaults.standard.setValue(false, forKey: "loggedIn")
-        doneButton.layer.cornerRadius = 10
-        skipButton.layer.cornerRadius = 10
+//        doneButton.layer.cornerRadius = 10
+//        skipButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
         thingy.layer.cornerRadius = 15
         thingy.clipsToBounds = true
         
-        UserDefaults.standard.removeObject(forKey:"username")
+//        UserDefaults.standard.removeObject(forKey: "username")
         if UserDefaults.standard.object(forKey: "username") != nil {
             print("no")
             performSegue(withIdentifier: "navigateHome", sender: nil)
@@ -75,7 +75,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
             print(UserDefaults.standard.string(forKey: "username")!)
             performSegue(withIdentifier: "navigateHome", sender: nil)
-            doneButton.isEnabled = true
+//            doneButton.isEnabled = true
         } else {
             if usernameTextField.text!.isEmpty || usernameTextField.text == nil {
                 let alert = UIAlertController(title: "Warning", message: "Name is Empty", preferredStyle: .alert)

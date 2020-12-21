@@ -171,6 +171,9 @@ class ViewController: UIViewController {
         //            UINavigationBar.appearance().isTranslucent = false
         //        }
     }
+    @IBAction func changeName(_ sender: Any) {
+        performSegue(withIdentifier: "showNameView", sender: nil)
+    }
     override func viewWillDisappear(_ animated: Bool) {
         if self.timer != nil
         {
@@ -543,9 +546,10 @@ Tap to show Expenses/Spendings and Savings
     }
     
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
-        updateChart()
-        setupPieChart()
-        setupBarChart()
+//        updateChart()
+//        setupPieChart()
+//        setupBarChart()
+        viewWillAppear(true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCategory" {
