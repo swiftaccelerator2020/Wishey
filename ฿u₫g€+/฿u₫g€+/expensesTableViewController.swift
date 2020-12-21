@@ -63,7 +63,7 @@ class expensesTableViewController: UITableViewController {
         if indexPath.section == 0 {
             cell.expense = expensesArray[indexPath.row]
             cell.setUp()
-            cell.accessoryType = .disclosureIndicator
+//            cell.accessoryType = .disclosureIndicator
         } else {
             cell.spendingLabel.text = "$\(String(format: "%.2f", savings)) saved"
             cell.expenseName.text = "Savings"

@@ -593,7 +593,7 @@
             <objects>
                 <tableViewController id="Ket-Ta-vwm" customClass="AddExpensesTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="r0c-0g-4kg">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="o6z-tz-Kmx">
@@ -783,7 +783,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cuP-fq-Eky"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="sIb-Qd-7Nb">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="108"/>
+                        <rect key="frame" x="0.0" y="44" width="428" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.51372549020000002" green="0.85882352939999995" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" red="0.51372549020000002" green="0.85882352939999995" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1365,7 +1365,7 @@
             <objects>
                 <tableViewController id="DGK-QJ-wSe" customClass="ExpenseDetailTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ldf-FT-KgT">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="hGU-EL-e11">
@@ -2139,8 +2139,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MIn-qi-R00"/>
-        <segue reference="cbn-AK-Eyx"/>
+        <segue reference="S4S-36-b6Y"/>
+        <segue reference="dTf-bR-wmV"/>
         <segue reference="Xoo-gf-MEm"/>
     </inferredMetricsTieBreakers>
     <resources>

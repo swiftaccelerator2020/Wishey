@@ -125,7 +125,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
                 cell.isUserInteractionEnabled = true
             }
         } else if indexPath.section == 1 {
-            cell.accessoryType = .disclosureIndicator
+//            cell.accessoryType = .disclosureIndicator
             cell.expense = expensesArray[indexPath.row]
             cell.expenseSetUp()
         }

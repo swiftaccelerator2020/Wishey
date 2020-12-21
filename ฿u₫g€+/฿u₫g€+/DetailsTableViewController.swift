@@ -132,9 +132,6 @@ class DetailsTableViewController: UITableViewController, UIPickerViewDataSource,
     }
     
     @IBAction func editingend(_ sender: Any) {
-        if URLTF.text != nil && !URLTF.text!.isEmpty && URLTF.text != item.url {
-            item.url = URLTF.text
-        }
         if itemNameTF.text != nil && !itemNameTF.text!.isEmpty && itemCatTF.text != nil && !itemCatTF.text!.isEmpty && priceTF.text != nil && !priceTF.text!.isEmpty && durationTF.text != nil && !durationTF.text!.isEmpty && Int(durationTF.text!) != nil && Double(priceTF.text!) != nil {
             if (item.name != itemNameTF.text!) || (item.category != itemCatTF.text!) || (item.price != Double(priceTF.text!)) || (item.months != Int(durationTF.text!)) {
                 if Double(priceTF.text!)! > 0.0  && Int(durationTF.text!)! > 0 {
@@ -163,6 +160,10 @@ class DetailsTableViewController: UITableViewController, UIPickerViewDataSource,
                         durationTF.backgroundColor = .none
                     }
                 }
+            }
+            if URLTF.text != nil && !URLTF.text!.isEmpty && URLTF.text != item.url {
+//                item.url = URLTF.text
+                saveChangesButton.isEnabled = true
             }
         } else {
             if itemNameTF.text == nil || itemNameTF.text!.isEmpty {
