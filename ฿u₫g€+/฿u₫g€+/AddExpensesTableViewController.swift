@@ -46,6 +46,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
 //            stepper.value = 0
 //            budgetAmount.text = String(Int(stepper.value))
 //        }
+        stepper.value = 100
         print(stepper.value)
         budgetAmount.text = String(Int(stepper.value))
     }
@@ -162,13 +163,28 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     
     func checkAndHighlightErrors() {
         if categoryName.text != nil && !categoryName.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty {
-            done.isEnabled = true
-            categoryName.layer.borderWidth = 0
-            budgetAmount.layer.borderWidth = 0
-            categoryAmount.layer.borderWidth = 0
-            categoryName.layer.borderColor = .none
-            budgetAmount.layer.borderColor = .none
-            categoryAmount.layer.borderColor = .none
+            if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil && Int(budgetAmount.text!)! > 0 {
+                done.isEnabled = true
+                categoryName.layer.borderWidth = 0
+                budgetAmount.layer.borderWidth = 0
+                categoryAmount.layer.borderWidth = 0
+                categoryName.layer.borderColor = .none
+                budgetAmount.layer.borderColor = .none
+                categoryAmount.layer.borderColor = .none
+            } else if Int(budgetAmount.text!) == nil {
+                budgetAmount.layer.borderWidth = 1
+                budgetAmount.layer.borderColor = UIColor.systemYellow.cgColor
+            } else if Int(budgetAmount.text!)! <= 0 {
+                budgetAmount.layer.borderWidth = 1
+                budgetAmount.layer.borderColor = UIColor.systemOrange.cgColor
+            } else if Double(categoryAmount.text!) == nil {
+                categoryAmount.layer.borderWidth = 1
+                categoryAmount.layer.borderColor = UIColor.systemYellow.cgColor
+            } else if Double(categoryAmount.text!)! <= 0.0 {
+                categoryAmount.layer.borderWidth = 1
+                categoryAmount.layer.borderColor = UIColor.systemOrange.cgColor
+            }
+
         } else {
             if categoryName.text == nil || categoryName.text!.isEmpty {
                 categoryName.layer.borderWidth = 1
@@ -180,12 +196,6 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
             if budgetAmount.text == nil || budgetAmount.text!.isEmpty {
                 budgetAmount.layer.borderWidth = 1
                 budgetAmount.layer.borderColor = UIColor.systemRed.cgColor
-            } else if Int(budgetAmount.text!) == nil {
-                budgetAmount.layer.borderWidth = 1
-                budgetAmount.layer.borderColor = UIColor.systemYellow.cgColor
-            } else if Int(budgetAmount.text!)! <= 0 {
-                budgetAmount.layer.borderWidth = 1
-                budgetAmount.layer.borderColor = UIColor.systemOrange.cgColor
             } else {
                 budgetAmount.layer.borderWidth = 0
                 budgetAmount.backgroundColor = .none
@@ -193,12 +203,6 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
             if categoryAmount.text == nil || categoryAmount.text!.isEmpty {
                 categoryAmount.layer.borderWidth = 1
                 categoryAmount.layer.borderColor = UIColor.systemRed.cgColor
-            } else if Double(categoryAmount.text!) == nil {
-                categoryAmount.layer.borderWidth = 1
-                categoryAmount.layer.borderColor = UIColor.systemYellow.cgColor
-            } else if Double(categoryAmount.text!)! <= 0.0 {
-                categoryAmount.layer.borderWidth = 1
-                categoryAmount.layer.borderColor = UIColor.systemOrange.cgColor
             } else {
                 categoryAmount.layer.borderWidth = 0
                 categoryAmount.backgroundColor = .none
@@ -210,7 +214,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
         if Int(budgetAmount.text!) != nil && !budgetAmount.text!.isEmpty && budgetAmount.text != nil {
             stepper.value = Double(budgetAmount.text!)!
         } else {
-            stepper.value = 0
+            stepper.value = 100
             budgetAmount.text = String(Int(stepper.value))
         }
         checkAndHighlightErrors()
@@ -253,7 +257,7 @@ class AddExpensesTableViewController: UITableViewController, UITextFieldDelegate
     }
     @IBAction func save(_ sender: Any) {
         if categoryName.text != nil && !categoryName.text!.isEmpty && categoryAmount.text != nil && !categoryAmount.text!.isEmpty && budgetAmount.text != nil && !budgetAmount.text!.isEmpty {
-            if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil {
+            if Double(categoryAmount.text!) != nil && Int(budgetAmount.text!) != nil && Int(budgetAmount.text!)! > 0 {
                 expensesArray.append(expenseStruct(categoryName: categoryName.text!, projectedExpenses: Int(budgetAmount.text!)!, actualExpenses: Double(categoryAmount.text!)!))
                 expenseStruct.saveToFile(expense: expensesArray)
                 updateGlobalSavings()

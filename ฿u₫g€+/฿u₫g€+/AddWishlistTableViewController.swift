@@ -338,15 +338,3 @@ class AddWishlistTableViewController: UITableViewController, UIPickerViewDataSou
 //    */
 
 }
-
-extension UITableViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UITableViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = true
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}

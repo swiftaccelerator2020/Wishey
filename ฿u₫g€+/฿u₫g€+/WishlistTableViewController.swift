@@ -269,7 +269,7 @@ class WishlistTableViewController: UITableViewController {
         tableView.reloadData()
         if editingStyle == .delete {
             // Delete the row from the data source
-            let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
                 wishlist.remove(at: indexPath.row)
                 WishlistItem.saveToFile(wishlist: wishlist)
@@ -290,7 +290,7 @@ class WishlistTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-            let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
                 // Add
                 wishlist.remove(at: indexPath.row)
@@ -319,7 +319,7 @@ class WishlistTableViewController: UITableViewController {
         var swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
         if canBuy[indexPath.row] == true {
             let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
-                let alert = UIAlertController(title: "Are you sure you want to spend your savings on \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .actionSheet)
+                let alert = UIAlertController(title: "Are you sure you want to spend your savings on \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
                     let price = wishlist[indexPath.row].price
                     wishlist.remove(at: indexPath.row)
