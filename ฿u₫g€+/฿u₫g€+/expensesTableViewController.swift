@@ -184,10 +184,18 @@ class expensesTableViewController: UITableViewController {
     
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let expense = expensesArray.remove(at: fromIndexPath.row)
-        expensesArray.insert(expense, at: to.row)
-        expenseStruct.saveToFile(expense: expensesArray)
-        tableView.reloadData()
+        if fromIndexPath.section == 0 {
+            if to.section == 0 {
+                let expense = expensesArray.remove(at: fromIndexPath.row)
+                expensesArray.insert(expense, at: to.row)
+                expenseStruct.saveToFile(expense: expensesArray)
+                tableView.reloadData()
+            } else {
+                tableView.reloadData()
+            }
+        } else {
+            tableView.reloadData()
+        }
      }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

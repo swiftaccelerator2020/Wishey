@@ -73,9 +73,14 @@ class AddValueTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func hideKeyboard(_ sender: UITextField) {
         sender.resignFirstResponder()
+        check()
     }
     
     @IBAction func textFieldEnd(_ sender: Any) {
+        check()
+    }
+    
+    func check() {
         if !categoryName.text!.isEmpty && categoryName.text != nil && !amtToAdd.text!.isEmpty && amtToAdd.text != nil {
             if Double(amtToAdd.text!) != nil && Double(amtToAdd.text!)! > 0.0 {
                 done.isEnabled = true
@@ -85,7 +90,7 @@ class AddValueTableViewController: UITableViewController, UITextFieldDelegate {
             } else if Double(amtToAdd.text!)! <= 0.0 {
                 amtToAdd.layer.borderWidth = 1
                 amtToAdd.layer.borderColor = UIColor.systemOrange.cgColor
-            } 
+            }
             categoryName.layer.borderWidth = 0
             amtToAdd.layer.borderWidth = 0
             categoryName.layer.borderColor = .none

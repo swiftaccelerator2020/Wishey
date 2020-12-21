@@ -91,6 +91,7 @@ class ExpenseDetailTableViewController: UITableViewController, UITextFieldDelega
     }
     @IBAction func hideKeyboard(_ sender: UITextField) {
         sender.resignFirstResponder()
+        checkAndHighlightErrors()
     }
     
     //    // MARK: - Table view data source

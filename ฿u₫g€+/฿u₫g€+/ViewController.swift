@@ -121,7 +121,6 @@ class ViewController: UIViewController {
     @IBAction func tapWishlistView(_ sender: Any) {
         tabBarController?.selectedIndex = 2
     }
-    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -238,21 +237,51 @@ class ViewController: UIViewController {
         if expensesArray.count == 0 {
             restartButton.isHidden = true
             pageControl.isHidden = true
-//            pieView.isHidden = true
-//            barView.isHidden = true
-//            noSpendingLabel.isHidden = false
-//            noSpendingLabel.text = """
-//😔 Uh oh! We couldnt find any information about your spendings.   Click on the "+" button to add new values!
-//"""
+            pieView.isHidden = true
+            barView.isHidden = true
+            noSpendingLabel.isHidden = false
+            noSpendingLabel.text = """
+😔 Uh oh!
+We couldn't find any information about your Spendings.   Click the "+" button to add new values and spending categories!
+"""
             swipeLeftGesture.isEnabled = false
             swipeRightGesture.isEnabled = false
         } else {
-            restartButton.isHidden = false
-            pageControl.isHidden = false
-//            noSpendingLabel.isHidden = true
-            swipeLeftGesture.isEnabled = true
-            swipeRightGesture.isEnabled = true
-//            updateChart()
+            var allvalzero = true
+            for i in expensesArray {
+                if i.actualExpenses > 0.0 {
+                    
+                    allvalzero = false
+                }
+            }
+            if allvalzero == true {
+                rotateAntiClockWiseBottom.isHidden = true
+                rotateAntiClockWiseTop.isHidden = true
+                rotateClockWiseBottom.isHidden = true
+                rotateClockWiseTop.isHidden = true
+                zoomInButton.isHidden = true
+                zoomOutButton.isHidden = true
+                restartButton.isHidden = true
+                pageControl.isHidden = true
+                pieView.isHidden = true
+                barView.isHidden = true
+                noSpendingLabel.isHidden = false
+                noSpendingLabel.text = """
+No spendings currently made this Month
+
+Tap to show Expenses/Spendings and Savings
+"""
+                swipeLeftGesture.isEnabled = false
+                swipeRightGesture.isEnabled = false
+                
+            } else {
+                restartButton.isHidden = false
+                pageControl.isHidden = false
+    //            noSpendingLabel.isHidden = true
+                swipeLeftGesture.isEnabled = true
+                swipeRightGesture.isEnabled = true
+    //            updateChart()
+            }
         }
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -317,34 +346,32 @@ class ViewController: UIViewController {
             // MARK: Set Data for Pie Chart
             // Set up array
             var pieEntries: [PieChartDataEntry] = []
-            var allvalzero = true
             // Iterate through data values
             for i in expensesArray {
                 if i.actualExpenses > 0.0 {
                     pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
-                    allvalzero = false
                 }
             }
-            if allvalzero == true {
-                restartButton.isHidden = true
-                pageControl.isHidden = true
-//                pieView.isHidden = true
-                pieView.noDataText = "No Spendings"
-                pieView.clear()
-                rotateClockWiseTop.isHidden = true
-                rotateClockWiseBottom.isHidden = true
-                rotateAntiClockWiseTop.isHidden = true
-                rotateAntiClockWiseBottom.isHidden = true
-//                noSpendingLabel.isHidden = false
-//                noSpendingLabel.text = """
-//No spendings currently made this month
-//
-//Tap to show spendings and savings
-//"""
-                swipeLeftGesture.isEnabled = false
-                swipeRightGesture.isEnabled = false
-            } else {
-                updateChart()
+//            if allvalzero == true {
+//                restartButton.isHidden = true
+//                pageControl.isHidden = true
+////                pieView.isHidden = true
+//                pieView.noDataText = "No Spendings"
+//                pieView.clear()
+//                rotateClockWiseTop.isHidden = true
+//                rotateClockWiseBottom.isHidden = true
+//                rotateAntiClockWiseTop.isHidden = true
+//                rotateAntiClockWiseBottom.isHidden = true
+////                noSpendingLabel.isHidden = false
+////                noSpendingLabel.text = """
+////No spendings currently made this month
+////
+////Tap to show spendings and savings
+////"""
+//                swipeLeftGesture.isEnabled = false
+//                swipeRightGesture.isEnabled = false
+//            } else {
+//                updateChart()
                 restartButton.isHidden = false
                 pageControl.isHidden = false
 //                pieView.isHidden = false
@@ -397,7 +424,7 @@ class ViewController: UIViewController {
                 //        formatter.multiplier = 1.0
                 //        pieChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
                 pieView.data = pieChartData
-            }
+//            }
         } else {
             pieView.clear()
             rotateClockWiseTop.isHidden = true
@@ -414,31 +441,29 @@ class ViewController: UIViewController {
             barView.noDataText = "No Data Available for Bar Chart"
             var barEntries: [BarChartDataEntry] = []
             var xAxisValues: [String] = []
-            var allvalzero = true
             for i in 0..<expensesArray.count {
                 if expensesArray[i].actualExpenses > 0.0 {
                     barEntries.append(BarChartDataEntry(x: Double(i), yValues: [expensesArray[i].actualExpenses]))
                     xAxisValues.append(expensesArray[i].categoryName)
-                    allvalzero = false
                 }
             }
-            if allvalzero == true {
-                restartButton.isHidden = true
-//                pageControl.isHidden = true
-//                barView.isHidden = true
-//                noSpendingLabel.isHidden = false
-//                noSpendingLabel.text = """
-//No spendings currently made this month
-//
-//Tap to show spendings and savings
-//"""
-                barView.noDataText = "No Spendings"
-                barView.clear()
-                zoomInButton.isHidden = true
-                zoomOutButton.isHidden = true
-                swipeLeftGesture.isEnabled = false
-                swipeRightGesture.isEnabled = false
-            } else {
+//            if allvalzero == true {
+//                restartButton.isHidden = true
+////                pageControl.isHidden = true
+////                barView.isHidden = true
+////                noSpendingLabel.isHidden = false
+////                noSpendingLabel.text = """
+////No spendings currently made this month
+////
+////Tap to show spendings and savings
+////"""
+//                barView.noDataText = "No Spendings"
+//                barView.clear()
+//                zoomInButton.isHidden = true
+//                zoomOutButton.isHidden = true
+//                swipeLeftGesture.isEnabled = false
+//                swipeRightGesture.isEnabled = false
+//            } else {
 //                updateChart()
                 restartButton.isHidden = false
                 pageControl.isHidden = false
@@ -476,7 +501,7 @@ class ViewController: UIViewController {
                 barView.setVisibleYRangeMinimum(0, axis: .left)
                 //        barView.leftAxis.drawAxisLineEnabled = false
                 //        barView.rightAxis.enabled = false
-            }
+//            }
         } else {
             barView.clear()
             zoomInButton.isHidden = true

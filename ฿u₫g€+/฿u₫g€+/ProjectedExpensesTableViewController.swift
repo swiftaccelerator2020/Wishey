@@ -125,6 +125,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
                 cell.isUserInteractionEnabled = true
             }
         } else if indexPath.section == 1 {
+            cell.accessoryType = .disclosureIndicator
             cell.expense = expensesArray[indexPath.row]
             cell.expenseSetUp()
         }
@@ -192,9 +193,15 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         if fromIndexPath.section == 1 {
-            let expense = expensesArray.remove(at: fromIndexPath.row)
-            expensesArray.insert(expense, at: to.row)
-            expenseStruct.saveToFile(expense: expensesArray)
+            if to.section == 1 {
+                let expense = expensesArray.remove(at: fromIndexPath.row)
+                expensesArray.insert(expense, at: to.row)
+                expenseStruct.saveToFile(expense: expensesArray)
+                tableView.reloadData()
+            } else {
+                tableView.reloadData()
+            }
+        } else {
             tableView.reloadData()
         }
      }

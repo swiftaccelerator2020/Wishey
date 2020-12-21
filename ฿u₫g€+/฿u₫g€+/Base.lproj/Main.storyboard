@@ -11,12 +11,12 @@
         <!--Month - Expenses/Spendings-->
         <scene sceneID="hD2-Ox-xLP">
             <objects>
-                <tableViewController id="TGN-zG-xuB" customClass="expensesTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="TGN-zG-xuB" customClass="expensesTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="EMT-Dn-UxD">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="g6V-rR-Sy3" customClass="expenseTableViewCell" customModule="_u_g__" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="g6V-rR-Sy3" customClass="expenseTableViewCell" customModule="Wishey" customModuleProvider="target">
                                 <rect key="frame" x="20" y="55.333332061767578" width="388" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g6V-rR-Sy3" id="LlM-TG-J2t">
@@ -78,7 +78,7 @@
         <!--Welcome-->
         <scene sceneID="BCS-PO-BtX">
             <objects>
-                <viewController storyboardIdentifier="WelcomeViewController" title="Welcome" id="IHK-mL-Fc2" customClass="WelcomeViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" title="Welcome" id="IHK-mL-Fc2" customClass="WelcomeViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kOf-DT-XPF">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,7 +201,7 @@
         <!--Start View Controller-->
         <scene sceneID="hHK-mI-rNt">
             <objects>
-                <viewController id="nie-mL-ENR" customClass="StartViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nie-mL-ENR" customClass="StartViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hiE-w0-AHZ">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,7 +231,7 @@
         <!--Main Tab Bar View Controller-->
         <scene sceneID="9NQ-Ea-UE2">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="nbn-IM-8RI" customClass="MainTabBarViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="nbn-IM-8RI" customClass="MainTabBarViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Wda-4d-VAf"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lh6-KV-u9h">
@@ -305,17 +305,17 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iji-w9-eLE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1607" y="-599"/>
+            <point key="canvasLocation" x="2506.5420560747662" y="-599.35205183585322"/>
         </scene>
         <!--Wishlist-->
         <scene sceneID="mzf-ME-mdU">
             <objects>
-                <tableViewController id="ApX-jf-5l0" customClass="WishlistTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ApX-jf-5l0" customClass="WishlistTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3nO-Ap-ZI0">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishlistCell" id="q1Q-CV-mOR" customClass="WishlistTableViewCell" customModule="_u_g__" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishlistCell" id="q1Q-CV-mOR" customClass="WishlistTableViewCell" customModule="Wishey" customModuleProvider="target">
                                 <rect key="frame" x="20" y="55.333332061767578" width="388" height="137.33332824707031"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q1Q-CV-mOR" id="4mu-o3-krt">
@@ -349,7 +349,7 @@
                                             <rect key="frame" x="103" y="48" width="150" height="4"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exh-Ea-Iwk" customClass="PlainHorizontalProgressBar" customModule="_u_g__" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exh-Ea-Iwk" customClass="PlainHorizontalProgressBar" customModule="Wishey" customModuleProvider="target">
                                             <rect key="frame" x="20" y="93.333333333333329" width="348" height="34"/>
                                             <color key="backgroundColor" systemColor="systemGray3Color"/>
                                         </view>
@@ -412,7 +412,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hub-CM-YFN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2506.5420560747662" y="-599.35205183585322"/>
+            <point key="canvasLocation" x="3523" y="-599"/>
         </scene>
         <!--Budget-->
         <scene sceneID="jLW-lB-2Kz">
@@ -444,12 +444,12 @@
         <!--Monthly Budget-->
         <scene sceneID="QDa-0d-Ywi">
             <objects>
-                <tableViewController id="DOo-df-E1Z" customClass="ProjectedExpensesTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="DOo-df-E1Z" customClass="ProjectedExpensesTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FGZ-Hf-Oa2">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectedExpensesIdentifier" rowHeight="60" id="xSb-Yh-gjU" customClass="ProjectedExpensesTableViewCell" customModule="_u_g__" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectedExpensesIdentifier" rowHeight="60" id="xSb-Yh-gjU" customClass="ProjectedExpensesTableViewCell" customModule="Wishey" customModuleProvider="target">
                                 <rect key="frame" x="20" y="55.333332061767578" width="388" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xSb-Yh-gjU" id="sP7-eB-SNr">
@@ -584,7 +584,7 @@
         <!--New Category-->
         <scene sceneID="U6w-n8-RJI">
             <objects>
-                <tableViewController id="Ket-Ta-vwm" customClass="AddExpensesTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Ket-Ta-vwm" customClass="AddExpensesTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="r0c-0g-4kg">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -799,7 +799,7 @@
         <!--New Item-->
         <scene sceneID="cvp-NO-fV0">
             <objects>
-                <tableViewController id="crA-ku-2sr" customClass="AddWishlistTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="crA-ku-2sr" customClass="AddWishlistTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="kxY-Jy-wou">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1053,7 +1053,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ga2-el-riH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="kKs-mu-2R1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4422.8971962616824" y="-599.35205183585322"/>
+            <point key="canvasLocation" x="5322.8971962616815" y="-599.35205183585322"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YbX-bJ-EvN">
@@ -1080,12 +1080,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnf-Ie-spo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3523" y="-599"/>
+            <point key="canvasLocation" x="4422.8971962616824" y="-599.35205183585322"/>
         </scene>
         <!--Details-->
         <scene sceneID="YTP-pM-duR">
             <objects>
-                <tableViewController id="GeT-WC-rD0" customClass="DetailsTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="GeT-WC-rD0" customClass="DetailsTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="beo-8I-drc">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1356,7 +1356,7 @@
         <!--Edit-->
         <scene sceneID="lQH-gw-kvc">
             <objects>
-                <tableViewController id="DGK-QJ-wSe" customClass="ExpenseDetailTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="DGK-QJ-wSe" customClass="ExpenseDetailTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ldf-FT-KgT">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1563,7 +1563,7 @@
         <!--Add-->
         <scene sceneID="f8A-zb-Hk7">
             <objects>
-                <tableViewController id="Bdt-au-xOD" customClass="AddValueTableViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Bdt-au-xOD" customClass="AddValueTableViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Exj-tK-Pps">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1691,7 +1691,7 @@
         <!--Home-->
         <scene sceneID="af2-oq-LQ5">
             <objects>
-                <viewController id="G3o-XK-bQe" customClass="ViewController" customModule="_u_g__" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="G3o-XK-bQe" customClass="ViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DRO-0X-dfL">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2004,6 +2004,7 @@
                         <outlet property="zoomOutButton" destination="wjk-kJ-WxK" id="AD2-z0-O4r"/>
                         <segue destination="nPf-CO-zKt" kind="presentation" identifier="addCategory" id="GS8-zj-BNE"/>
                         <segue destination="uMG-VY-85i" kind="presentation" identifier="showExpenses" id="mhW-7a-xeA"/>
+                        <segue destination="h8R-RB-54d" kind="presentation" identifier="showNameView" id="S6u-pJ-LsV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qls-qN-i3B" sceneMemberID="firstResponder"/>
@@ -2029,6 +2030,122 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2506.5420560747662" y="92.656587473002162"/>
+        </scene>
+        <!--Welcome-->
+        <scene sceneID="Z7h-xb-B98">
+            <objects>
+                <viewController title="Welcome" id="o12-Mo-8eg" customClass="NameViewController" customModule="Wishey" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pCi-0n-fHY">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Pb2-eP-bNS">
+                                <rect key="frame" x="20" y="456" width="388" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npd-23-9LP">
+                                        <rect key="frame" x="0.0" y="0.0" width="388" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" textContentType="name"/>
+                                        <connections>
+                                            <action selector="hideKeyboard:" destination="o12-Mo-8eg" eventType="editingDidEndOnExit" id="wwk-Fq-89z"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UwM-iW-9d1">
+                                <rect key="frame" x="20" y="782" width="388" height="36"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleShadowColor" systemColor="systemGrayColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="o12-Mo-8eg" eventType="touchUpInside" id="3kT-dM-V5l"/>
+                                    <action selector="skipButtonTapped:" destination="o12-Mo-8eg" eventType="touchUpInside" id="tyh-rm-1gm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2V-RP-uar">
+                                <rect key="frame" x="20" y="736" width="388" height="36"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleShadowColor" systemColor="systemGrayColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="whenDoneClicked:" destination="o12-Mo-8eg" eventType="touchUpInside" id="juC-wk-EPZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13S-Xo-Gir">
+                                <rect key="frame" x="20" y="690" width="388" height="36"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <color key="titleShadowColor" systemColor="systemGrayColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="whenDoneClicked:" destination="o12-Mo-8eg" eventType="touchUpInside" id="j1a-iv-GVY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LoV-Xe-UW6"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="UwM-iW-9d1" firstAttribute="top" secondItem="l2V-RP-uar" secondAttribute="bottom" constant="10" id="0c7-FM-zc0"/>
+                            <constraint firstItem="Pb2-eP-bNS" firstAttribute="centerX" secondItem="LoV-Xe-UW6" secondAttribute="centerX" id="5ju-qm-Sx9"/>
+                            <constraint firstItem="l2V-RP-uar" firstAttribute="top" secondItem="13S-Xo-Gir" secondAttribute="bottom" constant="10" id="83e-uB-LwT"/>
+                            <constraint firstItem="l2V-RP-uar" firstAttribute="leading" secondItem="LoV-Xe-UW6" secondAttribute="leading" constant="20" id="ALy-zU-1uW"/>
+                            <constraint firstItem="Pb2-eP-bNS" firstAttribute="leading" secondItem="LoV-Xe-UW6" secondAttribute="leading" constant="20" id="BYd-g9-FTq"/>
+                            <constraint firstItem="LoV-Xe-UW6" firstAttribute="trailing" secondItem="13S-Xo-Gir" secondAttribute="trailing" constant="20" id="J1C-5w-hBA"/>
+                            <constraint firstItem="npd-23-9LP" firstAttribute="width" secondItem="l2V-RP-uar" secondAttribute="width" id="Kgk-Pm-2Ww"/>
+                            <constraint firstItem="LoV-Xe-UW6" firstAttribute="bottom" secondItem="UwM-iW-9d1" secondAttribute="bottom" constant="20" id="Soc-ce-8yQ"/>
+                            <constraint firstItem="LoV-Xe-UW6" firstAttribute="trailing" secondItem="Pb2-eP-bNS" secondAttribute="trailing" constant="20" id="TBk-Xy-xEk"/>
+                            <constraint firstItem="LoV-Xe-UW6" firstAttribute="trailing" secondItem="l2V-RP-uar" secondAttribute="trailing" constant="20" id="THl-UM-4bI"/>
+                            <constraint firstItem="Pb2-eP-bNS" firstAttribute="centerY" secondItem="LoV-Xe-UW6" secondAttribute="centerY" id="art-Eo-hvP"/>
+                            <constraint firstItem="LoV-Xe-UW6" firstAttribute="trailing" secondItem="UwM-iW-9d1" secondAttribute="trailing" constant="20" id="efY-C4-tBr"/>
+                            <constraint firstItem="13S-Xo-Gir" firstAttribute="height" secondItem="l2V-RP-uar" secondAttribute="height" id="erk-cf-Epb"/>
+                            <constraint firstItem="13S-Xo-Gir" firstAttribute="leading" secondItem="LoV-Xe-UW6" secondAttribute="leading" constant="20" id="xAY-th-7J4"/>
+                            <constraint firstItem="UwM-iW-9d1" firstAttribute="leading" secondItem="LoV-Xe-UW6" secondAttribute="leading" constant="20" id="xXC-mV-NM8"/>
+                            <constraint firstItem="l2V-RP-uar" firstAttribute="height" secondItem="UwM-iW-9d1" secondAttribute="height" id="zIW-mp-bvE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pqL-MJ-K5d"/>
+                    <connections>
+                        <outlet property="cancel" destination="UwM-iW-9d1" id="m2A-ru-sUn"/>
+                        <outlet property="delete" destination="l2V-RP-uar" id="c2g-jR-tWz"/>
+                        <outlet property="doneButton" destination="l2V-RP-uar" id="9Ss-cP-vu7"/>
+                        <outlet property="save" destination="13S-Xo-Gir" id="ISM-x9-iqt"/>
+                        <outlet property="skipButton" destination="UwM-iW-9d1" id="mgU-oQ-ap5"/>
+                        <outlet property="stackView" destination="Pb2-eP-bNS" id="tgX-Ix-It9"/>
+                        <outlet property="usernameTextField" destination="npd-23-9LP" id="13O-nw-IRb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SBT-rP-Wun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="-599"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xr0-Ta-YTD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h8R-RB-54d" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Ssj-9f-XBh">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="108"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="o12-Mo-8eg" kind="relationship" relationship="rootViewController" id="G7j-V5-1l3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DkH-1Z-f2M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-248" y="-599"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -2069,6 +2186,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
