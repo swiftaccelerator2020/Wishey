@@ -45,7 +45,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
 //        doneButton.isEnabled = false
         monthlyIncomeTextField.delegate = self
-        monthlyIncomeTextField.keyboardType = .decimalPad
+        monthlyIncomeTextField.keyboardType = .numberPad
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
