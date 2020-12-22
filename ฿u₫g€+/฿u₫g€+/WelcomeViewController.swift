@@ -16,6 +16,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var thingy: UILabel!
     @IBOutlet weak var text: UILabel!
+    @IBOutlet weak var savingsTargetTextField: UITextField!
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let invalidCharacters =
           CharacterSet(charactersIn: "0123456789").inverted

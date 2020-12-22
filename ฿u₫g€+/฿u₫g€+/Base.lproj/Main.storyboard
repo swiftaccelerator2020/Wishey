@@ -124,7 +124,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Jg-Ah-n0G">
                                 <rect key="frame" x="20" y="430" width="388" height="76"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bux-ar-AZS">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bux-ar-AZS">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" textContentType="name"/>
@@ -141,7 +141,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Income (Monthly)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-r0-T6Q">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Income (Monthly) *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-r0-T6Q">
                                                 <rect key="frame" x="15.333333333333343" y="0.0" width="372.66666666666663" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -162,6 +162,9 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                 <rect key="frame" x="15.333333333333343" y="0.0" width="372.66666666666663" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="hideKeyboard:" destination="IHK-mL-Fc2" eventType="editingDidEndOnExit" id="qTe-fR-p7I"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <viewLayoutGuide key="safeArea" id="imR-J9-ssT"/>
@@ -225,6 +228,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                     <connections>
                         <outlet property="doneButton" destination="M68-Cp-Fbf" id="Ma1-BL-jwm"/>
                         <outlet property="monthlyIncomeTextField" destination="70Q-r0-T6Q" id="wbc-mb-gTa"/>
+                        <outlet property="savingsTargetTextField" destination="1pI-u6-SLe" id="8RR-4W-NbR"/>
                         <outlet property="skipButton" destination="5lk-2n-BRK" id="Hf0-IO-LYz"/>
                         <outlet property="stackView" destination="4Jg-Ah-n0G" id="J39-MI-gV6"/>
                         <outlet property="text" destination="tuf-6H-QNM" id="hd0-wZ-V25"/>
