@@ -12,7 +12,7 @@ class WishlistTableViewController: UITableViewController {
     var timer: Timer?
     
     override func viewDidAppear(_ animated: Bool) {
-        updateForCurrentMonth()
+//        updateForCurrentMonth()
         updateGlobalSavings()
 //        tableView.reloadRows(at: [IndexPath(row: <#T##Int#>, section: <#T##Int#>)], with: .none)
         canBuy = []
@@ -32,7 +32,37 @@ class WishlistTableViewController: UITableViewController {
         }
     }
     @objc func updateSpendings() {
-        updateForCurrentMonth()
+//        updateForCurrentMonth()
+        if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
+
+    //        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+    //            if expenseStruct.loadFromFile() != nil {
+    //                for i in expensesArray {
+    //                    i.actualExpenses = 0
+    //                }
+    //                expenseStruct.saveToFile(expense: expensesArray)
+    //                alltimeSavings += savings
+    //                savings = 0
+    //            }
+    ////            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+    //        }
+            if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+                UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+                if expenseStruct.loadFromFile() != nil {
+                    for i in expensesArray {
+                        i.actualExpenses = 0
+                    }
+                    expenseStruct.saveToFile(expense: expensesArray)
+                    totalsavings += savings
+                    savings = 0
+                    updateGlobalSavings()
+                    tableView.reloadData()
+                }
+            }
+        } else {
+    //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+        }
     }
     
     var indexPath = IndexPath()
@@ -74,6 +104,7 @@ class WishlistTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateForCurrentMonth()
         self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
         updateGlobalSavings()
         if #available(iOS 13.0, *) {

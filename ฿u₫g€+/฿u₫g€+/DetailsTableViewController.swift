@@ -192,7 +192,7 @@ class DetailsTableViewController: UITableViewController, UIPickerViewDataSource,
             }
             if durationTF.text == nil || durationTF.text!.isEmpty {
                 durationTF.layer.borderWidth = 1
-                durationTF.layer.borderColor = UIColor.red.cgColor
+                durationTF.layer.borderColor = UIColor.systemRed.cgColor
             } else if Int(durationTF.text!) == nil {
                 durationTF.layer.borderWidth = 1
                 durationTF.layer.borderColor = UIColor.systemYellow.cgColor

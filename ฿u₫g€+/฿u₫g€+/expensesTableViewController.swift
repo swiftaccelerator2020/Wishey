@@ -22,8 +22,38 @@ class expensesTableViewController: UITableViewController {
     }
     
     @objc func updateSpendings() {
-        updateForCurrentMonth()
+//        updateForCurrentMonth()
 //        tableView.reloadData()
+        if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
+
+    //        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+    //            if expenseStruct.loadFromFile() != nil {
+    //                for i in expensesArray {
+    //                    i.actualExpenses = 0
+    //                }
+    //                expenseStruct.saveToFile(expense: expensesArray)
+    //                alltimeSavings += savings
+    //                savings = 0
+    //            }
+    ////            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+    //        }
+            if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+                UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+                if expenseStruct.loadFromFile() != nil {
+                    for i in expensesArray {
+                        i.actualExpenses = 0
+                    }
+                    expenseStruct.saveToFile(expense: expensesArray)
+                    totalsavings += savings
+                    savings = 0
+                    updateGlobalSavings()
+                    tableView.reloadData()
+                }
+            }
+        } else {
+    //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+        }
     }
     
     override func viewDidLoad() {

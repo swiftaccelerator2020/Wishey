@@ -288,14 +288,30 @@ var income = Int()
 func updateForCurrentMonth() {
 //    let date = Date()
 //    let calendar = Calendar.current
-//
-//    let hour = calendar.component(.hour, from: date)
+////
+////    let hour = calendar.component(.hour, from: date)
 //    let minutes = calendar.component(.minute, from: date)
 //    print(hour)
 //    print(minutes)
     //        let seconds = calendar.component(.second, from: date)
+//    if UserDefaults.standard.string(forKey: "min") != nil {
+//        if String(minutes) != UserDefaults.standard.string(forKey: "min") {
+//            UserDefaults.standard.setValue(String(minutes), forKey: "min")
+//            if expenseStruct.loadFromFile() != nil {
+//                for i in expensesArray {
+//                    i.actualExpenses = 0
+//                }
+//                expenseStruct.saveToFile(expense: expensesArray)
+//                totalsavings += savings
+//                savings = 0
+//                updateGlobalSavings()
+//            }
+//        }
+//    } else {
+//        UserDefaults.standard.setValue(String(minutes), forKey: "min")
+//    }
     if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
-        
+
 //        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
 //            if expenseStruct.loadFromFile() != nil {
 //                for i in expensesArray {

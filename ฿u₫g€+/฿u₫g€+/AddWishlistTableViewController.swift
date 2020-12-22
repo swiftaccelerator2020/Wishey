@@ -208,7 +208,7 @@ class AddWishlistTableViewController: UITableViewController, UIPickerViewDataSou
             }
             if durationField.text == nil || durationField.text!.isEmpty {
                 durationField.layer.borderWidth = 1
-                durationField.layer.borderColor = UIColor.red.cgColor
+                durationField.layer.borderColor = UIColor.systemRed.cgColor
             } else if Int(durationField.text!) == nil {
                 durationField.layer.borderWidth = 1
                 durationField.layer.borderColor = UIColor.systemYellow.cgColor

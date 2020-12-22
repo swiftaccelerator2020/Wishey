@@ -188,45 +188,74 @@ class ViewController: UIViewController {
         }
     }
     @objc func updateSpendings() {
-        updateForCurrentMonth()
-        spendingsLabel.text = Date().monthAsString()
-        if totalsavings > 0 {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
-        } else {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far")
-        }
-        if wishlist.count > 0 {
-            let randomItem = wishlist.randomElement()!
-            itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-            if Double(randomItem.price) < Double(totalsavings) {
-                buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
-                //            buyALabel.text = "You can buy a \(randomItem.name)"
-                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
-    //        } else if randomItem.price == Int(totalsavings) {
-    //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
-    //            //            buyALabel.text = "You can buy a \(randomItem.name)"
-    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings))").normal("/").bold("\(randomItem.price)")
-    //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
-            } else {
-                if totalsavings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
-                    //            buyALabel.text = "You can buy a \(randomItem.name)"
-                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                    //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
-                } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
-                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+        if UserDefaults.standard.string(forKey: "lastRecordedMonth") != nil {
+
+    //        if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+    //            if expenseStruct.loadFromFile() != nil {
+    //                for i in expensesArray {
+    //                    i.actualExpenses = 0
+    //                }
+    //                expenseStruct.saveToFile(expense: expensesArray)
+    //                alltimeSavings += savings
+    //                savings = 0
+    //            }
+    ////            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+    //        }
+            if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
+                UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+                if expenseStruct.loadFromFile() != nil {
+                    for i in expensesArray {
+                        i.actualExpenses = 0
+                    }
+                    expenseStruct.saveToFile(expense: expensesArray)
+                    totalsavings += savings
+                    savings = 0
+                    updateGlobalSavings()
+                    spendingsLabel.text = Date().monthAsString()
+                    if totalsavings > 0 {
+                        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
+                    } else {
+                        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far")
+                    }
+                    if wishlist.count > 0 {
+                        let randomItem = wishlist.randomElement()!
+                        itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
+                        if Double(randomItem.price) < Double(totalsavings) {
+                            buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
+                            //            buyALabel.text = "You can buy a \(randomItem.name)"
+                            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
+                //        } else if randomItem.price == Int(totalsavings) {
+                //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
+                //            //            buyALabel.text = "You can buy a \(randomItem.name)"
+                //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings))").normal("/").bold("\(randomItem.price)")
+                //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
+                        } else {
+                            if totalsavings > 0 {
+                                buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
+                                //            buyALabel.text = "You can buy a \(randomItem.name)"
+                                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
+                            } else {
+                                buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
+                                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                            }
+                        }
+                    } else {
+                        buyALabel.text = ""
+                        somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
+                        itemName.attributedText = NSMutableAttributedString().normal("Your Wishlist is Empty")
+                    }
                 }
             }
         } else {
-            buyALabel.text = ""
-            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
-            itemName.attributedText = NSMutableAttributedString().normal("Wishlist is Empty")
+    //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
+            UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateForCurrentMonth()
         noSpendingLabel.isHidden = true
         self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
         if let name = UserDefaults.standard.string(forKey: "username") {

@@ -50,7 +50,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         incomeName.text = income?.incomeName
         if let incomeMoneyValue = income?.incomeMoney {
             if incomeMoneyValue <= 0 {
-                incomeMoney.textColor = .red
+                incomeMoney.textColor = .systemRed
             } else {
                 incomeMoney.textColor = .label
             }

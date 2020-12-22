@@ -110,19 +110,6 @@ extension NSMutableAttributedString {
         self.append(NSAttributedString(string: value, attributes:attributes))
         return self
     }
-    
-    /* Other styling methods */
-    func orangeHighlight(_ value:String) -> NSMutableAttributedString {
-
-        let attributes:[NSAttributedString.Key : Any] = [
-            .font :  normalFont,
-            .foregroundColor : UIColor.white,
-            .backgroundColor : UIColor.orange
-        ]
-
-        self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
 
     func blackHighlight(_ value:String) -> NSMutableAttributedString {
 
