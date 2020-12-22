@@ -39,7 +39,7 @@ class expensesTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && expensesArray.count > 0{
             performSegue(withIdentifier: "expensesSegue", sender: nil)
         }
     }
@@ -51,24 +51,41 @@ class expensesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
+        if section == 0 && expensesArray.count > 0{
             return expensesArray.count
+        } else if section == 0 {
+            return 1
         }
         return 1
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! expenseTableViewCell
         if indexPath.section == 0 {
-            cell.expense = expensesArray[indexPath.row]
-            cell.setUp()
+            if expensesArray.count > 0 {
+                cell.expense = expensesArray[indexPath.row]
+                cell.setUp()
+            } else {
+                cell.emptySetUp()
+            }
 //            cell.accessoryType = .disclosureIndicator
-        } else {
-            cell.spendingLabel.text = "$\(String(format: "%.2f", savings)) saved"
+        } else if indexPath.section == 1 {
+            cell.spendingLabel.text = "$\(String(format: "%.2f", savings))/\(projectedSavings) saved"
+            if savings > Double(projectedSavings) {
+                cell.spendingLabel.textColor = .systemGreen
+            } else if savings == Double(projectedSavings){
+                cell.spendingLabel.textColor = .label
+            } else {
+                cell.spendingLabel.textColor = .systemRed
+            }
             cell.expenseName.text = "Savings"
-            cell.accessoryType = .none
+            cell.epitomeOfEmptiness.isHidden = true
+            cell.expenseName.isHidden = false
+            cell.spendingLabel.isHidden = false
         }
+        cell.accessoryType = .none
         cell.selectionStyle = .none
         cell.expenseName.adjustsFontSizeToFitWidth = true
         cell.spendingLabel.adjustsFontSizeToFitWidth = true
@@ -90,6 +107,9 @@ class expensesTableViewController: UITableViewController {
         }
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if expensesArray.isEmpty && indexPath.section == 0 {
+            return 200
+        }
         return 70
     }
     
@@ -150,17 +170,18 @@ class expensesTableViewController: UITableViewController {
     }
     
      // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 {
-            // Return false if you do not want the specified item to be editable.
-            return true
-        }
-        return false
-     }
+//     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        if indexPath.section == 0 {
+//            // Return false if you do not want the specified item to be editable.
+//            return true
+//        }
+//        return false
+//     }
     
     
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 && expensesArray.count > 0 {
          if editingStyle == .delete {
          // Delete the row from the data source
             let alert = UIAlertController(title: "Are you sure you want to delete \(expensesArray[indexPath.row].categoryName)?", message: "This action cannot be undone", preferredStyle: .alert)
@@ -168,7 +189,7 @@ class expensesTableViewController: UITableViewController {
                 // Add
                 expensesArray.remove(at: indexPath.row)
                 expenseStruct.saveToFile(expense: expensesArray)
-                tableView.deleteRows(at: [indexPath], with: .fade)
+//                tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.reloadData()
                 self.performSegue(withIdentifier: "unwindExpenseBackHome", sender: nil)
                 // End
@@ -182,6 +203,17 @@ class expensesTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
          }
      }
+     }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 && expensesArray.count > 0 { return true }
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 && expensesArray.count > 0 { return true }
+        return false
+    }
     
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -203,14 +235,14 @@ class expensesTableViewController: UITableViewController {
      }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && expensesArray.count > 0 {
             let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
                 let alert = UIAlertController(title: "Are you sure you want to delete \(expensesArray[indexPath.row].categoryName)?", message: "This action cannot be undone", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
                     // Add
                     expensesArray.remove(at: indexPath.row)
                     expenseStruct.saveToFile(expense: expensesArray)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
                     tableView.reloadData()
 //                    ViewController().viewWillAppear(true)
                     self.performSegue(withIdentifier: "unwindExpenseBackHome", sender: nil)
@@ -237,15 +269,6 @@ class expensesTableViewController: UITableViewController {
         }
         return nil
     }
-    
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-        if indexPath.section == 0 {
-            return true
-        }
-        return false
-     }
     
     
      // MARK: - Navigation

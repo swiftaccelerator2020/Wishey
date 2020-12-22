@@ -20,6 +20,7 @@
 		899DEFCE2589E84600879FDE /* ExpenseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899DEFCD2589E84600879FDE /* ExpenseDetailTableViewController.swift */; };
 		89A09F8E2574DC5F0047BCD1 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */; };
 		89A09F912574E95B0047BCD1 /* WishlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */; };
+		89A348092592110D0041226B /* WishlistTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A348082592110D0041226B /* WishlistTopTableViewCell.swift */; };
 		89A486B62591068000B4A0E2 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A486B52591068000B4A0E2 /* NameViewController.swift */; };
 		89D2EFE0258FA03300821AA9 /* AddValueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D2EFDF258FA03300821AA9 /* AddValueTableViewController.swift */; };
 		89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */; };
@@ -52,6 +53,7 @@
 		899DEFCD2589E84600879FDE /* ExpenseDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailTableViewController.swift; sourceTree = "<group>"; };
 		89A09F8D2574DC5F0047BCD1 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
 		89A09F902574E95B0047BCD1 /* WishlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewCell.swift; sourceTree = "<group>"; };
+		89A348082592110D0041226B /* WishlistTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTopTableViewCell.swift; sourceTree = "<group>"; };
 		89A486B52591068000B4A0E2 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		89D2EFDF258FA03300821AA9 /* AddValueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddValueTableViewController.swift; sourceTree = "<group>"; };
 		89D3B8AE25762CE300C0E747 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				893CE5E425907AD70022B96A /* Extensions.swift */,
 				893CE5E9259093220022B96A /* StartViewController.swift */,
 				89A486B52591068000B4A0E2 /* NameViewController.swift */,
+				89A348082592110D0041226B /* WishlistTopTableViewCell.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
 				1456429A2574DCF900C3E310 /* expensesTableViewController.swift in Sources */,
 				899DEFCE2589E84600879FDE /* ExpenseDetailTableViewController.swift in Sources */,
+				89A348092592110D0041226B /* WishlistTopTableViewCell.swift in Sources */,
 				A8109E50256F9520008F3709 /* SceneDelegate.swift in Sources */,
 				896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */,
 				8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */,

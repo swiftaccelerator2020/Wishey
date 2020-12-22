@@ -21,6 +21,9 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     @IBOutlet weak var incomeName: UILabel!
     @IBOutlet weak var incomeMoney: UITextField!
     @IBOutlet weak var expenseName: UILabel!
+    @IBOutlet weak var iDollar: UILabel!
+    @IBOutlet weak var eDollar: UILabel!
+    @IBOutlet weak var noneLabel: UILabel!
     
     var income: projectedIncome?
     var expense: expenseStruct?
@@ -42,6 +45,8 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         expenseName.isHidden = true
         expenseMoney.isHidden = true
         expenseStepper.isHidden = true
+        eDollar.isHidden = true
+        iDollar.isHidden = false
         incomeName.text = income?.incomeName
         if let incomeMoneyValue = income?.incomeMoney {
             if incomeMoneyValue <= 0 {
@@ -51,6 +56,7 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
             }
             incomeMoney.text = "\(incomeMoneyValue)"
         }
+        noneLabel.isHidden = true
     }
     
     func expenseSetUp() {
@@ -60,12 +66,24 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         expenseName.isHidden = false
         expenseMoney.isHidden = false
         expenseStepper.isHidden = false
+        eDollar.isHidden = false
+        iDollar.isHidden = true
         expenseName.text = expense?.categoryName
         if let expenseProjMoneyValue = expense?.projectedExpenses {
             expenseMoney.text = "\(expenseProjMoneyValue)"
         }
+        noneLabel.isHidden = true
     }
-    
+    func expenseNoneSetup() {
+        noneLabel.isHidden = false
+        incomeName.isHidden = true
+        incomeMoney.isHidden = true
+        expenseName.isHidden = true
+        expenseMoney.isHidden = true
+        expenseStepper.isHidden = true
+        eDollar.isHidden = true
+        iDollar.isHidden = true
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -96,143 +96,201 @@ class WishlistTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return wishlist.count
+        if section == 1 && wishlist.count > 0 {
+            // #warning Incomplete implementation, return the number of rows
+//            if  {
+//                self.tableView.backgroundView = .none
+//                self.tableView.separatorStyle = .singleLine
+                return wishlist.count
+//            } else {
+//            }
+//            var emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+//            emptyLabel.text = "Your Wishlist is Empty. Try adding a New Item."
+//            emptyLabel.textAlignment = .center
+//            self.tableView.backgroundView = emptyLabel
+//            self.tableView.separatorStyle = .none
+//            return 0
+        } else if section == 1 {
+            return 1
+        }
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "wishlistCell", for: indexPath)
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "wishlistCell", for: indexPath) as! WishlistTableViewCell
+            if wishlist.count > 0 {
+                cell.wishlistEmptyLabel.isHidden = true
+                cell.wishlistItemTitle.isHidden = false
+                cell.wishlistItemCategory.isHidden = false
+                cell.savingsOutOfPrice.isHidden = false
+                cell.monthlyTarget.isHidden = false
+                cell.progressAnimated.isHidden = false
+                // Configure the cell...
+//                if let cell = cell {
+                    cell.progressAnimated.sizeToFit()
+                    cell.autoresizesSubviews = true
+                    cell.layoutSubviews()
+                    cell.contentView.layoutIfNeeded()
+                    cell.layoutIfNeeded()
+                    cell.setNeedsLayout()
+                    cell.contentView.layoutSubviews()
+                    cell.contentView.setNeedsLayout()
+        //            cell.progressAnimated.layer.cornerRadius = 0
+        //            cell.accessoryView?.backgroundColor = .systemGreen
+        //            cell.editingAccessoryView?.backgroundColor = .systemGreen
+        //            cell.backgroundColor = .systemGreen
+        //            cell.contentView.backgroundColor = .systemRed
+        //            cell.backgroundView?.backgroundColor = .systemGray
+                    cell.wishlistItemTitle.text = wishlist[indexPath.row].name
+                    cell.wishlistItemCategory.text = wishlist[indexPath.row].category
+        //            cell.showsReorderControl = false
+        //            cell.showingDeleteConfirmation = false
+                    print()
+                    cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "$\(String(format: "%.2f", (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))/month" /* : "$\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
+                    
+                    var savingsDivPriceText = String()
+                    var currentSavings = totalsavings
+                    for i in 0..<indexPath.row {
+                        currentSavings -= Double(wishlist[i].price)
+                        print(i)
+                    }
+        //            cell.contentView.trailingAnchor
+        //            cell.currentSavings = currentSavings
+                    if currentSavings >= Double(wishlist[indexPath.row].price) {
+                        savingsDivPriceText = "$\(String(format: "%.2f", wishlist[indexPath.row].price))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
+                        UIView.animate(withDuration: 4){
+                            cell.progressAnimated.progress = CGFloat(1)
+        //                    cell.savingsOutOfPrice.textColor = .systemBackground
+                        }
+        //                cell.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+                        cell.accessoryView?.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+                        canBuy.append(true)
+                    } else {
+                        if currentSavings > 0 {
+                            print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
+                            print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
+                            savingsDivPriceText = /*currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"*/ "$\(String(format: "%.2f", currentSavings))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
+        //                    cell.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
+        //                    cell.accessoryView?.backgroundColor = .systemBackground
+                            print(savingsDivPriceText)
+        //                    if currentSavings.truncatingRemainder(dividingBy: 1) != 0 {
+        //                        UIView.animate(withDuration: 4){
+        //                            cell.progressBar.setProgress(Float(Double(currentSavings)/Double(wishlist[indexPath.row].price)), animated: true)
+                                cell.progressAnimated.progress = CGFloat(currentSavings/wishlist[indexPath.row].price)
+        //                        }
+        //                    } else {
+        //                        UIView.animate(withDuration: 4){
+        //                            cell.progressBar.setProgress(Float(Int(currentSavings)/wishlist[indexPath.row].price), animated: true)
+        //                        cell.progressAnimated.progress = CGFloat(currentSavings/Double(wishlist[indexPath.row].price))
+        //                        }
+        //                    }
+        //                    cell.savingsOutOfPrice.textColor = .label
+                            canBuy.append(false)
+                        }
+                        else {
+                            savingsDivPriceText = "$0.00/\(String(format: "%.2f", wishlist[indexPath.row].price))"
+        //                    cell.progressBar.setProgress(0, animated: false)
+                            cell.progressAnimated.progress = CGFloat(0)
+        //                    cell.savingsOutOfPrice.textColor = .label
+        //                    cell.backgroundColor = .systemBackground
+                            canBuy.append(false)
+                        }
+                    }
+                    print("$\(currentSavings)")
+                    print(String(format: "%.2f", currentSavings))
+                    print()
+        //            if savings > 0 {
+        //                if savings >= wishlist[indexPath.row].price {
+        //                    savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
+        //                } else /*if savings < wishlist[indexPath.row].price*/ {
+        //                    savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
+        //                }
+        //            savings -= wishlist[indexPath.row].price
+        //            print(savings)
+        ////            } else {
+        //            }
+        ////                savings = 0
+        //                savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
+        //            }
+        //            if savings == 0 {
+        //                savingsDivPriceText = "0/\(wishlist[indexPath.row].price)"
+        //            } else {
+        //            //else if savings < wishlist[indexPath.row].price {
+        //
+        //            //}
+        //            }
+                    cell.savingsOutOfPrice.text = savingsDivPriceText
+//                }
+        //        let subviews = cell.backgroundView?.subviews
+        //        for i in 0..<subviews!.count {
+        //            subviews![i].removeFromSuperview()
+        //        }
+            } else {
+                cell.wishlistEmptyLabel.isHidden = false
+                cell.wishlistItemTitle.isHidden = true
+                cell.wishlistItemCategory.isHidden = true
+                cell.savingsOutOfPrice.isHidden = true
+                cell.monthlyTarget.isHidden = true
+                cell.progressAnimated.isHidden = true
+            }
+            
+            cell.selectionStyle = .none
+            
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "theTopCell", for: indexPath) /*as! WishlistTopTableViewCell*/
 
 //        cell.myIndexPath = indexPath
         // Configure the cell...
-        if let cell = cell as? WishlistTableViewCell {
-            cell.progressAnimated.sizeToFit()
-            cell.autoresizesSubviews = true
-            cell.layoutSubviews()
-            cell.contentView.layoutIfNeeded()
-            cell.layoutIfNeeded()
-            cell.setNeedsLayout()
-            cell.contentView.layoutSubviews()
-            cell.contentView.setNeedsLayout()
-//            cell.progressAnimated.layer.cornerRadius = 0
-//            cell.accessoryView?.backgroundColor = .systemGreen
-//            cell.editingAccessoryView?.backgroundColor = .systemGreen
-//            cell.backgroundColor = .systemGreen
-//            cell.contentView.backgroundColor = .systemRed
-//            cell.backgroundView?.backgroundColor = .systemGray
-            cell.wishlistItemTitle.text = wishlist[indexPath.row].name
-            cell.wishlistItemCategory.text = wishlist[indexPath.row].category
-//            cell.showsReorderControl = false
-//            cell.showingDeleteConfirmation = false
-            print()
-            cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "$\(String(format: "%.2f", (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))/month" /* : "$\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
-            
-            var savingsDivPriceText = String()
-            var currentSavings = totalsavings+savings
-            for i in 0..<indexPath.row {
-                currentSavings -= Double(wishlist[i].price)
-                print(i)
+        if let cell = cell as? WishlistTopTableViewCell {
+            cell.label.adjustsFontSizeToFitWidth = true
+            cell.value.adjustsFontSizeToFitWidth = true
+            if indexPath.row == 0 {
+                cell.label.text = "Total Savings"
+                cell.value.text = "$\(String(format: "%.2f", totalsavings+savings))"
+            } else if indexPath.row == 1 {
+                cell.label.text = "Savings Carried Forward"
+                cell.value.text = "$\(String(format: "%.2f", totalsavings))"
+            } else if indexPath.row == 2 {
+                cell.label.text = "Wishlist Transactions"
             }
-//            cell.contentView.trailingAnchor
-//            cell.currentSavings = currentSavings
-            if currentSavings >= Double(wishlist[indexPath.row].price) {
-                savingsDivPriceText = "$\(String(format: "%.2f", wishlist[indexPath.row].price))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
-                UIView.animate(withDuration: 4){
-                    cell.progressAnimated.progress = CGFloat(1)
-//                    cell.savingsOutOfPrice.textColor = .systemBackground
-                }
-//                cell.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
-                cell.accessoryView?.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
-                canBuy.append(true)
-            } else {
-                if currentSavings > 0 {
-                    print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
-                    print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
-                    savingsDivPriceText = /*currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"*/ "$\(String(format: "%.2f", currentSavings))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
-//                    cell.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
-//                    cell.accessoryView?.backgroundColor = .systemBackground
-                    print(savingsDivPriceText)
-//                    if currentSavings.truncatingRemainder(dividingBy: 1) != 0 {
-//                        UIView.animate(withDuration: 4){
-//                            cell.progressBar.setProgress(Float(Double(currentSavings)/Double(wishlist[indexPath.row].price)), animated: true)
-                        cell.progressAnimated.progress = CGFloat(currentSavings/wishlist[indexPath.row].price)
-//                        }
-//                    } else {
-//                        UIView.animate(withDuration: 4){
-//                            cell.progressBar.setProgress(Float(Int(currentSavings)/wishlist[indexPath.row].price), animated: true)
-//                        cell.progressAnimated.progress = CGFloat(currentSavings/Double(wishlist[indexPath.row].price))
-//                        }
-//                    }
-//                    cell.savingsOutOfPrice.textColor = .label
-                    canBuy.append(false)
-                }
-                else {
-                    savingsDivPriceText = "$0.00/\(String(format: "%.2f", wishlist[indexPath.row].price))"
-//                    cell.progressBar.setProgress(0, animated: false)
-                    cell.progressAnimated.progress = CGFloat(0)
-//                    cell.savingsOutOfPrice.textColor = .label
-//                    cell.backgroundColor = .systemBackground
-                    canBuy.append(false)
-                }
-            }
-            print("$\(currentSavings)")
-            print(String(format: "%.2f", currentSavings))
-            print()
-//            if savings > 0 {
-//                if savings >= wishlist[indexPath.row].price {
-//                    savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
-//                } else /*if savings < wishlist[indexPath.row].price*/ {
-//                    savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
-//                }
-//            savings -= wishlist[indexPath.row].price
-//            print(savings)
-////            } else {
-//            }
-////                savings = 0
-//                savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
-//            }
-//            if savings == 0 {
-//                savingsDivPriceText = "0/\(wishlist[indexPath.row].price)"
-//            } else {
-//            //else if savings < wishlist[indexPath.row].price {
-//
-//            //}
-//            }
-            cell.savingsOutOfPrice.text = savingsDivPriceText
         }
-        
-//        let subviews = cell.backgroundView?.subviews
-//        for i in 0..<subviews!.count {
-//            subviews![i].removeFromSuperview()
-//        }
-        
         cell.selectionStyle = .none
-        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 30
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 {
+//            return 30
+//        }
+//        return 0
+//    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 && wishlist.count == 0 {
+            return 140
         }
-        return 0
+        return UITableView.automaticDimension
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0
+//    }
     
     @IBAction func unwindToWishlist( _ seg: UIStoryboardSegue) {
         canBuy = []
         tableView.reloadData()
+        print(wishlist)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "detailsSegue", sender: nil)
+        if indexPath.section == 1 && wishlist.count > 0{
+            performSegue(withIdentifier: "detailsSegue", sender: nil)
+        }
 //        let cell: UITableViewCell = tableView.cellForRow(at: indexPath)!
 //        cell.accessoryType = cell.isSelected ? .checkmark : .none
     }
@@ -249,53 +307,61 @@ class WishlistTableViewController: UITableViewController {
     
     
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        if indexPath.section == 1 && wishlist.count > 0 { return true }
+        return false
     }
-    */
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as? WishlistTableViewCell
-        cell?.editingAccessoryView?.backgroundColor = .systemGreen
-//        cell?.progressAnimated.layer.cornerRadius = 10
-//        cell?.progressAnimated.sizeToFit()
-//        cell?.autoresizesSubviews = true
-//        cell?.layoutSubviews()
-//        cell?.contentView.layoutIfNeeded()
-        tableView.reloadData()
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
-                wishlist.remove(at: indexPath.row)
-                WishlistItem.saveToFile(wishlist: wishlist)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                self.canBuy = []
-                updateProjectedSavings()
-                updateGlobalSavings()
-                tableView.reloadData()
-            }))
-            alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: {_ in
+        if indexPath.section == 1 && wishlist.count > 0 {
+            let cell = tableView.cellForRow(at: indexPath) as? WishlistTableViewCell
+            cell?.editingAccessoryView?.backgroundColor = .systemGreen
+    //        cell?.progressAnimated.layer.cornerRadius = 10
+    //        cell?.progressAnimated.sizeToFit()
+    //        cell?.autoresizesSubviews = true
+    //        cell?.layoutSubviews()
+    //        cell?.contentView.layoutIfNeeded()
+            tableView.reloadData()
+            if editingStyle == .delete {
+                // Delete the row from the data source
+                let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
+                    wishlist.remove(at: indexPath.row)
+                    WishlistItem.saveToFile(wishlist: wishlist)
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    self.canBuy = []
+                    updateProjectedSavings()
+                    updateGlobalSavings()
                     tableView.reloadData()
                 }))
-            self.present(alert, animated: true, completion: nil)
+                alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: {_ in
+                        tableView.reloadData()
+                    }))
+                self.present(alert, animated: true, completion: nil)
+        }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Information"
+        }
+        return "Wishlist"
+    }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section == 1 && wishlist.count > 0 {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
                 // Add
                 wishlist.remove(at: indexPath.row)
                 WishlistItem.saveToFile(wishlist: wishlist)
-                tableView.deleteRows(at: [indexPath], with: .fade)
+//                tableView.deleteRows(at: [indexPath], with: .fade)
                 self.canBuy = []
                 updateProjectedSavings()
                 updateGlobalSavings()
@@ -348,28 +414,32 @@ class WishlistTableViewController: UITableViewController {
         }
 
         return swipeActions
+        }
+        return nil
     }
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         if to != fromIndexPath {
-            let friend = wishlist.remove(at: fromIndexPath.row)
-            wishlist.insert(friend, at: to.row)
-            self.canBuy = []
-            WishlistItem.saveToFile(wishlist: wishlist)
-            updateProjectedSavings()
-            updateGlobalSavings()
-            tableView.reloadData()
+            if to.section == 1 && fromIndexPath.section == 1 {
+                let friend = wishlist.remove(at: fromIndexPath.row)
+                wishlist.insert(friend, at: to.row)
+                self.canBuy = []
+                WishlistItem.saveToFile(wishlist: wishlist)
+                updateProjectedSavings()
+                updateGlobalSavings()
+                tableView.reloadData()
+            }
         }
     }
 
-    /*
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return true
+        if indexPath.section == 1 && wishlist.count > 0 { return true }
+        return false
     }
-    */
 
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

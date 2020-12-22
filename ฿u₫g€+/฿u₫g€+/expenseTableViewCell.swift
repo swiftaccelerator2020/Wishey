@@ -11,6 +11,7 @@ class expenseTableViewCell: UITableViewCell {
 
     @IBOutlet weak var expenseName: UILabel!
     @IBOutlet weak var spendingLabel: UILabel!
+    @IBOutlet weak var epitomeOfEmptiness: UILabel!
     var expense: expenseStruct!
     
     override func awakeFromNib() {
@@ -19,13 +20,21 @@ class expenseTableViewCell: UITableViewCell {
     }
     
     func setUp() {
+        epitomeOfEmptiness.isHidden = true
+        expenseName.isHidden = false
+        spendingLabel.isHidden = false
         expenseName.text = expense.categoryName
         spendingLabel.text = "$\(String(format: "%.2f", Double(expense.actualExpenses)))/\(expense.projectedExpenses) spent"
         if expense.actualExpenses > Double(expense.projectedExpenses) {
-            spendingLabel.textColor = .red
+            spendingLabel.textColor = .systemRed
         } else {
             spendingLabel.textColor = .label
         }
+    }
+    func emptySetUp(){
+        epitomeOfEmptiness.isHidden = false
+        expenseName.isHidden = true
+        spendingLabel.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

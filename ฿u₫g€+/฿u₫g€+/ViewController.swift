@@ -31,6 +31,8 @@ class ViewController: UIViewController {
     @IBOutlet var swipeRightGesture: UISwipeGestureRecognizer!
     var timer: Timer?
     @IBOutlet weak var noSpendingLabel: UILabel!
+    @IBOutlet var tapChartGR: UITapGestureRecognizer!
+    @IBOutlet var tapNameGR: UITapGestureRecognizer!
     
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
         var colors: [UIColor] = []
@@ -121,6 +123,10 @@ class ViewController: UIViewController {
     @IBAction func tapWishlistView(_ sender: Any) {
         tabBarController?.selectedIndex = 2
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewWillAppear(true)
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,9 +148,9 @@ class ViewController: UIViewController {
 //            window.overrideUserInterfaceStyle = .light
 //        }
         // Do any additional setup after loading the view.
-        //        var totalsavings+savings = 0.0
+        //        var totalsavings = 0.0
         //        for i in 0...expensesArray.count-1 {
-        //            totalsavings+savings += (Double(expensesArray[i].projectedExpenses) - expensesArray[i].actualExpenses)
+        //            totalsavings += (Double(expensesArray[i].projectedExpenses) - expensesArray[i].actualExpenses)
         //        }
         //        scrollView.contentOffset = CGPoint(x: 0, y: 0)
         //        self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -184,32 +190,32 @@ class ViewController: UIViewController {
     @objc func updateSpendings() {
         updateForCurrentMonth()
         spendingsLabel.text = Date().monthAsString()
-        if totalsavings+savings > 0 {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
+        if totalsavings > 0 {
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings))").normal(" so far (excluding this month)")
         } else {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far")
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far (excluding this month)")
         }
         if wishlist.count > 0 {
             let randomItem = wishlist.randomElement()!
             itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-            if Double(randomItem.price) < Double(totalsavings+savings) {
+            if Double(randomItem.price) < Double(totalsavings) {
                 buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
                 //            buyALabel.text = "You can buy a \(randomItem.name)"
-                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
-    //        } else if randomItem.price == Int(totalsavings+savings) {
+                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
+    //        } else if randomItem.price == Int(totalsavings) {
     //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
     //            //            buyALabel.text = "You can buy a \(randomItem.name)"
-    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings+savings))").normal("/").bold("\(randomItem.price)")
-    //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings))").normal("/").bold("\(randomItem.price)")
+    //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
             } else {
-                if totalsavings+savings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
+                if totalsavings > 0 {
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
                     //            buyALabel.text = "You can buy a \(randomItem.name)"
-                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                    //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                    //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
                 } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                 }
             }
@@ -243,48 +249,58 @@ class ViewController: UIViewController {
             pieView.isHidden = true
             barView.isHidden = true
             noSpendingLabel.isHidden = false
-            noSpendingLabel.text = """
-😔 Uh oh!
+            noSpendingLabel.attributedText = NSMutableAttributedString().normal20("""
+😔
+Uh oh!
+
 We couldn't find any information about your Spendings.   Click the "+" button to add new values and spending categories!
-"""
+""")
             swipeLeftGesture.isEnabled = false
             swipeRightGesture.isEnabled = false
-        } else {
-            var allvalzero = true
-            for i in expensesArray {
-                if i.actualExpenses > 0.0 {
-                    
-                    allvalzero = false
-                }
-            }
-            if allvalzero == true {
-                rotateAntiClockWiseBottom.isHidden = true
-                rotateAntiClockWiseTop.isHidden = true
-                rotateClockWiseBottom.isHidden = true
-                rotateClockWiseTop.isHidden = true
-                zoomInButton.isHidden = true
-                zoomOutButton.isHidden = true
-                restartButton.isHidden = true
-                pageControl.isHidden = true
-                pieView.isHidden = true
-                barView.isHidden = true
-                noSpendingLabel.isHidden = false
-                noSpendingLabel.text = """
-No spendings currently made this Month
-
-Tap to show Expenses/Spendings and Savings
-"""
-                swipeLeftGesture.isEnabled = false
-                swipeRightGesture.isEnabled = false
-                
-            } else {
-                restartButton.isHidden = false
-                pageControl.isHidden = false
-    //            noSpendingLabel.isHidden = true
-                swipeLeftGesture.isEnabled = true
-                swipeRightGesture.isEnabled = true
-    //            updateChart()
-            }
+//        } else {
+//            var allvalzero = true
+//            for i in expensesArray {
+//                if i.actualExpenses > 0.0 {
+//
+//                    allvalzero = false
+//                }
+//            }
+//            if allvalzero == true {
+//                rotateAntiClockWiseBottom.isHidden = true
+//                rotateAntiClockWiseTop.isHidden = true
+//                rotateClockWiseBottom.isHidden = true
+//                rotateClockWiseTop.isHidden = true
+//                zoomInButton.isHidden = true
+//                zoomOutButton.isHidden = true
+//                restartButton.isHidden = true
+//                pageControl.isHidden = true
+//                pieView.isHidden = true
+//                barView.isHidden = true
+//                noSpendingLabel.isHidden = false
+////                cell.spendingLabel.text = "$\(String(format: "%.2f", savings))/\(projectedSavings) saved"
+////                if savings > Double(projectedSavings) {
+////                    cell.spendingLabel.textColor = .systemGreen
+////                } else if savings == Double(projectedSavings){
+////                    cell.spendingLabel.textColor = .label
+////                } else {
+////                    cell.spendingLabel.textColor = .systemRed
+////                noSpendingLabel.attributedText = NSMutableAttributedString().normal20("""
+////No Spendings currently made this Month
+////
+////Tap to show Expenses/Spendings
+////
+////""").normal20("You have saved ").boldGreen("$\(String(format: "%.2f", savings))/\(projectedSavings)").normal20(" for this month currently")
+//                swipeLeftGesture.isEnabled = false
+//                swipeRightGesture.isEnabled = false
+//
+//            } else {
+//                restartButton.isHidden = false
+//                pageControl.isHidden = false
+//    //            noSpendingLabel.isHidden = true
+//                swipeLeftGesture.isEnabled = true
+//                swipeRightGesture.isEnabled = true
+//    //            updateChart()
+//            }
         }
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -311,31 +327,31 @@ Tap to show Expenses/Spendings and Savings
         if wishlist.count > 0 {
             let randomItem = wishlist.randomElement()!
             itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-            if Double(randomItem.price) < Double(totalsavings+savings) {
+            if Double(randomItem.price) < Double(totalsavings) {
                 buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy this item:")
                 //            buyALabel.text = "You can buy a \(randomItem.name)"
-                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
-    //        } else if randomItem.price == Int(totalsavings+savings) {
+                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
+    //        } else if randomItem.price == Int(totalsavings) {
     //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
     //            //            buyALabel.text = "You can buy a \(randomItem.name)"
-    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings+savings))").normal("/").bold("\(randomItem.price)")
-    //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings))").normal("/").bold("\(randomItem.price)")
+    //            //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
             } else {
-                if totalsavings+savings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
+                if totalsavings > 0 {
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
                     //            buyALabel.text = "You can buy a \(randomItem.name)"
-                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings+savings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
-                    //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings+savings))/$\(randomItem.price)"
+                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal20("$").boldRed("\(String( format: "%.2f", Double(totalsavings)))").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
+                    //            somethingOutOfSomethingLabel.text = "$\(Int(totalsavings))/$\(randomItem.price)"
                 } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings+savings)) more to buy this item:")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need $\(String(format: "%.2f" , Double(randomItem.price)-totalsavings)) more to buy this item:")
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldBlue("0").normal("/").boldGreen("\(String(format: "%.2f",randomItem.price))")
                 }
             }
         } else {
             buyALabel.text = ""
             somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
-            itemName.attributedText = NSMutableAttributedString().normal("Wishlist is Empty")
+            itemName.attributedText = NSMutableAttributedString().normal("Your Wishlist is Empty")
         }
     }
     
@@ -355,6 +371,7 @@ Tap to show Expenses/Spendings and Savings
                     pieEntries.append(PieChartDataEntry(value: i.actualExpenses, label: i.categoryName))
                 }
             }
+            pieEntries.append(PieChartDataEntry(value: savings, label: "Savings"))
 //            if allvalzero == true {
 //                restartButton.isHidden = true
 //                pageControl.isHidden = true
@@ -452,6 +469,8 @@ Tap to show Expenses/Spendings and Savings
                     xAxisValues.append(expensesArray[i].categoryName)
                 }
             }
+            barEntries.append(BarChartDataEntry(x: Double(nonzerodata), yValues: [savings]))
+            xAxisValues.append("Savings")
 //            if allvalzero == true {
 //                restartButton.isHidden = true
 ////                pageControl.isHidden = true

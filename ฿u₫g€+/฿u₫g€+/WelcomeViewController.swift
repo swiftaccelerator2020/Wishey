@@ -78,20 +78,29 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             performSegue(withIdentifier: "navigateHome", sender: nil)
 //            doneButton.isEnabled = true
         } else {
-            if usernameTextField.text!.isEmpty || usernameTextField.text == nil {
-                let alert = UIAlertController(title: "Warning", message: "Name is Empty", preferredStyle: .alert)
+//            if (usernameTextField.text!.isEmpty || usernameTextField.text == nil) && (monthlyIncomeTextField.text!.isEmpty || monthlyIncomeTextField.text == nil) {
+                let alert = UIAlertController(title: "Warning", message: "Not all required text fields are filled up", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
-            } else if usernameTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
-                let alert = UIAlertController(title: "Warning", message: "Name is Blank", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-            }
-            if monthlyIncomeTextField.text!.isEmpty || monthlyIncomeTextField.text == nil {
-                let alert = UIAlertController(title: "Warning", message: "Income is Empty", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-            }
+//            }
+//            if usernameTextField.text!.isEmpty || usernameTextField.text == nil {
+//                let alert = UIAlertController(title: "Warning", message: "Name is Empty", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                present(alert, animated: true, completion: nil)
+//            } else if usernameTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+//                let alert = UIAlertController(title: "Warning", message: "Name is Blank", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                present(alert, animated: true, completion: nil)
+//            }
+//            if monthlyIncomeTextField.text!.isEmpty || monthlyIncomeTextField.text == nil {
+//                let alert = UIAlertController(title: "Warning", message: "Income is Empty", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                present(alert, animated: true, completion: nil)
+//            } else if monthlyIncomeTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+//                let alert = UIAlertController(title: "Warning", message: "Income is Blank", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                present(alert, animated: true, completion: nil)
+//            }
         }
     }
     @IBAction func skipButtonTapped(_ sender: Any) {

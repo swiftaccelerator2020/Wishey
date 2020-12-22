@@ -33,10 +33,13 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         self.navigationItem.hidesBackButton = false
         self.hideKeyboardWhenTappedAround()
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        tableView.reloadData()
-//    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
         self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
         updateForCurrentMonth()
         updateProjectedSavings()
@@ -67,7 +70,10 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         case 0:
             return incomeArray.count
         case 1:
-            return expensesArray.count
+            if expensesArray.count > 0 {
+                return expensesArray.count
+            }
+            return 1
         default:
             return 0
         }
@@ -102,6 +108,9 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 //    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if expensesArray.count <= 0 && indexPath.section == 1 {
+            return 160
+        }
         return 60
     }
     
@@ -126,20 +135,26 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
             }
         } else if indexPath.section == 1 {
 //            cell.accessoryType = .disclosureIndicator
-            cell.expense = expensesArray[indexPath.row]
-            cell.expenseSetUp()
+            if expensesArray.count > 0 {
+                cell.expense = expensesArray[indexPath.row]
+                cell.expenseSetUp()
+            } else {
+                cell.expenseNoneSetup()
+            }
         }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+        if expensesArray.count > 0 {
         if indexPath.section == 0 {
             if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
                 self.performSegue(withIdentifier: "seeOtherIncome", sender: nil)
             }
         } else if indexPath.section == 1 {
             performSegue(withIdentifier: "seeProjExpDetails", sender: nil)
+        }
         }
     }
     
@@ -154,11 +169,10 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         }
     }
     
-    
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && expensesArray.count > 0 {
             return true
         }
         return false
@@ -167,6 +181,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        if indexPath.section == 1 {
+        if expensesArray.count > 0 {
             if editingStyle == .delete {
                // Delete the row from the data source
                 let alert = UIAlertController(title: "Are you sure you want to delete \(expensesArray[indexPath.row].categoryName)?", message: "This action cannot be undone", preferredStyle: .alert)
@@ -174,7 +189,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
                     // Add
                     expensesArray.remove(at: indexPath.row)
                     expenseStruct.saveToFile(expense: expensesArray)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
                     tableView.reloadData()
                     // End
                 }))
@@ -186,12 +201,13 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
             } else if editingStyle == .insert {
                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
             }
-//        }
+        }
      }
     
     
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        if expensesArray.count > 0 {
         if fromIndexPath.section == 1 {
             if to.section == 1 {
                 if to.row != fromIndexPath.row {
@@ -206,17 +222,18 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         } else {
             tableView.reloadData()
         }
+        }
      }
      
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && expensesArray.count > 0 {
             let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
                 let alert = UIAlertController(title: "Are you sure you want to delete \(expensesArray[indexPath.row].categoryName)?", message: "This action cannot be undone", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
                     // Add
                     expensesArray.remove(at: indexPath.row)
                     expenseStruct.saveToFile(expense: expensesArray)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
                     tableView.reloadData()
                     // End
                 }))
@@ -240,7 +257,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      // Override to support conditional rearranging of the table view.
      override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the item to be re-orderable.
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && expensesArray.count > 0 {
             return true
         }
         return false

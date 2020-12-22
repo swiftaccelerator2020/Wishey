@@ -270,7 +270,11 @@ class ExpenseDetailTableViewController: UITableViewController, UITextFieldDelega
                 expenseStruct.saveToFile(expense: expensesArray)
                 updateGlobalSavings()
                 view.endEditing(true)
+//                self.dismiss(animated: true, completion: {
+//                    self.presentingViewController?.viewWillAppear(true)
+//                })
                 performSegue(withIdentifier: "unwindHomeExpenses", sender: nil)
+                navigationController?.popViewController(animated: true)
             } else {
                 let alert = UIAlertController(title: "Warning", message: "Budget is not a whole number or Amount Spent is not a number", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

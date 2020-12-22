@@ -77,7 +77,7 @@ class NameViewController: UIViewController {
 //        }
 //    }
     @IBAction func cancelAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     @IBAction func saveAction(_ sender: Any) {
         if nameTF.text != nil && !nameTF.text!.isEmpty && !nameTF.text!.trimmingCharacters(in: .whitespaces).isEmpty {
