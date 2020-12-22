@@ -17,6 +17,9 @@ class NameViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,  selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,  selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         self.hideKeyboardWhenTappedAround()
         delete.layer.cornerRadius = 10
         cancel.layer.cornerRadius = 10
@@ -31,8 +34,29 @@ class NameViewController: UIViewController {
             title = "Set Name"
         }
     }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    @objc func keyboardWillChange(notification: Notification) {
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -keyboardRect.height
+        } else if notification.name == UIResponder.keyboardWillHideNotification {
+            view.frame.origin.y = 0
+        }
+    }
     @IBAction func hideKeyboard(_ sender: Any) {
         self.resignFirstResponder()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        view.endEditing(true)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: self.view.window)
     }
     //    @IBAction func endEditing(_ sender: Any) {
 //        if nameTF.text != nil && !nameTF.text!.isEmpty && !nameTF.text!.trimmingCharacters(in: .whitespaces).isEmpty {
