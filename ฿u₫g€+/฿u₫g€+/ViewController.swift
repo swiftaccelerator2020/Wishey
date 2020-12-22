@@ -191,9 +191,9 @@ class ViewController: UIViewController {
         updateForCurrentMonth()
         spendingsLabel.text = Date().monthAsString()
         if totalsavings > 0 {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings))").normal(" so far (excluding this month)")
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
         } else {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far (excluding this month)")
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0").normal(" so far")
         }
         if wishlist.count > 0 {
             let randomItem = wishlist.randomElement()!
