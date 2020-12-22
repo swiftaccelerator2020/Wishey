@@ -49,10 +49,16 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         iDollar.isHidden = false
         incomeName.text = income?.incomeName
         if let incomeMoneyValue = income?.incomeMoney {
-            if incomeMoneyValue <= 0 {
+            if incomeMoneyValue < 0 {
                 incomeMoney.textColor = .systemRed
+                iDollar.textColor = .systemRed
+                let alert = UIAlertController(title: "Warning", message: "Projected Savings is less than $0", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Change to Default", style: .default, handler: {_ in
+                    
+                }))
             } else {
                 incomeMoney.textColor = .label
+                iDollar.textColor = .label
             }
             incomeMoney.text = "\(incomeMoneyValue)"
         }
@@ -144,12 +150,12 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
     
     @IBAction func changeExpense(_ sender: Any) {
         if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil {
-            expense?.projectedExpenses = 100
-            expensesArray[theIndexPath.row].projectedExpenses = 100
+            expense?.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
+            expensesArray[theIndexPath.row].projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
         } else {
             if Int(expenseMoney.text!)! <= 0 {
-                expense?.projectedExpenses = 100
-                expensesArray[theIndexPath.row].projectedExpenses = 100
+                expense?.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
+                expensesArray[theIndexPath.row].projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
             } else {
                 expensesArray[theIndexPath.row].projectedExpenses = Int(expenseMoney.text!)!
             }

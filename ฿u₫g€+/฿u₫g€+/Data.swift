@@ -8,8 +8,6 @@ import Foundation
 
 // Structs
 
-
-
 class projectedIncome: Codable {
     var incomeName: String
     var incomeMoney: Int
@@ -218,15 +216,15 @@ func updateProjectedSavings() {
         projectedIncome.saveToFile(income: incomeArray)
         expenseStruct.saveToFile(expense: expensesArray)
     }
-    income = 0
+    globalincome = 0
     for i in 0..<incomeArray.count-1 {
-        income += incomeArray[i].incomeMoney
+        globalincome += incomeArray[i].incomeMoney
     }
     var projSpendings = Int()
     for i in 0..<expensesArray.count {
         projSpendings += expensesArray[i].projectedExpenses
     }
-    incomeArray[incomeArray.count-1].incomeMoney = income - projSpendings
+    incomeArray[incomeArray.count-1].incomeMoney = globalincome - projSpendings
     projectedIncome.saveToFile(income: incomeArray)
     projectedSavings = incomeArray[incomeArray.count-1].incomeMoney
 }
@@ -259,10 +257,10 @@ func updateGlobalSavings() {
     for i in 0..<expensesArray.count {
         spendings += expensesArray[i].actualExpenses
     }
-    savings = Double(income) - spendings
+    savings = Double(globalincome) - spendings
 }
 
-var income = Int()
+var globalincome = Int()
 
 //func setupIncome() {
 ////    income = 0

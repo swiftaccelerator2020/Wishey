@@ -71,6 +71,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         if usernameTextField.text != nil && !usernameTextField.text!.isEmpty && !usernameTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty && monthlyIncomeTextField.text != nil && !monthlyIncomeTextField.text!.isEmpty {
             updateGlobalSavings()
             updateProjectedSavings()
+            for i in expensesArray {
+                i.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
+            }
+            expenseStruct.saveToFile(expense: expensesArray)
             incomeArray[0].incomeMoney = Int(monthlyIncomeTextField.text!)!
             projectedIncome.saveToFile(income: incomeArray)
             UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
