@@ -72,6 +72,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             updateGlobalSavings()
             updateProjectedSavings()
             incomeArray[0].incomeMoney = Int(monthlyIncomeTextField.text!)!
+            projectedIncome.saveToFile(income: incomeArray)
             UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
             print(UserDefaults.standard.string(forKey: "username")!)
             performSegue(withIdentifier: "navigateHome", sender: nil)
