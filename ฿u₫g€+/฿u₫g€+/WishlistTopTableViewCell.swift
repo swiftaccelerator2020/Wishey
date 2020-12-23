@@ -10,7 +10,7 @@ import UIKit
 class WishlistTopTableViewCell: UITableViewCell {
 
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var value: UILabel!
+    @IBOutlet weak var value: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

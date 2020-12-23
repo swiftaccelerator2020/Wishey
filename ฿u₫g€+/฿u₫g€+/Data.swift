@@ -40,9 +40,46 @@ class projectedIncome: Codable {
         let incomeArray: [projectedIncome] = [
             projectedIncome(incomeName: "Salary", incomeMoney: 5000),
 //            projectedIncome(incomeName: "Other", incomeMoney: 6*7*20),
-            projectedIncome(incomeName: "Savings", incomeMoney: 0)
+//            projectedIncome(incomeName: "Projected Savings", incomeMoney: 0)
         ]
         return incomeArray
+    }
+}
+
+class projectedSavings: Codable {
+    var savingsName: String
+    var savingsMoney: Int
+    init(savingsName: String, savingsMoney: Int) {
+        self.savingsName = savingsName
+        self.savingsMoney = savingsMoney
+    }
+    static func getArchiveURL() -> URL {
+        let plistName = "savings"
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return documentsDirectory.appendingPathComponent(plistName).appendingPathExtension("plist")
+    }
+
+    static func saveToFile(savings: [projectedSavings]) {
+        let archiveURL = getArchiveURL()
+        let propertyListEncoder = PropertyListEncoder()
+        let encodedIncome = try? propertyListEncoder.encode(savings)
+        try? encodedIncome?.write(to: archiveURL, options: .noFileProtection)
+    }
+
+    static func loadFromFile() -> [projectedSavings]? {
+        let archiveURL = getArchiveURL()
+        let propertyListDecoder = PropertyListDecoder()
+        guard let retrievedSavingsData = try? Data(contentsOf: archiveURL) else { return nil }
+        guard let decodedSavings = try? propertyListDecoder.decode(Array<projectedSavings>.self, from: retrievedSavingsData) else { return nil }
+        return decodedSavings
+    }
+    
+    static func loadSampleData() -> [projectedSavings] {
+        let savingsArray: [projectedSavings] = [
+            projectedSavings(savingsName: "Projected Savings", savingsMoney: 0),
+            projectedSavings(savingsName: "Savings Target", savingsMoney: 0)
+        ]
+        return savingsArray
     }
 }
 
@@ -145,6 +182,7 @@ struct WishlistItem: Codable {
 
 // Arrays
 var incomeArray = [projectedIncome]()
+var savingsArray = [projectedSavings]()
 //    = [
 //    projectedIncome(incomeName: "Salary", incomeMoney: 5000),
 //    projectedIncome(incomeName: "Other", incomeMoney: 6*7*20),
@@ -187,7 +225,7 @@ var expensesArray = [expenseStruct]()
 var categories = ["Automotives","Properties","Electronics","Mobile Devices & Gadgets","Computers & Peripherals","Men's Wear","Men's Shoes","Men's Bags","Women's Apparel","Women's Shoes","Women's Bags","Kids Fashion","Health & Wellness", "Beauty & Personal Care", "Jewellery & Accessories", "Food & Beverage","Luxury","Furniture","Home Appliances","Office","Toys & Games","Entertainment","Sports, Outdoors & Exercise","Stationery","Music","Media","Subscriptions","Lifestyle","Pets", "Travel & Luggage","Kids & Babies", "Dining & Services", "Cameras & Drones", "Miscellaneous/Others"]
 
 // Global Variables
-var projectedSavings = Int()
+var projectedSavingsValue = Int()
 var savings = Double()
 var totalsavings = Double()
 var wishlistSpendings = Double()
@@ -204,29 +242,34 @@ func updateProjectedSavings() {
 //    projectedSavings = incomeArray[incomeArray.count-1].incomeMoney
 //    if UserDefaults.standard.array(forKey: "income") != nil && UserDefaults.standard.array(forKey: "expense") != nil {
 //        if let incomeArrayLoaded = UserDefaults.standard.array(forKey: "income")! as? [projectedIncome], let expenseArrayLoaded = UserDefaults.standard.array(forKey: "expense")! as? [expenseStruct] {
-    if let loadedExpenses = expenseStruct.loadFromFile(), let loadedIncome = projectedIncome.loadFromFile() {
+    if let loadedExpenses = expenseStruct.loadFromFile(), let loadedIncome = projectedIncome.loadFromFile(), let loadedSavings = projectedSavings.loadFromFile() {
         incomeArray = loadedIncome
         expensesArray = loadedExpenses
+        savingsArray = loadedSavings
 //        }
     } else {
 //        UserDefaults.standard.set(incomeArray, forKey: "income")
 //        UserDefaults.standard.set(expensesArray, forKey: "expense")
         incomeArray = projectedIncome.loadSampleData()
         expensesArray = expenseStruct.loadSampleData()
+        savingsArray = projectedSavings.loadSampleData()
         projectedIncome.saveToFile(income: incomeArray)
         expenseStruct.saveToFile(expense: expensesArray)
+        projectedSavings.saveToFile(savings: savingsArray)
     }
     globalincome = 0
-    for i in 0..<incomeArray.count-1 {
+    for i in 0...incomeArray.count-1 {
         globalincome += incomeArray[i].incomeMoney
     }
     var projSpendings = Int()
     for i in 0..<expensesArray.count {
         projSpendings += expensesArray[i].projectedExpenses
     }
-    incomeArray[incomeArray.count-1].incomeMoney = globalincome - projSpendings
+    savingsArray[0].savingsMoney = globalincome - projSpendings
+    projectedSavingsValue = savingsArray[0].savingsMoney
     projectedIncome.saveToFile(income: incomeArray)
-    projectedSavings = incomeArray[incomeArray.count-1].incomeMoney
+    projectedSavings.saveToFile(savings: savingsArray)
+    (globalincome/5)
 }
 
 func updateGlobalSavings() {
@@ -337,4 +380,10 @@ func updateForCurrentMonth() {
 //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
         UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
     }
+}
+
+let currencyFormatter = NumberFormatter()
+func updateCurrency() {
+    currencyFormatter.usesGroupingSeparator = true
+    currencyFormatter.numberStyle = .currency
 }

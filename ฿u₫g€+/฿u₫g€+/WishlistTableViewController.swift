@@ -127,11 +127,11 @@ class WishlistTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1 && wishlist.count > 0 {
+        if section == 2 && wishlist.count > 0 {
             // #warning Incomplete implementation, return the number of rows
 //            if  {
 //                self.tableView.backgroundView = .none
@@ -145,14 +145,16 @@ class WishlistTableViewController: UITableViewController {
 //            self.tableView.backgroundView = emptyLabel
 //            self.tableView.separatorStyle = .none
 //            return 0
+        } else if section == 2 {
+            return 1
         } else if section == 1 {
             return 1
         }
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "wishlistCell", for: indexPath) as! WishlistTableViewCell
             if wishlist.count > 0 {
                 cell.wishlistEmptyLabel.isHidden = true
@@ -274,23 +276,40 @@ class WishlistTableViewController: UITableViewController {
             
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "theTopCell", for: indexPath) /*as! WishlistTopTableViewCell*/
+        let cell = tableView.dequeueReusableCell(withIdentifier: "theTopCell", for: indexPath) as! WishlistTopTableViewCell
 
 //        cell.myIndexPath = indexPath
         // Configure the cell...
-        if let cell = cell as? WishlistTopTableViewCell {
+//        if let cell = cell as? WishlistTopTableViewCell {
             cell.label.adjustsFontSizeToFitWidth = true
             cell.value.adjustsFontSizeToFitWidth = true
-            if indexPath.row == 0 {
-                cell.label.text = "Total Savings"
-                cell.value.text = "$\(String(format: "%.2f", totalsavings+savings))"
-            } else if indexPath.row == 1 {
-                cell.label.text = "Savings Carried Forward"
-                cell.value.text = "$\(String(format: "%.2f", totalsavings))"
-            } else if indexPath.row == 2 {
+            if indexPath.section == 0 {
+                if indexPath.row < 2 {
+                    cell.separatorInset.left = cell.bounds.size.width
+                } else {
+                    cell.separatorInset.left = 0
+                    cell.preservesSuperviewLayoutMargins = true
+                }
+                cell.value.isUserInteractionEnabled = false
+                if indexPath.row == 0 {
+                    cell.label.text = "Initial Savings"
+//                    cell.value.text = "$\(String(format: "%.2f", totalsavings))"
+                    cell.value.isUserInteractionEnabled = true
+                } else if indexPath.row == 1 {
+                    cell.label.text = "Previous Month's Savings"
+                    cell.value.text = "\(String(format: "%.2f", totalsavings))"
+                } else if indexPath.row == 2 {
+                    cell.label.text = "This Month's Savings"
+                    cell.value.text = "\(String(format: "%.2f", savings))"
+                } else if indexPath.row == 3 {
+                    cell.label.text = "Total Savings"
+                    cell.value.text = "\(String(format: "%.2f", totalsavings+savings))"
+                }
+            } else if indexPath.section == 1 {
                 cell.label.text = "Wishlist Transactions"
             }
-        }
+//        }
+        cell.value.isUserInteractionEnabled = false
         cell.selectionStyle = .none
         return cell
     }
@@ -302,10 +321,12 @@ class WishlistTableViewController: UITableViewController {
 //        return 0
 //    }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 1 && wishlist.count == 0 {
+        if indexPath.section == 2 && wishlist.count == 0 {
             return 140
+        } else if indexPath.section == 2 {
+            return UITableView.automaticDimension
         }
-        return UITableView.automaticDimension
+        return 60
     }
     
 //    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -319,7 +340,7 @@ class WishlistTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 && wishlist.count > 0{
+        if indexPath.section == 2 && wishlist.count > 0{
             performSegue(withIdentifier: "detailsSegue", sender: nil)
         }
 //        let cell: UITableViewCell = tableView.cellForRow(at: indexPath)!
@@ -341,13 +362,13 @@ class WishlistTableViewController: UITableViewController {
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        if indexPath.section == 1 && wishlist.count > 0 { return true }
+        if indexPath.section == 2 && wishlist.count > 0 { return true }
         return false
     }
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 && wishlist.count > 0 {
+        if indexPath.section == 2 && wishlist.count > 0 {
             let cell = tableView.cellForRow(at: indexPath) as? WishlistTableViewCell
             cell?.editingAccessoryView?.backgroundColor = .systemGreen
     //        cell?.progressAnimated.layer.cornerRadius = 10
@@ -379,13 +400,15 @@ class WishlistTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
+            return "Savings"
+        } else if section == 1 {
             return "Information"
         }
         return "Wishlist"
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.section == 1 && wishlist.count > 0 {
+        if indexPath.section == 2 && wishlist.count > 0 {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             let alert = UIAlertController(title: "Are you sure you want to delete \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
@@ -452,7 +475,7 @@ class WishlistTableViewController: UITableViewController {
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         if to != fromIndexPath {
-            if to.section == 1 && fromIndexPath.section == 1 {
+            if to.section == 2 && fromIndexPath.section == 2 {
                 let friend = wishlist.remove(at: fromIndexPath.row)
                 wishlist.insert(friend, at: to.row)
                 self.canBuy = []
@@ -468,7 +491,7 @@ class WishlistTableViewController: UITableViewController {
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        if indexPath.section == 1 && wishlist.count > 0 { return true }
+        if indexPath.section == 2 && wishlist.count > 0 { return true }
         return false
     }
 

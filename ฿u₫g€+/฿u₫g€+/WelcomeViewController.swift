@@ -17,7 +17,26 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var thingy: UILabel!
     @IBOutlet weak var text: UILabel!
     @IBOutlet weak var savingsTargetTextField: UITextField!
+    @IBOutlet weak var initialSavingsTextField: UITextField!
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == initialSavingsTextField {
+            guard let oldText = textField.text, let r = Range(range, in: oldText) else {
+                return true
+            }
+            
+            let newText = oldText.replacingCharacters(in: r, with: string)
+            let isNumeric = newText.isEmpty || (Double(newText) != nil)
+            let numberOfDots = newText.components(separatedBy: ".").count - 1
+            
+            let numberOfDecimalDigits: Int
+            if let dotIndex = newText.firstIndex(of: ".") {
+                numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+            } else {
+                numberOfDecimalDigits = 0
+            }
+            
+            return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
+        }
         let invalidCharacters =
           CharacterSet(charactersIn: "0123456789").inverted
         return (string.rangeOfCharacter(from: invalidCharacters) == nil)
@@ -28,8 +47,8 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
 //        UserDefaults.standard.setValue("WelcomeViewController", forKey: "LaunchViewController")
         text.adjustsFontSizeToFitWidth = true
         UserDefaults.standard.setValue(false, forKey: "loggedIn")
-//        doneButton.layer.cornerRadius = 10
-//        skipButton.layer.cornerRadius = 10
+        doneButton.layer.cornerRadius = 10
+        skipButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
         thingy.layer.cornerRadius = 15
         thingy.clipsToBounds = true
@@ -43,10 +62,20 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self,  selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self,  selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        self.hideKeyboardWhenTappedAround()
+//        self.hideKeyboardWhenTappedAround()
 //        doneButton.isEnabled = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard(_:)))
+
+        // Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        // tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
         monthlyIncomeTextField.delegate = self
         monthlyIncomeTextField.keyboardType = .numberPad
+        savingsTargetTextField.delegate = self
+        savingsTargetTextField.keyboardType = .numberPad
+        initialSavingsTextField.delegate = self
+        initialSavingsTextField.keyboardType = .decimalPad
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -66,18 +95,40 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func hideKeyboard(_ sender: Any) {
         self.resignFirstResponder()
         view.frame.origin.y = 0
+        view.endEditing(true)
     }
     
     @IBAction func whenDoneClicked(_ sender: Any) {
         if usernameTextField.text != nil && !usernameTextField.text!.isEmpty && !usernameTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty && monthlyIncomeTextField.text != nil && !monthlyIncomeTextField.text!.isEmpty {
             updateGlobalSavings()
             updateProjectedSavings()
-            for i in expensesArray {
-                i.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
-            }
-            expenseStruct.saveToFile(expense: expensesArray)
             incomeArray[0].incomeMoney = Int(monthlyIncomeTextField.text!)!
             projectedIncome.saveToFile(income: incomeArray)
+            if savingsTargetTextField.text != nil && !savingsTargetTextField.text!.isEmpty && !savingsTargetTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+                savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+//                UserDefaults.standard.setValue(Int(savingsTargetTextField.text!), forKey: "savingsTarget")
+            } else {
+                savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+//                UserDefaults.standard.setValue(Double(globalincome/5).rounded(.down), forKey: "savingsTarget")
+            }
+            projectedSavings.saveToFile(savings: savingsArray)
+            updateGlobalSavings()
+            updateProjectedSavings()
+//            if UserDefaults.standard.object(forKey: "savingsTarget") != nil {
+//                for i in expensesArray {
+//                    i.projectedExpenses = Int((Double((globalincome-UserDefaults.standard.integer(forKey: "savingsTarget"))/expensesArray.count)).rounded(.down))
+//                }
+            for i in expensesArray {
+                i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+            }
+//            } else {
+//                for i in expensesArray {
+//                    i.projectedExpenses = Int((Double(globalincome-(globalincome/5)/expensesArray.count)).rounded(.down))
+//                }
+//            }
+            expenseStruct.saveToFile(expense: expensesArray)
+            updateGlobalSavings()
+            updateProjectedSavings()
             UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
             print(UserDefaults.standard.string(forKey: "username")!)
             performSegue(withIdentifier: "navigateHome", sender: nil)

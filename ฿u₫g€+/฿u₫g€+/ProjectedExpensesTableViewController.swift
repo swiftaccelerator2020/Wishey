@@ -83,6 +83,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     func updateTableView() {
         expenseStruct.saveToFile(expense: expensesArray)
         projectedIncome.saveToFile(income: incomeArray)
+        projectedSavings.saveToFile(savings: savingsArray)
         updateProjectedSavings()
         tableView.reloadData() // you do have an outlet of tableView I assume
     }
@@ -91,7 +92,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,6 +101,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         case 0:
             return incomeArray.count
         case 1:
+            return savingsArray.count
+        case 2:
             if expensesArray.count > 0 {
                 return expensesArray.count
             }
@@ -118,7 +121,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 //        button.frame = CGRect(x: 100, y: 100, width: 120, height: 50)
 //        if section == 0 {
 //            button.frame.origin = CGPoint(x: 290, y: 0)
-//        } else if section == 1 {
+//        } else if section == 2 {
 //            button.frame.origin = CGPoint(x: 290, y: -20)
 //        }
 //        button.setTitle("+", for: .normal)
@@ -138,7 +141,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
 //    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if expensesArray.count <= 0 && indexPath.section == 1 {
+        if expensesArray.count <= 0 && indexPath.section == 2 {
             return 160
         }
         return 60
@@ -154,17 +157,39 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         cell.theIndexPath = indexPath
         
         if indexPath.section == 0 {
-            cell.income = incomeArray[indexPath.row]
             print(incomeArray)
-            cell.incomeSetUp()
-            if indexPath.row != 0 {
-                cell.incomeMoney.isEnabled = false
-            }
-            if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
+            if indexPath.row < incomeArray.count {
+                cell.income = incomeArray[indexPath.row]
+                cell.incomeSetUp()
                 cell.isUserInteractionEnabled = true
+                if indexPath.row != 0 {
+                    cell.incomeMoney.isEnabled = false
+                } else {
+                    cell.incomeMoney.isEnabled = true
+                }
+//                if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
+//                    cell.isUserInteractionEnabled = true
+//                }
             }
         } else if indexPath.section == 1 {
+            print(savingsArray)
+            cell.saving = savingsArray[indexPath.row]
+            cell.savingsSetUp()
+            if indexPath.row == 0 {
+                cell.isUserInteractionEnabled = false
+            } else {
+                cell.isUserInteractionEnabled = true
+            }
+            if savingsArray[indexPath.row].savingsMoney < 0 {
+                let alert = UIAlertController(title: "Warning", message: "Projected Savings is less than $0", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Change to Default", style: .default, handler: {_ in
+                
+            }))
+                present(alert, animated: true, completion: nil)
+            }
+        } else if indexPath.section == 2 {
 //            cell.accessoryType = .disclosureIndicator
+            cell.isUserInteractionEnabled = true
             if expensesArray.count > 0 {
                 cell.expense = expensesArray[indexPath.row]
                 cell.expenseSetUp()
@@ -178,13 +203,13 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         if expensesArray.count > 0 {
-        if indexPath.section == 0 {
-            if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
-                self.performSegue(withIdentifier: "seeOtherIncome", sender: nil)
+            if indexPath.section == 0 {
+                if indexPath.row != 0 && indexPath.row != incomeArray.count-1 {
+                    self.performSegue(withIdentifier: "seeOtherIncome", sender: nil)
+                }
+            } else if indexPath.section == 2 {
+                performSegue(withIdentifier: "seeProjExpDetails", sender: nil)
             }
-        } else if indexPath.section == 1 {
-            performSegue(withIdentifier: "seeProjExpDetails", sender: nil)
-        }
         }
     }
     
@@ -193,6 +218,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         case 0:
             return "Income"
         case 1:
+            return "Projected Savings"
+        case 2:
             return "Projected Expenses"
         default:
             return ""
@@ -202,7 +229,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
-        if indexPath.section == 1 && expensesArray.count > 0 {
+        if indexPath.section == 2 && expensesArray.count > 0 {
             return true
         }
         return false
@@ -210,7 +237,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if indexPath.section == 1 {
+//        if indexPath.section == 2 {
         if expensesArray.count > 0 {
             if editingStyle == .delete {
                // Delete the row from the data source
@@ -238,8 +265,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         if expensesArray.count > 0 {
-        if fromIndexPath.section == 1 {
-            if to.section == 1 {
+        if fromIndexPath.section == 2 {
+            if to.section == 2 {
                 if to.row != fromIndexPath.row {
                     let expense = expensesArray.remove(at: fromIndexPath.row)
                     expensesArray.insert(expense, at: to.row)
@@ -256,7 +283,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      }
      
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.section == 1 && expensesArray.count > 0 {
+        if indexPath.section == 2 && expensesArray.count > 0 {
             let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
                 let alert = UIAlertController(title: "Are you sure you want to delete \(expensesArray[indexPath.row].categoryName)?", message: "This action cannot be undone", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
@@ -287,7 +314,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
      // Override to support conditional rearranging of the table view.
      override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the item to be re-orderable.
-        if indexPath.section == 1 && expensesArray.count > 0 {
+        if indexPath.section == 2 && expensesArray.count > 0 {
             return true
         }
         return false

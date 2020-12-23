@@ -102,10 +102,10 @@ class expensesTableViewController: UITableViewController {
             }
 //            cell.accessoryType = .disclosureIndicator
         } else if indexPath.section == 1 {
-            cell.spendingLabel.text = "$\(String(format: "%.2f", savings))/\(projectedSavings) saved"
-            if savings > Double(projectedSavings) {
+            cell.spendingLabel.text = "$\(String(format: "%.2f", savings))/\(projectedSavingsValue) saved"
+            if savings > Double(projectedSavingsValue) {
                 cell.spendingLabel.textColor = .systemGreen
-            } else if savings == Double(projectedSavings){
+            } else if savings == Double(projectedSavingsValue){
                 cell.spendingLabel.textColor = .label
             } else {
                 cell.spendingLabel.textColor = .systemRed
