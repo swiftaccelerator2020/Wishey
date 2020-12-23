@@ -27,19 +27,19 @@ Please do remember to adhere to the [code of conduct](CODE_OF_CONDUCT) when cont
 2. If your would like to open a Q&A, provide Feature Requests and/or give Ideas, start a [discussion](https://github.com/swiftaccelerator2020/Wishey/issues).
 3. Contact us at [granwyn_tan@s2019.ssts.edu.sg](granwyn_tan@s2019.ssts.edu.sg).
 
-## Authors
+## Authors & Acknowledgements
 [![GitHub contributors](https://img.shields.io/github/contributors/swiftaccelerator2020/Wishey?style=flat-square)](https://github.com/swiftaccelerator2020/Wishey/graphs/contributors)
 <a href="https://github.com/swiftaccelerator2020/Wishey/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=swiftaccelerator2020/Wishey" />
 </a>
 
-## Our Group
+## Our Team Members
 1. Granwyn Tan (CEO)
 2. Tan Xi Peng Adam (CMO - Marketing)
 3. Brydon Ti (CDO - Design)
 4. Joe Wong (CTO - Technology)
 
-## Acknowledgements 
+## We would also like to thank
 1. YJ Soon (Swift Accelerator Programme Instructor)
 2. Sebastian Choo & Yee Jia Chen (Consultants)
 3. Ryan Theodore The
