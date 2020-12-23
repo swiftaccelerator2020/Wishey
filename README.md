@@ -24,7 +24,7 @@ Please do remember to adhere to the [code of conduct](CODE_OF_CONDUCT.md) when c
 
 ## Support
 1. To provide Feedback and Bug Reports, create an [issue](https://github.com/swiftaccelerator2020/Wishey/issues).
-2. If your would like to open a Q&A, provide Feature Requests and/or give Ideas, start a [discussion](https://github.com/swiftaccelerator2020/Wishey/issues).
+2. If your would like to open a Q&A, provide Feature Requests and/or give Ideas, start a [discussion](https://github.com/swiftaccelerator2020/Wishey/discussions).
 3. Contact us at [granwyn_tan@s2019.ssts.edu.sg](mailto:granwyn_tan@s2019.ssts.edu.sg).
 
 ## Authors & Acknowledgements
