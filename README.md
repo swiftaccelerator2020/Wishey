@@ -11,7 +11,8 @@ Wishey is available on the [App Store](https://tk.sg/sis20-wishey)
 
 ## Contributing
 Fork our repository and start a [pull request](https://github.com/swiftaccelerator2020/Wishey/pulls) if you would like to contribute.
-Please do adhere to the [code of conduct](CODE_OF_CONDUCT) when contributing.
+<br>
+Please do remember to adhere to the [code of conduct](CODE_OF_CONDUCT) when contributing.
 
 ## Support
 1. To provide Feedback and Bug Reports, create an [issue](https://github.com/swiftaccelerator2020/Wishey/issues).
