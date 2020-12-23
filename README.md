@@ -6,6 +6,11 @@ Wishey is a budgeting app that allows young adults to keep track of their monthl
 
 This app was created by Granwyn Tan, Tan Xi Peng Adam, Brydon Ti and Joe Wong under the [2020 Swift Accelerator Programme](https://www.swiftinsg.org/). 
 
+## License
+[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat-square)](LICENSE)
+<br>
+[LICENSE](LICENSE)
+
 ## Installing
 Wishey is available on the [App Store](https://tk.sg/sis20-wishey)
 <br>
@@ -34,7 +39,8 @@ Please do remember to adhere to the [code of conduct](CODE_OF_CONDUCT) when cont
 3. Brydon Ti (CDO - Design)
 4. Joe Wong (CTO - Technology)
 
-## Acknowledgements
-1. YJ Soon - Swift Accelerator Programme instructor
-2. Sebastian Choo & Yee Jia Chen - Consultants
-3. SAP Alumni & Seniors - Giving feedback and helping us with the app and video
+## Acknowledgements 
+1. YJ Soon (Swift Accelerator Programme Instructor)
+2. Sebastian Choo & Yee Jia Chen (Consultants)
+3. Ryan Theodore The
+4. SAP Alumni & Seniors (Feedback)
