@@ -283,6 +283,7 @@ class WishlistTableViewController: UITableViewController {
 //        if let cell = cell as? WishlistTopTableViewCell {
             cell.label.adjustsFontSizeToFitWidth = true
             cell.value.adjustsFontSizeToFitWidth = true
+            cell.value.isUserInteractionEnabled = false
             if indexPath.section == 0 {
                 if indexPath.row < 2 {
                     cell.separatorInset.left = cell.bounds.size.width
@@ -290,7 +291,6 @@ class WishlistTableViewController: UITableViewController {
                     cell.separatorInset.left = 0
                     cell.preservesSuperviewLayoutMargins = true
                 }
-                cell.value.isUserInteractionEnabled = false
                 if indexPath.row == 0 {
                     cell.label.text = "Initial Savings"
 //                    cell.value.text = "$\(String(format: "%.2f", totalsavings))"
@@ -309,7 +309,6 @@ class WishlistTableViewController: UITableViewController {
                 cell.label.text = "Wishlist Transactions"
             }
 //        }
-        cell.value.isUserInteractionEnabled = false
         cell.selectionStyle = .none
         return cell
     }
@@ -369,8 +368,8 @@ class WishlistTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 2 && wishlist.count > 0 {
-            let cell = tableView.cellForRow(at: indexPath) as? WishlistTableViewCell
-            cell?.editingAccessoryView?.backgroundColor = .systemGreen
+//            let cell = tableView.cellForRow(at: indexPath) as? WishlistTableViewCell
+//            cell?.editingAccessoryView?.backgroundColor = .systemGreen
     //        cell?.progressAnimated.layer.cornerRadius = 10
     //        cell?.progressAnimated.sizeToFit()
     //        cell?.autoresizesSubviews = true

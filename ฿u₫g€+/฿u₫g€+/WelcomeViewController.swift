@@ -70,6 +70,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         // tap.cancelsTouchesInView = false
 
         view.addGestureRecognizer(tap)
+//        tap.cancelsTouchesInView = true
         monthlyIncomeTextField.delegate = self
         monthlyIncomeTextField.keyboardType = .numberPad
         savingsTargetTextField.delegate = self
@@ -104,8 +105,18 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             updateProjectedSavings()
             incomeArray[0].incomeMoney = Int(monthlyIncomeTextField.text!)!
             projectedIncome.saveToFile(income: incomeArray)
+            updateGlobalSavings()
+            updateProjectedSavings()
             if savingsTargetTextField.text != nil && !savingsTargetTextField.text!.isEmpty && !savingsTargetTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
-                savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+//                if Int(savingsTargetTextField.text!)! <= Int(monthlyIncomeTextField.text!)! {
+                    savingsArray[1].savingsMoney = Int(savingsTargetTextField.text!)!
+//                } else if Int(savingsTargetTextField.text!)! > Int(monthlyIncomeTextField.text!)! {
+//                    let alert = UIAlertController(title: "Warning", message: "", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+//                        savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+//                    }))
+//                    present(alert, animated: true, completion: nil)
+//                }
 //                UserDefaults.standard.setValue(Int(savingsTargetTextField.text!), forKey: "savingsTarget")
             } else {
                 savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
