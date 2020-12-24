@@ -163,6 +163,19 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         updateGlobalSavings()
         updateProjectedSavings()
         incomeArray[0].incomeMoney = 5000
+        projectedIncome.saveToFile(income: incomeArray)
+        updateGlobalSavings()
+        updateProjectedSavings()
+        savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+        projectedSavings.saveToFile(savings: savingsArray)
+        updateGlobalSavings()
+        updateProjectedSavings()
+        for i in expensesArray {
+            i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+        }
+        expenseStruct.saveToFile(expense: expensesArray)
+        updateGlobalSavings()
+        updateProjectedSavings()
         performSegue(withIdentifier: "navigateHome", sender: nil)
     }
     
