@@ -24,7 +24,7 @@ class expenseTableViewCell: UITableViewCell {
         expenseName.isHidden = false
         spendingLabel.isHidden = false
         expenseName.text = expense.categoryName
-        spendingLabel.text = "$\(currencyFormatter.string(from: NSNumber(value: Double(expense.actualExpenses)))!)/\(expense.projectedExpenses) spent"
+        spendingLabel.text = "\(currencyFormatter.string(from: NSNumber(value: Double(expense.actualExpenses)))!)/$\(expense.projectedExpenses) spent"
         if expense.actualExpenses > Double(expense.projectedExpenses) {
             spendingLabel.textColor = .systemRed
         } else {
