@@ -121,10 +121,11 @@ class expenseStruct: Codable {
 //            expenseStruct(categoryName: "Gaming", projectedExpenses: 700, actualExpenses: 300.00),
 //            expenseStruct(categoryName: "Entertainment", projectedExpenses: 600, actualExpenses: 200.00),
 //            expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00),
-            expenseStruct(categoryName: "Healthcare", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Groceries", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Food", projectedExpenses: 0, actualExpenses: 0.00),
             expenseStruct(categoryName: "Utilities", projectedExpenses: 0, actualExpenses: 0.00),
             expenseStruct(categoryName: "Transport", projectedExpenses: 0, actualExpenses: 0.00),
-            expenseStruct(categoryName: "Food", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Healthcare", projectedExpenses: 0, actualExpenses: 0.00),
             expenseStruct(categoryName: "Entertainment", projectedExpenses: 0, actualExpenses: 0.00),
             expenseStruct(categoryName: "Others", projectedExpenses: 0, actualExpenses: 0.00),
         ]
