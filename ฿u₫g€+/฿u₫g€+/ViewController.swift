@@ -212,8 +212,8 @@ class ViewController: UIViewController {
                     savings = 0
                     updateGlobalSavings()
                     spendingsLabel.text = Date().monthAsString()
-                    if totalsavings+savings > 0 {
-                        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(currencyFormatter.string(from: NSNumber(value: totalsavings+savings))!)").normal(" so far")
+                    if totalsavings+initialSavings+savings > 0 {
+                        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(currencyFormatter.string(from: NSNumber(value: totalsavings+initialSavings+savings))!)").normal(" so far")
 //                        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
                     } else {
                         savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0.00").normal(" so far")
@@ -221,10 +221,10 @@ class ViewController: UIViewController {
                     if wishlist.count > 0 {
                         let randomItem = wishlist.randomElement()!
                         itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-                        if Double(randomItem.price) < Double(totalsavings) {
+                        if Double(randomItem.price) < Double(totalsavings+initialSavings) {
                             buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy")
                             //            buyALabel.text = "You can buy a \(randomItem.name)"
-                            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue(/*\(String( format: "%.2f", Double(totalsavings)))*/"\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings)))!))").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
+                            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue(/*\(String( format: "%.2f", Double(totalsavings)))*/"\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings+initialSavings)))!))").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
                             //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
                 //        } else if randomItem.price == Int(totalsavings) {
                 //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
@@ -232,13 +232,13 @@ class ViewController: UIViewController {
                 //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings))").normal("/").bold("\(randomItem.price)")
                 //            //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
                         } else {
-                            if totalsavings > 0 {
-                                buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-totalsavings))))!) more to buy")
+                            if totalsavings+initialSavings > 0 {
+                                buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-Double(totalsavings+initialSavings)))))!) more to buy")
                                 //            buyALabel.text = "You can buy a \(randomItem.name)"
-                                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldRed("\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings))))!)").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
+                                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldRed("\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings+initialSavings))))!)").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
                                 //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
                             } else {
-                                buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-totalsavings))))!) more to buy")
+                                buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-Double(totalsavings+initialSavings)))))!) more to buy")
                                 somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue("$0.00").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
                             }
                         }
@@ -349,8 +349,8 @@ We couldn't find any information about your Spendings.   Click the "+" butto
             UINavigationBar.appearance().isTranslucent = false
         }
         spendingsLabel.text = Date().monthAsString()
-        if totalsavings+savings > 0 {
-            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(currencyFormatter.string(from: NSNumber(value: totalsavings+savings))!)").normal(" so far")
+        if totalsavings+initialSavings+savings > 0 {
+            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(currencyFormatter.string(from: NSNumber(value: totalsavings+initialSavings+savings))!)").normal(" so far")
 //                        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
         } else {
             savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0.00").normal(" so far")
@@ -358,10 +358,10 @@ We couldn't find any information about your Spendings.   Click the "+" butto
         if wishlist.count > 0 {
             let randomItem = wishlist.randomElement()!
             itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
-            if Double(randomItem.price) < Double(totalsavings) {
+            if Double(randomItem.price) < Double(totalsavings+initialSavings) {
                 buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy")
                 //            buyALabel.text = "You can buy a \(randomItem.name)"
-                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue(/*\(String( format: "%.2f", Double(totalsavings)))*/"\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings)))!))").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
+                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue(/*\(String( format: "%.2f", Double(totalsavings)))*/"\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings+initialSavings)))!))").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
                 //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
     //        } else if randomItem.price == Int(totalsavings) {
     //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
@@ -369,13 +369,13 @@ We couldn't find any information about your Spendings.   Click the "+" butto
     //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings))").normal("/").bold("\(randomItem.price)")
     //            //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
             } else {
-                if totalsavings > 0 {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-totalsavings))))!) more to buy")
+                if totalsavings+initialSavings > 0 {
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-Double(totalsavings+initialSavings)))))!) more to buy")
                     //            buyALabel.text = "You can buy a \(randomItem.name)"
-                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldRed("\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings))))!)").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
+                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldRed("\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings+initialSavings))))!)").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
                     //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
                 } else {
-                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-totalsavings))))!) more to buy")
+                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-Double(totalsavings+initialSavings)))))!) more to buy")
                     somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue("$0.00").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
                 }
             }
@@ -384,6 +384,42 @@ We couldn't find any information about your Spendings.   Click the "+" butto
             somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
             itemName.attributedText = NSMutableAttributedString().normal("Your Wishlist is Empty")
         }
+//        spendingsLabel.text = Date().monthAsString()
+//        if totalsavings+savings > 0 {
+//            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(currencyFormatter.string(from: NSNumber(value: totalsavings+savings))!)").normal(" so far")
+////                        savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("\(String(format: "%.2f", totalsavings+savings))").normal(" so far")
+//        } else {
+//            savedLabel.attributedText = NSMutableAttributedString().normal("You have saved ").bold("$0.00").normal(" so far")
+//        }
+//        if wishlist.count > 0 {
+//            let randomItem = wishlist.randomElement()!
+//            itemName.attributedText = NSMutableAttributedString().bold("\(randomItem.name)")
+//            if Double(randomItem.price) < Double(totalsavings) {
+//                buyALabel.attributedText = NSMutableAttributedString().normal20("You have enough to buy")
+//                //            buyALabel.text = "You can buy a \(randomItem.name)"
+//                somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue(/*\(String( format: "%.2f", Double(totalsavings)))*/"\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings)))!))").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
+//                //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
+//    //        } else if randomItem.price == Int(totalsavings) {
+//    //            buyALabel.attributedText = NSMutableAttributedString().normal20("You have just enough to buy this item:")
+//    //            //            buyALabel.text = "You can buy a \(randomItem.name)"
+//    //            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("$").boldGreen("\(Int(totalsavings))").normal("/").bold("\(randomItem.price)")
+//    //            //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
+//            } else {
+//                if totalsavings > 0 {
+//                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-totalsavings))))!) more to buy")
+//                    //            buyALabel.text = "You can buy a \(randomItem.name)"
+//                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldRed("\((currencyFormatter.string(from: NSNumber(value:Double(totalsavings))))!)").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
+//                    //            somethingOutOfSomethingLabel.text = "\(Int(totalsavings))/\(randomItem.price)"
+//                } else {
+//                    buyALabel.attributedText = NSMutableAttributedString().normal20("You need \((currencyFormatter.string(from: NSNumber(value:Double(Double(randomItem.price)-totalsavings))))!) more to buy")
+//                    somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().boldBlue("$0.00").normal("/").boldGreen("\(currencyFormatter.string(from: NSNumber(value:Double(randomItem.price)))!)")
+//                }
+//            }
+//        } else {
+//            buyALabel.text = ""
+//            somethingOutOfSomethingLabel.attributedText = NSMutableAttributedString().normal("")
+//            itemName.attributedText = NSMutableAttributedString().normal("Your Wishlist is Empty")
+//        }
 //    }
 //        } else {
 //            buyALabel.text = ""

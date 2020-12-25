@@ -121,12 +121,12 @@ class expenseStruct: Codable {
 //            expenseStruct(categoryName: "Gaming", projectedExpenses: 700, actualExpenses: 300.00),
 //            expenseStruct(categoryName: "Entertainment", projectedExpenses: 600, actualExpenses: 200.00),
 //            expenseStruct(categoryName: "Others", projectedExpenses: 500, actualExpenses: 100.00),
-            expenseStruct(categoryName: "Healthcare", projectedExpenses: 100, actualExpenses: 0.00),
-            expenseStruct(categoryName: "Transport", projectedExpenses: 100, actualExpenses: 0.00),
-            expenseStruct(categoryName: "Food", projectedExpenses: 100, actualExpenses: 0.00),
-            expenseStruct(categoryName: "Gaming", projectedExpenses: 100, actualExpenses: 0.00),
-            expenseStruct(categoryName: "Entertainment", projectedExpenses: 100, actualExpenses: 0.00),
-            expenseStruct(categoryName: "Others", projectedExpenses: 100, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Healthcare", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Utilities", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Transport", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Food", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Entertainment", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Others", projectedExpenses: 0, actualExpenses: 0.00),
         ]
         return expensesArray
     }
@@ -229,6 +229,7 @@ var projectedSavingsValue = Int()
 var savings = Double()
 var totalsavings = Double()
 var wishlistSpendings = Double()
+var initialSavings = Double()
 
 func updateProjectedSavings() {
 //    incomeArray = incomeArrayLoaded
@@ -269,7 +270,6 @@ func updateProjectedSavings() {
     projectedSavingsValue = savingsArray[0].savingsMoney
     projectedIncome.saveToFile(income: incomeArray)
     projectedSavings.saveToFile(savings: savingsArray)
-    (globalincome/5)
 }
 
 func updateGlobalSavings() {
@@ -386,4 +386,10 @@ let currencyFormatter = NumberFormatter()
 func updateCurrency() {
     currencyFormatter.usesGroupingSeparator = true
     currencyFormatter.numberStyle = .currency
+}
+
+func updateInitialSavings() {
+    if let iniSavings = UserDefaults.standard.string(forKey: "initialSavings") {
+        initialSavings = Double(iniSavings)!
+    }
 }

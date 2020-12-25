@@ -17,6 +17,7 @@ class StartViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        updateInitialSavings()
         updateCurrency()
 //        if UserDefaults.standard.object(forKey: "loggedIn") != nil {
 //            if UserDefaults.standard.bool(forKey: "loggedIn") == false {

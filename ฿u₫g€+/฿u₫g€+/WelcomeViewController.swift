@@ -100,55 +100,116 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func whenDoneClicked(_ sender: Any) {
+        if initialSavingsTextField.text != nil && !initialSavingsTextField.text!.isEmpty && !initialSavingsTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+            UserDefaults.standard.setValue(initialSavingsTextField.text, forKey: "initialSavings")
+            print(UserDefaults.standard.string(forKey: "initialSavings")!)
+            updateInitialSavings()
+        }
         if usernameTextField.text != nil && !usernameTextField.text!.isEmpty && !usernameTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty && monthlyIncomeTextField.text != nil && !monthlyIncomeTextField.text!.isEmpty {
-            updateGlobalSavings()
-            updateProjectedSavings()
-            incomeArray[0].incomeMoney = Int(monthlyIncomeTextField.text!)!
-            projectedIncome.saveToFile(income: incomeArray)
-            updateGlobalSavings()
-            updateProjectedSavings()
-            if savingsTargetTextField.text != nil && !savingsTargetTextField.text!.isEmpty && !savingsTargetTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
-//                if Int(savingsTargetTextField.text!)! <= Int(monthlyIncomeTextField.text!)! {
-                    savingsArray[1].savingsMoney = Int(savingsTargetTextField.text!)!
-//                } else if Int(savingsTargetTextField.text!)! > Int(monthlyIncomeTextField.text!)! {
-//                    let alert = UIAlertController(title: "Warning", message: "", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//                        savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
-//                    }))
-//                    present(alert, animated: true, completion: nil)
-//                }
-//                UserDefaults.standard.setValue(Int(savingsTargetTextField.text!), forKey: "savingsTarget")
-            } else {
-                savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
-//                UserDefaults.standard.setValue(Double(globalincome/5).rounded(.down), forKey: "savingsTarget")
-            }
-            projectedSavings.saveToFile(savings: savingsArray)
-            updateGlobalSavings()
-            updateProjectedSavings()
-//            if UserDefaults.standard.object(forKey: "savingsTarget") != nil {
-//                for i in expensesArray {
-//                    i.projectedExpenses = Int((Double((globalincome-UserDefaults.standard.integer(forKey: "savingsTarget"))/expensesArray.count)).rounded(.down))
-//                }
-            for i in expensesArray {
-                i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
-            }
-//            } else {
-//                for i in expensesArray {
-//                    i.projectedExpenses = Int((Double(globalincome-(globalincome/5)/expensesArray.count)).rounded(.down))
-//                }
-//            }
-            expenseStruct.saveToFile(expense: expensesArray)
             updateGlobalSavings()
             updateProjectedSavings()
             UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
             print(UserDefaults.standard.string(forKey: "username")!)
-            performSegue(withIdentifier: "navigateHome", sender: nil)
-//            doneButton.isEnabled = true
+            if Int(monthlyIncomeTextField.text!)! > 0 {
+                incomeArray[0].incomeMoney = Int(monthlyIncomeTextField.text!)!
+                projectedIncome.saveToFile(income: incomeArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                if savingsTargetTextField.text != nil && !savingsTargetTextField.text!.isEmpty && !savingsTargetTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+                    if Int(savingsTargetTextField.text!)! > 0 && Int(savingsTargetTextField.text!)! <= Int(monthlyIncomeTextField.text!)! {
+                        savingsArray[1].savingsMoney = Int(savingsTargetTextField.text!)!
+                        projectedSavings.saveToFile(savings: savingsArray)
+                        updateGlobalSavings()
+                        updateProjectedSavings()
+                        for i in expensesArray {
+                            i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                        }
+                        expenseStruct.saveToFile(expense: expensesArray)
+                        updateGlobalSavings()
+                        updateProjectedSavings()
+                        self.performSegue(withIdentifier: "navigateHome", sender: nil)
+                    } else if Int(savingsTargetTextField.text!)! <= 0 {
+                        let alert = UIAlertController(title: "Warning", message: "Savings Target is less than or equal to 0.\nSavings Target will be set to default.", preferredStyle: .actionSheet)
+                        alert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: {_ in
+                            savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                            projectedSavings.saveToFile(savings: savingsArray)
+                            updateGlobalSavings()
+                            updateProjectedSavings()
+                            for i in expensesArray {
+                                i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                            }
+                            expenseStruct.saveToFile(expense: expensesArray)
+                            updateGlobalSavings()
+                            updateProjectedSavings()
+                            self.performSegue(withIdentifier: "navigateHome", sender: nil)
+                        }))
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    } else if Int(savingsTargetTextField.text!)! > Int(monthlyIncomeTextField.text!)! {
+                        let alert = UIAlertController(title: "Warning", message: "Savings Target is greater than Income.\nSavings Target will be set to default.", preferredStyle: .actionSheet)
+                        alert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: {_ in
+                            savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                            projectedSavings.saveToFile(savings: savingsArray)
+                            updateGlobalSavings()
+                            updateProjectedSavings()
+                            for i in expensesArray {
+                                i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                            }
+                            expenseStruct.saveToFile(expense: expensesArray)
+                            updateGlobalSavings()
+                            updateProjectedSavings()
+                            self.performSegue(withIdentifier: "navigateHome", sender: nil)
+                        }))
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    }
+                } else {
+                    savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                    projectedSavings.saveToFile(savings: savingsArray)
+                    updateGlobalSavings()
+                    updateProjectedSavings()
+                    for i in expensesArray {
+                        i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                    }
+                    expenseStruct.saveToFile(expense: expensesArray)
+                    updateGlobalSavings()
+                    updateProjectedSavings()
+                    self.performSegue(withIdentifier: "navigateHome", sender: nil)
+                }
+            } else {
+                let alert = UIAlertController(title: "Warning", message: "Income is less than or equal to 0.\nIncome will be set to default.", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: {_ in
+                    savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                    projectedSavings.saveToFile(savings: savingsArray)
+                    updateGlobalSavings()
+                    updateProjectedSavings()
+                    for i in expensesArray {
+                        i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                    }
+                    expenseStruct.saveToFile(expense: expensesArray)
+                    updateGlobalSavings()
+                    updateProjectedSavings()
+                    self.performSegue(withIdentifier: "navigateHome", sender: nil)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            }
         } else {
-//            if (usernameTextField.text!.isEmpty || usernameTextField.text == nil) && (monthlyIncomeTextField.text!.isEmpty || monthlyIncomeTextField.text == nil) {
-                let alert = UIAlertController(title: "Warning", message: "Not all required text fields are filled up", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Warning", message: "Not all required text fields are filled up.\nSkip?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: {_ in
+                updateGlobalSavings()
+                updateProjectedSavings()
+                savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                projectedSavings.saveToFile(savings: savingsArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                for i in expensesArray {
+                    i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                }
+                expenseStruct.saveToFile(expense: expensesArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                self.performSegue(withIdentifier: "navigateHome", sender: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
 //            }
 //            if usernameTextField.text!.isEmpty || usernameTextField.text == nil {
 //                let alert = UIAlertController(title: "Warning", message: "Name is Empty", preferredStyle: .alert)
@@ -171,10 +232,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func skipButtonTapped(_ sender: Any) {
-        updateGlobalSavings()
-        updateProjectedSavings()
-        incomeArray[0].incomeMoney = 5000
-        projectedIncome.saveToFile(income: incomeArray)
+//        updateGlobalSavings()
+//        updateProjectedSavings()
+//        incomeArray[0].incomeMoney = 5000
+//        projectedIncome.saveToFile(income: incomeArray)
         updateGlobalSavings()
         updateProjectedSavings()
         savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))

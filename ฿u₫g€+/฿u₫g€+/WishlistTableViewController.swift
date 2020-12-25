@@ -184,7 +184,7 @@ class WishlistTableViewController: UITableViewController {
         //            cell.showsReorderControl = false
         //            cell.showingDeleteConfirmation = false
                     print()
-                    cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "$\(String(format: "%.2f", (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))/month" /* : "$\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
+                    cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "\(currencyFormatter.string(from: NSNumber(value: (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))!)/month" /* : "\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
                     
                     var savingsDivPriceText = String()
                     var currentSavings = totalsavings
@@ -195,7 +195,7 @@ class WishlistTableViewController: UITableViewController {
         //            cell.contentView.trailingAnchor
         //            cell.currentSavings = currentSavings
                     if currentSavings >= Double(wishlist[indexPath.row].price) {
-                        savingsDivPriceText = "$\(String(format: "%.2f", wishlist[indexPath.row].price))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
+                        savingsDivPriceText = "\(currencyFormatter.string(from: NSNumber(value: wishlist[indexPath.row].price))!)/\(currencyFormatter.string(from: NSNumber(value: wishlist[indexPath.row].price))!)"
                         UIView.animate(withDuration: 4){
                             cell.progressAnimated.progress = CGFloat(1)
         //                    cell.savingsOutOfPrice.textColor = .systemBackground
@@ -207,7 +207,7 @@ class WishlistTableViewController: UITableViewController {
                         if currentSavings > 0 {
                             print(Double(currentSavings)/Double(wishlist[indexPath.row].price))
                             print(Double(currentSavings/Double(wishlist[indexPath.row].price)))
-                            savingsDivPriceText = /*currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "$\(String(format: "%.2f", currentSavings))/\(wishlist[indexPath.row].price)" : "$\(Int(currentSavings))/\(wishlist[indexPath.row].price)"*/ "$\(String(format: "%.2f", currentSavings))/\(String(format: "%.2f", wishlist[indexPath.row].price))"
+                            savingsDivPriceText = /*currentSavings.truncatingRemainder(dividingBy: 1) != 0 ? "\(currencyFormatter.string(from: NSNumber(value: currentSavings))/\(wishlist[indexPath.row].price)" : "\(Int(currentSavings))/\(wishlist[indexPath.row].price)"*/ "\(currencyFormatter.string(from: NSNumber(value: currentSavings))!)/\(currencyFormatter.string(from: NSNumber(value: wishlist[indexPath.row].price))!)"
         //                    cell.backgroundColor = /*UIColor(hex: 0x83DB97)*/ UIColor.systemGreen
         //                    cell.accessoryView?.backgroundColor = .systemBackground
                             print(savingsDivPriceText)
@@ -226,7 +226,7 @@ class WishlistTableViewController: UITableViewController {
                             canBuy.append(false)
                         }
                         else {
-                            savingsDivPriceText = "$0.00/\(String(format: "%.2f", wishlist[indexPath.row].price))"
+                            savingsDivPriceText = "$0.00/\(currencyFormatter.string(from: NSNumber(value: wishlist[indexPath.row].price))!)"
         //                    cell.progressBar.setProgress(0, animated: false)
                             cell.progressAnimated.progress = CGFloat(0)
         //                    cell.savingsOutOfPrice.textColor = .label
@@ -239,16 +239,16 @@ class WishlistTableViewController: UITableViewController {
                     print()
         //            if savings > 0 {
         //                if savings >= wishlist[indexPath.row].price {
-        //                    savingsDivPriceText = "$\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
+        //                    savingsDivPriceText = "\(wishlist[indexPath.row].price)/\(wishlist[indexPath.row].price)"
         //                } else /*if savings < wishlist[indexPath.row].price*/ {
-        //                    savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
+        //                    savingsDivPriceText = "\(savings)/\(wishlist[indexPath.row].price)"
         //                }
         //            savings -= wishlist[indexPath.row].price
         //            print(savings)
         ////            } else {
         //            }
         ////                savings = 0
-        //                savingsDivPriceText = "$\(savings)/\(wishlist[indexPath.row].price)"
+        //                savingsDivPriceText = "\(savings)/\(wishlist[indexPath.row].price)"
         //            }
         //            if savings == 0 {
         //                savingsDivPriceText = "0/\(wishlist[indexPath.row].price)"
@@ -293,17 +293,17 @@ class WishlistTableViewController: UITableViewController {
                 }
                 if indexPath.row == 0 {
                     cell.label.text = "Initial Savings"
-//                    cell.value.text = "$\(String(format: "%.2f", totalsavings))"
+                    cell.value.text = "\(String(format: "%.2f", initialSavings))"
                     cell.value.isUserInteractionEnabled = true
                 } else if indexPath.row == 1 {
-                    cell.label.text = "Previous Month's Savings"
+                    cell.label.text = "Previous Months' Savings"
                     cell.value.text = "\(String(format: "%.2f", totalsavings))"
                 } else if indexPath.row == 2 {
                     cell.label.text = "This Month's Savings"
                     cell.value.text = "\(String(format: "%.2f", savings))"
                 } else if indexPath.row == 3 {
                     cell.label.text = "Total Savings"
-                    cell.value.text = "\(String(format: "%.2f", totalsavings+savings))"
+                    cell.value.text = "\(String(format: "%.2f", totalsavings+savings+initialSavings))"
                 }
             } else if indexPath.section == 1 {
                 cell.label.text = "Wishlist Transactions"
