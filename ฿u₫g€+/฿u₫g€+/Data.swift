@@ -228,9 +228,9 @@ var categories = ["Automotives","Properties","Electronics","Mobile Devices & Gad
 // Global Variables
 var projectedSavingsValue = Int()
 var savings = Double()
-var totalsavings = Double()
-var wishlistSpendings = Double()
-var initialSavings = Double()
+var totalsavings = Double(0)
+var wishlistSpendings = Double(0)
+var initialSavings = Double(0)
 
 func updateProjectedSavings() {
 //    incomeArray = incomeArrayLoaded
@@ -373,6 +373,8 @@ func updateForCurrentMonth() {
                 }
                 expenseStruct.saveToFile(expense: expensesArray)
                 totalsavings += savings
+                UserDefaults.setValue(totalsavings, forKey: "totalSavings")
+                updateTotalSavings()
                 savings = 0
                 updateGlobalSavings()
             }
@@ -392,5 +394,23 @@ func updateCurrency() {
 func updateInitialSavings() {
     if let iniSavings = UserDefaults.standard.string(forKey: "initialSavings") {
         initialSavings = Double(iniSavings)!
+    } else {
+        initialSavings = Double(0)
+    }
+}
+
+func updateTotalSavings() {
+    if let ttlSavings = UserDefaults.standard.string(forKey: "totalSavings") {
+        totalsavings = Double(ttlSavings)!
+    } else {
+        totalsavings = Double(0)
+    }
+}
+
+func updateWishlistTransactions() {
+    if let wlTransactHist = UserDefaults.standard.string(forKey: "wishlistTransactions") {
+        wishlistSpendings = Double(wlTransactHist)!
+    } else {
+        wishlistSpendings = Double(0)
     }
 }

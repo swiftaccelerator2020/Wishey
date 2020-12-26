@@ -41,6 +41,8 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
                     }
                     expenseStruct.saveToFile(expense: expensesArray)
                     totalsavings += savings
+                    UserDefaults.setValue(totalsavings, forKey: "totalSavings")
+                    updateTotalSavings()
                     savings = 0
                     updateGlobalSavings()
                     tableView.reloadData()

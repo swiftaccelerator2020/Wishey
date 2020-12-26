@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class WishlistTableViewController: UITableViewController {
+class WishlistTableViewController: UITableViewController, CustomCellUpdater {
     
     var canBuy: [Bool] = []
     var timer: Timer?
@@ -54,6 +54,8 @@ class WishlistTableViewController: UITableViewController {
                     }
                     expenseStruct.saveToFile(expense: expensesArray)
                     totalsavings += savings
+                    UserDefaults.setValue(totalsavings, forKey: "totalSavings")
+                    updateTotalSavings()
                     savings = 0
                     updateGlobalSavings()
                     tableView.reloadData()
@@ -78,6 +80,7 @@ class WishlistTableViewController: UITableViewController {
 //        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self
+        self.hideKeyboardWhenTappedAround()
     }
 //    @IBAction func editButtonTapped(_ sender: Any) {
 //        if tableView.isEditing {
@@ -154,6 +157,7 @@ class WishlistTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "wishlistCell", for: indexPath) as! WishlistTableViewCell
             if wishlist.count > 0 {
@@ -187,7 +191,7 @@ class WishlistTableViewController: UITableViewController {
                     cell.monthlyTarget.text = /*(Double(wishlist[indexPath.row].price)/Double(wishlist[indexPath.row].months)) != Double(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months)) ? */ "\(currencyFormatter.string(from: NSNumber(value: (wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))))!)/month" /* : "\(wishlist[indexPath.row].price/Double(wishlist[indexPath.row].months))/month"*/
                     
                     var savingsDivPriceText = String()
-                    var currentSavings = totalsavings
+                    var currentSavings = totalsavings+initialSavings
                     for i in 0..<indexPath.row {
                         currentSavings -= Double(wishlist[i].price)
                         print(i)
@@ -277,14 +281,18 @@ class WishlistTableViewController: UITableViewController {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "theTopCell", for: indexPath) as! WishlistTopTableViewCell
-
+//        cell.theIndexPath = indexPath
 //        cell.myIndexPath = indexPath
         // Configure the cell...
 //        if let cell = cell as? WishlistTopTableViewCell {
+            cell.tableViewController = self
+            cell.delegate = self
             cell.label.adjustsFontSizeToFitWidth = true
             cell.value.adjustsFontSizeToFitWidth = true
             cell.value.isUserInteractionEnabled = false
             if indexPath.section == 0 {
+                cell.value.isHidden = false
+                cell.valueLabel.isHidden = true
                 if indexPath.row < 2 {
                     cell.separatorInset.left = cell.bounds.size.width
                 } else {
@@ -306,13 +314,23 @@ class WishlistTableViewController: UITableViewController {
                     cell.value.text = "\(String(format: "%.2f", totalsavings+savings+initialSavings))"
                 }
             } else if indexPath.section == 1 {
+                cell.value.isHidden = true
+                cell.valueLabel.isHidden = false
                 cell.label.text = "Wishlist Transactions"
+                cell.valueLabel.text = currencyFormatter.string(from: NSNumber(value:wishlistSpendings))
             }
 //        }
         cell.selectionStyle = .none
         return cell
     }
     
+    func updateTableView() {
+//        expenseStruct.saveToFile(expense: expensesArray)
+//        projectedIncome.saveToFile(income: incomeArray)
+//        projectedSavings.saveToFile(savings: savingsArray)
+//        updateProjectedSavings()
+        tableView.reloadData() // you do have an outlet of tableView I assume
+    }
 //    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        if section == 0 {
 //            return 30
@@ -440,16 +458,27 @@ class WishlistTableViewController: UITableViewController {
             let spend = UIContextualAction(style: .normal, title: "Spend") {  (contextualAction, view, boolValue) in
                 let alert = UIAlertController(title: "Are you sure you want to spend your savings on \(wishlist[indexPath.row].name)?", message: "This action cannot be undone", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
-                    let price = wishlist[indexPath.row].price
+                    var price = wishlist[indexPath.row].price
+                    wishlistSpendings += Double(price)
+                    UserDefaults.standard.setValue(wishlistSpendings, forKey: "wishlistTransactions")
+                    updateWishlistTransactions()
                     wishlist.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .none)
+//                    tableView.deleteRows(at: [indexPath], with: .none)
                     WishlistItem.saveToFile(wishlist: wishlist)
-                    if price <= totalsavings {
+                    if initialSavings >= price {
+                        initialSavings -= price
+                        UserDefaults.standard.setValue(initialSavings, forKey: "initialSavings")
+                        updateInitialSavings()
+                    } else if price > initialSavings {
+                        initialSavings = 0
+                        UserDefaults.standard.setValue(initialSavings, forKey: "initialSavings")
+                        updateInitialSavings()
+                        price -= initialSavings
                         totalsavings -= price
-                    } else {
-                        savings -= (price - totalsavings)
-                        totalsavings -= totalsavings
-                    }
+                        UserDefaults.setValue(totalsavings, forKey: "totalSavings")
+                        updateTotalSavings()
+                    } 
+                    
                     print(savings)
                     print(totalsavings)
                     self.canBuy = []

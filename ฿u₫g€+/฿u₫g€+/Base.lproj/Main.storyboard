@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nie-mL-ENR">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -390,18 +389,28 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Savings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR4-bt-wK8">
-                                            <rect key="frame" x="20" y="11" width="210.33333333333334" height="28"/>
+                                            <rect key="frame" x="20" y="11" width="225" height="28"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10000" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5PH-ge-Znx">
-                                            <rect key="frame" x="262.66666666666669" y="5" width="105.33333333333331" height="40"/>
+                                            <rect key="frame" x="278" y="5" width="90" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="editInitialSavings:" destination="Pre-tj-lCM" eventType="editingDidEnd" id="hgz-wu-5ok"/>
+                                                <action selector="hideKeyboard:" destination="Pre-tj-lCM" eventType="editingDidEndOnExit" id="Z6V-AI-6Ol"/>
+                                            </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2k-Eh-zrz">
-                                            <rect key="frame" x="250.33333333333334" y="5" width="12.333333333333343" height="40"/>
+                                            <rect key="frame" x="265" y="5" width="13" height="40"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbs-Mb-WCK">
+                                            <rect key="frame" x="265" y="11" width="103" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -409,15 +418,19 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="tR4-bt-wK8" secondAttribute="bottom" id="1BO-xk-Juy"/>
+                                        <constraint firstItem="jbs-Mb-WCK" firstAttribute="leading" secondItem="tR4-bt-wK8" secondAttribute="trailing" constant="20" id="5sf-sr-fZh"/>
                                         <constraint firstItem="tR4-bt-wK8" firstAttribute="top" secondItem="l2Y-qx-Mro" secondAttribute="topMargin" id="7c2-Qp-x5C"/>
                                         <constraint firstItem="5PH-ge-Znx" firstAttribute="top" secondItem="l2Y-qx-Mro" secondAttribute="top" constant="5" id="CMe-7X-oiL"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="jbs-Mb-WCK" secondAttribute="trailing" id="FKY-iC-eeY"/>
                                         <constraint firstAttribute="bottom" secondItem="5PH-ge-Znx" secondAttribute="bottom" constant="5" id="FpR-He-KwF"/>
                                         <constraint firstItem="tR4-bt-wK8" firstAttribute="leading" secondItem="l2Y-qx-Mro" secondAttribute="leadingMargin" id="Ir1-mx-asF"/>
                                         <constraint firstAttribute="trailing" secondItem="5PH-ge-Znx" secondAttribute="trailing" constant="20" symbolic="YES" id="L4j-2Y-dmG"/>
                                         <constraint firstItem="5PH-ge-Znx" firstAttribute="leading" secondItem="W2k-Eh-zrz" secondAttribute="trailing" id="LYG-BH-czv"/>
-                                        <constraint firstItem="5PH-ge-Znx" firstAttribute="width" secondItem="tR4-bt-wK8" secondAttribute="width" multiplier="0.5" id="NT0-Kf-m03"/>
+                                        <constraint firstItem="tR4-bt-wK8" firstAttribute="width" secondItem="5PH-ge-Znx" secondAttribute="width" multiplier="2.5" id="NT0-Kf-m03"/>
                                         <constraint firstAttribute="bottom" secondItem="W2k-Eh-zrz" secondAttribute="bottom" constant="5" id="PIE-hl-IWY"/>
                                         <constraint firstItem="W2k-Eh-zrz" firstAttribute="leading" secondItem="tR4-bt-wK8" secondAttribute="trailing" constant="20" id="QjL-f9-s2o"/>
+                                        <constraint firstItem="jbs-Mb-WCK" firstAttribute="top" secondItem="l2Y-qx-Mro" secondAttribute="topMargin" id="YjZ-se-z7q"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="jbs-Mb-WCK" secondAttribute="bottom" id="hmH-fH-tkq"/>
                                         <constraint firstItem="W2k-Eh-zrz" firstAttribute="top" secondItem="l2Y-qx-Mro" secondAttribute="top" constant="5" id="lIR-7K-iyr"/>
                                         <constraint firstItem="5PH-ge-Znx" firstAttribute="leading" secondItem="W2k-Eh-zrz" secondAttribute="trailing" id="tz5-36-Wc7"/>
                                     </constraints>
@@ -425,6 +438,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                 <connections>
                                     <outlet property="label" destination="tR4-bt-wK8" id="EzU-r5-ePp"/>
                                     <outlet property="value" destination="5PH-ge-Znx" id="Y99-Ca-7C3"/>
+                                    <outlet property="valueLabel" destination="jbs-Mb-WCK" id="E1F-SG-rlX"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishlistCell" id="q1Q-CV-mOR" customClass="WishlistTableViewCell" customModule="Wishey" customModuleProvider="target">
@@ -1725,12 +1739,19 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="AfX-1g-RPQ" appends="YES" id="OyI-7N-rm1"/>
+                                                                </connections>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have saved  $___ so far (excluding this month)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThP-ob-gA1">
                                                                 <rect key="frame" x="0.0" y="36" width="380" height="60"/>
+                                                                <gestureRecognizers/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="E3A-hl-oLq" appends="YES" id="bO6-Fg-C2o"/>
+                                                                </connections>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
@@ -1743,9 +1764,6 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                     <constraint firstAttribute="bottom" secondItem="xBP-WK-kRF" secondAttribute="bottom" constant="8" id="e0V-nk-n7r"/>
                                                     <constraint firstAttribute="trailing" secondItem="xBP-WK-kRF" secondAttribute="trailing" constant="8" id="r1E-by-Y2i"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="AfX-1g-RPQ" appends="YES" id="Ax8-uz-AWc"/>
-                                                </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xof-Cb-Dny">
                                                 <rect key="frame" x="0.0" y="125" width="396" height="100"/>
@@ -2023,6 +2041,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                         <outlet property="swipeRightGesture" destination="nlI-1k-Jr1" id="wUm-tQ-UFb"/>
                         <outlet property="tapChartGR" destination="Jzc-yG-lei" id="JFD-6S-GL0"/>
                         <outlet property="tapNameGR" destination="AfX-1g-RPQ" id="1Ru-Jx-nDp"/>
+                        <outlet property="tapSavingsGR" destination="E3A-hl-oLq" id="4H6-tO-NMp"/>
                         <outlet property="wishlistView" destination="Xof-Cb-Dny" id="eoD-eg-GRq"/>
                         <outlet property="zoomInButton" destination="Ziz-5Z-LfT" id="XGc-OK-K6h"/>
                         <outlet property="zoomOutButton" destination="wjk-kJ-WxK" id="AD2-z0-O4r"/>
@@ -2054,7 +2073,12 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="AfX-1g-RPQ">
                     <connections>
-                        <action selector="changeName:" destination="G3o-XK-bQe" id="eaI-pB-ecx"/>
+                        <action selector="changeName:" destination="G3o-XK-bQe" id="Yre-Zh-KhK"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="E3A-hl-oLq">
+                    <connections>
+                        <action selector="tapWishlistView:" destination="G3o-XK-bQe" id="Gfi-XQ-JPl"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

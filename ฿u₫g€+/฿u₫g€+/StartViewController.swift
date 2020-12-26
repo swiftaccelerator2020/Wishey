@@ -17,6 +17,8 @@ class StartViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        updateTotalSavings()
+        updateWishlistTransactions()
         updateInitialSavings()
         updateCurrency()
 //        if UserDefaults.standard.object(forKey: "loggedIn") != nil {

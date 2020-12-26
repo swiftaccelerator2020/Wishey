@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var noSpendingLabel: UILabel!
     @IBOutlet var tapChartGR: UITapGestureRecognizer!
     @IBOutlet var tapNameGR: UITapGestureRecognizer!
+    @IBOutlet var tapSavingsGR: UITapGestureRecognizer!
     
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
         var colors: [UIColor] = []
@@ -209,6 +210,8 @@ class ViewController: UIViewController {
                     }
                     expenseStruct.saveToFile(expense: expensesArray)
                     totalsavings += savings
+                    UserDefaults.setValue(totalsavings, forKey: "totalSavings")
+                    updateTotalSavings()
                     savings = 0
                     updateGlobalSavings()
                     spendingsLabel.text = Date().monthAsString()
@@ -259,11 +262,13 @@ class ViewController: UIViewController {
         updateForCurrentMonth()
         noSpendingLabel.isHidden = true
         self.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateSpendings), userInfo: nil, repeats: true)
+        nameLabel.isUserInteractionEnabled = true
         if let name = UserDefaults.standard.string(forKey: "username") {
             nameLabel.attributedText = NSMutableAttributedString().normal30("Hello, ").bold30("\(name)")
         } else {
             nameLabel.attributedText = NSMutableAttributedString().normal30("Hello")
         }
+        savedLabel.isUserInteractionEnabled = true
         savedLabel.adjustsFontSizeToFitWidth = true
         buyALabel.adjustsFontSizeToFitWidth = true
         nameLabel.adjustsFontSizeToFitWidth = true
