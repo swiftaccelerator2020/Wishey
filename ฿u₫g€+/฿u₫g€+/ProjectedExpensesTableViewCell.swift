@@ -96,14 +96,14 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         if let savingsMoneyValue = saving?.savingsMoney {
             if savingsMoneyValue < 0 {
                 savingsMoney.textColor = .systemRed
-                iDollar.textColor = .systemRed
+                sDollar.textColor = .systemRed
 //                let alert = UIAlertController(title: "Warning", message: "Projected Savings is less than $0", preferredStyle: .actionSheet)
 //                alert.addAction(UIAlertAction(title: "Change to Default", style: .default, handler: {_ in
 //                    
 //                }))
             } else {
-                incomeMoney.textColor = .label
-                iDollar.textColor = .label
+                savingsMoney.textColor = .label
+                sDollar.textColor = .label
             }
             savingsMoney.text = "\(savingsMoneyValue)"
         }
@@ -193,7 +193,6 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
             } else {
                 income?.incomeMoney = Int(incomeMoney.text!)!
                 incomeArray[theIndexPath.row].incomeMoney = Int(incomeMoney.text!)!
-                print(incomeMoney.text)
                 print(incomeArray[theIndexPath.row].incomeMoney)
             }
         }
@@ -201,11 +200,6 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
 //        updateProjectedSavings()
         updateGlobalSavings()
 //        projectedIncome.saveToFile(income: incomeArray)
-        if let projectedincomeincomearray = projectedIncome.loadFromFile() {
-            for i in projectedincomeincomearray {
-                print(i.incomeMoney)
-            }
-        }
         tableViewController?.updateTableView()
     }
     
@@ -213,48 +207,41 @@ class ProjectedExpensesTableViewCell: UITableViewCell {
         if savingsMoney.text == nil || savingsMoney.text!.isEmpty || Int(savingsMoney.text!) == nil {
 //            print("also yuck")
 //            savings.savingsMoney = 5000
-            savingsArray[theIndexPath.row].savingsMoney = 5000
+            savingsArray[theIndexPath.row].savingsMoney = Int(Double(globalincome/5).rounded(.down))
         } else {
-            if Int(savingsMoney.text!)! <= 0 {
-//                savings.savingsMoney = 5000
-                savingsArray[theIndexPath.row].savingsMoney = 5000
-            } else {
+//            if Int(savingsMoney.text!)! <= 0 {
+////                savings.savingsMoney = 5000
+//                savingsArray[theIndexPath.row].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+//            } else {
 //                savings.savingsMoney = Int(savingsMoney.text!)!
                 savingsArray[theIndexPath.row].savingsMoney = Int(savingsMoney.text!)!
-                print(savingsMoney.text)
                 print(savingsArray[theIndexPath.row].savingsMoney)
-            }
+//            }
         }
+        projectedSavings.saveToFile(savings: savingsArray)
         updateProjectedSavings()
         updateGlobalSavings()
-        projectedIncome.saveToFile(income: incomeArray)
-        projectedSavings.saveToFile(savings: savingsArray)
-        if let projectedincomeincomearray = projectedIncome.loadFromFile() {
-            for i in projectedincomeincomearray {
-                print(i.incomeMoney)
-            }
-        }
         tableViewController?.updateTableView()
     }
     
     @IBAction func changeExpense(_ sender: Any) {
         if expenseMoney.text == nil || expenseMoney.text!.isEmpty || Int(expenseMoney.text!) == nil {
-            if UserDefaults.standard.object(forKey: "savingsTarget") != nil {
-                expense?.projectedExpenses = Int((Double((globalincome-UserDefaults.standard.integer(forKey: "savingsTarget"))/expensesArray.count)).rounded(.down))
-                expensesArray[theIndexPath.row].projectedExpenses = Int((Double((globalincome-UserDefaults.standard.integer(forKey: "savingsTarget"))/expensesArray.count)).rounded(.down))
-            } else {
-                expense?.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
-                expensesArray[theIndexPath.row].projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
-            }
+//            if UserDefaults.standard.object(forKey: "savingsTarget") != nil {
+                expense?.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                expensesArray[theIndexPath.row].projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+//            } else {
+//                expense?.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
+//                expensesArray[theIndexPath.row].projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
+//            }
         } else {
             if Int(expenseMoney.text!)! <= 0 {
-                if UserDefaults.standard.object(forKey: "savingsTarget") != nil {
-                    expense?.projectedExpenses = Int((Double((globalincome-UserDefaults.standard.integer(forKey: "savingsTarget"))/expensesArray.count)).rounded(.down))
-                    expensesArray[theIndexPath.row].projectedExpenses = Int((Double((globalincome-UserDefaults.standard.integer(forKey: "savingsTarget"))/expensesArray.count)).rounded(.down))
-                } else {
-                    expense?.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
-                    expensesArray[theIndexPath.row].projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
-                }
+//                if UserDefaults.standard.object(forKey: "savingsTarget") != nil {
+                    expense?.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                    expensesArray[theIndexPath.row].projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+//                } else {
+//                    expense?.projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
+//                    expensesArray[theIndexPath.row].projectedExpenses = Int((Double(globalincome/expensesArray.count)).rounded(.down))
+//                }
             } else {
                 expensesArray[theIndexPath.row].projectedExpenses = Int(expenseMoney.text!)!
             }

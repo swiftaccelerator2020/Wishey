@@ -39,7 +39,7 @@ class expensesTableViewController: UITableViewController {
     //        }
             if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
                 UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-                if expenseStruct.loadFromFile() != nil {
+//                if expenseStruct.loadFromFile() != nil {
                     for i in expensesArray {
                         i.actualExpenses = 0
                     }
@@ -50,7 +50,7 @@ class expensesTableViewController: UITableViewController {
                     savings = 0
                     updateGlobalSavings()
                     tableView.reloadData()
-                }
+//                }
             }
         } else {
     //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")

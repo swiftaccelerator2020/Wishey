@@ -204,7 +204,7 @@ class ViewController: UIViewController {
     //        }
             if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
                 UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-                if expenseStruct.loadFromFile() != nil {
+//                if expenseStruct.loadFromFile() != nil {
                     for i in expensesArray {
                         i.actualExpenses = 0
                     }
@@ -251,7 +251,7 @@ class ViewController: UIViewController {
                         itemName.attributedText = NSMutableAttributedString().normal("Your Wishlist is Empty")
                     }
                 }
-            }
+//            }
         } else {
     //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
             UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")

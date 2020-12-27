@@ -367,7 +367,7 @@ func updateForCurrentMonth() {
 //        }
         if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
             UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-            if expenseStruct.loadFromFile() != nil {
+//            if expenseStruct.loadFromFile() != nil {
                 for i in expensesArray {
                     i.actualExpenses = 0
                 }
@@ -377,7 +377,7 @@ func updateForCurrentMonth() {
                 updateTotalSavings()
                 savings = 0
                 updateGlobalSavings()
-            }
+//            }
         }
     } else {
 //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")

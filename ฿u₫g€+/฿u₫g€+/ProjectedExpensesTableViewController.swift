@@ -35,7 +35,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     //        }
             if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
                 UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-                if expenseStruct.loadFromFile() != nil {
+//                if expenseStruct.loadFromFile() != nil {
                     for i in expensesArray {
                         i.actualExpenses = 0
                     }
@@ -46,7 +46,7 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
                     savings = 0
                     updateGlobalSavings()
                     tableView.reloadData()
-                }
+//                }
             }
         } else {
     //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
@@ -68,6 +68,46 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
+        if savingsArray[0].savingsMoney < 0 {
+            let alert = UIAlertController(title: "Warning", message: "Projected Savings is less than $0", preferredStyle: .alert)
+            updateGlobalSavings()
+            updateProjectedSavings()
+            alert.addAction(UIAlertAction(title: "Set Values to Default", style: .default, handler: {_ in
+                incomeArray = projectedIncome.loadSampleData()
+                projectedIncome.saveToFile(income: incomeArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                projectedSavings.saveToFile(savings: savingsArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                for i in expensesArray {
+                    i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                }
+                expenseStruct.saveToFile(expense: expensesArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                self.tableView.reloadData()
+            }))
+            if globalincome > savingsArray[1].savingsMoney + expensesArray.count {
+            alert.addAction(UIAlertAction(title: "Resolve", style: .default, handler: {_ in
+                if savingsArray[1].savingsMoney > globalincome {
+                    savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                }
+                projectedSavings.saveToFile(savings: savingsArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                for i in expensesArray {
+                    i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                }
+                expenseStruct.saveToFile(expense: expensesArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                self.tableView.reloadData()
+            }))
+            }
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,7 +127,47 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
         projectedIncome.saveToFile(income: incomeArray)
         projectedSavings.saveToFile(savings: savingsArray)
         updateProjectedSavings()
-        tableView.reloadData() // you do have an outlet of tableView I assume
+        tableView.reloadData()
+        if savingsArray[0].savingsMoney < 0 {
+            let alert = UIAlertController(title: "Warning", message: "Projected Savings is less than $0", preferredStyle: .alert)
+            updateGlobalSavings()
+            updateProjectedSavings()
+            alert.addAction(UIAlertAction(title: "Set Values to Default", style: .default, handler: {_ in
+                incomeArray = projectedIncome.loadSampleData()
+                projectedIncome.saveToFile(income: incomeArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                projectedSavings.saveToFile(savings: savingsArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                for i in expensesArray {
+                    i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                }
+                expenseStruct.saveToFile(expense: expensesArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                self.tableView.reloadData()
+            }))
+            if globalincome > savingsArray[1].savingsMoney + expensesArray.count {
+            alert.addAction(UIAlertAction(title: "Resolve", style: .default, handler: {_ in
+                if savingsArray[1].savingsMoney > globalincome {
+                    savingsArray[1].savingsMoney = Int(Double(globalincome/5).rounded(.down))
+                }
+                projectedSavings.saveToFile(savings: savingsArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                for i in expensesArray {
+                    i.projectedExpenses = Int((Double((globalincome-savingsArray[1].savingsMoney)/expensesArray.count)).rounded(.down))
+                }
+                expenseStruct.saveToFile(expense: expensesArray)
+                updateGlobalSavings()
+                updateProjectedSavings()
+                self.tableView.reloadData()
+            }))
+            }
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Table view data source
@@ -182,13 +262,10 @@ class ProjectedExpensesTableViewController: UITableViewController, CustomCellUpd
             } else {
                 cell.isUserInteractionEnabled = true
             }
-            if savingsArray[indexPath.row].savingsMoney < 0 {
-                let alert = UIAlertController(title: "Warning", message: "Projected Savings is less than $0", preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Change to Default", style: .default, handler: {_ in
-                
-            }))
-                present(alert, animated: true, completion: nil)
-            }
+//            if savingsArray[indexPath.row].savingsMoney < 0 {
+//                cell.savingsMoney.textColor = .label
+//                cell.iDollar.textColor = .label
+//            }
         } else if indexPath.section == 2 {
 //            cell.accessoryType = .disclosureIndicator
             cell.isUserInteractionEnabled = true

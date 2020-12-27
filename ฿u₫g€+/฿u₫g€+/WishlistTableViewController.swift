@@ -48,7 +48,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
     //        }
             if Date().monthAsString() != UserDefaults.standard.string(forKey: "lastRecordedMonth") {
                 UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
-                if expenseStruct.loadFromFile() != nil {
+//                if expenseStruct.loadFromFile() != nil {
                     for i in expensesArray {
                         i.actualExpenses = 0
                     }
@@ -59,7 +59,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
                     savings = 0
                     updateGlobalSavings()
                     tableView.reloadData()
-                }
+//                }
             }
         } else {
     //        UserDefaults.standard.setValue(Date().monthAsString(), forKey: "lastRecordedMonth")
@@ -477,7 +477,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
                         totalsavings -= price
                         UserDefaults.setValue(totalsavings, forKey: "totalSavings")
                         updateTotalSavings()
-                    } 
+                    }
                     
                     print(savings)
                     print(totalsavings)
