@@ -42,5 +42,6 @@ Please do remember to adhere to the [code of conduct](CODE_OF_CONDUCT.md) when c
 ### We would also like to thank
 1. YJ Soon (Swift Accelerator Programme Instructor)
 2. Sebastian Choo & Yee Jia Chen (Consultants)
-3. Ryan Theodore The
-4. SAP Alumni & Seniors (Feedback)
+3. Neo Hao Jun (Screenshot Frame Templates)
+4. Ryan Theodore The
+5. SAP Alumni & Seniors (Feedback)
