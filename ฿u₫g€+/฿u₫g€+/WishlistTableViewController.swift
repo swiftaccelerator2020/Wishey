@@ -8,7 +8,6 @@ import UIKit
 
 class WishlistTableViewController: UITableViewController, CustomCellUpdater {
     
-    var canBuy: [Bool] = []
     var timer: Timer?
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,7 +94,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
 //            wishlist.remove(at: indexPath.row)
 //            tableView.deleteRows(at: [indexPath], with: .none)
 //            print(savings)
-//            self.canBuy = []
+//            canBuy = []
 //            updateGlobalSavings()
 //            tableView.reloadData()
 //        }
@@ -401,7 +400,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
                     wishlist.remove(at: indexPath.row)
                     WishlistItem.saveToFile(wishlist: wishlist)
 //                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.canBuy = []
+                    canBuy = []
                     updateProjectedSavings()
                     updateGlobalSavings()
                     tableView.reloadData()
@@ -433,7 +432,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
                 wishlist.remove(at: indexPath.row)
                 WishlistItem.saveToFile(wishlist: wishlist)
 //                tableView.deleteRows(at: [indexPath], with: .fade)
-                self.canBuy = []
+                canBuy = []
                 updateProjectedSavings()
                 updateGlobalSavings()
                 tableView.reloadData()
@@ -449,7 +448,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
             self.indexPath = indexPath
             self.performSegue(withIdentifier: "detailsSegue", sender: nil)
 //            tableView.deleteRows(at: [indexPath], with: .automatic)
-//            self.canBuy = []
+//            canBuy = []
 //            tableView.reloadData()
         }
         edit.backgroundColor = .systemBlue
@@ -481,7 +480,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
                     
                     print(savings)
                     print(totalsavings)
-                    self.canBuy = []
+                    canBuy = []
                     updateProjectedSavings()
                     updateGlobalSavings()
                     tableView.reloadData()
@@ -506,7 +505,7 @@ class WishlistTableViewController: UITableViewController, CustomCellUpdater {
             if to.section == 2 && fromIndexPath.section == 2 {
                 let friend = wishlist.remove(at: fromIndexPath.row)
                 wishlist.insert(friend, at: to.row)
-                self.canBuy = []
+                canBuy = []
                 WishlistItem.saveToFile(wishlist: wishlist)
                 updateProjectedSavings()
                 updateGlobalSavings()

@@ -54,6 +54,9 @@ class WishlistTopTableViewCell: UITableViewCell, UITextFieldDelegate {
         UserDefaults.standard.setValue(value.text, forKey: "initialSavings")
         print(UserDefaults.standard.string(forKey: "initialSavings")!)
         updateInitialSavings()
+        canBuy = []
+        updateProjectedSavings()
+        updateGlobalSavings()
         tableViewController?.updateTableView()
     }
     

@@ -170,9 +170,9 @@ struct WishlistItem: Codable {
     
     static func loadSampleData() -> [WishlistItem] {
         let wishlist: [WishlistItem] = [
-//            WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3,url: "https://sstinc.org"),
-//            WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440.00, months: 11,url: "https://wikipedia.org"),
-//            WishlistItem(name: "Running Shoes", category: "Sports", price: 100.00, months: 20, url: "https://youtube.com"),
+//            WishlistItem(name: "Watch", category: "Luxury", price: 300, months: 3, url: "https://swiftinsg.org"),
+//            WishlistItem(name: "Gaming Chair", category: "Entertainment", price: 440.00, months: 11),
+//            WishlistItem(name: "Running Shoes", category: "Sports", price: 100.00, months: 20),
 //            WishlistItem(name: "New Television", category: "Electronics", price: 1500.00, months: 3),
 //            WishlistItem(name: "Couch", category: "Furniture", price: 245.00, months: 6),
 //            WishlistItem(name: "Printer", category: "Office", price: 218.00, months: 3)
@@ -182,6 +182,7 @@ struct WishlistItem: Codable {
 }
 
 // Arrays
+var canBuy: [Bool] = []
 var incomeArray = [projectedIncome]()
 var savingsArray = [projectedSavings]()
 //    = [
