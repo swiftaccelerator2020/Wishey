@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nie-mL-ENR">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -2367,7 +2368,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
     <inferredMetricsTieBreakers>
         <segue reference="Ifu-EV-eFv"/>
         <segue reference="nLX-FA-cDz"/>
-        <segue reference="Xoo-gf-MEm"/>
+        <segue reference="qNl-rp-ZsE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Icon" width="1024" height="1024"/>
