@@ -682,7 +682,7 @@ We couldn't find any information about your Spendings.   Click the "+" butto
         }
     }
     @IBAction func settings(_ sender: Any) {
-        let alert = UIAlertController(title: "Feature Under Development", message: "Settings is currently being developed", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Wait for the next update lah", message: "We're still working on Settings 😊", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
