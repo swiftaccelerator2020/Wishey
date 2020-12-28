@@ -11,7 +11,7 @@ class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .light    
+//        overrideUserInterfaceStyle = .light
         // Do any additional setup after loading the view.
         print(UserDefaults.standard.bool(forKey: "loggedIn"))
         
