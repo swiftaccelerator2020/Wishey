@@ -474,6 +474,7 @@ We couldn't find any information about your Spendings.   Click the "+" butto
     //    }
     
     func setupPieChart() {
+        pieView.backgroundColor = .secondarySystemGroupedBackground
         pieView.noDataText = "No Data Available for Pie Chart"
         if expensesArray.count != 0 {
             // MARK: Set Data for Pie Chart
@@ -516,7 +517,8 @@ We couldn't find any information about your Spendings.   Click the "+" butto
                 // Description
                 // pieView.usePercentValuesEnabled = true
                 pieView.chartDescription?.enabled = false // Disable chartDescription
-                // Main CHart
+                // Main Chart
+            pieView.holeColor = .secondarySystemGroupedBackground
                 pieView.drawHoleEnabled = true // Add hole in center
                 pieView.rotationAngle = 0 // Set rotation as no offset
                 pieView.rotationEnabled = true // Enable rotation
@@ -529,7 +531,7 @@ We couldn't find any information about your Spendings.   Click the "+" butto
                 pieView.legend.horizontalAlignment = .center // set alignment of text to center
                 pieView.legend.textColor = .label // cent text color to default label color
                 pieView.legend.wordWrapEnabled = true // allow word wrapping
-                pieView.backgroundColor = .systemBackground // set background color to default background color
+//                pieView.backgroundColor = .systemBackground // set background color to default background color
                 //        entries.append(PieChartDataEntry(value: 600.00, label: "Healthcare"))
                 //        entries.append(PieChartDataEntry(value: 500.00, label: "Transport"))
                 //        entries.append(PieChartDataEntry(value: 400.00, label: "Food"))
@@ -569,6 +571,7 @@ We couldn't find any information about your Spendings.   Click the "+" butto
     }
     
     func setupBarChart() {
+        barView.backgroundColor = .secondarySystemGroupedBackground
         if expensesArray.count != 0 {
 //            zoomInButton.isHidden = false
 //            zoomOutButton.isHidden = false

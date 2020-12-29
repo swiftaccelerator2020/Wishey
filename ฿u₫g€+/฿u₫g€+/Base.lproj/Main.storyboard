@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nie-mL-ENR">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -102,7 +103,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvn-9H-1hr">
                                 <rect key="frame" x="20" y="64.000000000000014" width="388" height="157.33333333333337"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -125,6 +126,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bux-ar-AZS">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="13"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" textContentType="name"/>
                                         <connections>
@@ -142,6 +144,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Income (Monthly) *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-r0-T6Q">
                                                 <rect key="frame" x="15.333333333333343" y="0.0" width="372.66666666666663" height="13"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -159,6 +162,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Savings Target (Monthly)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1pI-u6-SLe">
                                                 <rect key="frame" x="15.333333333333343" y="0.0" width="372.66666666666663" height="13"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -180,6 +184,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Initial Savings" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V0Z-yy-DX0">
                                                 <rect key="frame" x="15.333333333333343" y="0.0" width="372.66666666666663" height="13"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -1756,7 +1761,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="xBP-WK-kRF" firstAttribute="leading" secondItem="kKo-wN-HWl" secondAttribute="leading" constant="8" id="A3X-2T-4sA"/>
@@ -1792,7 +1797,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="MbL-BS-wNI" secondAttribute="trailing" constant="8" id="0nY-0n-Brw"/>
@@ -1888,14 +1893,12 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLs-74-JhC" customClass="PieChartView" customModule="Charts">
                                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="380"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="JLs-74-JhC" secondAttribute="height" multiplier="1:1" id="6bk-Zg-SUv"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnp-Cc-kdG" customClass="BarChartView" customModule="Charts">
                                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="380"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <gestureRecognizers/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="hnp-Cc-kdG" secondAttribute="height" multiplier="1:1" id="EPf-FS-cXm"/>
@@ -1908,7 +1911,6 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="JLs-74-JhC" firstAttribute="top" secondItem="vhf-8I-BCg" secondAttribute="top" id="Bvv-6u-ZhV"/>
                                                                     <constraint firstItem="JLs-74-JhC" firstAttribute="leading" secondItem="vhf-8I-BCg" secondAttribute="leading" id="GfV-TY-lvv"/>
@@ -1972,7 +1974,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="EVb-as-Lfi" firstAttribute="top" secondItem="Ese-KH-Bnj" secondAttribute="top" constant="8" id="52v-5Q-tgq"/>
@@ -2385,6 +2387,9 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
         <image name="restart" catalog="system" width="120" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
