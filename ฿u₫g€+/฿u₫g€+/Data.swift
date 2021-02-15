@@ -128,6 +128,7 @@ class expenseStruct: Codable {
             expenseStruct(categoryName: "Healthcare", projectedExpenses: 0, actualExpenses: 0.00),
             expenseStruct(categoryName: "Entertainment", projectedExpenses: 0, actualExpenses: 0.00),
             expenseStruct(categoryName: "Others", projectedExpenses: 0, actualExpenses: 0.00),
+            expenseStruct(categoryName: "Wishlist Items", projectedExpenses: 0, actualExpenses: 0.00)
         ]
         return expensesArray
     }
@@ -409,6 +410,7 @@ func updateTotalSavings() {
 }
 
 func updateWishlistTransactions() {
+    
     if let wlTransactHist = UserDefaults.standard.string(forKey: "wishlistTransactions") {
         wishlistSpendings = Double(wlTransactHist)!
     } else {

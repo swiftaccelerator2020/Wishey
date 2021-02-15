@@ -556,6 +556,34 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
             </objects>
             <point key="canvasLocation" x="3522.897196261682" y="-599.35205183585322"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="qm0-1U-6ow">
+            <objects>
+                <tableViewController id="Erd-fK-SCa" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="0BU-yE-c1t">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3BX-Nl-imJ">
+                                <rect key="frame" x="20" y="55.333332061767578" width="388" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3BX-Nl-imJ" id="PXL-WJ-jca">
+                                    <rect key="frame" x="0.0" y="0.0" width="388" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Erd-fK-SCa" id="PKR-eY-YX4"/>
+                            <outlet property="delegate" destination="Erd-fK-SCa" id="pk2-vb-ECA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="xAe-hR-5Xe"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WF6-X5-yKs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1533" y="839"/>
+        </scene>
         <!--Budget-->
         <scene sceneID="jLW-lB-2Kz">
             <objects>
@@ -2050,6 +2078,7 @@ This month's Expense Records are Empty. Try adding to your Spendings.</string>
                         <segue destination="nPf-CO-zKt" kind="presentation" identifier="addCategory" id="GS8-zj-BNE"/>
                         <segue destination="uMG-VY-85i" kind="presentation" identifier="showExpenses" id="mhW-7a-xeA"/>
                         <segue destination="o12-Mo-8eg" kind="show" identifier="showNameView" id="KHu-Rx-7dZ"/>
+                        <segue destination="Erd-fK-SCa" kind="show" identifier="seeSettings" id="laa-ZG-i67"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qls-qN-i3B" sceneMemberID="firstResponder"/>
