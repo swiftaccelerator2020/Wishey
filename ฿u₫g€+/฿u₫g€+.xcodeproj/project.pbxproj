@@ -13,6 +13,7 @@
 		8903DD62257408BB0046A4C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903DD61257408BB0046A4C4 /* ViewController.swift */; };
 		893CE5E525907AD70022B96A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893CE5E425907AD70022B96A /* Extensions.swift */; };
 		893CE5EA259093230022B96A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893CE5E9259093220022B96A /* StartViewController.swift */; };
+		8964CE9925DA3978003DDF4B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964CE9825DA3978003DDF4B /* SettingsTableViewController.swift */; };
 		896C3B56257D266B004DBAFC /* AddExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */; };
 		896C3B5C257D2686004DBAFC /* AddWishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */; };
 		8989958925828863000EBABB /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8989958825828863000EBABB /* NSUIColor+Hex.swift */; };
@@ -46,6 +47,7 @@
 		8903DD61257408BB0046A4C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		893CE5E425907AD70022B96A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		893CE5E9259093220022B96A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		8964CE9825DA3978003DDF4B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		896C3B55257D266B004DBAFC /* AddExpensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesTableViewController.swift; sourceTree = "<group>"; };
 		896C3B5B257D2686004DBAFC /* AddWishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWishlistTableViewController.swift; sourceTree = "<group>"; };
 		8989958825828863000EBABB /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				893CE5E425907AD70022B96A /* Extensions.swift */,
 				893CE5E9259093220022B96A /* StartViewController.swift */,
 				89A486B52591068000B4A0E2 /* NameViewController.swift */,
+				8964CE9825DA3978003DDF4B /* SettingsTableViewController.swift */,
 			);
 			path = "฿u₫g€+";
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				89A486B62591068000B4A0E2 /* NameViewController.swift in Sources */,
 				89D3B8AF25762CE300C0E747 /* MainTabBarViewController.swift in Sources */,
 				89DC08082586621F00B93E36 /* OtherIncomeTableViewController.swift in Sources */,
+				8964CE9925DA3978003DDF4B /* SettingsTableViewController.swift in Sources */,
 				89D2EFE0258FA03300821AA9 /* AddValueTableViewController.swift in Sources */,
 				896C3B56257D266B004DBAFC /* AddExpensesTableViewController.swift in Sources */,
 				A8109E4E256F9520008F3709 /* AppDelegate.swift in Sources */,
