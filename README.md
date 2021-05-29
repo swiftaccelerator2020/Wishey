@@ -12,7 +12,7 @@ This app was created by Granwyn Tan, Tan Xi Peng Adam, Brydon Ti and Joe Wong un
 [LICENSE](LICENSE)
 
 ## Installing
-Wishey is available on the [App Store](https://tk.sg/sis20-wishey)
+Wishey is available on the [App Store](https://tk.sg/sis21-wishey)
 <br>
 
 [![Download on the App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://tk.sg/sis20-wishey)
